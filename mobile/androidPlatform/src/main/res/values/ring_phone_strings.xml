@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android service labels and runtime failures with no web-component source. -->
+    <string name="ring_notification_access_title">Bro: уведомления кольца</string>
+    <string name="ring_gesture_accessibility_title">Bro: жесты кольца</string>
+    <string name="ring_gesture_accessibility_description">Выполняет выбранные локальные действия по жестам подтверждённого кольца: музыка, громкость, навигация, нажатия и прокрутка. Содержимое экрана не считывается.</string>
+    <string name="ring_notifications_store_unavailable">Настройки уведомлений недоступны; отправка заблокирована.</string>
+    <string name="ring_notifications_choose_installed">Выберите установленные приложения из списка.</string>
+    <string name="ring_notifications_access_required">Разрешите Android доступ к уведомлениям.</string>
+    <string name="ring_notifications_save_failed">Не удалось сохранить настройки уведомлений.</string>
+    <string name="ring_phone_binding_changed">Привязка кольца изменилась.</string>
+    <string name="ring_gestures_all_mappings">Нужны действия всех шести жестов.</string>
+    <string name="ring_gestures_unknown_action">Неизвестное действие жеста.</string>
+    <string name="ring_gestures_store_unavailable">Настройки жестов недоступны.</string>
+    <string name="ring_gestures_access_required">Разрешите Android локальное управление жестами.</string>
+    <string name="ring_gestures_source_unqualified">HID-источник этого кольца ещё не подтверждён.</string>
+    <string name="ring_gestures_save_failed">Не удалось сохранить настройки жестов.</string>
+</resources>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="ring_workout_0ace8017d157" formatted="false">"Завершение тренировки не принимает дополнительные параметры."</string>
+    <string name="ring_workout_0c491818d5fe" formatted="false">"Очередь тренировок заполнена. Подключитесь к серверу для отправки данных."</string>
+    <string name="ring_workout_1ac392cf374c" formatted="false">"Откройте приложение владельца кольца."</string>
+    <string name="ring_workout_1d9248c039f7" formatted="false">"Достигнут предел пауз одной тренировки."</string>
+    <string name="ring_workout_2457c5cc45d3" formatted="false">"Нельзя менять происхождение сохранённой тренировки."</string>
+    <string name="ring_workout_26ddcf9c9c06" formatted="false">"Сначала завершите текущую тренировку кольца."</string>
+    <string name="ring_workout_2b5addde63d9" formatted="false">"Укажите вид спорта и запись GPS."</string>
+    <string name="ring_workout_3954b833d8dc" formatted="false">"Результат команды неизвестен; повторный запуск заблокирован."</string>
+    <string name="ring_workout_39dd5955bf72" formatted="false">"Нет текущей тренировки."</string>
+    <string name="ring_workout_39e65cf8cb87" formatted="false">"Замеры управляются текущей тренировкой."</string>
+    <string name="ring_workout_418cf2b07958" formatted="false">"Тренировку сейчас нельзя продолжить."</string>
+    <string name="ring_workout_44b279161164" formatted="false">"Слишком много координат с одним временем."</string>
+    <string name="ring_workout_48ba76637471" formatted="false">"Этот вид спорта не использует уличный маршрут GPS."</string>
+    <string name="ring_workout_52b141b51054" formatted="false">"Тренировку сейчас нельзя поставить на паузу."</string>
+    <string name="ring_workout_572659ce9ac5" formatted="false">"Запись прервана. Остановка кольца не подтверждена."</string>
+    <string name="ring_workout_57a162c7aa87" formatted="false">"Не удалось сохранить неизвестную команду кольца."</string>
+    <string name="ring_workout_646053880e9d" formatted="false">"Экран больше не принадлежит аккаунту кольца."</string>
+    <string name="ring_workout_6b586a6133a3" formatted="false">"Укажите тип разрешения GPS."</string>
+    <string name="ring_workout_79621bef8dea" formatted="false">"Нельзя менять вид сохранённой тренировки."</string>
+    <string name="ring_workout_7a9b74cbb484" formatted="false">"Сохранённая запись тренировки изменилась."</string>
+    <string name="ring_workout_82655bc2f690" formatted="false">"Вид спорта должен быть целым идентификатором."</string>
+    <string name="ring_workout_848c5fe2a2a1" formatted="false">"Телефон не сообщил надёжное основание времени для записи."</string>
+    <string name="ring_workout_87324ca83d2b" formatted="false">"Android не разрешил фоновую запись. Запустите её из открытого приложения."</string>
+    <string name="ring_workout_89cd1e57f5df" formatted="false">"Вид спорта отсутствует в каталоге кольца."</string>
+    <string name="ring_workout_8bcc94d036d5" formatted="false">"Запись на телефоне завершена; состояние кольца требует сверки."</string>
+    <string name="ring_workout_8c8e0afd96c8" formatted="false">"Не найдена подтверждаемая запись тренировки."</string>
+    <string name="ring_workout_955e5cacd621" formatted="false">"Запрос разрешения не принимает дополнительные параметры."</string>
+    <string name="ring_workout_9dd1a8dc5b82" formatted="false">"Нельзя переписывать сохранённые паузы."</string>
+    <string name="ring_workout_a49928f1845c" formatted="false">"Тренировка относится к другой установке."</string>
+    <string name="ring_workout_ac2bc8be9535" formatted="false">"Квитанция относится к другой привязке кольца."</string>
+    <string name="ring_workout_ac742da494bf" formatted="false">"Эта команда спорта ещё не подтверждена на кольце."</string>
+    <string name="ring_workout_b4b34fb02477" formatted="false">"Вид текущей тренировки нельзя менять."</string>
+    <string name="ring_workout_c44f9958d071" formatted="false">"Кольцо прислало слишком много результатов с одним временем."</string>
+    <string name="ring_workout_c88aefcecc38" formatted="false">"Очередь маршрута заполнена. Пульс продолжит сохраняться отдельно."</string>
+    <string name="ring_workout_cbb7e0ff2dae" formatted="false">"Не удалось сохранить состояние тренировки."</string>
+    <string name="ring_workout_d1673e7ebce9" formatted="false">"Результат команды кольцу неизвестен. Проверьте состояние тренировки."</string>
+    <string name="ring_workout_d2b8a951e428" formatted="false">"Квитанция относится к другой установке."</string>
+    <string name="ring_workout_d7ed2ddae54b" formatted="false">"Сначала разрешите геопозицию в открытом приложении."</string>
+    <string name="ring_workout_e9998e0761d3" formatted="false">"Привязка кольца изменилась."</string>
+    <string name="ring_workout_ed3d9e2c8615" formatted="false">"Не удалось сохранить очередь тренировки."</string>
+    <string name="ring_workout_f01a180f9c31" formatted="false">"Запись GPS должна быть логическим значением."</string>
+    <string name="ring_workout_f1d835413623" formatted="false">"Пауза и продолжение не принимают дополнительные параметры."</string>
+    <string name="ring_workout_fe728fdf9ff8" formatted="false">"Не удалось сохранить размер очереди тренировки."</string>
+    <string name="ring_workout_eeaa1c1f500b" formatted="false">"Запись тренировки"</string>
+    <string name="ring_workout_51033fc071c3" formatted="false">"Пульс и маршрут сохраняются на телефоне; интернет не требуется."</string>
+    <string name="ring_workout_8be2bbf39a83" formatted="false">"Завершить"</string>
+    <string name="ring_workout_5b89de59e76e" formatted="false">"Не подтверждён источник тренировки."</string>
+    <string name="ring_workout_d9cb519cb3a8" formatted="false">"Не сохранён план спорта."</string>
+    <string name="ring_error_workout_store_unavailable" formatted="false">"Журнал тренировок недоступен. Записи и неизвестные операции сохранены; отключение или новая привязка их не удаляют. Операции заблокированы до восстановления хранилища и его ключа."</string>
+</resources>

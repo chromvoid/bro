@@ -1,0 +1,16 @@
+{
+  "name": "[A-Za-z0-9][A-Za-z0-9._-]*",
+  "types": [
+    ".css",
+    ".glb",
+    ".ico",
+    ".js",
+    ".json",
+    ".md",
+    ".png",
+    ".svg",
+    ".webmanifest",
+    ".webp",
+    ".woff2"
+  ]
+}

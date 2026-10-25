@@ -1,0 +1,11 @@
+{
+  "recorded": false,
+  "items": [{ "label": "Творог", "estimated": true, "energy_kcal": "181.5", "protein_g": "27", "fat_g": "0", "carbohydrate_g": null }],
+  "totals": {
+    "energy_kcal": { "known": "181.5", "complete": true },
+    "protein_g": { "known": "27", "complete": true },
+    "fat_g": { "known": "0", "complete": true },
+    "carbohydrate_g": { "known": "0", "complete": false },
+    "fiber_g": { "known": "1.25", "complete": false }
+  }
+}

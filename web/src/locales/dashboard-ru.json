@@ -1,0 +1,15 @@
+{
+  "dashboard": {
+    "details": "Подробнее",
+    "allMeasurements": "Все измерения",
+    "caliperHistory": "Замеры калипером",
+    "caliperLast": "Калипер · {when}",
+    "caliperRaw": "сохранены исходные замеры",
+    "caliperFailed": "Не удалось загрузить замеры. Откройте историю, чтобы повторить.",
+    "sourcesUnavailable": "Нет связи: {names}. Сохранённые измерения доступны.",
+    "caliperTitle": "Калипер",
+    "caliperLoading": "Загружаю замеры…",
+    "caliperEmpty": "Нет замеров",
+    "caliperProfile": "Для расчёта замера нужны данные профиля."
+  }
+}

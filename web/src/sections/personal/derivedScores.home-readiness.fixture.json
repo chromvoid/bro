@@ -1,0 +1,2578 @@
+{
+  "as_of": "2026-10-07T00:00:00+00:00",
+  "context_revisions": [
+    {
+      "fingerprint": "399e557224e5da7f3e7d9f37497583cf614296e836468e0c9f1f81d30b41c380",
+      "id": "owned_resolution_snapshot",
+      "revision": 0,
+      "type": "resolution_state"
+    },
+    {
+      "basis": "measurement_capture",
+      "captured_at": "2026-10-07T00:00:00+00:00",
+      "id": "d86d3bdf-76af-44ee-ad56-757ca751fe50",
+      "revision": 1,
+      "type": "evaluation_capture"
+    }
+  ],
+  "created_at": "2026-10-07T00:00:00+00:00",
+  "date": "2026-10-06",
+  "definition_id": "soul-home-readiness",
+  "definition_snapshot": {
+    "evidence": ["e36.g:172-219", "r76.g DEX1d6-21b;oy5.t/mbb.c;pya.d/e"],
+    "formula_version": "soul-1.0.1214-v1",
+    "id": "soul-home-readiness",
+    "label": "Готовность · главный экран Soul",
+    "qualification": "qualified",
+    "required_inputs": [
+      "night_hr",
+      "night_hrv",
+      "home_sleep_minutes",
+      "home_deep_minutes",
+      "home_steps_current",
+      "home_steps_day_db",
+      "home_steps_anchor",
+      "steps_goal"
+    ],
+    "unit": "/100"
+  },
+  "evaluation": "day",
+  "formula_version": "soul-1.0.1214-v1",
+  "implementation_digest": "3691e3129ae1173aa1d7dc3ff297524a9a7de79e6920d1bc612a8dde411e2cb9",
+  "implementation_source": {
+    "files": [
+      {
+        "git_blob_sha1": "e405f03da10de45925c45dfa522b4915fe8fe12e",
+        "path": "server/plugins/personal/soul_implementation.py",
+        "sha256": "90271d4d32342731ddb46c76912c5ff33e1cc5eb2fd36355bb68795c4ecf8e05"
+      },
+      {
+        "git_blob_sha1": "239d40eaf8b9253371f6f36cd935488b5a151453",
+        "path": "server/plugins/personal/soul_scores.py",
+        "sha256": "784a2f26b91a0ca41c8761c534674bcf1c65d60510e4fd72b8670f57f7685e17"
+      },
+      {
+        "git_blob_sha1": "995b03447da50adb35226bd2f7b6460bd57cd4c5",
+        "path": "server/plugins/personal/soul_scores_read.py",
+        "sha256": "b71cbf5eb97ad0421d24b64360302475878ebd0cec32b3da91833774872ff467"
+      },
+      {
+        "git_blob_sha1": "ac0421fd094cc28be355ae99528fb33ac77d5177",
+        "path": "server/plugins/personal/soul_body_sleep.py",
+        "sha256": "a01ceefac8f12ac575f14cd3e67b33dab7096eb99b44746e274f27e050466c33"
+      },
+      {
+        "git_blob_sha1": "8ca511e9775720d9016a0f8850822c842b051bb0",
+        "path": "server/plugins/personal/soul_night_sleep.py",
+        "sha256": "62e930ec0caffcf7c8539f5f5d2ea33131e4592ee62f100159f153fbb2bca526"
+      },
+      {
+        "git_blob_sha1": "c545ded74e626dc1a5a057caa26d5b8c65ab7f54",
+        "path": "server/plugins/personal/soul_sleep_contexts.py",
+        "sha256": "0ac01b0d9c7d16fca70d05a65933d931655b132dea418c85be6f40cdc46a0b56"
+      },
+      {
+        "git_blob_sha1": "f703270a9610dd65feb04b28595f5e676f8887f8",
+        "path": "server/plugins/personal/soul_sleep_pipeline.py",
+        "sha256": "e0e2777dbd1b6274746869196fd295a9d2b9e1ad79c2e798e8e1bd1bbfc87fc5"
+      },
+      {
+        "git_blob_sha1": "c8b67358f898d054d24e392d3635066e1dafc914",
+        "path": "server/plugins/personal/soul_home_activity.py",
+        "sha256": "151c878febe840c698d75478f4e4b9c24d757a2512420da9ab3672ce78e55f82"
+      },
+      {
+        "git_blob_sha1": "eebdbfae843adb30519ecfe919f2af8c12d0469c",
+        "path": "server/plugins/personal/temperature_transforms.py",
+        "sha256": "8f01735588742be7b4d8a55c7ee79824ff3a1db594e06aa94382bb44d62875ff"
+      },
+      {
+        "git_blob_sha1": "037006b02fa84a8035c5ee7c48be7ad0ca360bad",
+        "path": "server/plugins/personal/raw_reports.py",
+        "sha256": "38451c74ce546abfa9bf0f0d4b8da58d3d1d0c741c49d9cfbe3970c659e7ce6c"
+      },
+      {
+        "git_blob_sha1": "50adc372aad8a676d4aa6c818dc31d36d1c7b281",
+        "path": "server/plugins/personal/soul_result_work.py",
+        "sha256": "209f43e177bb9361242628affe04e6a8b2e9823aeb0e69d5138ed4640967d17a"
+      },
+      {
+        "git_blob_sha1": "0d8c7260f2cda18799faa232d292bbe871fa9d32",
+        "path": "server/plugins/personal/soul_result_store.py",
+        "sha256": "f9256871f65b449c1b0199597d4269f3d54245952168f3a30bf5aad369f58634"
+      },
+      {
+        "git_blob_sha1": "eea97a0f0b2c71544112629835b3bb64aab627f1",
+        "path": "server/plugins/personal/records.py",
+        "sha256": "9f9596abbe08eb9409e419b37c5fd02807536db976e031fbdad1d081986ec6cc"
+      },
+      {
+        "git_blob_sha1": "a614ce1e7028c737d674ae5c9046a71bc3357cd2",
+        "path": "server/plugins/personal/daily_steps.py",
+        "sha256": "4c44645040e0bce8fc3ed20a06ee8f5d8db563a47d8643801f525cce57f3715f"
+      },
+      {
+        "git_blob_sha1": "d77ad0c1f6d3ca42cbb059b5b3bab934014fa09d",
+        "path": "server/plugins/personal/activity_reports.py",
+        "sha256": "a7b98f41892868fbb586fb934a9ca495a56b373f1c41ae7591dd12c6cc42708b"
+      },
+      {
+        "git_blob_sha1": "82095ca9ecc9ef2978a58e068ac8c0685a2a195d",
+        "path": "server/plugins/personal/resolution.py",
+        "sha256": "47d2718a086de97a9783b3201682021303f87b0ee390653a95e741bd965b5e45"
+      },
+      {
+        "git_blob_sha1": "b1b3244c0d48d8ee6cdfa36c97b9f537a08c6085",
+        "path": "server/plugins/personal/resolution_core.py",
+        "sha256": "889b8d096a184507f345a28d38a96dc9df3ee45a6324a0b7858ada1de56ac89f"
+      },
+      {
+        "git_blob_sha1": "ba4a26abb8c6421db65c9a578c844fb6b4e2cd96",
+        "path": "server/plugins/personal/resolution_read.py",
+        "sha256": "1802369750f538ef7c1ee9a9b43d7a445fc4ab9e643526382c0970303c92e965"
+      },
+      {
+        "git_blob_sha1": "871708fd7196ead4ef140c7bde9b9edc9d1ee543",
+        "path": "server/plugins/personal/resolution_store.py",
+        "sha256": "b463c3caf3995cc9ee819e3fd27290939c6cdce517d5f3ead5c4555c0427468e"
+      },
+      {
+        "git_blob_sha1": "ddfba239c923241560de226743b181dbddf4b2db",
+        "path": "server/plugins/personal/sleep_analysis.py",
+        "sha256": "21db08d9d02ff0c6123fc55100a05f5a227a4b20e24bc2ec076bbdf50cd8e1fe"
+      },
+      {
+        "git_blob_sha1": "7a579365888af06f96f2c069cec1c6f8fe4f0702",
+        "path": "server/plugins/personal/sleep_forecast.py",
+        "sha256": "b78ed0f90c9ab17542ff0c318bd53681547f9946c08de7773571ce5433b327d0"
+      },
+      {
+        "git_blob_sha1": "8cad0c6772053c880fb8809c0d681034a7d54ded",
+        "path": "server/plugins/personal/sleep_reports.py",
+        "sha256": "f5ff3d87d23c71b821b93697a1b6134f3f8d0dec8b6bc97560f1cdb6047177b8"
+      },
+      {
+        "git_blob_sha1": "105c581fe33f50c7ca8d9782eed9d1bf2c4683e0",
+        "path": "server/plugins/personal/sleep_semantics.py",
+        "sha256": "59db3e3e2fd7792d8fa15b9a19c3c5e21fab9e257cac7b6fec2bd77974830ed2"
+      },
+      {
+        "git_blob_sha1": "4a385a799bf1c76c9189545fd4c231bf7d4d9c77",
+        "path": "server/plugins/personal/metric_catalog.py",
+        "sha256": "62681a39b673237d5d24ce35f4aa91f0c487d278e1d21b9e5dfe3bdc56473c6b"
+      },
+      {
+        "git_blob_sha1": "c749b77c290c8a862431279985902dbc1aea260d",
+        "path": "server/plugins/personal/models.py",
+        "sha256": "e47c0efec6e38679fdb62305cf7469f81bbfa69aad17f475a61a1e218c5bad1c"
+      },
+      {
+        "git_blob_sha1": "70f349a17842e4518953796e802e36b43b5aeb13",
+        "path": "server/plugins/personal/provenance.py",
+        "sha256": "60b572e176ddc859e31e6f1f0861c99dc812afd3644e8a3ad4082e0142aca8ac"
+      },
+      {
+        "git_blob_sha1": "e46165ffa68ccfc3a710a0520b0fd4c7cfa8d588",
+        "path": "server/plugins/personal/workout_hr_summary.py",
+        "sha256": "6b5159896b8b692d6cb94712621e8ffa8d7bcdfdf7dccb697ec9ef6938825eb6"
+      },
+      {
+        "git_blob_sha1": "bd0992ce9e37c2eafff35778ab27dbedeffb5344",
+        "path": "server/plugins/personal/workout_report_data.py",
+        "sha256": "661b8295e964687f13a1064c4a87b90a1110586645108192dbdfaf820eb98b29"
+      },
+      {
+        "git_blob_sha1": "4c90afe7fb142a363dcd479e60dbbb61ca7a43b0",
+        "path": "server/plugins/personal/sensors.py",
+        "sha256": "3d610bf838037200a896b327627b0450b583b42c9b39c7ffb78c76c2302f1fcd"
+      },
+      {
+        "git_blob_sha1": "608c8af1452ace183577952e4e9ecdd8eb402544",
+        "path": "server/plugins/personal/service.py",
+        "sha256": "0a3d87a78c0971631077104fd11ec5d350803205d648e3cbe1ddd51bd01511d3"
+      },
+      {
+        "git_blob_sha1": "93bcdcce9b6516a355194aa2d6ede592c2169972",
+        "path": "server/values.py",
+        "sha256": "f90a03e2edaaafdadddab52762ab70e50b40ff6aa8e001b23b2aebed789c57d5"
+      }
+    ],
+    "format": "git_blob_sha1"
+  },
+  "input_adapter_version": "soul-inputs-1.0.1230-v2",
+  "is_current": true,
+  "normalized_inputs": {
+    "dependency_definitions": ["soul-home-sleep", "soul-night-recovery", "soul-rhr-night"],
+    "facts": {
+      "home_deep_minutes": {
+        "baseline": {
+          "algorithm_version": "soul-1.0.1230-home-screen-contexts-v1",
+          "as_of": "2026-10-07T00:00:00+00:00",
+          "chart_fallback_used": false,
+          "daily_selected_ids": ["night:0"],
+          "decisions": [],
+          "device_grouping": { "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6": "physical:synthetic-ring" },
+          "duration_override": null,
+          "ignored": false,
+          "input_ids": ["night:0"],
+          "input_revisions": [
+            {
+              "annotation_id": null,
+              "annotation_revision": 0,
+              "id": "night:0",
+              "metric": "sleep",
+              "observed_at": "2026-10-05T23:50:00+00:00",
+              "override_revision": 0,
+              "revision": 1,
+              "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+              "source_version": 1000001,
+              "type": "record"
+            }
+          ],
+          "input_scope": "owner_all_sources_source_only",
+          "missing": [],
+          "producer": "x16/v36",
+          "sdk_fallback_used": false,
+          "selected_ids": ["night:0"],
+          "selected_reported_scalar_minutes": 430,
+          "selected_stage_minutes": { "awake": 20, "deep": 80, "light": 245, "rem": 85 },
+          "selected_timestamp": "2026-10-06T07:00:00+00:00",
+          "unavailable": [],
+          "window_end": "2026-10-07T00:00:00+00:00",
+          "window_start": "2026-10-05T00:00:00+00:00"
+        },
+        "measurement": true,
+        "observed_at": "2026-10-06T07:00:00+00:00",
+        "quality": ["owner_global_source_context"],
+        "refs": [
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "night:0",
+            "metric": "sleep",
+            "observed_at": "2026-10-05T23:50:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1000001,
+            "type": "record"
+          },
+          {
+            "confirmed": true,
+            "id": "identity:ring-a",
+            "physical_id": "synthetic-ring",
+            "revision": 4,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "type": "source_identity"
+          },
+          {
+            "confirmed": true,
+            "id": "identity:old-ring",
+            "physical_id": "synthetic-ring",
+            "revision": 4,
+            "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+            "type": "source_identity"
+          }
+        ],
+        "unit": "min",
+        "value": 80,
+        "window": null
+      },
+      "home_sleep_minutes": {
+        "baseline": {
+          "algorithm_version": "soul-1.0.1230-home-screen-contexts-v1",
+          "as_of": "2026-10-07T00:00:00+00:00",
+          "chart_fallback_used": false,
+          "daily_selected_ids": ["night:0"],
+          "decisions": [],
+          "device_grouping": { "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6": "physical:synthetic-ring" },
+          "duration_override": null,
+          "ignored": false,
+          "input_ids": ["night:0"],
+          "input_revisions": [
+            {
+              "annotation_id": null,
+              "annotation_revision": 0,
+              "id": "night:0",
+              "metric": "sleep",
+              "observed_at": "2026-10-05T23:50:00+00:00",
+              "override_revision": 0,
+              "revision": 1,
+              "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+              "source_version": 1000001,
+              "type": "record"
+            }
+          ],
+          "input_scope": "owner_all_sources_source_only",
+          "missing": [],
+          "producer": "x16/v36",
+          "sdk_fallback_used": false,
+          "selected_ids": ["night:0"],
+          "selected_reported_scalar_minutes": 430,
+          "selected_stage_minutes": { "awake": 20, "deep": 80, "light": 245, "rem": 85 },
+          "selected_timestamp": "2026-10-06T07:00:00+00:00",
+          "unavailable": [],
+          "window_end": "2026-10-07T00:00:00+00:00",
+          "window_start": "2026-10-05T00:00:00+00:00"
+        },
+        "measurement": true,
+        "observed_at": "2026-10-06T07:00:00+00:00",
+        "quality": ["owner_global_source_context"],
+        "refs": [
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "night:0",
+            "metric": "sleep",
+            "observed_at": "2026-10-05T23:50:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1000001,
+            "type": "record"
+          },
+          {
+            "confirmed": true,
+            "id": "identity:ring-a",
+            "physical_id": "synthetic-ring",
+            "revision": 4,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "type": "source_identity"
+          },
+          {
+            "confirmed": true,
+            "id": "identity:old-ring",
+            "physical_id": "synthetic-ring",
+            "revision": 4,
+            "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+            "type": "source_identity"
+          }
+        ],
+        "unit": "min",
+        "value": 430,
+        "window": null
+      },
+      "home_steps_anchor": {
+        "baseline": {
+          "captured_as_of": "2026-10-07T00:00:00+00:00",
+          "event_window_basis": "source_fixed_milliseconds",
+          "hourly_input_ids": [
+            "steps:0:0",
+            "steps:0:1",
+            "steps:0:2",
+            "steps:0:3",
+            "steps:0:4",
+            "steps:0:5",
+            "steps:0:6",
+            "steps:0:7"
+          ],
+          "hourly_window_end": "2026-10-06T07:00:00+00:00",
+          "hourly_window_start": "2026-10-05T22:50:00+00:00",
+          "input_count": 1,
+          "input_digest": "871f745ce79b2f588c7cea5b4c9b69eb3b08cf12773fbf1137431fd6dbaa1c93",
+          "missing": [],
+          "producer": "pya.d/e/a",
+          "producer_version": "soul-1.0.1230-home-activity-inputs-v1",
+          "query_qualified": true,
+          "selected_device": "physical:synthetic-ring",
+          "selected_sleep_id": "night:0",
+          "sleep_start": "2026-10-05T23:50:00+00:00",
+          "sleep_window_end": "2026-10-07T00:00:00+00:00",
+          "sleep_window_start": "2026-10-06T00:00:00+00:00",
+          "window_inclusive": true
+        },
+        "measurement": true,
+        "observed_at": "2026-10-07T00:00:00+00:00",
+        "quality": [],
+        "refs": [
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "night:0",
+            "metric": "sleep",
+            "observed_at": "2026-10-05T23:50:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1000001,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:0",
+            "metric": "steps",
+            "observed_at": "2026-10-06T00:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:1",
+            "metric": "steps",
+            "observed_at": "2026-10-06T01:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:2",
+            "metric": "steps",
+            "observed_at": "2026-10-06T02:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:3",
+            "metric": "steps",
+            "observed_at": "2026-10-06T03:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:4",
+            "metric": "steps",
+            "observed_at": "2026-10-06T04:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:5",
+            "metric": "steps",
+            "observed_at": "2026-10-06T05:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:6",
+            "metric": "steps",
+            "observed_at": "2026-10-06T06:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:7",
+            "metric": "steps",
+            "observed_at": "2026-10-06T07:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "confirmed": true,
+            "id": "identity:ring-a",
+            "physical_id": "synthetic-ring",
+            "revision": 4,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "type": "source_identity"
+          },
+          {
+            "confirmed": true,
+            "id": "identity:old-ring",
+            "physical_id": "synthetic-ring",
+            "revision": 4,
+            "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+            "type": "source_identity"
+          },
+          {
+            "fingerprint": "01936938f31cce48116825a1e996a95ea880a7aaa3cff91a94541e7211dcefdf",
+            "id": "home_steps_anchor:source_query",
+            "revision": 1,
+            "source_id": null,
+            "type": "software_context"
+          }
+        ],
+        "unit": "steps",
+        "value": 70,
+        "window": null
+      },
+      "home_steps_current": {
+        "baseline": {
+          "as_of": "2026-10-07T00:00:00+00:00",
+          "missing": ["home_current_wrapper_unavailable"],
+          "producer": "wrapper_K_z0",
+          "producer_version": "soul-1.0.1230-home-activity-inputs-v1",
+          "time_zone": "UTC"
+        },
+        "measurement": false,
+        "observed_at": "2026-10-07T00:00:00+00:00",
+        "quality": ["home_current_wrapper_unavailable"],
+        "refs": [
+          {
+            "fingerprint": "3b0f65c69688090dafd4f4ed62c8128dcb690e06c86dbaba967f13f2c8612bb4",
+            "id": "home_steps_current:source_query",
+            "revision": 1,
+            "source_id": null,
+            "type": "software_context"
+          }
+        ],
+        "unit": "steps",
+        "value": null,
+        "window": null
+      },
+      "home_steps_day_db": {
+        "baseline": {
+          "input_count": 408,
+          "input_digest": "4cf649a26189cc9e3127b212a93756c304909da85b62a0f76eb54080e502460c",
+          "input_scope": "owner_all_sources_source_only",
+          "missing": ["home_day_db_source_query_unqualified"],
+          "producer": "oy5.t/mbb.c/z5e.n",
+          "producer_version": "soul-1.0.1230-home-activity-inputs-v1",
+          "query_qualified": true,
+          "window_end": "2026-10-07T00:00:00+00:00",
+          "window_inclusive": true,
+          "window_start": "2026-10-06T00:00:00+00:00"
+        },
+        "measurement": false,
+        "observed_at": "2026-10-07T00:00:00+00:00",
+        "quality": ["home_day_db_source_query_unqualified"],
+        "refs": [
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:0",
+            "metric": "steps",
+            "observed_at": "2026-10-06T00:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:1",
+            "metric": "steps",
+            "observed_at": "2026-10-06T01:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:2",
+            "metric": "steps",
+            "observed_at": "2026-10-06T02:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:3",
+            "metric": "steps",
+            "observed_at": "2026-10-06T03:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:4",
+            "metric": "steps",
+            "observed_at": "2026-10-06T04:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:5",
+            "metric": "steps",
+            "observed_at": "2026-10-06T05:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:6",
+            "metric": "steps",
+            "observed_at": "2026-10-06T06:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:7",
+            "metric": "steps",
+            "observed_at": "2026-10-06T07:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:8",
+            "metric": "steps",
+            "observed_at": "2026-10-06T08:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:9",
+            "metric": "steps",
+            "observed_at": "2026-10-06T09:00:00+00:00",
+            "override_revision": 3,
+            "revision": 2,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:10",
+            "metric": "steps",
+            "observed_at": "2026-10-06T10:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:11",
+            "metric": "steps",
+            "observed_at": "2026-10-06T11:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:12",
+            "metric": "steps",
+            "observed_at": "2026-10-06T12:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:13",
+            "metric": "steps",
+            "observed_at": "2026-10-06T13:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:14",
+            "metric": "steps",
+            "observed_at": "2026-10-06T14:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:15",
+            "metric": "steps",
+            "observed_at": "2026-10-06T15:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:16",
+            "metric": "steps",
+            "observed_at": "2026-10-06T16:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:17",
+            "metric": "steps",
+            "observed_at": "2026-10-06T17:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:18",
+            "metric": "steps",
+            "observed_at": "2026-10-06T18:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:19",
+            "metric": "steps",
+            "observed_at": "2026-10-06T19:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:20",
+            "metric": "steps",
+            "observed_at": "2026-10-06T20:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:21",
+            "metric": "steps",
+            "observed_at": "2026-10-06T21:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:22",
+            "metric": "steps",
+            "observed_at": "2026-10-06T22:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "steps:0:23",
+            "metric": "steps",
+            "observed_at": "2026-10-06T23:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "record"
+          },
+          {
+            "confirmed": true,
+            "id": "identity:ring-a",
+            "physical_id": "synthetic-ring",
+            "revision": 4,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "type": "source_identity"
+          },
+          {
+            "confirmed": true,
+            "id": "identity:old-ring",
+            "physical_id": "synthetic-ring",
+            "revision": 4,
+            "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+            "type": "source_identity"
+          },
+          {
+            "fingerprint": "0a486a5ee973c0522434c5aef3f15ba0639e73e6fe439e23dbb21e411bbd6853",
+            "id": "home_steps_day_db:source_query",
+            "revision": 1,
+            "source_id": null,
+            "type": "software_context"
+          }
+        ],
+        "unit": "steps",
+        "value": null,
+        "window": {
+          "count": 384,
+          "digest": "0550212b35725980367eacaaffa4de01ac9ed4c2f024d16b1e5a978d45e7ef2a",
+          "first_observed_at": "2026-10-06T00:00:00+00:00",
+          "last_observed_at": "2026-10-06T23:55:00+00:00",
+          "metric": "heart_rate",
+          "source_ids": [
+            "5e68031e-7b0c-4e95-b488-29d6f6fb9828",
+            "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"
+          ],
+          "type": "sample_window",
+          "window_end": "2026-10-07T00:00:00+00:00",
+          "window_start": "2026-10-06T00:00:00+00:00"
+        }
+      },
+      "night_hr": {
+        "baseline": {
+          "as_of": "2026-10-07T00:00:00+00:00",
+          "device_scope": {
+            "basis": "owner_confirmed_physical_members",
+            "identity_revisions": [
+              {
+                "confirmed": true,
+                "id": "identity:old-ring",
+                "physical_id": "synthetic-ring",
+                "revision": 4,
+                "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+                "type": "source_identity"
+              },
+              {
+                "confirmed": true,
+                "id": "identity:ring-a",
+                "physical_id": "synthetic-ring",
+                "revision": 4,
+                "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+                "type": "source_identity"
+              }
+            ],
+            "physical_key": "physical:synthetic-ring",
+            "source_ids": [
+              "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+              "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"
+            ]
+          },
+          "estimator": "explicit_source_window",
+          "formula_version": "soul-1.0.1214-night-inputs-v1",
+          "input_count": 30,
+          "input_digest": "82d9c6fc4768b3cfe376fd2bb33c47277b8fc598d061684a2a8cafa590460446",
+          "points": 29,
+          "selection_context": {
+            "after_cap_count": 1,
+            "algorithm_version": "soul-1.0.1214-night-inputs-v1",
+            "as_of": "2026-10-07T00:00:00+00:00",
+            "considered_count": 1,
+            "decisions": [],
+            "device_scope": {
+              "identity_revisions": [
+                {
+                  "confirmed": true,
+                  "id": "identity:old-ring",
+                  "physical_id": "synthetic-ring",
+                  "revision": 4,
+                  "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+                  "type": "source_identity"
+                },
+                {
+                  "confirmed": true,
+                  "id": "identity:ring-a",
+                  "physical_id": "synthetic-ring",
+                  "revision": 4,
+                  "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+                  "type": "source_identity"
+                }
+              ],
+              "physical_key": "physical:synthetic-ring",
+              "source_ids": [
+                "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+                "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"
+              ]
+            },
+            "missing": ["night_hrv_baseline:three_nights", "night_rhr_baseline:three_nights"],
+            "normalized_count": 1,
+            "prior_windows": [],
+            "quality": [
+              "hrv_statistic_unknown",
+              "lineage_conflict",
+              "night_sample_semantics_unqualified",
+              "protocol_unverified"
+            ],
+            "sample_input_revisions_count": 105,
+            "sample_input_revisions_digest": "9ee18626d4a2b4fac7a4c60af0b8e75d220ac9a8920c5acc49a582394d0720ae",
+            "sample_qualifications_count": 105,
+            "sample_qualifications_digest": "30cafd5b20a19797521049a3f1d697cfd025b33b9614cc4ac385a3a496219c29",
+            "sample_query": {
+              "end": "2026-10-07T00:00:00+00:00",
+              "inclusive": true,
+              "start": "2026-10-05T23:50:00+00:00"
+            },
+            "selection_qualified": true,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_query": {
+              "basis": "source_at",
+              "end": "2026-10-07T00:00:00+00:00",
+              "inclusive": true,
+              "source_only": true,
+              "start": "2026-09-21T00:00:00+00:00",
+              "valid_explicit_window_cap": 60
+            },
+            "target": {
+              "end_at": "2026-10-06T07:00:00+00:00",
+              "input_revisions": [
+                {
+                  "annotation_id": null,
+                  "annotation_revision": 0,
+                  "id": "night:0",
+                  "metric": "sleep",
+                  "observed_at": "2026-10-06T07:00:00+00:00",
+                  "override_revision": 0,
+                  "revision": 1,
+                  "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+                  "source_version": 1000001,
+                  "type": "record"
+                }
+              ],
+              "quality": [],
+              "source_at": "2026-10-06T07:00:00+00:00",
+              "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+              "start_at": "2026-10-05T23:50:00+00:00"
+            },
+            "time_zone": "UTC",
+            "unqualified_samples_count": 3,
+            "unqualified_samples_digest": "1197ca2372d03629b924444b00feab31b2021bf1bdbd6992ea4b93db1165082e",
+            "valid_before_cap_count": 1
+          },
+          "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+          "window_end": "2026-10-06T07:00:00+00:00",
+          "window_start": "2026-10-05T23:50:00+00:00"
+        },
+        "measurement": true,
+        "observed_at": "2026-10-06T07:00:00+00:00",
+        "quality": [
+          "hrv_statistic_unknown",
+          "lineage_conflict",
+          "night_sample_semantics_unqualified",
+          "protocol_unverified"
+        ],
+        "refs": [
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "ring:hrv:0:13",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T13:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "ring:hrv:0:7",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T07:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "night:0",
+            "metric": "sleep",
+            "observed_at": "2026-10-06T07:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1000001,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "ring:hrv:0:19",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T19:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "ring:hrv:0:1",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T01:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "later-conflicting-packet",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T10:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "unqualified-hrv:0",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T08:30:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "early-packet",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T09:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "fixture-night-hrv:2",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T02:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "fixture-night-hrv:3",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T03:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "confirmed": true,
+            "id": "identity:old-ring",
+            "physical_id": "synthetic-ring",
+            "revision": 4,
+            "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+            "type": "source_identity"
+          },
+          {
+            "confirmed": true,
+            "id": "identity:ring-a",
+            "physical_id": "synthetic-ring",
+            "revision": 4,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "type": "source_identity"
+          },
+          {
+            "fingerprint": "9c0466e188d4c28ff85f3c83b44526e315e328b3328ec12b50c05b23a8cfa905",
+            "id": "soul-1.0.1214-night-inputs-v1",
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "type": "derivation_context"
+          }
+        ],
+        "unit": "bpm",
+        "value": [
+          53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 53, 54, 55, 56, 57,
+          58, 59, 60, 61, 62, 63, 64
+        ],
+        "window": {
+          "count": 96,
+          "digest": "742f7b095e67154d9d0f552ac16b535b4b19333bb1d7a58b79cc8085c87e9393",
+          "first_observed_at": "2026-10-06T00:00:00+00:00",
+          "last_observed_at": "2026-10-06T23:45:00+00:00",
+          "metric": "heart_rate",
+          "source_ids": ["7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"],
+          "type": "sample_window",
+          "window_end": "2026-10-07T00:00:00+00:00",
+          "window_start": "2026-10-05T23:50:00+00:00"
+        }
+      },
+      "night_hrv": {
+        "baseline": {
+          "as_of": "2026-10-07T00:00:00+00:00",
+          "device_scope": {
+            "basis": "owner_confirmed_physical_members",
+            "identity_revisions": [
+              {
+                "confirmed": true,
+                "id": "identity:old-ring",
+                "physical_id": "synthetic-ring",
+                "revision": 4,
+                "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+                "type": "source_identity"
+              },
+              {
+                "confirmed": true,
+                "id": "identity:ring-a",
+                "physical_id": "synthetic-ring",
+                "revision": 4,
+                "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+                "type": "source_identity"
+              }
+            ],
+            "physical_key": "physical:synthetic-ring",
+            "source_ids": [
+              "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+              "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"
+            ]
+          },
+          "estimator": "explicit_source_window",
+          "formula_version": "soul-1.0.1214-night-inputs-v1",
+          "input_count": 4,
+          "input_digest": "a2e358ab6e3f80afff0578e09663e08d7e34c58deadf8b9d728a4221103219bb",
+          "points": 3,
+          "selection_context": {
+            "after_cap_count": 1,
+            "algorithm_version": "soul-1.0.1214-night-inputs-v1",
+            "as_of": "2026-10-07T00:00:00+00:00",
+            "considered_count": 1,
+            "decisions": [],
+            "device_scope": {
+              "identity_revisions": [
+                {
+                  "confirmed": true,
+                  "id": "identity:old-ring",
+                  "physical_id": "synthetic-ring",
+                  "revision": 4,
+                  "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+                  "type": "source_identity"
+                },
+                {
+                  "confirmed": true,
+                  "id": "identity:ring-a",
+                  "physical_id": "synthetic-ring",
+                  "revision": 4,
+                  "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+                  "type": "source_identity"
+                }
+              ],
+              "physical_key": "physical:synthetic-ring",
+              "source_ids": [
+                "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+                "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"
+              ]
+            },
+            "missing": ["night_hrv_baseline:three_nights", "night_rhr_baseline:three_nights"],
+            "normalized_count": 1,
+            "prior_windows": [],
+            "quality": [
+              "hrv_statistic_unknown",
+              "lineage_conflict",
+              "night_sample_semantics_unqualified",
+              "protocol_unverified"
+            ],
+            "sample_input_revisions_count": 105,
+            "sample_input_revisions_digest": "9ee18626d4a2b4fac7a4c60af0b8e75d220ac9a8920c5acc49a582394d0720ae",
+            "sample_qualifications_count": 105,
+            "sample_qualifications_digest": "30cafd5b20a19797521049a3f1d697cfd025b33b9614cc4ac385a3a496219c29",
+            "sample_query": {
+              "end": "2026-10-07T00:00:00+00:00",
+              "inclusive": true,
+              "start": "2026-10-05T23:50:00+00:00"
+            },
+            "selection_qualified": true,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_query": {
+              "basis": "source_at",
+              "end": "2026-10-07T00:00:00+00:00",
+              "inclusive": true,
+              "source_only": true,
+              "start": "2026-09-21T00:00:00+00:00",
+              "valid_explicit_window_cap": 60
+            },
+            "target": {
+              "end_at": "2026-10-06T07:00:00+00:00",
+              "input_revisions": [
+                {
+                  "annotation_id": null,
+                  "annotation_revision": 0,
+                  "id": "night:0",
+                  "metric": "sleep",
+                  "observed_at": "2026-10-06T07:00:00+00:00",
+                  "override_revision": 0,
+                  "revision": 1,
+                  "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+                  "source_version": 1000001,
+                  "type": "record"
+                }
+              ],
+              "quality": [],
+              "source_at": "2026-10-06T07:00:00+00:00",
+              "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+              "start_at": "2026-10-05T23:50:00+00:00"
+            },
+            "time_zone": "UTC",
+            "unqualified_samples_count": 3,
+            "unqualified_samples_digest": "1197ca2372d03629b924444b00feab31b2021bf1bdbd6992ea4b93db1165082e",
+            "valid_before_cap_count": 1
+          },
+          "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+          "window_end": "2026-10-06T07:00:00+00:00",
+          "window_start": "2026-10-05T23:50:00+00:00"
+        },
+        "measurement": true,
+        "observed_at": "2026-10-06T03:00:00+00:00",
+        "quality": [
+          "hrv_statistic_unknown",
+          "lineage_conflict",
+          "night_sample_semantics_unqualified",
+          "protocol_unverified"
+        ],
+        "refs": [
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "ring:hrv:0:13",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T13:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "ring:hrv:0:7",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T07:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "night:0",
+            "metric": "sleep",
+            "observed_at": "2026-10-06T07:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1000001,
+            "type": "record"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "ring:hrv:0:19",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T19:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "ring:hrv:0:1",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T01:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "later-conflicting-packet",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T10:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "unqualified-hrv:0",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T08:30:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "early-packet",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T09:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "fixture-night-hrv:2",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T02:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "fixture-night-hrv:3",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T03:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "confirmed": true,
+            "id": "identity:old-ring",
+            "physical_id": "synthetic-ring",
+            "revision": 4,
+            "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+            "type": "source_identity"
+          },
+          {
+            "confirmed": true,
+            "id": "identity:ring-a",
+            "physical_id": "synthetic-ring",
+            "revision": 4,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "type": "source_identity"
+          },
+          {
+            "fingerprint": "9c0466e188d4c28ff85f3c83b44526e315e328b3328ec12b50c05b23a8cfa905",
+            "id": "soul-1.0.1214-night-inputs-v1",
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "type": "derivation_context"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "ring:hrv:0:1",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T01:05:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "fixture-night-hrv:2",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T02:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          },
+          {
+            "annotation_id": null,
+            "annotation_revision": 0,
+            "id": "fixture-night-hrv:3",
+            "metric": "hrv",
+            "observed_at": "2026-10-06T03:00:00+00:00",
+            "override_revision": 0,
+            "revision": 1,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_version": 1,
+            "type": "sample"
+          }
+        ],
+        "unit": "ms",
+        "value": [39, 39, 39],
+        "window": {
+          "count": 96,
+          "digest": "742f7b095e67154d9d0f552ac16b535b4b19333bb1d7a58b79cc8085c87e9393",
+          "first_observed_at": "2026-10-06T00:00:00+00:00",
+          "last_observed_at": "2026-10-06T23:45:00+00:00",
+          "metric": "heart_rate",
+          "source_ids": ["7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"],
+          "type": "sample_window",
+          "window_end": "2026-10-07T00:00:00+00:00",
+          "window_start": "2026-10-05T23:50:00+00:00"
+        }
+      },
+      "steps_goal": {
+        "baseline": null,
+        "measurement": false,
+        "observed_at": null,
+        "quality": [],
+        "refs": [
+          {
+            "id": "preference:steps",
+            "metric": "preference:steps",
+            "observed_at": null,
+            "revision": 3,
+            "source_id": null,
+            "type": "preference"
+          }
+        ],
+        "unit": "steps",
+        "value": 10000,
+        "window": null
+      }
+    },
+    "input_scope": "source",
+    "requested_inputs": [
+      "home_deep_minutes",
+      "home_sleep_minutes",
+      "home_steps_anchor",
+      "home_steps_current",
+      "home_steps_day_db",
+      "night_hr",
+      "night_hrv",
+      "night_hrv_baseline",
+      "night_rhr_baseline",
+      "steps_goal"
+    ],
+    "result_source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+    "scope_contract": {
+      "scopes": {
+        "soul-home-readiness": {
+          "input_scope": "source",
+          "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+          "source_name": "Synthetic ring"
+        },
+        "soul-home-sleep": {
+          "input_scope": "owner_all_sources_source_only",
+          "source_id": null,
+          "source_name": null
+        },
+        "soul-night-recovery": {
+          "input_scope": "source",
+          "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+          "source_name": "Synthetic ring"
+        },
+        "soul-rhr-night": {
+          "input_scope": "source",
+          "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+          "source_name": "Synthetic ring"
+        }
+      },
+      "version": "soul-frozen-scope-v2"
+    },
+    "snapshot": {
+      "as_of": "2026-10-07T00:00:00+00:00",
+      "context_revisions": [
+        {
+          "fingerprint": "399e557224e5da7f3e7d9f37497583cf614296e836468e0c9f1f81d30b41c380",
+          "id": "owned_resolution_snapshot",
+          "revision": 0,
+          "type": "resolution_state"
+        },
+        {
+          "basis": "measurement_capture",
+          "captured_at": "2026-10-07T00:00:00+00:00",
+          "id": "d86d3bdf-76af-44ee-ad56-757ca751fe50",
+          "revision": 1,
+          "type": "evaluation_capture"
+        }
+      ],
+      "day": "2026-10-06",
+      "evaluation": "day",
+      "quality": [],
+      "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+      "source_name": "Synthetic ring",
+      "time_zone": "UTC"
+    }
+  },
+  "operation_id": "d86d3bdf-76af-44ee-ad56-757ca751fe50",
+  "result_id": "af692a21b77dd528f7e7b6b96604fd0c17fa43634454bf057d31f6c4e4d03749",
+  "score": {
+    "baseline": {
+      "as_of": "2026-10-07T00:00:00+00:00",
+      "components": [
+        {
+          "as_of": "2026-10-07T00:00:00+00:00",
+          "device_scope": {
+            "basis": "owner_confirmed_physical_members",
+            "identity_revisions": [
+              {
+                "confirmed": true,
+                "id": "identity:old-ring",
+                "physical_id": "synthetic-ring",
+                "revision": 4,
+                "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+                "type": "source_identity"
+              },
+              {
+                "confirmed": true,
+                "id": "identity:ring-a",
+                "physical_id": "synthetic-ring",
+                "revision": 4,
+                "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+                "type": "source_identity"
+              }
+            ],
+            "physical_key": "physical:synthetic-ring",
+            "source_ids": [
+              "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+              "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"
+            ]
+          },
+          "estimator": "explicit_source_window",
+          "formula_version": "soul-1.0.1214-night-inputs-v1",
+          "id": "night_hrv",
+          "input_count": 4,
+          "input_digest": "a2e358ab6e3f80afff0578e09663e08d7e34c58deadf8b9d728a4221103219bb",
+          "points": 3,
+          "selection_context": {
+            "after_cap_count": 1,
+            "algorithm_version": "soul-1.0.1214-night-inputs-v1",
+            "as_of": "2026-10-07T00:00:00+00:00",
+            "considered_count": 1,
+            "decisions": [],
+            "device_scope": {
+              "identity_revisions": [
+                {
+                  "confirmed": true,
+                  "id": "identity:old-ring",
+                  "physical_id": "synthetic-ring",
+                  "revision": 4,
+                  "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+                  "type": "source_identity"
+                },
+                {
+                  "confirmed": true,
+                  "id": "identity:ring-a",
+                  "physical_id": "synthetic-ring",
+                  "revision": 4,
+                  "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+                  "type": "source_identity"
+                }
+              ],
+              "physical_key": "physical:synthetic-ring",
+              "source_ids": [
+                "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+                "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"
+              ]
+            },
+            "missing": ["night_hrv_baseline:three_nights", "night_rhr_baseline:three_nights"],
+            "normalized_count": 1,
+            "prior_windows": [],
+            "quality": [
+              "hrv_statistic_unknown",
+              "lineage_conflict",
+              "night_sample_semantics_unqualified",
+              "protocol_unverified"
+            ],
+            "sample_input_revisions_count": 105,
+            "sample_input_revisions_digest": "9ee18626d4a2b4fac7a4c60af0b8e75d220ac9a8920c5acc49a582394d0720ae",
+            "sample_qualifications_count": 105,
+            "sample_qualifications_digest": "30cafd5b20a19797521049a3f1d697cfd025b33b9614cc4ac385a3a496219c29",
+            "sample_query": {
+              "end": "2026-10-07T00:00:00+00:00",
+              "inclusive": true,
+              "start": "2026-10-05T23:50:00+00:00"
+            },
+            "selection_qualified": true,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_query": {
+              "basis": "source_at",
+              "end": "2026-10-07T00:00:00+00:00",
+              "inclusive": true,
+              "source_only": true,
+              "start": "2026-09-21T00:00:00+00:00",
+              "valid_explicit_window_cap": 60
+            },
+            "target": {
+              "end_at": "2026-10-06T07:00:00+00:00",
+              "input_revisions": [
+                {
+                  "annotation_id": null,
+                  "annotation_revision": 0,
+                  "id": "night:0",
+                  "metric": "sleep",
+                  "observed_at": "2026-10-06T07:00:00+00:00",
+                  "override_revision": 0,
+                  "revision": 1,
+                  "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+                  "source_version": 1000001,
+                  "type": "record"
+                }
+              ],
+              "quality": [],
+              "source_at": "2026-10-06T07:00:00+00:00",
+              "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+              "start_at": "2026-10-05T23:50:00+00:00"
+            },
+            "time_zone": "UTC",
+            "unqualified_samples_count": 3,
+            "unqualified_samples_digest": "1197ca2372d03629b924444b00feab31b2021bf1bdbd6992ea4b93db1165082e",
+            "valid_before_cap_count": 1
+          },
+          "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+          "window_end": "2026-10-06T07:00:00+00:00",
+          "window_start": "2026-10-05T23:50:00+00:00"
+        },
+        {
+          "as_of": "2026-10-07T00:00:00+00:00",
+          "device_scope": {
+            "basis": "owner_confirmed_physical_members",
+            "identity_revisions": [
+              {
+                "confirmed": true,
+                "id": "identity:old-ring",
+                "physical_id": "synthetic-ring",
+                "revision": 4,
+                "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+                "type": "source_identity"
+              },
+              {
+                "confirmed": true,
+                "id": "identity:ring-a",
+                "physical_id": "synthetic-ring",
+                "revision": 4,
+                "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+                "type": "source_identity"
+              }
+            ],
+            "physical_key": "physical:synthetic-ring",
+            "source_ids": [
+              "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+              "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"
+            ]
+          },
+          "estimator": "explicit_source_window",
+          "formula_version": "soul-1.0.1214-night-inputs-v1",
+          "id": "night_hr",
+          "input_count": 30,
+          "input_digest": "82d9c6fc4768b3cfe376fd2bb33c47277b8fc598d061684a2a8cafa590460446",
+          "points": 29,
+          "selection_context": {
+            "after_cap_count": 1,
+            "algorithm_version": "soul-1.0.1214-night-inputs-v1",
+            "as_of": "2026-10-07T00:00:00+00:00",
+            "considered_count": 1,
+            "decisions": [],
+            "device_scope": {
+              "identity_revisions": [
+                {
+                  "confirmed": true,
+                  "id": "identity:old-ring",
+                  "physical_id": "synthetic-ring",
+                  "revision": 4,
+                  "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+                  "type": "source_identity"
+                },
+                {
+                  "confirmed": true,
+                  "id": "identity:ring-a",
+                  "physical_id": "synthetic-ring",
+                  "revision": 4,
+                  "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+                  "type": "source_identity"
+                }
+              ],
+              "physical_key": "physical:synthetic-ring",
+              "source_ids": [
+                "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+                "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"
+              ]
+            },
+            "missing": ["night_hrv_baseline:three_nights", "night_rhr_baseline:three_nights"],
+            "normalized_count": 1,
+            "prior_windows": [],
+            "quality": [
+              "hrv_statistic_unknown",
+              "lineage_conflict",
+              "night_sample_semantics_unqualified",
+              "protocol_unverified"
+            ],
+            "sample_input_revisions_count": 105,
+            "sample_input_revisions_digest": "9ee18626d4a2b4fac7a4c60af0b8e75d220ac9a8920c5acc49a582394d0720ae",
+            "sample_qualifications_count": 105,
+            "sample_qualifications_digest": "30cafd5b20a19797521049a3f1d697cfd025b33b9614cc4ac385a3a496219c29",
+            "sample_query": {
+              "end": "2026-10-07T00:00:00+00:00",
+              "inclusive": true,
+              "start": "2026-10-05T23:50:00+00:00"
+            },
+            "selection_qualified": true,
+            "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+            "source_query": {
+              "basis": "source_at",
+              "end": "2026-10-07T00:00:00+00:00",
+              "inclusive": true,
+              "source_only": true,
+              "start": "2026-09-21T00:00:00+00:00",
+              "valid_explicit_window_cap": 60
+            },
+            "target": {
+              "end_at": "2026-10-06T07:00:00+00:00",
+              "input_revisions": [
+                {
+                  "annotation_id": null,
+                  "annotation_revision": 0,
+                  "id": "night:0",
+                  "metric": "sleep",
+                  "observed_at": "2026-10-06T07:00:00+00:00",
+                  "override_revision": 0,
+                  "revision": 1,
+                  "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+                  "source_version": 1000001,
+                  "type": "record"
+                }
+              ],
+              "quality": [],
+              "source_at": "2026-10-06T07:00:00+00:00",
+              "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+              "start_at": "2026-10-05T23:50:00+00:00"
+            },
+            "time_zone": "UTC",
+            "unqualified_samples_count": 3,
+            "unqualified_samples_digest": "1197ca2372d03629b924444b00feab31b2021bf1bdbd6992ea4b93db1165082e",
+            "valid_before_cap_count": 1
+          },
+          "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+          "window_end": "2026-10-06T07:00:00+00:00",
+          "window_start": "2026-10-05T23:50:00+00:00"
+        },
+        {
+          "as_of": "2026-10-07T00:00:00+00:00",
+          "id": "home_steps_current",
+          "missing": ["home_current_wrapper_unavailable"],
+          "producer": "wrapper_K_z0",
+          "producer_version": "soul-1.0.1230-home-activity-inputs-v1",
+          "time_zone": "UTC"
+        },
+        {
+          "algorithm_version": "soul-1.0.1230-home-screen-contexts-v1",
+          "as_of": "2026-10-07T00:00:00+00:00",
+          "chart_fallback_used": false,
+          "daily_selected_ids": ["night:0"],
+          "decisions": [],
+          "device_grouping": { "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6": "physical:synthetic-ring" },
+          "duration_override": null,
+          "id": "home_sleep_minutes",
+          "ignored": false,
+          "input_ids": ["night:0"],
+          "input_revisions": [
+            {
+              "annotation_id": null,
+              "annotation_revision": 0,
+              "id": "night:0",
+              "metric": "sleep",
+              "observed_at": "2026-10-05T23:50:00+00:00",
+              "override_revision": 0,
+              "revision": 1,
+              "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+              "source_version": 1000001,
+              "type": "record"
+            }
+          ],
+          "input_scope": "owner_all_sources_source_only",
+          "missing": [],
+          "producer": "x16/v36",
+          "sdk_fallback_used": false,
+          "selected_ids": ["night:0"],
+          "selected_reported_scalar_minutes": 430,
+          "selected_stage_minutes": { "awake": 20, "deep": 80, "light": 245, "rem": 85 },
+          "selected_timestamp": "2026-10-06T07:00:00+00:00",
+          "unavailable": [],
+          "window_end": "2026-10-07T00:00:00+00:00",
+          "window_start": "2026-10-05T00:00:00+00:00"
+        },
+        {
+          "captured_as_of": "2026-10-07T00:00:00+00:00",
+          "event_window_basis": "source_fixed_milliseconds",
+          "hourly_input_ids": [
+            "steps:0:0",
+            "steps:0:1",
+            "steps:0:2",
+            "steps:0:3",
+            "steps:0:4",
+            "steps:0:5",
+            "steps:0:6",
+            "steps:0:7"
+          ],
+          "hourly_window_end": "2026-10-06T07:00:00+00:00",
+          "hourly_window_start": "2026-10-05T22:50:00+00:00",
+          "id": "home_steps_anchor",
+          "input_count": 1,
+          "input_digest": "871f745ce79b2f588c7cea5b4c9b69eb3b08cf12773fbf1137431fd6dbaa1c93",
+          "missing": [],
+          "producer": "pya.d/e/a",
+          "producer_version": "soul-1.0.1230-home-activity-inputs-v1",
+          "query_qualified": true,
+          "selected_device": "physical:synthetic-ring",
+          "selected_sleep_id": "night:0",
+          "sleep_start": "2026-10-05T23:50:00+00:00",
+          "sleep_window_end": "2026-10-07T00:00:00+00:00",
+          "sleep_window_start": "2026-10-06T00:00:00+00:00",
+          "window_inclusive": true
+        },
+        {
+          "id": "home_steps_day_db",
+          "input_count": 408,
+          "input_digest": "4cf649a26189cc9e3127b212a93756c304909da85b62a0f76eb54080e502460c",
+          "input_scope": "owner_all_sources_source_only",
+          "missing": ["home_day_db_source_query_unqualified"],
+          "producer": "oy5.t/mbb.c/z5e.n",
+          "producer_version": "soul-1.0.1230-home-activity-inputs-v1",
+          "query_qualified": true,
+          "window_end": "2026-10-07T00:00:00+00:00",
+          "window_inclusive": true,
+          "window_start": "2026-10-06T00:00:00+00:00"
+        },
+        {
+          "algorithm_version": "soul-1.0.1230-home-screen-contexts-v1",
+          "as_of": "2026-10-07T00:00:00+00:00",
+          "chart_fallback_used": false,
+          "daily_selected_ids": ["night:0"],
+          "decisions": [],
+          "device_grouping": { "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6": "physical:synthetic-ring" },
+          "duration_override": null,
+          "id": "home_deep_minutes",
+          "ignored": false,
+          "input_ids": ["night:0"],
+          "input_revisions": [
+            {
+              "annotation_id": null,
+              "annotation_revision": 0,
+              "id": "night:0",
+              "metric": "sleep",
+              "observed_at": "2026-10-05T23:50:00+00:00",
+              "override_revision": 0,
+              "revision": 1,
+              "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+              "source_version": 1000001,
+              "type": "record"
+            }
+          ],
+          "input_scope": "owner_all_sources_source_only",
+          "missing": [],
+          "producer": "x16/v36",
+          "sdk_fallback_used": false,
+          "selected_ids": ["night:0"],
+          "selected_reported_scalar_minutes": 430,
+          "selected_stage_minutes": { "awake": 20, "deep": 80, "light": 245, "rem": 85 },
+          "selected_timestamp": "2026-10-06T07:00:00+00:00",
+          "unavailable": [],
+          "window_end": "2026-10-07T00:00:00+00:00",
+          "window_start": "2026-10-05T00:00:00+00:00"
+        }
+      ],
+      "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"
+    },
+    "components": [
+      {
+        "id": "home_steps_anchor",
+        "quality": [],
+        "synthetic": false,
+        "unit": "steps",
+        "value": 70
+      },
+      {
+        "id": "home_steps_current",
+        "quality": ["home_current_wrapper_unavailable"],
+        "synthetic": false,
+        "unit": "steps",
+        "value": null
+      },
+      {
+        "id": "home_steps_day_db",
+        "quality": ["home_day_db_source_query_unqualified"],
+        "synthetic": false,
+        "unit": "steps",
+        "value": null
+      },
+      { "id": "steps_goal", "quality": [], "synthetic": false, "unit": "steps", "value": 10000 },
+      {
+        "id": "soul-home-sleep",
+        "quality": ["owner_global_source_context"],
+        "synthetic": false,
+        "unit": "/100",
+        "value": 82
+      },
+      {
+        "id": "soul-night-recovery",
+        "quality": [
+          "hrv_statistic_unknown",
+          "lineage_conflict",
+          "night_sample_semantics_unqualified",
+          "protocol_unverified"
+        ],
+        "synthetic": false,
+        "unit": "/100",
+        "value": 65
+      }
+    ],
+    "confidence": {
+      "available_inputs": 4,
+      "formula_value": null,
+      "kind": "input_coverage",
+      "level": "none",
+      "required_inputs": 8
+    },
+    "context": {
+      "as_of": "2026-10-07T00:00:00+00:00",
+      "date": "2026-10-06",
+      "evaluation": "day",
+      "input_scope": "source",
+      "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+      "source_name": "Synthetic ring",
+      "time_zone": "UTC"
+    },
+    "coverage": { "expected": 8, "kind": "input_presence", "observed": 4, "ratio": 0.5 },
+    "definition_id": "soul-home-readiness",
+    "details": {},
+    "fingerprint": "354142fcb48a22fdc62d73ef98f1c0b4f3423780eaf7ee6e85abcc3c75778ce7",
+    "formula_version": "soul-1.0.1214-v1",
+    "input_revisions": [
+      {
+        "fingerprint": "9c0466e188d4c28ff85f3c83b44526e315e328b3328ec12b50c05b23a8cfa905",
+        "id": "soul-1.0.1214-night-inputs-v1",
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "type": "derivation_context"
+      },
+      {
+        "basis": "measurement_capture",
+        "captured_at": "2026-10-07T00:00:00+00:00",
+        "id": "d86d3bdf-76af-44ee-ad56-757ca751fe50",
+        "revision": 1,
+        "type": "evaluation_capture"
+      },
+      {
+        "id": "preference:steps",
+        "metric": "preference:steps",
+        "observed_at": null,
+        "revision": 3,
+        "source_id": null,
+        "type": "preference"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "night:0",
+        "metric": "sleep",
+        "observed_at": "2026-10-05T23:50:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1000001,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "night:0",
+        "metric": "sleep",
+        "observed_at": "2026-10-06T07:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1000001,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:0",
+        "metric": "steps",
+        "observed_at": "2026-10-06T00:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:1",
+        "metric": "steps",
+        "observed_at": "2026-10-06T01:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:10",
+        "metric": "steps",
+        "observed_at": "2026-10-06T10:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:11",
+        "metric": "steps",
+        "observed_at": "2026-10-06T11:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:12",
+        "metric": "steps",
+        "observed_at": "2026-10-06T12:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:13",
+        "metric": "steps",
+        "observed_at": "2026-10-06T13:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:14",
+        "metric": "steps",
+        "observed_at": "2026-10-06T14:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:15",
+        "metric": "steps",
+        "observed_at": "2026-10-06T15:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:16",
+        "metric": "steps",
+        "observed_at": "2026-10-06T16:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:17",
+        "metric": "steps",
+        "observed_at": "2026-10-06T17:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:18",
+        "metric": "steps",
+        "observed_at": "2026-10-06T18:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:19",
+        "metric": "steps",
+        "observed_at": "2026-10-06T19:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:2",
+        "metric": "steps",
+        "observed_at": "2026-10-06T02:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:20",
+        "metric": "steps",
+        "observed_at": "2026-10-06T20:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:21",
+        "metric": "steps",
+        "observed_at": "2026-10-06T21:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:22",
+        "metric": "steps",
+        "observed_at": "2026-10-06T22:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:23",
+        "metric": "steps",
+        "observed_at": "2026-10-06T23:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:3",
+        "metric": "steps",
+        "observed_at": "2026-10-06T03:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:4",
+        "metric": "steps",
+        "observed_at": "2026-10-06T04:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:5",
+        "metric": "steps",
+        "observed_at": "2026-10-06T05:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:6",
+        "metric": "steps",
+        "observed_at": "2026-10-06T06:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:7",
+        "metric": "steps",
+        "observed_at": "2026-10-06T07:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:8",
+        "metric": "steps",
+        "observed_at": "2026-10-06T08:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "steps:0:9",
+        "metric": "steps",
+        "observed_at": "2026-10-06T09:00:00+00:00",
+        "override_revision": 3,
+        "revision": 2,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "record"
+      },
+      {
+        "fingerprint": "399e557224e5da7f3e7d9f37497583cf614296e836468e0c9f1f81d30b41c380",
+        "id": "owned_resolution_snapshot",
+        "revision": 0,
+        "type": "resolution_state"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "early-packet",
+        "metric": "hrv",
+        "observed_at": "2026-10-06T09:05:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "sample"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "fixture-night-hrv:2",
+        "metric": "hrv",
+        "observed_at": "2026-10-06T02:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "sample"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "fixture-night-hrv:3",
+        "metric": "hrv",
+        "observed_at": "2026-10-06T03:00:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "sample"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "later-conflicting-packet",
+        "metric": "hrv",
+        "observed_at": "2026-10-06T10:05:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+        "source_version": 1,
+        "type": "sample"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "ring:hrv:0:1",
+        "metric": "hrv",
+        "observed_at": "2026-10-06T01:05:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "sample"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "ring:hrv:0:13",
+        "metric": "hrv",
+        "observed_at": "2026-10-06T13:05:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "sample"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "ring:hrv:0:19",
+        "metric": "hrv",
+        "observed_at": "2026-10-06T19:05:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "sample"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "ring:hrv:0:7",
+        "metric": "hrv",
+        "observed_at": "2026-10-06T07:05:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "sample"
+      },
+      {
+        "annotation_id": null,
+        "annotation_revision": 0,
+        "id": "unqualified-hrv:0",
+        "metric": "hrv",
+        "observed_at": "2026-10-06T08:30:00+00:00",
+        "override_revision": 0,
+        "revision": 1,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "source_version": 1,
+        "type": "sample"
+      },
+      {
+        "fingerprint": "01936938f31cce48116825a1e996a95ea880a7aaa3cff91a94541e7211dcefdf",
+        "id": "home_steps_anchor:source_query",
+        "revision": 1,
+        "source_id": null,
+        "type": "software_context"
+      },
+      {
+        "fingerprint": "3b0f65c69688090dafd4f4ed62c8128dcb690e06c86dbaba967f13f2c8612bb4",
+        "id": "home_steps_current:source_query",
+        "revision": 1,
+        "source_id": null,
+        "type": "software_context"
+      },
+      {
+        "fingerprint": "0a486a5ee973c0522434c5aef3f15ba0639e73e6fe439e23dbb21e411bbd6853",
+        "id": "home_steps_day_db:source_query",
+        "revision": 1,
+        "source_id": null,
+        "type": "software_context"
+      },
+      {
+        "confirmed": true,
+        "id": "identity:old-ring",
+        "physical_id": "synthetic-ring",
+        "revision": 4,
+        "source_id": "591ea93b-a39f-444d-8e97-3dc6bbdc60ce",
+        "type": "source_identity"
+      },
+      {
+        "confirmed": true,
+        "id": "identity:ring-a",
+        "physical_id": "synthetic-ring",
+        "revision": 4,
+        "source_id": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+        "type": "source_identity"
+      }
+    ],
+    "input_windows": [
+      {
+        "count": 96,
+        "digest": "742f7b095e67154d9d0f552ac16b535b4b19333bb1d7a58b79cc8085c87e9393",
+        "first_observed_at": "2026-10-06T00:00:00+00:00",
+        "last_observed_at": "2026-10-06T23:45:00+00:00",
+        "metric": "heart_rate",
+        "source_ids": ["7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"],
+        "type": "sample_window",
+        "window_end": "2026-10-07T00:00:00+00:00",
+        "window_start": "2026-10-05T23:50:00+00:00"
+      },
+      {
+        "count": 384,
+        "digest": "0550212b35725980367eacaaffa4de01ac9ed4c2f024d16b1e5a978d45e7ef2a",
+        "first_observed_at": "2026-10-06T00:00:00+00:00",
+        "last_observed_at": "2026-10-06T23:55:00+00:00",
+        "metric": "heart_rate",
+        "source_ids": [
+          "5e68031e-7b0c-4e95-b488-29d6f6fb9828",
+          "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6"
+        ],
+        "type": "sample_window",
+        "window_end": "2026-10-07T00:00:00+00:00",
+        "window_start": "2026-10-06T00:00:00+00:00"
+      }
+    ],
+    "missing": [
+      "home_steps_current",
+      "home_steps_day_db",
+      "night_hrv_baseline",
+      "night_rhr_baseline"
+    ],
+    "qualification": "qualified",
+    "quality": [
+      "home_current_wrapper_unavailable",
+      "home_day_db_source_query_unqualified",
+      "hrv_statistic_unknown",
+      "lineage_conflict",
+      "night_sample_semantics_unqualified",
+      "owner_global_source_context",
+      "protocol_unverified"
+    ],
+    "status": "unavailable",
+    "unit": "/100",
+    "value": null
+  },
+  "source_scope": "7a5902d5-dd88-4e1a-983f-9f68bb9efbc6",
+  "temporal_basis": "measurement_capture",
+  "time_zone": "UTC",
+  "version": 1
+}

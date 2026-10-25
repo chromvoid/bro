@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.app.json",
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue",
+    "../plugins/*/web/**/*",
+    "../plugins/*/web/**/*.vue"
+  ],
+  "exclude": [],
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["node"],
+    "paths": {
+      "@/*": ["./src/*"],
+      "vue": ["./node_modules/vue"],
+      "zod": ["./node_modules/zod"],
+      "@lucide/vue": ["./node_modules/@lucide/vue"],
+      "@vueuse/core": ["./node_modules/@vueuse/core"],
+      "reka-ui": ["./node_modules/reka-ui"],
+      "vitest": ["./node_modules/vitest"]
+    }
+  }
+}

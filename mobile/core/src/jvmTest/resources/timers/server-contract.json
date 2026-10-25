@@ -1,0 +1,9 @@
+{
+  "sources": ["server/plugins/timers/service.py", "tests/integration/test_client_contracts.py", "tests/integration/test_notifications.py"],
+  "running": {"timers": [{"id":"timer-tea","label":"Synthetic tea","duration_seconds":90,"due_at":"2026-10-17T12:01:30+00:00","revision":1,"remaining_seconds":90}]},
+  "reminders": {"reminders": [{"id":"reminder-task","text":"Synthetic task","due_at":"2026-10-17T13:00:00+00:00","revision":2,"task_id":"task-milk"}]},
+  "start": {"operation_id":"timer-operation","kind":"timer.start","event_seq":1,"timers":[{"id":"timer-tea","label":"Synthetic tea","duration_seconds":90,"due_at":"2026-10-17T12:01:30+00:00"}]},
+  "cancel": {"operation_id":"cancel-operation","kind":"timer.cancel","event_seq":2,"timers":[{"id":"timer-tea","label":"Synthetic tea","duration_seconds":90}]},
+  "create": {"operation_id":"reminder-operation","kind":"reminder.create","event_seq":3,"reminders":[{"id":"reminder-task","text":"Synthetic task","due_at":"2026-10-17T13:00:00+00:00","task_id":"task-milk"}]},
+  "remove": {"operation_id":"remove-operation","kind":"reminder.cancel","event_seq":4,"reminders":[{"id":"reminder-task","text":"Synthetic task","due_at":"2026-10-17T13:00:00+00:00","task_id":"task-milk"}]}
+}

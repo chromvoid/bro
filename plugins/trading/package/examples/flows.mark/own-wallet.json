@@ -1,0 +1,11 @@
+{
+ "arguments": {
+  "id": "funding:NjA0ODI4MjY4MA==",
+  "treatment": "own_wallet"
+ },
+ "data": {
+  "id": "funding:NjA0ODI4MjY4MA==",
+  "treatment": "own_wallet",
+  "unit_cost_usd": null
+ }
+}

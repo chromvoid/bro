@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated from plugins/trading/web/labels.json by python3 web/tooling/generate_android_strings.py; do not edit. -->
+<resources>
+    <string name="trading_tab_portfolio" formatted="false">"Обзор"</string>
+    <string name="trading_tab_orders" formatted="false">"Ордера"</string>
+    <string name="trading_tab_trades" formatted="false">"Сделки"</string>
+    <string name="trading_tab_pnl" formatted="false">"Позиции"</string>
+    <string name="trading_tab_cashflow" formatted="false">"Деньги"</string>
+    <string name="trading_tab_sync" formatted="false">"Синхронизация"</string>
+    <string name="trading_tab_connect" formatted="false">"Подключение"</string>
+    <string name="trading_tab_settings" formatted="false">"Настройки"</string>
+    <string name="trading_sections" formatted="false">"Разделы торговли"</string>
+    <string name="trading_fresh_live">"онлайн · %1$s"</string>
+    <string name="trading_fresh_at">"обновлено %1$s"</string>
+    <string name="trading_fresh_stale">"данные на %1$s — устарели"</string>
+    <string name="trading_fresh_none" formatted="false">"нет данных"</string>
+    <string name="trading_refresh" formatted="false">"Обновить"</string>
+    <string name="trading_loading" formatted="false">"Загрузка…"</string>
+    <string name="trading_not_connected" formatted="false">"Ключ Bybit не подключён. Данных пока нет."</string>
+    <string name="trading_connect_action" formatted="false">"Подключить ключ"</string>
+    <string name="trading_denied" formatted="false">"Нет доступа к этому разделу. Права выдаёт администратор."</string>
+    <string name="trading_live_off" formatted="false">"Обновления в реальном времени недоступны: данные обновляются при открытии раздела."</string>
+    <string name="trading_unknown_value" formatted="false">"Неизвестно"</string>
+    <string name="trading_more" formatted="false">"Показать ещё"</string>
+    <string name="trading_total" formatted="false">"Стоимость портфеля"</string>
+    <string name="trading_change_day" formatted="false">"За день"</string>
+    <string name="trading_change_week" formatted="false">"За неделю"</string>
+    <string name="trading_change_month" formatted="false">"За месяц"</string>
+    <string name="trading_holdings" formatted="false">"Монеты"</string>
+    <string name="trading_others" formatted="false">"другие"</string>
+    <string name="trading_holdings_share" formatted="false">"Состав портфеля"</string>
+    <string name="trading_market_note" formatted="false">"без учёта ввода и вывода"</string>
+    <string name="trading_flow_in">"ввод %1$s"</string>
+    <string name="trading_flow_out">"вывод %1$s"</string>
+    <string name="trading_realized_short" formatted="false">"реализовано"</string>
+    <string name="trading_open_short" formatted="false">"открытое"</string>
+    <string name="trading_income_short" formatted="false">"доход"</string>
+    <string name="trading_all_positions" formatted="false">"Все позиции"</string>
+    <string name="trading_result_split">"Итог торговли: реализованное %1$s, открытое %2$s"</string>
+    <string name="trading_empty_balances" formatted="false">"На счетах нет монет."</string>
+    <string name="trading_earn_title" formatted="false">"Earn"</string>
+    <string name="trading_earn_line">"%1$s %2$s · %3$s"</string>
+    <string name="trading_earn_pnl">"доход %1$s %2$s"</string>
+    <string name="trading_earn_u0046lexibleu0053aving" formatted="false">"гибкие сбережения"</string>
+    <string name="trading_earn_u004fnu0043hain" formatted="false">"on-chain стейкинг"</string>
+    <string name="trading_earn_u0046ixedu0054erm" formatted="false">"срочный вклад"</string>
+    <string name="trading_balance_line">"%1$s · %2$s · доля %3$s · за день %4$s"</string>
+    <string name="trading_history_title" formatted="false">"История стоимости"</string>
+    <string name="trading_history_rebuilt" formatted="false">"Где снимков нет, стоимость восстановлена по сделкам, движениям средств и дневным ценам."</string>
+    <string name="trading_point_rebuilt" formatted="false">"восстановлено"</string>
+    <string name="trading_history_empty" formatted="false">"История появится после первых снимков портфеля: она начинается с момента подключения."</string>
+    <string name="trading_chart_description">"График стоимости портфеля с %1$s по %2$s: в начале %3$s, в конце %4$s, минимум %5$s, максимум %6$s."</string>
+    <string name="trading_period_day" formatted="false">"24 часа"</string>
+    <string name="trading_period_week" formatted="false">"7 дней"</string>
+    <string name="trading_period_month" formatted="false">"30 дней"</string>
+    <string name="trading_period_quarter" formatted="false">"90 дней"</string>
+    <string name="trading_period_year" formatted="false">"Год"</string>
+    <string name="trading_period_all" formatted="false">"Всё время"</string>
+    <string name="trading_open_orders" formatted="false">"Открытые ордера"</string>
+    <string name="trading_orders_history" formatted="false">"История ордеров"</string>
+    <string name="trading_no_open_orders" formatted="false">"Открытых ордеров нет."</string>
+    <string name="trading_no_orders" formatted="false">"Ордеров нет."</string>
+    <string name="trading_order_filled">"Исполнено %1$s из %2$s %3$s"</string>
+    <string name="trading_order_spent">"Исполнено на %1$s из %2$s %3$s"</string>
+    <string name="trading_order_got">"получено %1$s %2$s"</string>
+    <string name="trading_order_worth">"на %1$s %2$s"</string>
+    <string name="trading_order_avg">"средняя %1$s %2$s"</string>
+    <string name="trading_order_price">"цена %1$s %2$s"</string>
+    <string name="trading_order_created">"создан %1$s"</string>
+    <string name="trading_type_u004cimit" formatted="false">"лимитный"</string>
+    <string name="trading_type_u004darket" formatted="false">"рыночный"</string>
+    <string name="trading_order_u004eew" formatted="false">"Открыт"</string>
+    <string name="trading_order_u0050artiallyu0046illed" formatted="false">"Частично исполнен"</string>
+    <string name="trading_order_u0046illed" formatted="false">"Исполнен"</string>
+    <string name="trading_order_u0043ancelled" formatted="false">"Отменён"</string>
+    <string name="trading_order_u0050artiallyu0046illedu0043anceled" formatted="false">"Частично исполнен, остаток отменён"</string>
+    <string name="trading_order_u0052ejected" formatted="false">"Отклонён"</string>
+    <string name="trading_order_u0055ntriggered" formatted="false">"Ждёт условия"</string>
+    <string name="trading_order_u0054riggered" formatted="false">"Условие сработало"</string>
+    <string name="trading_order_u0044eactivated" formatted="false">"Деактивирован"</string>
+    <string name="trading_order_u0041ctive" formatted="false">"Активен"</string>
+    <string name="trading_order_u0055nknown" formatted="false">"Итог неизвестен"</string>
+    <string name="trading_side_buy" formatted="false">"Покупка"</string>
+    <string name="trading_side_sell" formatted="false">"Продажа"</string>
+    <string name="trading_no_trades" formatted="false">"Сделок нет."</string>
+    <string name="trading_trade_detail">"Сумма %1$s · комиссия %2$s · %3$s"</string>
+    <string name="trading_maker" formatted="false">"мейкер"</string>
+    <string name="trading_taker" formatted="false">"тейкер"</string>
+    <string name="trading_no_positions" formatted="false">"Открытых позиций нет."</string>
+    <string name="trading_count_in" formatted="false">"Считать в"</string>
+    <string name="trading_strategy_make">"Считать в %1$s по умолчанию"</string>
+    <string name="trading_lot_method" formatted="false">"Продажа закрывает"</string>
+    <string name="trading_method_button_lifo" formatted="false">"Закрывает последние"</string>
+    <string name="trading_method_button_fifo" formatted="false">"Закрывает старые"</string>
+    <string name="trading_count_in_short">"В %1$s"</string>
+    <string name="trading_count_in_hint" formatted="false">"Считать в · ★ по умолчанию"</string>
+    <string name="trading_results_by_coin" formatted="false">"Итог по монетам"</string>
+    <string name="trading_price_chart" formatted="false">"Цена и сделки"</string>
+    <string name="trading_chart_bought">"куплено %1$s по %2$s"</string>
+    <string name="trading_chart_sold">"продано %1$s по %2$s"</string>
+    <string name="trading_chart_same_unit">"В %1$s цена %1$s всегда 1: выберите другую единицу, чтобы увидеть график."</string>
+    <string name="trading_chart_empty" formatted="false">"Для этой монеты нет цен за выбранное время."</string>
+    <string name="trading_level_entry" formatted="false">"вход"</string>
+    <string name="trading_level_even" formatted="false">"безубыток"</string>
+    <string name="trading_level_core" formatted="false">"основа"</string>
+    <string name="trading_legend_buy" formatted="false">"покупки"</string>
+    <string name="trading_legend_sell" formatted="false">"продажи"</string>
+    <string name="trading_realized_by_month" formatted="false">"Реализовано по месяцам"</string>
+    <string name="trading_months_total">"за %1$s мес.: %2$s"</string>
+    <string name="trading_closed_positions">"Закрытые позиции и стейблкоины (%1$s)"</string>
+    <string name="trading_back_positions" formatted="false">"Позиции"</string>
+    <string name="trading_column_coin" formatted="false">"Монета"</string>
+    <string name="trading_column_value" formatted="false">"Стоимость"</string>
+    <string name="trading_column_entry" formatted="false">"Вход → цена"</string>
+    <string name="trading_column_open" formatted="false">"Открытое"</string>
+    <string name="trading_column_result" formatted="false">"Итог"</string>
+    <string name="trading_sort_by">"Сортировать по: %1$s"</string>
+    <string name="trading_entry_to_mark">"вход %1$s → %2$s"</string>
+    <string name="trading_position_value" formatted="false">"Стоимость позиции"</string>
+    <string name="trading_method_lifo" formatted="false">"последние покупки"</string>
+    <string name="trading_method_fifo" formatted="false">"самые старые покупки"</string>
+    <string name="trading_method_hint_lifo" formatted="false">"Сделки поверх давней позиции дают свой результат, а она сохраняет цену входа. Итог по монете меняется от метода, только если монеты выводились с биржи."</string>
+    <string name="trading_method_hint_fifo" formatted="false">"Держится то, что куплено последним. Итог по монете меняется от метода, только если монеты выводились с биржи."</string>
+    <string name="trading_traded_against">"Торговалась в основном против %1$s"</string>
+    <string name="trading_show_in">"Показать в %1$s"</string>
+    <string name="trading_result_total" formatted="false">"Итог торговли"</string>
+    <string name="trading_result_hint" formatted="false">"Реализованное, нереализованное и доход Earn вместе, по всем монетам."</string>
+    <string name="trading_pnl_period" formatted="false">"Результат за период"</string>
+    <string name="trading_pnl_period_hint" formatted="false">"Прибыль и убыток от закрытых сделок за выбранный период."</string>
+    <string name="trading_pnl_realized_by_coin" formatted="false">"Реализовано по монетам"</string>
+    <string name="trading_pnl_no_realized" formatted="false">"За выбранный период нет реализованной прибыли или убытка."</string>
+    <string name="trading_pnl_months_hint" formatted="false">"За выбранный период, до 24 последних месяцев."</string>
+    <string name="trading_pnl_current_title" formatted="false">"Текущие позиции и вся история"</string>
+    <string name="trading_pnl_current_hint" formatted="false">"Период выше меняет реализованный результат и доход. Здесь позиции показаны по текущим ценам, а итоги и комиссии — за всю историю; выбор периода их не меняет."</string>
+    <string name="trading_pnl_history_total" formatted="false">"Итог торговли за всё время"</string>
+    <string name="trading_pnl_open_positions" formatted="false">"Открытые позиции"</string>
+    <string name="trading_pnl_column_result_all" formatted="false">"Итог за всё время"</string>
+    <string name="trading_calculation_unknown" formatted="false">"не определено"</string>
+    <string name="trading_calculation_missing" formatted="false">"Для расчёта не хватает данных о цене или стоимости позиции."</string>
+    <string name="trading_calculation_p2p_cancellation">"%1$s: не нашли, к какой покупке относится отменённая P2P-сделка, поэтому прибыль и цена покупки по ней пока не считаются."</string>
+    <string name="trading_core_allocation_unknown" formatted="false">"Распределение монет между основой и остальными покупками не определено."</string>
+    <string name="trading_core_sold_unknown" formatted="false">"Продано из основы: не определено"</string>
+    <string name="trading_portfolio_shares_unknown" formatted="false">"Доли активов не определены: для части монет нет оценки стоимости."</string>
+    <string name="trading_realized_range" formatted="false">"Реализовано за период"</string>
+    <string name="trading_realized" formatted="false">"Реализовано всего"</string>
+    <string name="trading_unrealized" formatted="false">"Нереализованный результат"</string>
+    <string name="trading_income" formatted="false">"Доход Earn и бонусы"</string>
+    <string name="trading_income_range" formatted="false">"Доход Earn и бонусы за период"</string>
+    <string name="trading_fees" formatted="false">"Комиссии"</string>
+    <string name="trading_portfolio_positions" formatted="false">"Позиции без стейблкоинов"</string>
+    <string name="trading_avg_entry" formatted="false">"Средняя цена входа"</string>
+    <string name="trading_avg_entry_hint" formatted="false">"Цена того, что держится сейчас, по всем парам, вводам и выводам."</string>
+    <string name="trading_coin_result" formatted="false">"Итог по монете"</string>
+    <string name="trading_core_title" formatted="false">"Основа позиции"</string>
+    <string name="trading_core_none" formatted="false">"Основа не отмечена. Отметьте монеты, которые держите долго: сделки поверх них будут считаться отдельно, а продажа из основы останется открытой, пока вы её не откупите."</string>
+    <string name="trading_core_mark" formatted="false">"Отметить основу"</string>
+    <string name="trading_core_edit" formatted="false">"Изменить основу"</string>
+    <string name="trading_core_remove" formatted="false">"Убрать основу"</string>
+    <string name="trading_core_held" formatted="false">"В основе"</string>
+    <string name="trading_core_line">"%1$s с %2$s"</string>
+    <string name="trading_core_entry" formatted="false">"Вход основы"</string>
+    <string name="trading_core_unrealized" formatted="false">"Нереализовано по основе"</string>
+    <string name="trading_core_sold">"Продано из основы и не откуплено: %1$s по %2$s"</string>
+    <string name="trading_core_partial">"На дату было меньше монет, чем отмечено: в основе %1$s."</string>
+    <string name="trading_core_qty">"Сколько %1$s в основе"</string>
+    <string name="trading_core_since" formatted="false">"С какой даты"</string>
+    <string name="trading_core_editor_hint">"В основу войдут столько монет из тех, что были на счетах в начале этого дня; первыми — %1$s."</string>
+    <string name="trading_core_lot">"%1$s по %2$s · основа"</string>
+    <string name="trading_realized_cycle" formatted="false">"Реализовано в текущем цикле"</string>
+    <string name="trading_break_even" formatted="false">"Безубыток цикла"</string>
+    <string name="trading_break_even_since">"с %1$s: вложено за вычетом возвратов на одну монету"</string>
+    <string name="trading_break_even_done" formatted="false">"в плюсе при любой цене"</string>
+    <string name="trading_mark_price" formatted="false">"Рыночная цена"</string>
+    <string name="trading_held" formatted="false">"На счетах"</string>
+    <string name="trading_avg_buy" formatted="false">"Средняя цена всех покупок"</string>
+    <string name="trading_opening_note">"Начальный остаток на %1$s: %2$s — выведен из сегодняшних балансов, история до этой даты неполная."</string>
+    <string name="trading_opening_negative">"Известных движений больше, чем монет на счетах, на %1$s: часть поступлений неизвестна."</string>
+    <string name="trading_unexplained_note">"Не объяснено историей: %1$s."</string>
+    <string name="trading_short_note">"Продано или выведено больше, чем известно о поступлениях: %1$s."</string>
+    <string name="trading_unpriced_note">"Событий без цены в USD: %1$s — средняя цена по ним не считается."</string>
+    <string name="trading_lots_title">"Открытые лоты (первые %1$s из %2$s)"</string>
+    <string name="trading_lot_line">"%1$s по %2$s"</string>
+    <string name="trading_incomplete_history" formatted="false">"История сделок неполная: результат может быть неточным."</string>
+    <string name="trading_came_in" formatted="false">"Пришло"</string>
+    <string name="trading_flows_by_month" formatted="false">"Пришло и ушло по месяцам"</string>
+    <string name="trading_flows_breakdown" formatted="false">"По видам и монетам"</string>
+    <string name="trading_flow_came">"пришло %1$s"</string>
+    <string name="trading_flow_went">"ушло %1$s"</string>
+    <string name="trading_today" formatted="false">"Сегодня"</string>
+    <string name="trading_yesterday" formatted="false">"Вчера"</string>
+    <string name="trading_went_out" formatted="false">"Ушло"</string>
+    <string name="trading_net" formatted="false">"Итого"</string>
+    <string name="trading_unpriced">"Без оценки в USD: %1$s"</string>
+    <string name="trading_no_cashflow" formatted="false">"Движений средств нет."</string>
+    <string name="trading_flows_hint" formatted="false">"Итоги считают только то, что пришло извне или ушло наружу: переводы между своими счетами и вложения в Earn в них не входят."</string>
+    <string name="trading_flows_all" formatted="false">"Все"</string>
+    <string name="trading_flows_outside" formatted="false">"Только внешние"</string>
+    <string name="trading_flows_money" formatted="false">"Ввод, вывод, P2P"</string>
+    <string name="trading_flows_transfers" formatted="false">"Переводы"</string>
+    <string name="trading_flows_earn" formatted="false">"Earn и бонусы"</string>
+    <string name="trading_flow_route">"%1$s → %2$s"</string>
+    <string name="trading_mark_change" formatted="false">"Как учитывать"</string>
+    <string name="trading_mark_title" formatted="false">"Как учитывать в позиции"</string>
+    <string name="trading_mark_save" formatted="false">"Сохранить"</string>
+    <string name="trading_mark_unit_cost">"Цена покупки, $ за 1 %1$s (необязательно)"</string>
+    <string name="trading_mark_hint_auto_in" formatted="false">"Если за неделю до этого монеты выводились — это они вернулись, иначе новые деньги по рынку"</string>
+    <string name="trading_mark_hint_auto_out" formatted="false">"Если за неделю вернутся — это ваш кошелёк, иначе монеты ушли"</string>
+    <string name="trading_mark_hint_own_wallet_in" formatted="false">"Возвращаются выведенные раньше монеты со своей ценой покупки"</string>
+    <string name="trading_mark_hint_own_wallet_out" formatted="false">"Монеты ждут на вашем кошельке и вернутся со своей ценой покупки"</string>
+    <string name="trading_mark_hint_external_in" formatted="false">"Куплены на стороне: по рынку на момент зачисления или по вашей цене"</string>
+    <string name="trading_mark_hint_external_out" formatted="false">"Монеты ушли насовсем вместе со своей себестоимостью"</string>
+    <string name="trading_treatment_auto" formatted="false">"Автоматически"</string>
+    <string name="trading_treatment_own_wallet_in" formatted="false">"С моего кошелька"</string>
+    <string name="trading_treatment_own_wallet_out" formatted="false">"На мой кошелёк"</string>
+    <string name="trading_treatment_external_in" formatted="false">"Новые деньги"</string>
+    <string name="trading_treatment_external_out" formatted="false">"Ушли насовсем"</string>
+    <string name="trading_treatment_cost">"по %1$s за монету"</string>
+    <string name="trading_op_deposit" formatted="false">"Депозит"</string>
+    <string name="trading_op_internal_deposit" formatted="false">"Внутреннее зачисление"</string>
+    <string name="trading_op_withdrawal" formatted="false">"Вывод"</string>
+    <string name="trading_op_internal_withdrawal" formatted="false">"Перевод пользователю Bybit"</string>
+    <string name="trading_op_transfer" formatted="false">"Перевод между счетами"</string>
+    <string name="trading_op_p2p_sale" formatted="false">"P2P-продажа"</string>
+    <string name="trading_op_p2p_sale_cancelled" formatted="false">"Отмена P2P-продажи"</string>
+    <string name="trading_op_p2p_purchase" formatted="false">"P2P-покупка"</string>
+    <string name="trading_op_earn_stake" formatted="false">"Вложение в Earn"</string>
+    <string name="trading_op_earn_redeem" formatted="false">"Выкуп из Earn"</string>
+    <string name="trading_op_earn_reward" formatted="false">"Доход Earn"</string>
+    <string name="trading_op_earn_other" formatted="false">"Earn"</string>
+    <string name="trading_op_bot_transfer" formatted="false">"Торговый бот"</string>
+    <string name="trading_op_airdrop" formatted="false">"Аирдроп"</string>
+    <string name="trading_op_bonus" formatted="false">"Бонус"</string>
+    <string name="trading_op_fee_refund" formatted="false">"Возврат комиссии"</string>
+    <string name="trading_op_interest" formatted="false">"Проценты"</string>
+    <string name="trading_op_convert" formatted="false">"Конвертация"</string>
+    <string name="trading_flow_kind_deposit" formatted="false">"Депозиты"</string>
+    <string name="trading_flow_kind_withdrawal" formatted="false">"Выводы"</string>
+    <string name="trading_flow_kind_transfer" formatted="false">"Переводы"</string>
+    <string name="trading_flow_kind_p2p" formatted="false">"P2P"</string>
+    <string name="trading_flow_kind_earn" formatted="false">"Earn"</string>
+    <string name="trading_flow_kind_bot" formatted="false">"Боты"</string>
+    <string name="trading_flow_kind_reward" formatted="false">"Бонусы и аирдропы"</string>
+    <string name="trading_flow_kind_interest" formatted="false">"Проценты"</string>
+    <string name="trading_flow_kind_convert" formatted="false">"Конвертации"</string>
+    <string name="trading_flow_kind_other" formatted="false">"Другое"</string>
+    <string name="trading_place_unified" formatted="false">"Единый счёт"</string>
+    <string name="trading_place_funding" formatted="false">"Funding"</string>
+    <string name="trading_place_earn" formatted="false">"Earn"</string>
+    <string name="trading_place_spot" formatted="false">"Spot (старый счёт)"</string>
+    <string name="trading_place_chain" formatted="false">"блокчейн"</string>
+    <string name="trading_place_bybit_user" formatted="false">"пользователь Bybit"</string>
+    <string name="trading_place_p2p" formatted="false">"P2P"</string>
+    <string name="trading_place_bybit" formatted="false">"Bybit"</string>
+    <string name="trading_place_bot" formatted="false">"бот"</string>
+    <string name="trading_place_market" formatted="false">"обмен"</string>
+    <string name="trading_stream_live" formatted="false">"Поток обновлений работает"</string>
+    <string name="trading_stream_reconnecting" formatted="false">"Поток обновлений переподключается"</string>
+    <string name="trading_stream_down" formatted="false">"Поток обновлений не работает, идёт опрос"</string>
+    <string name="trading_domain_wallet" formatted="false">"Балансы"</string>
+    <string name="trading_domain_executions" formatted="false">"Сделки"</string>
+    <string name="trading_domain_orders" formatted="false">"Ордера"</string>
+    <string name="trading_domain_open_orders" formatted="false">"Открытые ордера"</string>
+    <string name="trading_domain_deposits" formatted="false">"Депозиты"</string>
+    <string name="trading_domain_internal_deposits" formatted="false">"Внутренние зачисления"</string>
+    <string name="trading_domain_withdrawals" formatted="false">"Выводы"</string>
+    <string name="trading_domain_unified_ledger" formatted="false">"Журнал единого счёта"</string>
+    <string name="trading_domain_funding_ledger" formatted="false">"Журнал Funding"</string>
+    <string name="trading_domain_funding_wallet" formatted="false">"Баланс Funding"</string>
+    <string name="trading_domain_earn" formatted="false">"Earn"</string>
+    <string name="trading_phase_idle" formatted="false">"Готово"</string>
+    <string name="trading_phase_backfill" formatted="false">"Загрузка истории"</string>
+    <string name="trading_phase_incremental" formatted="false">"Обновление"</string>
+    <string name="trading_phase_refill" formatted="false">"Догрузка"</string>
+    <string name="trading_phase_error" formatted="false">"Ошибка"</string>
+    <string name="trading_watermark">"данные до %1$s"</string>
+    <string name="trading_coverage_gap">"История раньше %1$s недоступна: Bybit хранит её два года."</string>
+    <string name="trading_refill" formatted="false">"Догрузить историю"</string>
+    <string name="trading_refill_hint" formatted="false">"Заново загружает историю сделок, ордеров и движения средств. Работает в фоне."</string>
+    <string name="trading_refill_pending" formatted="false">"Догрузка истории выполняется…"</string>
+    <string name="trading_refill_unknown" formatted="false">"Исход запроса неизвестен. Сначала проверьте результат."</string>
+    <string name="trading_refill_not_found" formatted="false">"Сервер пока не нашёл этот запрос. Можно повторить отправку того же запроса."</string>
+    <string name="trading_check_result" formatted="false">"Проверить результат"</string>
+    <string name="trading_resend" formatted="false">"Повторить отправку"</string>
+    <string name="trading_refill_done" formatted="false">"История догружена."</string>
+    <string name="trading_refill_failed" formatted="false">"Догрузка не выполнена."</string>
+    <string name="trading_dismiss" formatted="false">"Скрыть"</string>
+    <string name="trading_no_write" formatted="false">"Догрузку может запустить пользователь с правом записи."</string>
+    <string name="trading_state_active" formatted="false">"Подключено"</string>
+    <string name="trading_state_validating" formatted="false">"Проверка ключа"</string>
+    <string name="trading_state_degraded" formatted="false">"Работает с ограничениями"</string>
+    <string name="trading_state_auth_failed" formatted="false">"Bybit не принимает ключ"</string>
+    <string name="trading_state_ip_blocked" formatted="false">"Bybit заблокировал IP сервера"</string>
+    <string name="trading_state_key_expired" formatted="false">"Срок ключа истёк"</string>
+    <string name="trading_state_secret_unavailable" formatted="false">"Сохранённый ключ недоступен"</string>
+    <string name="trading_state_disconnected" formatted="false">"Отключено"</string>
+    <string name="trading_state_not_configured" formatted="false">"Не подключено"</string>
+    <string name="trading_connect_title" formatted="false">"Подключение Bybit"</string>
+    <string name="trading_guide_read_only" formatted="false">"Создайте в Bybit API-ключ только для чтения: без прав на торговлю и вывод. Ключ с такими правами будет отклонён."</string>
+    <string name="trading_guide_ip">"Привяжите ключ к IP-адресу сервера: %1$s. Ключи без привязки к IP Bybit ограничивает по сроку действия."</string>
+    <string name="trading_guide_ip_unknown" formatted="false">"Привяжите ключ к IP-адресу сервера ассистента; адрес сообщит администратор."</string>
+    <string name="trading_guide_permissions" formatted="false">"Нужны права только на чтение единого торгового аккаунта (UTA): спот, кошелёк (Wallet) и Earn. Без Wallet и Earn не будут видны Funding, P2P и вложения в Earn."</string>
+    <string name="trading_guide_secret" formatted="false">"Секрет хранится только в зашифрованном виде на сервере. Приложение не сохраняет его и стирает поле после отправки."</string>
+    <string name="trading_api_key" formatted="false">"API key"</string>
+    <string name="trading_api_secret" formatted="false">"API secret"</string>
+    <string name="trading_key_format" formatted="false">"Ключ и секрет состоят только из латинских букв и цифр."</string>
+    <string name="trading_environment" formatted="false">"Окружение"</string>
+    <string name="trading_label_optional" formatted="false">"Название (необязательно)"</string>
+    <string name="trading_history_days" formatted="false">"Глубина истории, дней (1–730)"</string>
+    <string name="trading_history_days_invalid" formatted="false">"Целое число дней от 1 до 730."</string>
+    <string name="trading_replace_account" formatted="false">"Заменить подключённый аккаунт Bybit и удалить его данные"</string>
+    <string name="trading_connect_submit" formatted="false">"Подключить"</string>
+    <string name="trading_replace_key" formatted="false">"Заменить ключ"</string>
+    <string name="trading_connected_key">"Ключ %1$s · %2$s"</string>
+    <string name="trading_key_not_ip_bound" formatted="false">"Ключ не привязан к IP: Bybit ограничит срок его действия."</string>
+    <string name="trading_key_expires">"Ключ действует до %1$s"</string>
+    <string name="trading_disconnect" formatted="false">"Отключить"</string>
+    <string name="trading_disconnect_title" formatted="false">"Отключить Bybit?"</string>
+    <string name="trading_disconnect_text" formatted="false">"Ключ будет удалён сразу, синхронизированные данные — в фоне. Отменить это нельзя."</string>
+    <string name="trading_cancel" formatted="false">"Отмена"</string>
+    <string name="trading_confirm_disconnect" formatted="false">"Отключить и удалить данные"</string>
+    <string name="trading_connect_done" formatted="false">"Ключ подключён. История загружается в фоне."</string>
+    <string name="trading_disconnect_done" formatted="false">"Ключ отключён."</string>
+    <string name="trading_connect_unknown" formatted="false">"Ответ не получен. Состояние подключения перечитано — проверьте его."</string>
+    <string name="trading_no_config_rights" formatted="false">"Подключать ключ может пользователь с правом записи; права выдаёт администратор."</string>
+    <string name="trading_error_key_not_read_only" formatted="false">"Ключ разрешает торговлю или вывод. Создайте ключ только для чтения."</string>
+    <string name="trading_error_credential_rejected" formatted="false">"Bybit не принял ключ или секрет. Проверьте, что они скопированы полностью."</string>
+    <string name="trading_error_ip_not_whitelisted">"Ключ ограничен по IP. Разрешите в Bybit адрес сервера: %1$s."</string>
+    <string name="trading_error_permission_missing" formatted="false">"У ключа нет прав на чтение баланса и сделок."</string>
+    <string name="trading_error_unsupported_account" formatted="false">"Поддерживается только единый торговый аккаунт (UTA)."</string>
+    <string name="trading_error_key_expired" formatted="false">"Срок действия ключа истёк. Создайте новый ключ."</string>
+    <string name="trading_error_account_changed" formatted="false">"Ключ относится к другому аккаунту Bybit. Отметьте замену аккаунта и введите ключ снова."</string>
+    <string name="trading_error_revision_conflict" formatted="false">"Подключение уже изменилось. Состояние обновлено, попробуйте ещё раз."</string>
+    <string name="trading_error_dependency_unavailable" formatted="false">"Bybit или сервис торговли сейчас недоступен. Попробуйте позже."</string>
+    <string name="trading_error_secret_unavailable" formatted="false">"Сохранённый ключ недоступен. Подключите его заново."</string>
+    <string name="trading_error_invalid_arguments" formatted="false">"Проверьте введённые значения."</string>
+    <string name="trading_error_forbidden" formatted="false">"Недостаточно прав."</string>
+    <string name="trading_error_quota_exceeded" formatted="false">"Слишком много запросов. Повторите чуть позже."</string>
+    <string name="trading_error_deadline_exceeded" formatted="false">"Сервер не дождался ответа. Проверьте результат."</string>
+    <string name="trading_error_network" formatted="false">"Нет связи с сервером."</string>
+    <string name="trading_error_internal" formatted="false">"Сбой на сервере; синхронизация повторит попытку в течение минуты."</string>
+    <string name="trading_error_refill_in_progress" formatted="false">"Догрузка истории уже идёт."</string>
+    <string name="trading_error_range_too_large" formatted="false">"Слишком длинный период для такого шага."</string>
+    <string name="trading_error_symbol_unknown" formatted="false">"Пара не найдена."</string>
+    <string name="trading_error_invalid_output" formatted="false">"Сервис вернул данные в неизвестном формате."</string>
+    <string name="trading_error_other">"Не удалось выполнить запрос: %1$s"</string>
+</resources>

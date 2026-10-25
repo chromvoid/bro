@@ -1,0 +1,24 @@
+{
+  "result_id":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","version":1,
+  "definition_id":"soul-rhr-energy","formula_version":"soul-1.0.1214-v1","source_scope":"ring-a","date":"2026-10-09","evaluation":"day","time_zone":"UTC","as_of":"2026-10-09T08:00:00+00:00","temporal_basis":"measurement_capture",
+  "score":{
+    "definition_id":"soul-rhr-energy","formula_version":"soul-1.0.1214-v1","qualification":"qualified","status":"available","value":55,"unit":"bpm",
+    "components":[{"id":"hr_7d","value":[55,60],"unit":"bpm","quality":[],"synthetic":false}],"missing":[],"quality":[],
+    "confidence":{"kind":"input_coverage","level":"complete","available_inputs":1,"required_inputs":1,"formula_value":null},
+    "coverage":{"kind":"input_presence","observed":1,"expected":1,"ratio":1},
+    "context":{"evaluation":"day","date":"2026-10-09","time_zone":"UTC","as_of":"2026-10-09T08:00:00+00:00","source_id":"ring-a","source_name":"Synthetic ring","input_scope":"source"},
+    "input_revisions":[
+      {"type":"resolution_state","id":"owned_resolution_snapshot","revision":0,"fingerprint":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},
+      {"type":"evaluation_capture","id":"evaluation-operation","revision":1,"captured_at":"2026-10-09T08:00:00+00:00","basis":"measurement_capture"},
+      {"type":"sample","id":"hr-1","revision":2,"override_revision":0,"annotation_revision":1,"annotation_id":"annotation-1","source_id":"ring-a","metric":"heart_rate","observed_at":"2026-10-09T07:00:00+00:00","source_version":1},
+      {"type":"sample","id":"hr-2","revision":2,"override_revision":0,"annotation_revision":1,"annotation_id":"annotation-1","source_id":"ring-a","metric":"heart_rate","observed_at":"2026-10-09T07:00:00+00:00","source_version":1}
+    ],
+    "baseline":{"as_of":"2026-10-09T08:00:00+00:00","source_id":"ring-a","components":[{"id":"hr_7d","as_of":"2026-10-09T08:00:00+00:00","window_start":"2026-10-02T08:00:00+00:00","window_end":"2026-10-09T08:00:00+00:00","points":2,"source_id":"ring-a","estimator":"lower_fifth_percentile","formula_version":"soul-1.0.1214-v1","input_revisions":[]}]},"details":{},"fingerprint":"rhr-score"
+  },
+  "definition_snapshot":{"id":"soul-rhr-energy","label":"Пульс покоя · Energy Soul","unit":"bpm","formula_version":"soul-1.0.1214-v1","qualification":"qualified","required_inputs":["hr_7d"],"evidence":["ce4.d:61-78"]},
+  "normalized_inputs":{"snapshot":{"source_id":"ring-a"},"facts":{"hr_7d":{"value":[55,60],"unit":"bpm"}},"requested_inputs":["hr_7d"]},
+  "context_revisions":[{"type":"resolution_state","id":"owned_resolution_snapshot","revision":0,"fingerprint":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},{"type":"evaluation_capture","id":"evaluation-operation","revision":1,"captured_at":"2026-10-09T08:00:00+00:00","basis":"measurement_capture"}],
+  "input_adapter_version":"soul-inputs-1.0.1214-v4","implementation_digest":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "implementation_source":{"format":"git_blob_sha1","files":[{"path":"server/plugins/personal/soul_scores.py","git_blob_sha1":"synthetic-blob","sha256":"synthetic-file-sha"}]},
+  "operation_id":"derived-operation","created_at":"2026-10-09T08:00:00+00:00","is_current":true
+}

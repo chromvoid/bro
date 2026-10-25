@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <!-- Play owns application updates; photos use the permission-free system picker. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" tools:node="remove" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" tools:node="remove" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" tools:node="remove" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" tools:node="remove" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" tools:node="remove" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" tools:node="remove" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" tools:node="remove" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" tools:node="remove" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" tools:remove="android:maxSdkVersion" />
+    <application>
+        <receiver android:name=".update.NativeUpdateReceiver" tools:node="remove" />
+        <service android:name="assistant.mobile.platform.ring.RingGestureService" tools:node="remove" />
+        <service android:name="assistant.mobile.platform.ring.RingWorkoutService" tools:node="remove" />
+        <service android:name="assistant.mobile.platform.ring.RingOtaService" tools:node="remove" />
+        <service android:name="assistant.mobile.platform.ring.RingNotificationListener" tools:node="remove" />
+        <receiver android:name="assistant.mobile.platform.ring.RingRunningTransitionReceiver" tools:node="remove" />
+        <receiver android:name="assistant.mobile.platform.ring.RingWorkoutBootReceiver" tools:node="remove" />
+        <provider android:name="assistant.mobile.platform.ring.RingDiagnosticsProvider" tools:node="remove" />
+    </application>
+</manifest>

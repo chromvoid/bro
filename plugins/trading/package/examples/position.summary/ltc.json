@@ -1,0 +1,72 @@
+{
+ "arguments": {
+  "coin": "LTC",
+  "range": {
+   "period": "30d"
+  }
+ },
+ "data": {
+  "unit": "USD",
+  "lot_method": "lifo",
+  "coin": "LTC",
+  "open_qty": "1800",
+  "value": "131382",
+  "held_qty": "1800",
+  "unexplained_qty": "0",
+  "traded_against": "BTC",
+  "closed": false,
+  "result": "97463.90325",
+  "core": null,
+  "avg_entry": "81.9",
+  "break_even": "80.05",
+  "cycle_started_at": "2025-11-19T09:12:00Z",
+  "realized_in_cycle": "12400",
+  "mark": "72.99",
+  "unrealized": "-16038",
+  "unrealized_pct": "-10.87912088",
+  "realized": "113500",
+  "realized_in_range": "1520.4",
+  "income": "1.90325",
+  "income_in_range": "0",
+  "fees": "3646.33",
+  "avg_buy": "71.2",
+  "as_of": null,
+  "open_cost": "147420",
+  "opening": {
+   "qty": "0",
+   "at": "2024-03-06T17:53:32Z"
+  },
+  "away_qty": "0",
+  "short_qty": "0",
+  "unpriced_events": 0,
+  "events": 5210,
+  "lots": [
+   {
+    "qty": "1200",
+    "unit_cost": "84.5",
+    "core": false
+   },
+   {
+    "qty": "600",
+    "unit_cost": "76.7",
+    "core": false
+   }
+  ],
+  "lots_total": 2,
+  "realized_by_month": [
+   {
+    "month": "2026-09",
+    "realized": "1520.4"
+   }
+  ],
+  "freshness": {
+   "as_of": "2026-09-25T10:00:00Z",
+   "connection_state": "active",
+   "stream": "live",
+   "last_reconcile_at": "2026-09-25T09:58:00Z",
+   "history_complete": true,
+   "coverage_from": "2024-09-26T00:00:00Z"
+  },
+  "issues": []
+ }
+}

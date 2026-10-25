@@ -1,0 +1,11 @@
+{
+  "days": [
+    {"date": "2026-09-28", "energy_kcal": "1050", "target": "2100", "completed": true},
+    {"date": "2026-09-29", "energy_kcal": "0", "target": null, "completed": false},
+    {"date": "2026-09-30", "energy_kcal": "900.25", "target": null, "completed": false},
+    {"date": "2026-10-01", "energy_kcal": "2100", "target": "2100", "completed": true},
+    {"date": "2026-10-02", "energy_kcal": "2400", "target": "2100", "completed": true},
+    {"date": "2026-10-03", "energy_kcal": "90.25", "target": "2100.00", "completed": false},
+    {"date": "2026-10-04", "energy_kcal": "0", "target": "2100.00", "completed": false}
+  ]
+}

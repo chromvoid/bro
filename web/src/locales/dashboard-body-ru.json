@@ -1,0 +1,18 @@
+{
+  "personal": {
+    "dashboard": {
+      "bodySubtitle": "Последние замеры на выбранную дату",
+      "allBodyMetrics": "Все показатели",
+      "previousAnalysis": "Предыдущий",
+      "latestAnalysis": "Последний",
+      "skeletalMuscle": "Скелетные мышцы",
+      "change": {
+        "body_fat_percent": "Жир {value}",
+        "skeletal_muscle_mass": "Мышцы {value}"
+      },
+      "sourceRecords": "{count} запись · даты в подробностях | {count} записи · даты в подробностях | {count} записей · даты в подробностях",
+      "noDeviceAnalysis": "Нет анализа состава тела на выбранную дату.",
+      "separateMeasurements": "Показатели получены отдельными измерениями. Даты и методы указаны у каждого значения."
+    }
+  }
+}

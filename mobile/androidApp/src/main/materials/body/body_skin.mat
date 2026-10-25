@@ -1,0 +1,38 @@
+// BodyAtlas v3: the same embedded relief directions, regional mask and 0.6 strength as web.
+material {
+    name : "BodyAtlas skin",
+    shadingModel : lit,
+    requires : [ uv0 ],
+    doubleSided : true,
+    parameters : [
+        { type : sampler2d, name : normalSoft },
+        { type : sampler2d, name : normalNeutral },
+        { type : sampler2d, name : normalDefined },
+        { type : sampler2d, name : reliefMask },
+        { type : float3, name : reliefWeights },
+        { type : float3, name : baseColor },
+        { type : float3, name : tint },
+        { type : float, name : tintAmount },
+        { type : float, name : normalStrength },
+        { type : float, name : roughness },
+        { type : float, name : metallic }
+    ]
+}
+fragment {
+    void material(inout MaterialInputs material) {
+        float2 uv = getUV0();
+        float3 soft = normalize(texture(materialParams_normalSoft, uv).xyz * 2.0 - 1.0);
+        float3 neutral = normalize(texture(materialParams_normalNeutral, uv).xyz * 2.0 - 1.0);
+        float3 defined = normalize(texture(materialParams_normalDefined, uv).xyz * 2.0 - 1.0);
+        float3 detail = normalize(soft * materialParams.reliefWeights.x +
+                neutral * materialParams.reliefWeights.y + defined * materialParams.reliefWeights.z);
+        float3 mask = texture(materialParams_reliefMask, uv).rgb;
+        float regional = clamp(mask.r + mask.g * 0.85 + mask.b * 0.8, 0.0, 1.0);
+        material.normal = normalize(float3(detail.xy * materialParams.normalStrength * regional, detail.z));
+        prepareMaterial(material);
+        material.baseColor = float4(mix(materialParams.baseColor, materialParams.tint,
+                materialParams.tintAmount), 1.0);
+        material.roughness = materialParams.roughness;
+        material.metallic = materialParams.metallic;
+    }
+}

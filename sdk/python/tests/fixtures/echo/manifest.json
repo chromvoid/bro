@@ -1,0 +1,24 @@
+{
+  "contract": "assistant.plugin/v1",
+  "id": "echo",
+  "version": "1.0.0",
+  "title": "Echo",
+  "description": "Synthetic read/write service used by the SDK conformance suite.",
+  "contexts": ["personal"],
+  "capabilities": [
+    {"id": "echo", "description": "Repeat text and keep a per-user counter.",
+     "boundaries": ["Stores nothing but a counter"], "examples": ["Повтори привет"],
+     "tools": ["echo.say", "counter.add", "counter.drain"], "skills": ["echo"], "ui": ["echo.home"]}
+  ],
+  "bindings": [{"id": "service", "profile": "assistant.http-json/v1"}],
+  "tools": [
+    {"id": "echo.say", "descriptor": "contracts/echo.say.json", "binding": "service"},
+    {"id": "counter.add", "descriptor": "contracts/counter.add.json", "binding": "service"},
+    {"id": "counter.drain", "descriptor": "contracts/counter.drain.json", "binding": "service"}
+  ],
+  "skills": [{"id": "echo", "path": "skills/echo/SKILL.md"}],
+  "events": [{"type": "counter.changed", "descriptor": "events/counter.changed.json"}],
+  "configuration": {"schema": "configuration/echo.json", "binding": "service"},
+  "ui": [{"id": "echo.home", "kind": "headless", "title": "Echo", "capability": "echo", "entry": "echo.home",
+          "client_api": 1, "scopes": ["echo.read"], "fallback": "headless", "requires_tools": {"echo.say": 1}}]
+}

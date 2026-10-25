@@ -1,0 +1,32 @@
+{
+  "activityRedesign": {
+    "dynamics": "Динамика",
+    "recentEntries": "Последние записи",
+    "recentRange": "За 30 дней · {range}",
+    "noEntries": "За выбранные дни записей пока нет.",
+    "manual": "Вручную",
+    "manualSessions": "Ручные занятия",
+    "movementData": "Данные движения",
+    "strengthHistory": "История упражнений",
+    "backToDynamics": "Вернуться к динамике",
+    "chooseSubject": "Что сравнить",
+    "chooseMeasure": "Показатель ручных занятий",
+    "dailyTable": "Значения по дням",
+    "availableDays": "Дней с доступными показаниями: {count}",
+    "historyCoverage": "Пропуски не считаются нулями. Наличие показаний не подтверждает полноту дня.",
+    "openDynamics": "Открыть динамику шагов",
+    "subjects": {
+      "steps": "Шаги",
+      "active_minutes": "Активные минуты",
+      "sessions": "Занятия",
+      "strength": "Упражнения"
+    },
+    "sessionMeasures": {
+      "sessions": "Количество ручных занятий",
+      "duration_minutes": "Время занятий, мин",
+      "working_sets": "Рабочие подходы"
+    },
+    "addDated": "Добавить занятие · {date}",
+    "addForDate": "Новое занятие будет записано за {date}."
+  }
+}

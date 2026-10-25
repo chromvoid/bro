@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ring_ota_transport_0a3a5318083c" formatted="false">"Кольцо не сообщило версию прошивки."</string>
+    <string name="ring_ota_transport_28f62dea6d74" formatted="false">"Кольцо занято тренировкой или неизвестной командой."</string>
+    <string name="ring_ota_transport_398d56f48337" formatted="false">"Кольцо занято активным замером."</string>
+    <string name="ring_ota_transport_3e321dc48768" formatted="false">"Разрешите Bluetooth."</string>
+    <string name="ring_ota_transport_5044e23243c7" formatted="false">"Сверка версии не запускает загрузчик."</string>
+    <string name="ring_ota_transport_9f9e20a22cb8" formatted="false">"Кольцо не сообщило аппаратную версию."</string>
+    <string name="ring_ota_transport_a221f3d4e9b6" formatted="false">"Повторная активация загрузчика запрещена."</string>
+    <string name="ring_ota_transport_b2a0fc62b47d" formatted="false">"Сверка версии не записывает firmware blocks."</string>
+    <string name="ring_ota_transport_ef5c6871f394" formatted="false">"Сверка версии не отправляет protocol frames."</string>
+</resources>

@@ -1,0 +1,41 @@
+{
+  "binding": {
+    "origin": "https://synthetic-ring.example", "user_id": "synthetic-user", "source_id": "synthetic-ring",
+    "collector_id": "synthetic-collector", "address": "00:11:22:33:44:55", "grant_generation": 1, "timezone": "Europe/Moscow"
+  },
+  "cases": [
+    {
+      "name": "invalid-heart-rate-is-preserved",
+      "clock": {"utc_at": "2026-10-08T10:00:00Z", "elapsed_realtime_ms": 1000, "boot_id": "synthetic-boot"},
+      "observation": {"metric": "heart_rate", "value": 0, "unit": "bpm", "sample_quality": "invalid", "timestamp_basis": "received_monotonic", "received_monotonic_ms": 1000},
+      "record": {
+        "external_id": "phone-control:synthetic-collector:heart_rate:synthetic-boot:1000", "metric": "heart_rate", "value": "0",
+        "start_at": "2026-10-08T10:00:00Z", "end_at": "2026-10-08T10:00:00Z", "timezone": "Europe/Moscow", "unit": "bpm", "quality": ["protocol_verified", "invalid"],
+        "origin": {"provider": "herzring", "profile": "qring-r20", "source": "manual_measurement", "record_id": "phone-control:synthetic-collector:heart_rate:synthetic-boot:1000", "date_basis": "phone_received",
+          "resolution": {"shape": "point", "context": "manual", "measurement_kind": "spot", "location": "finger"}}
+      }
+    },
+    {
+      "name": "valid-oxygen-uses-decimal-string",
+      "clock": {"utc_at": "2026-10-08T10:00:01Z", "elapsed_realtime_ms": 2000, "boot_id": "synthetic-boot"},
+      "observation": {"metric": "spo2", "value": 98, "unit": "%", "sample_quality": "valid", "timestamp_basis": "received_monotonic", "received_monotonic_ms": 2000},
+      "record": {
+        "external_id": "phone-control:synthetic-collector:spo2:synthetic-boot:2000", "metric": "spo2", "value": "98",
+        "start_at": "2026-10-08T10:00:01Z", "end_at": "2026-10-08T10:00:01Z", "timezone": "Europe/Moscow", "unit": "%", "quality": ["protocol_verified"],
+        "origin": {"provider": "herzring", "profile": "qring-r20", "source": "manual_measurement", "record_id": "phone-control:synthetic-collector:spo2:synthetic-boot:2000", "date_basis": "phone_received",
+          "resolution": {"shape": "point", "context": "manual", "measurement_kind": "spot", "location": "finger"}}
+      }
+    },
+    {
+      "name": "fractional-temperature-is-skin-point",
+      "clock": {"utc_at": "2026-10-08T10:00:02Z", "elapsed_realtime_ms": 3000, "boot_id": "synthetic-boot"},
+      "observation": {"metric": "temperature", "value": 36.75, "unit": "°C", "sample_quality": "valid", "timestamp_basis": "received_monotonic", "received_monotonic_ms": 3000},
+      "record": {
+        "external_id": "phone-control:synthetic-collector:temperature:synthetic-boot:3000", "metric": "temperature", "value": "36.75",
+        "start_at": "2026-10-08T10:00:02Z", "end_at": "2026-10-08T10:00:02Z", "timezone": "Europe/Moscow", "unit": "°C", "quality": ["protocol_verified"],
+        "origin": {"provider": "herzring", "profile": "qring-r20", "source": "manual_measurement", "record_id": "phone-control:synthetic-collector:temperature:synthetic-boot:3000", "date_basis": "phone_received",
+          "resolution": {"shape": "point", "context": "manual", "measurement_kind": "skin", "location": "finger", "temperature_basis": "absolute"}}
+      }
+    }
+  ]
+}

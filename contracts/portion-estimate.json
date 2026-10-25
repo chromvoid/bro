@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "label": "Synthetic yogurt",
+      "snapshot_id": "11111111-1111-4111-8111-111111111111",
+      "quantity": "150",
+      "unit": "g",
+      "estimated": true,
+      "energy_kcal": "90",
+      "protein_g": null,
+      "fat_g": null,
+      "carbohydrate_g": null,
+      "fiber_g": null
+    }
+  ],
+  "totals": {
+    "energy_kcal": {
+      "known": "90",
+      "complete": true
+    },
+    "protein_g": {
+      "known": "0",
+      "complete": false
+    },
+    "fat_g": {
+      "known": "0",
+      "complete": false
+    },
+    "carbohydrate_g": {
+      "known": "0",
+      "complete": false
+    },
+    "fiber_g": {
+      "known": "0",
+      "complete": false
+    }
+  },
+  "recorded": false
+}

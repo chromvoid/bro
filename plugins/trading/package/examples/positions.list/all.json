@@ -1,0 +1,99 @@
+{
+ "arguments": {
+  "range": {
+   "period": "30d"
+  }
+ },
+ "data": {
+  "unit": "USD",
+  "strategy_coin": null,
+  "lot_method": "lifo",
+  "as_of": null,
+  "items": [
+   {
+    "coin": "LTC",
+    "open_qty": "1800",
+    "value": "131382",
+    "held_qty": "1800",
+    "unexplained_qty": "0",
+    "traded_against": "BTC",
+    "closed": false,
+    "result": "97463.90325",
+    "core": null,
+    "avg_entry": "81.9",
+    "break_even": "80.05",
+    "cycle_started_at": "2025-11-19T09:12:00Z",
+    "realized_in_cycle": "12400",
+    "mark": "72.99",
+    "unrealized": "-16038",
+    "unrealized_pct": "-10.87912088",
+    "realized": "113500",
+    "realized_in_range": "1520.4",
+    "income": "1.90325",
+    "income_in_range": "0",
+    "fees": "3646.33",
+    "avg_buy": "71.2",
+    "issues": []
+   },
+   {
+    "coin": "GRAM",
+    "open_qty": "70000",
+    "value": "103880",
+    "held_qty": "70000",
+    "unexplained_qty": "0",
+    "traded_against": "USDT",
+    "closed": false,
+    "result": "-144642.1",
+    "core": {
+     "qty": "70000",
+     "asked": "70000",
+     "since": "2025-08-19T00:00:00Z",
+     "entry": "3.5",
+     "unrealized": "-141120",
+     "sold_qty": "0",
+     "sold_price": null,
+     "sold_unrealized": null
+    },
+    "avg_entry": "3.5",
+    "break_even": "3.52",
+    "cycle_started_at": "2025-01-23T06:00:00Z",
+    "realized_in_cycle": "-3700",
+    "mark": "1.484",
+    "unrealized": "-141120",
+    "unrealized_pct": "-57.6",
+    "realized": "-3550",
+    "realized_in_range": "0",
+    "income": "27.9",
+    "income_in_range": "0",
+    "fees": "1414.86",
+    "avg_buy": "2.9",
+    "issues": []
+   }
+  ],
+  "totals": {
+   "realized": "109950",
+   "realized_in_range": "1520.4",
+   "unrealized": "-157158",
+   "income": "29.80325",
+   "income_in_range": "0",
+   "fees": "5061.19",
+   "value": "235262",
+   "result": "-47178.19675",
+   "realized_by_month": [
+    {
+     "month": "2026-09",
+     "realized": "1520.4"
+    }
+   ],
+   "issues": []
+  },
+  "freshness": {
+   "as_of": "2026-09-25T10:00:00Z",
+   "connection_state": "active",
+   "stream": "live",
+   "last_reconcile_at": "2026-09-25T09:58:00Z",
+   "history_complete": true,
+   "coverage_from": "2024-09-26T00:00:00Z"
+  }
+ }
+}

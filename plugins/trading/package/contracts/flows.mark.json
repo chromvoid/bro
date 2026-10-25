@@ -1,0 +1,92 @@
+{
+ "id": "flows.mark",
+ "version": "1.0.0",
+ "description": "Отметка владельца для ввода или вывода: own_wallet — монеты ушли на свой кошелёк или вернулись с него и сохраняют себестоимость; external — внешние деньги (вывод ушёл насовсем, ввод — новые деньги, по желанию с ценой покупки за монету); auto — снять отметку и считать по правилам. Меняет расчёт позиций.",
+ "when_to_use": "Пользователь говорит, что конкретный ввод или вывод был на свой кошелёк или что ввод куплен по известной цене.",
+ "when_not_to_use": "Всё остальное.",
+ "input_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "id": {
+    "type": "string",
+    "pattern": "^(unified|funding):[A-Za-z0-9_=+/-]{1,160}$"
+   },
+   "treatment": {
+    "enum": [
+     "auto",
+     "own_wallet",
+     "external"
+    ]
+   },
+   "unit_cost_usd": {
+    "type": "string",
+    "format": "decimal",
+    "maxLength": 64
+   }
+  },
+  "required": [
+   "id",
+   "treatment"
+  ]
+ },
+ "output_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "id": {
+    "type": "string",
+    "maxLength": 200
+   },
+   "treatment": {
+    "enum": [
+     "auto",
+     "own_wallet",
+     "external"
+    ]
+   },
+   "unit_cost_usd": {
+    "type": [
+     "string",
+     "null"
+    ],
+    "format": "decimal",
+    "maxLength": 64
+   }
+  },
+  "required": [
+   "id",
+   "treatment",
+   "unit_cost_usd"
+  ]
+ },
+ "effect": "write",
+ "scopes": [
+  "trading.write"
+ ],
+ "surfaces": [
+  "ui"
+ ],
+ "execution": {
+  "mode": "sync",
+  "max_duration_ms": 5000,
+  "atomicity": "transactional"
+ },
+ "errors": [
+  {
+   "code": "not_configured",
+   "meaning": "Ключ Bybit не подключён; данных нет",
+   "recovery": "none"
+  },
+  {
+   "code": "entry_unknown",
+   "meaning": "Такого движения нет",
+   "recovery": "fix_arguments"
+  },
+  {
+   "code": "entry_not_markable",
+   "meaning": "Отметить можно только ввод или вывод",
+   "recovery": "fix_arguments"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+plugins {
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
+}
+def jvmOnly = providers.gradleProperty('mobileJvmOnly').map { it.toBoolean() }.getOrElse(false)
+if (!jvmOnly) apply plugin: 'com.android.kotlin.multiplatform.library'
+kotlin {
+    jvmToolchain(21)
+    jvm()
+    if (!jvmOnly) {
+        android {
+            namespace = 'assistant.mobile.pluginapi'
+            compileSdk = 37
+            minSdk = 26
+        }
+    }
+    sourceSets {
+        commonMain.dependencies {
+            api libs.serialization
+            api libs.coroutines
+        }
+        commonTest.dependencies { implementation libs.kotlin.test }
+        jvmTest.dependencies { implementation libs.kotlin.test.junit }
+    }
+}

@@ -1,0 +1,41 @@
+{
+  "_generated": "Generated from web/src/design/tokens.css by python3 web/tooling/generate_palette.py; do not edit palette values.",
+  "icon_background": "#5863A5",
+  "icon_foreground": "#F7F8FA",
+  "light": {
+    "background": "#F7F8FA",
+    "card": "#FDFDFE",
+    "foreground": "#212125",
+    "muted-foreground": "#5A5C62",
+    "primary": "#5863A5",
+    "primary-foreground": "#F7F8FA",
+    "accent": "#E6E9F4",
+    "accent-foreground": "#353B5A",
+    "secondary": "#EDEEF2",
+    "muted": "#EDEEF2",
+    "border": "#DADADD",
+    "input": "#88898D",
+    "destructive": "#B0423B",
+    "destructive-foreground": "#F7F8FA",
+    "splash-background": "#5863A5",
+    "splash-foreground": "#F7F8FA"
+  },
+  "dark": {
+    "background": "#1D1E22",
+    "card": "#2A2B30",
+    "foreground": "#E0E1E5",
+    "muted-foreground": "#A2A4AC",
+    "primary": "#8C99DD",
+    "primary-foreground": "#1D1E22",
+    "accent": "#353741",
+    "accent-foreground": "#E0E1E5",
+    "secondary": "#34353A",
+    "muted": "#2E2F33",
+    "border": "#444549",
+    "input": "#7D7E84",
+    "destructive": "#F1938C",
+    "destructive-foreground": "#1D1E22",
+    "splash-background": "#2E345C",
+    "splash-foreground": "#E3E7F9"
+  }
+}

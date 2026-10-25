@@ -1,0 +1,22 @@
+{
+  "activityDay": {
+    "title": "Движение за день",
+    "steps": "Шаги",
+    "activeMinutes": "Активные минуты",
+    "details": "{metric}: подробности за {date}",
+    "goal": "Цель: {value}",
+    "complete": "Полный день",
+    "partial": "Неполные данные",
+    "coverageUnknown": "Полнота не подтверждена",
+    "unverified": "Протокол не подтверждён",
+    "weekTitle": "Шаги за 7 дней",
+    "weekLabel": "Шаги по дням с {from} по {to}. Выберите день.",
+    "dayLabel": "{date}: {value}. {quality}",
+    "correctSteps": "Поправить шаги за этот день",
+    "history": "Дневные итоги",
+    "date": "День",
+    "amount": "Результат",
+    "quality": "Данные",
+    "activeHint": "Активные минуты учитываются отдельно от длительности занятий."
+  }
+}

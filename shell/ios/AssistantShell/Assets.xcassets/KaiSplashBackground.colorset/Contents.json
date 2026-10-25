@@ -1,0 +1,38 @@
+{
+  "colors": [
+    {
+      "idiom": "universal",
+      "color": {
+        "color-space": "srgb",
+        "components": {
+          "red": "0.345098039",
+          "green": "0.388235294",
+          "blue": "0.647058824",
+          "alpha": "1.000"
+        }
+      }
+    },
+    {
+      "idiom": "universal",
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ],
+      "color": {
+        "color-space": "srgb",
+        "components": {
+          "red": "0.180392157",
+          "green": "0.203921569",
+          "blue": "0.360784314",
+          "alpha": "1.000"
+        }
+      }
+    }
+  ],
+  "info": {
+    "author": "Generated from web/src/design/tokens.css by python3 web/tooling/generate_palette.py; do not edit palette values.",
+    "version": 1
+  }
+}

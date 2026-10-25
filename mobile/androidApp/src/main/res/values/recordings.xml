@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Native audio controls replace the browser's built-in audio element controls. -->
+    <string name="recordings_player_pause">Пауза</string>
+    <string name="recordings_player_stop">Остановить</string>
+    <string name="recordings_player_position">Позиция воспроизведения</string>
+</resources>

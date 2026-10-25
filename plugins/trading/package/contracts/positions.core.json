@@ -1,0 +1,104 @@
+{
+ "id": "positions.core",
+ "version": "1.0.0",
+ "description": "Основа позиции по монете: с даты столько монет из тех, что были на счетах (последние или самые старые покупки — по методу владельца), — давняя позиция, которую сделки поверх неё не трогают. qty = null убирает отметку.",
+ "when_to_use": "Пользователь отмечает, какая часть монеты — давняя позиция, а какая торгуется поверх неё.",
+ "when_not_to_use": "Всё остальное.",
+ "input_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "coin": {
+    "type": "string",
+    "pattern": "^[A-Z0-9]{1,20}$"
+   },
+   "qty": {
+    "type": [
+     "string",
+     "null"
+    ],
+    "format": "decimal",
+    "pattern": "^[0-9]{1,20}(\\.[0-9]{1,18})?$",
+    "maxLength": 40
+   },
+   "since": {
+    "type": [
+     "string",
+     "null"
+    ],
+    "format": "date-time",
+    "maxLength": 40
+   }
+  },
+  "required": [
+   "coin",
+   "qty"
+  ]
+ },
+ "output_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "coin": {
+    "type": "string",
+    "pattern": "^[A-Z0-9]{1,20}$"
+   },
+   "core": {
+    "type": [
+     "object",
+     "null"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "qty": {
+      "type": "string",
+      "format": "decimal",
+      "maxLength": 64
+     },
+     "since": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 40
+     }
+    },
+    "required": [
+     "qty",
+     "since"
+    ]
+   }
+  },
+  "required": [
+   "coin",
+   "core"
+  ]
+ },
+ "effect": "write",
+ "scopes": [
+  "trading.write"
+ ],
+ "surfaces": [
+  "ui"
+ ],
+ "execution": {
+  "mode": "sync",
+  "max_duration_ms": 5000,
+  "atomicity": "transactional"
+ },
+ "errors": [
+  {
+   "code": "not_configured",
+   "meaning": "Ключ Bybit не подключён; данных нет",
+   "recovery": "none"
+  },
+  {
+   "code": "qty_not_positive",
+   "meaning": "Количество основы должно быть больше нуля",
+   "recovery": "fix_arguments"
+  },
+  {
+   "code": "since_in_future",
+   "meaning": "Дата основы ещё не наступила",
+   "recovery": "fix_arguments"
+  }
+ ]
+}

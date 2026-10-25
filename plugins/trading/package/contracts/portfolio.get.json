@@ -1,0 +1,531 @@
+{
+ "id": "portfolio.get",
+ "version": "1.0.0",
+ "description": "Портфель Bybit по единому счёту, Funding и Earn: балансы монет с разбивкой по счетам, стоимость в USD, доли, изменения за день, неделю и месяц с выделением ввода-вывода средств и рыночного результата, позиции Earn.",
+ "when_to_use": "Вопросы о текущих балансах, стоимости портфеля и её изменении.",
+ "when_not_to_use": "История стоимости по времени (portfolio.history), PnL конкретной пары (position.summary).",
+ "input_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "min_usd_value": {
+    "type": "string",
+    "format": "decimal",
+    "maxLength": 64
+   },
+   "include_zero": {
+    "type": "boolean",
+    "default": false
+   }
+  },
+  "required": []
+ },
+ "output_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "total_usd": {
+    "type": [
+     "string",
+     "null"
+    ],
+    "format": "decimal",
+    "maxLength": 64
+   },
+   "change": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "day": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+       "usd_delta",
+       "pct",
+       "net_flow_usd",
+       "market_usd",
+       "market_pct"
+      ],
+      "properties": {
+       "usd_delta": {
+        "type": "string",
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "pct": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "net_flow_usd": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "market_usd": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "market_pct": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "format": "decimal",
+        "maxLength": 64
+       }
+      }
+     },
+     "week": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+       "usd_delta",
+       "pct",
+       "net_flow_usd",
+       "market_usd",
+       "market_pct"
+      ],
+      "properties": {
+       "usd_delta": {
+        "type": "string",
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "pct": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "net_flow_usd": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "market_usd": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "market_pct": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "format": "decimal",
+        "maxLength": 64
+       }
+      }
+     },
+     "month": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+       "usd_delta",
+       "pct",
+       "net_flow_usd",
+       "market_usd",
+       "market_pct"
+      ],
+      "properties": {
+       "usd_delta": {
+        "type": "string",
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "pct": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "net_flow_usd": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "market_usd": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "market_pct": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "format": "decimal",
+        "maxLength": 64
+       }
+      }
+     }
+    },
+    "required": [
+     "day",
+     "week",
+     "month"
+    ]
+   },
+   "btc_usdt_price": {
+    "type": [
+     "string",
+     "null"
+    ],
+    "format": "decimal",
+    "maxLength": 64
+   },
+   "balances": {
+    "type": "array",
+    "maxItems": 500,
+    "items": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "coin": {
+       "type": "string",
+       "pattern": "^[A-Z0-9]{1,20}$"
+      },
+      "quantity": {
+       "type": "string",
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "usd_value": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "price_usd": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "share_pct": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "day": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "quantity_delta": {
+         "type": [
+          "string",
+          "null"
+         ],
+         "format": "decimal",
+         "maxLength": 64
+        },
+        "usd_delta": {
+         "type": [
+          "string",
+          "null"
+         ],
+         "format": "decimal",
+         "maxLength": 64
+        },
+        "pct": {
+         "type": [
+          "string",
+          "null"
+         ],
+         "format": "decimal",
+         "maxLength": 64
+        }
+       },
+       "required": [
+        "quantity_delta",
+        "usd_delta",
+        "pct"
+       ]
+      },
+      "week_pct": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "month_pct": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "market_day_change_pct": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "accounts": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "unified": {
+         "type": [
+          "string",
+          "null"
+         ],
+         "format": "decimal",
+         "maxLength": 64
+        },
+        "funding": {
+         "type": [
+          "string",
+          "null"
+         ],
+         "format": "decimal",
+         "maxLength": 64
+        },
+        "earn": {
+         "type": [
+          "string",
+          "null"
+         ],
+         "format": "decimal",
+         "maxLength": 64
+        }
+       },
+       "required": [
+        "unified",
+        "funding",
+        "earn"
+       ]
+      }
+     },
+     "required": [
+      "coin",
+      "quantity",
+      "usd_value",
+      "accounts",
+      "price_usd",
+      "share_pct",
+      "day",
+      "week_pct",
+      "month_pct",
+      "market_day_change_pct"
+     ]
+    }
+   },
+   "freshness": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "as_of",
+     "connection_state",
+     "stream",
+     "history_complete",
+     "coverage_from",
+     "last_reconcile_at"
+    ],
+    "properties": {
+     "as_of": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     },
+     "connection_state": {
+      "enum": [
+       "not_configured",
+       "validating",
+       "active",
+       "degraded",
+       "auth_failed",
+       "ip_blocked",
+       "key_expired",
+       "secret_unavailable",
+       "disconnected"
+      ]
+     },
+     "stream": {
+      "enum": [
+       "live",
+       "reconnecting",
+       "down"
+      ]
+     },
+     "last_reconcile_at": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     },
+     "history_complete": {
+      "type": "boolean"
+     },
+     "coverage_from": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     }
+    }
+   },
+   "by_account": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "unified": {
+      "type": "string",
+      "format": "decimal",
+      "maxLength": 64
+     },
+     "funding": {
+      "type": "string",
+      "format": "decimal",
+      "maxLength": 64
+     },
+     "earn": {
+      "type": "string",
+      "format": "decimal",
+      "maxLength": 64
+     }
+    }
+   },
+   "earn": {
+    "type": "array",
+    "maxItems": 100,
+    "items": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "coin": {
+       "type": "string",
+       "pattern": "^[A-Z0-9]{1,20}$"
+      },
+      "category": {
+       "enum": [
+        "FlexibleSaving",
+        "OnChain",
+        "FixedTerm"
+       ]
+      },
+      "product_id": {
+       "type": "string",
+       "maxLength": 64
+      },
+      "amount": {
+       "type": "string",
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "yield_pending": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "pnl": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "decimal",
+       "maxLength": 64
+      }
+     },
+     "required": [
+      "coin",
+      "category",
+      "product_id",
+      "amount",
+      "yield_pending",
+      "pnl"
+     ]
+    }
+   }
+  },
+  "required": [
+   "total_usd",
+   "change",
+   "btc_usdt_price",
+   "balances",
+   "freshness",
+   "by_account",
+   "earn"
+  ]
+ },
+ "effect": "read",
+ "scopes": [
+  "trading.read"
+ ],
+ "surfaces": [
+  "ui",
+  "agent"
+ ],
+ "execution": {
+  "mode": "sync",
+  "max_duration_ms": 5000
+ },
+ "errors": [
+  {
+   "code": "not_configured",
+   "meaning": "Ключ Bybit не подключён; данных нет",
+   "recovery": "none"
+  }
+ ],
+ "limits": {
+  "max_response_bytes": 262144
+ }
+}

@@ -1,0 +1,56 @@
+{
+ "id": "positions.method",
+ "version": "1.0.0",
+ "description": "Метод учёта позиций владельца: какие покупки закрывает продажа — последние (lifo: сделки поверх давно держимой позиции дают свой результат, а она сохраняет цену входа) или самые старые (fifo). Меняет раскладку между реализованным и нереализованным; итог по монете — только если монеты выводились с биржи.",
+ "when_to_use": "Пользователь выбирает, какие покупки закрывает продажа при подсчёте позиций.",
+ "when_not_to_use": "Всё остальное.",
+ "input_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "method": {
+    "enum": [
+     "lifo",
+     "fifo"
+    ]
+   }
+  },
+  "required": [
+   "method"
+  ]
+ },
+ "output_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "lot_method": {
+    "enum": [
+     "lifo",
+     "fifo"
+    ]
+   }
+  },
+  "required": [
+   "lot_method"
+  ]
+ },
+ "effect": "write",
+ "scopes": [
+  "trading.write"
+ ],
+ "surfaces": [
+  "ui"
+ ],
+ "execution": {
+  "mode": "sync",
+  "max_duration_ms": 5000,
+  "atomicity": "transactional"
+ },
+ "errors": [
+  {
+   "code": "not_configured",
+   "meaning": "Ключ Bybit не подключён; данных нет",
+   "recovery": "none"
+  }
+ ]
+}

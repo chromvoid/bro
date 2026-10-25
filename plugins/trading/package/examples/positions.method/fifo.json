@@ -1,0 +1,8 @@
+{
+ "arguments": {
+  "method": "fifo"
+ },
+ "data": {
+  "lot_method": "fifo"
+ }
+}

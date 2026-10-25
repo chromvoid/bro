@@ -1,0 +1,12 @@
+{
+  "model": "google/functiongemma-270m-it",
+  "gguf_repository": "unsloth/functiongemma-270m-it-GGUF",
+  "revision": "1de0f7fc7cae0062012c2e91ef02e642c161aa57",
+  "file": "functiongemma-270m-it-BF16.gguf",
+  "sha256": "2d9469b8ea30c0aaa73f4119ca52426acc2edbf34cda4847f11644f4d0cd0193",
+  "bytes": 542847936,
+  "quantization": "BF16",
+  "license": "Gemma Terms",
+  "runtime": "llama-server from Ollama 0.34.0, commit 0f3a71be1",
+  "deployment": "optional CUDA demo via raw /completion; not the production filter"
+}

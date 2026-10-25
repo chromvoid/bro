@@ -1,0 +1,25 @@
+{
+  "images": [
+    {
+      "filename": "splash-body.svg",
+      "idiom": "universal"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ],
+      "filename": "splash-body-dark.svg",
+      "idiom": "universal"
+    }
+  ],
+  "info": {
+    "author": "Generated from web/src/design/tokens.css by python3 web/tooling/generate_palette.py; do not edit palette values.",
+    "version": 1
+  },
+  "properties": {
+    "preserves-vector-representation": true
+  }
+}

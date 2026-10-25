@@ -1,0 +1,156 @@
+/*
+ * Bro: neutral surfaces, periwinkle actions, teal confirmations and warm amber checks.
+ * Chart hues stay clear of the status hues, so a chart never reads as a verdict.
+ * The baseline fits sRGB. P3 enhances only the small focus indicator, not filled surfaces.
+ * Both gamuts and text contrast are checked in tokens.test.ts; see docs/design/web/README.md.
+ */
+
+/* Dark follows the system unless the user chose a theme (data-theme on <html>). */
+@custom-variant dark {
+  &:where([data-theme='dark'], [data-theme='dark'] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme='light']), :root:not([data-theme='light']) *) {
+      @slot;
+    }
+  }
+}
+
+:root {
+  color-scheme: light;
+  --radius: 0.875rem;
+
+  /* Fixed primitives and compatible icon canvas: shared by every theme and export. */
+  --palette-white: oklch(1 0 0);
+  --palette-black: oklch(0 0 0);
+  --brand-primary: oklch(0.52 0.105 275);
+  --brand-paper: oklch(0.978 0.003 275);
+  --icon-background: var(--brand-primary);
+  --icon-foreground: var(--brand-paper);
+  /* The launch screen of the web client and both shells: the icon opened to the whole screen. */
+  --splash-background: var(--brand-primary);
+  --splash-foreground: var(--brand-paper);
+
+  /* UI effects derive from the active semantic palette. */
+  --overlay-background: color-mix(in oklab, var(--palette-black) 10%, transparent);
+  --overlay-strong-background: color-mix(in oklab, var(--palette-black) 80%, transparent);
+  --display-screen-background: var(--palette-white);
+  --photo-background: var(--palette-white);
+  --mask-opaque: var(--palette-black);
+  --nutrition-note-background: color-mix(in oklab, var(--primary) 3%, transparent);
+  --toast-background: color-mix(in oklch, var(--popover) 90%, transparent);
+  --destructive-surface: color-mix(in oklch, var(--destructive) 10%, var(--card));
+  --toast-success-border: color-mix(in oklch, var(--success) 18%, var(--success-surface));
+  --toast-info-border: color-mix(in oklch, var(--primary) 18%, var(--accent));
+  --toast-warning-border: color-mix(in oklch, var(--warning) 18%, var(--warning-surface));
+  --toast-error-border: color-mix(in oklch, var(--destructive) 18%, var(--destructive-surface));
+  --body-aura: color-mix(in oklch, var(--primary) 6%, transparent);
+  --shadow-soft-color: color-mix(in oklab, var(--palette-black) 5%, transparent);
+  --shadow-color: color-mix(in oklab, var(--palette-black) 10%, transparent);
+  --shadow-strong-color: color-mix(in oklab, var(--palette-black) 25%, transparent);
+  --toast-shadow: 0 4px 12px var(--shadow-color);
+  --toast-focus-shadow: var(--toast-shadow), 0 0 0 2px var(--ring);
+  --toast-action-focus-shadow: 0 0 0 2px var(--ring);
+  --shimmer-highlight: oklch(from currentColor l c h / calc(alpha * 0.2));
+
+  /* Fixed illustration colors preserve the model's materials and studio lighting. */
+  --body-composition: oklch(0.866394 0.014575 231.2352);
+  --body-muscle: oklch(0.79634 0.02474 262.0788);
+  --body-fat: oklch(0.80684 0.075722 79.754);
+  --body-water: oklch(0.813123 0.038255 222.5313);
+  --body-light-sky: oklch(0.942539 0.01105 243.6566);
+  --body-light-ground: oklch(0.256544 0.01935 303.2616);
+  --body-light-key: oklch(0.963906 0.030383 76.9752);
+  --body-light-fill: oklch(0.787306 0.031179 256.0303);
+  --body-light-rim: oklch(0.917473 0.026053 235.3664);
+  --body-shadow: oklch(0.164349 0.0126 186.4976);
+  --body-material-default: oklch(0.816387 0.005543 197.0478);
+  --body-form: oklch(0.68325 0.029095 241.3609);
+
+  --background: var(--brand-paper);
+  --foreground: oklch(0.25 0.006 275);
+  --card: oklch(0.995 0.001 275);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: var(--brand-primary);
+  --primary-foreground: var(--background);
+  --secondary: oklch(0.95 0.005 275);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--secondary);
+  --muted-foreground: oklch(0.475 0.01 275);
+  --accent: oklch(0.935 0.015 275);
+  --accent-foreground: oklch(0.36 0.055 275);
+  --destructive: oklch(0.53 0.145 27);
+  --destructive-foreground: var(--primary-foreground);
+  /* Good news is as visible as bad: teal success, amber checks; text roles keep 4.5:1. */
+  --warning: oklch(0.52 0.12 60);
+  --warning-surface: oklch(0.96 0.03 75);
+  /* Bars, dots and fills past a goal: a lighter amber than its text, 3:1 on the page. */
+  --warning-fill: oklch(0.64 0.14 60);
+  --success: oklch(0.48 0.085 180);
+  --success-surface: oklch(0.955 0.025 180);
+  --border: oklch(0.89 0.004 275);
+  --input: oklch(0.63 0.006 275);
+  --ring: var(--primary);
+
+  --chart-1: var(--primary);
+  --chart-2: oklch(0.55 0.055 222);
+  --chart-3: oklch(0.58 0.085 305);
+  --chart-4: oklch(0.62 0.1 130);
+  --chart-5: oklch(0.6 0.012 265);
+
+  --sidebar: oklch(0.965 0.003 275);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  @media (color-gamut: p3) {
+    --ring: oklch(0.52 0.28 275);
+  }
+
+  @variant dark {
+    color-scheme: dark;
+    /* A deep periwinkle that does not glare at night. */
+    --splash-background: oklch(0.34 0.07 275);
+    --splash-foreground: oklch(0.93 0.025 275);
+    --shimmer-highlight: oklch(from currentColor max(0.8, calc(l + 0.4)) c h / calc(alpha + 0.4));
+    /* Deep enough that cards stand off the page, not only by their border. */
+    --background: oklch(0.235 0.008 275);
+    --foreground: oklch(0.91 0.006 275);
+    --card: oklch(0.29 0.01 275);
+    --popover: oklch(0.32 0.01 275);
+    /* As saturated as the status colours: the action never reads quieter than a warning. */
+    --primary: oklch(0.7 0.1 275);
+    --secondary: oklch(0.33 0.009 275);
+    --muted: oklch(0.305 0.008 275);
+    --muted-foreground: oklch(0.72 0.012 275);
+    --accent: oklch(0.34 0.018 275);
+    --accent-foreground: var(--foreground);
+    /* Clears 4.5:1 on an outline button's lifted fill too («Выйти из аккаунта»). */
+    --destructive: oklch(0.76 0.115 25);
+    --warning: oklch(0.8 0.1 75);
+    --warning-surface: oklch(0.335 0.03 75);
+    --warning-fill: var(--warning);
+    --success: oklch(0.76 0.09 180);
+    --success-surface: oklch(0.33 0.03 180);
+    --border: oklch(0.39 0.007 275);
+    --input: oklch(0.595 0.008 275);
+
+    --chart-2: oklch(0.73 0.05 222);
+    --chart-3: oklch(0.71 0.078 305);
+    --chart-4: oklch(0.76 0.1 130);
+    --chart-5: oklch(0.65 0.012 265);
+
+    --sidebar: oklch(0.275 0.009 275);
+
+    @media (color-gamut: p3) {
+      --ring: oklch(0.7 0.16 275);
+    }
+  }
+}

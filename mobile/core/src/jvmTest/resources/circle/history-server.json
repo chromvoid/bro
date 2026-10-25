@@ -1,0 +1,9 @@
+{
+  "channel":{"id":"22222222-2222-4222-8222-222222222222","kind":"direct","direct_a":"11111111-1111-4111-8111-111111111111","direct_b":"55555555-5555-4555-8555-555555555555"},
+  "messages":[
+    {"id":"message-1","actor_user_id":"55555555-5555-4555-8555-555555555555","author":"user","reply_to_id":null,"created_at":"2026-10-17T11:59:00Z","name":"Synthetic friend","text":"Visible shared history","call":null,"provenance":null},
+    {"id":"message-2","actor_user_id":"11111111-1111-4111-8111-111111111111","author":"user","reply_to_id":"message-1","created_at":"2026-10-17T11:59:10+00:00","name":"Synthetic person","text":"Synthetic reply","call":null},
+    {"id":"message-3","actor_user_id":null,"author":"assistant","reply_to_id":"message-2","created_at":"2026-10-17T11:59:20Z","name":null,"text":"Synthetic answer"}
+  ],
+  "next_cursor":"message-before-1"
+}

@@ -1,0 +1,42 @@
+plugins {
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
+}
+def jvmOnly = providers.gradleProperty('mobileJvmOnly').map { it.toBoolean() }.getOrElse(false)
+if (!jvmOnly) apply plugin: 'com.android.kotlin.multiplatform.library'
+kotlin {
+    jvmToolchain(21)
+    jvm()
+    if (!jvmOnly) {
+        android {
+            namespace = 'assistant.mobile.core'
+            compileSdk = 37
+            minSdk = 26
+        }
+    }
+    sourceSets {
+        commonMain.dependencies {
+            api project(':plugin-api')
+            api libs.serialization
+            api libs.coroutines
+            api libs.ktor.client.core
+            api libs.room.runtime
+            implementation libs.datetime
+            implementation libs.markdown
+            implementation libs.sqlite.bundled
+        }
+        commonTest.dependencies { implementation libs.kotlin.test }
+        jvmTest.dependencies {
+            implementation libs.kotlin.test.junit
+            implementation libs.ktor.client.mock
+            implementation libs.coroutines.test
+        }
+        jvmTest.resources.srcDir(rootProject.file('../contracts'))
+    }
+}
+dependencies {
+    add('kspJvm', libs.room.compiler)
+    if (!jvmOnly) add('kspAndroid', libs.room.compiler)
+}
+ksp { arg('room.schemaLocation', "$projectDir/schemas") }

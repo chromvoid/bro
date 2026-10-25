@@ -1,0 +1,16 @@
+{
+ "arguments": {
+  "domains": [
+   "executions"
+  ],
+  "history_days": 30
+ },
+ "data": {
+  "domains": [
+   {
+    "domain": "executions",
+    "watermark_at": "2026-09-25T10:05:00Z"
+   }
+  ]
+ }
+}

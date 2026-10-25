@@ -1,0 +1,8 @@
+{
+  "spaces": [
+    {"id":"44444444-4444-4444-8444-444444444444","name":"Synthetic family","revision":3,"role":"owner","archived":false,"created_by":"11111111-1111-4111-8111-111111111111"},
+    {"id":"aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa","name":"Archived group","revision":7,"role":"member","archived":true}
+  ],
+  "invitations": [{"space_id":"bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb","name":"Synthetic invitation","inviter_name":"Synthetic friend","expires_at":"2026-10-24T12:00:00Z"}],
+  "future_field": true
+}

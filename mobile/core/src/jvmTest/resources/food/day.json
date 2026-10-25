@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-03",
+  "day_revision": 3,
+  "completed": false,
+  "entries": [
+    {
+      "id": "e1", "revision": 2, "quantity": "150.000", "unit": "g",
+      "local_date": "2026-10-03", "name": "Yogurt", "name_ru": "Йогурт",
+      "meal_kind": "breakfast", "meal_id": "morning", "logged_at": "2026-10-03T06:30:00Z",
+      "nutrients": {"energy_kcal": "90", "protein_g": null, "fat_g": "0.00"}
+    },
+    {
+      "id": "e2", "revision": 1, "quantity": "350", "unit": "g",
+      "local_date": "2026-10-03", "name": "Oats", "dish_id": "d1",
+      "meal_kind": "breakfast", "meal_id": "morning", "logged_at": "2026-10-03T06:40:00Z",
+      "nutrients": {"energy_kcal": null}
+    }
+  ],
+  "items": [
+    {
+      "id": "e1", "revision": 2, "quantity": "150.000", "unit": "g",
+      "local_date": "2026-10-03", "name": "Yogurt", "name_ru": "Йогурт",
+      "meal_kind": "breakfast", "meal_id": "morning", "logged_at": "2026-10-03T06:30:00Z",
+      "nutrients": {"energy_kcal": "90", "protein_g": null, "fat_g": "0.00"}
+    },
+    {
+      "id": "d1", "kind": "dish", "name": "Овсянка с бананом",
+      "quantity": "350", "unit": "g", "local_date": "2026-10-03", "revision": 1,
+      "components": [
+        {
+          "id": "e2", "revision": 1, "quantity": "350", "unit": "g",
+          "local_date": "2026-10-03", "name": "Oats", "dish_id": "d1",
+          "meal_kind": "breakfast", "meal_id": "morning", "logged_at": "2026-10-03T06:40:00Z",
+          "nutrients": {"energy_kcal": null}
+        }
+      ],
+      "nutrients": {"energy_kcal": null}
+    }
+  ],
+  "totals": {
+    "energy_kcal": {"known": "90.25", "complete": false},
+    "protein_g": {"known": "0", "complete": false},
+    "fat_g": {"known": "0.00", "complete": true}
+  },
+  "goal": {
+    "id": "g1", "calorie_target": "2100.00", "effective_local_date": "2026-09-18", "revision": 1,
+    "macro_targets": {"protein_g": "130", "fat_g": "70", "carbohydrate_g": null}
+  },
+  "remaining_kcal": null,
+  "remaining_complete": false,
+  "drafts": []
+}

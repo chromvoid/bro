@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.16)
+set(PROJECT_VER "1.0.0")
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+idf_build_set_property(MINIMAL_BUILD ON)
+project(assistant_display)
+idf_component_get_property(json_library json COMPONENT_LIB)
+target_compile_definitions(${json_library} PRIVATE CJSON_NESTING_LIMIT=32)

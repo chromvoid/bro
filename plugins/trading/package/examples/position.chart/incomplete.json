@@ -1,0 +1,70 @@
+{
+ "arguments": {
+  "coin": "LTC",
+  "range": {
+   "period": "90d"
+  }
+ },
+ "data": {
+  "coin": "LTC",
+  "unit": "USD",
+  "lot_method": "lifo",
+  "from": "2026-06-27T10:00:00Z",
+  "points": [
+   {
+    "time": "2026-06-27T10:00:00Z",
+    "price": "68.4"
+   },
+   {
+    "time": "2026-07-27T10:00:00Z",
+    "price": "74.1"
+   },
+   {
+    "time": "2026-08-26T10:00:00Z",
+    "price": "79.9"
+   },
+   {
+    "time": "2026-09-25T10:00:00Z",
+    "price": "72.99"
+   }
+  ],
+  "trades": [
+   {
+    "time": "2026-07-02T09:10:00Z",
+    "side": "buy",
+    "qty": "600",
+    "fills": 14,
+    "price": "69.2"
+   },
+   {
+    "time": "2026-08-27T15:40:00Z",
+    "side": "sell",
+    "qty": "250",
+    "fills": 3,
+    "price": "80.4"
+   }
+  ],
+  "lines": {
+   "avg_entry": null,
+   "break_even": null,
+   "core_entry": null,
+   "mark": "72.99"
+  },
+  "freshness": {
+   "as_of": "2026-09-25T10:00:00Z",
+   "connection_state": "active",
+   "stream": "live",
+   "last_reconcile_at": "2026-09-25T09:58:00Z",
+   "history_complete": true,
+   "coverage_from": "2024-09-26T00:00:00Z"
+  },
+  "issues": [
+   {
+    "code": "p2p_cancellation_unlinked",
+    "coin": "LTC",
+    "occurred_at": "2026-09-25T09:00:00Z",
+    "entry_id": null
+   }
+  ]
+ }
+}

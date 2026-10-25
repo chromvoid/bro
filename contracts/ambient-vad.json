@@ -1,0 +1,254 @@
+{
+  "version": 1,
+  "sample_rate": 16000,
+  "frame_samples": 512,
+  "start_threshold": 0.5,
+  "continue_threshold": 0.35,
+  "min_speech_samples": 1536,
+  "pre_roll_samples": 5120,
+  "end_silence_samples": 12800,
+  "post_roll_samples": 4096,
+  "max_clip_samples": 480000,
+  "cases": [
+    {
+      "name": "only_silence",
+      "runs": [
+        {
+          "probability": 0,
+          "frames": 100
+        }
+      ],
+      "expected_clips": []
+    },
+    {
+      "name": "two_frame_click",
+      "runs": [
+        {
+          "probability": 0,
+          "frames": 20
+        },
+        {
+          "probability": 0.9,
+          "frames": 2
+        },
+        {
+          "probability": 0,
+          "frames": 30
+        }
+      ],
+      "expected_clips": []
+    },
+    {
+      "name": "phrase_with_padding",
+      "runs": [
+        {
+          "probability": 0,
+          "frames": 20
+        },
+        {
+          "probability": 0.9,
+          "frames": 10
+        },
+        {
+          "probability": 0,
+          "frames": 25
+        }
+      ],
+      "expected_clips": [
+        {
+          "start_sample": 5120,
+          "sample_count": 14336
+        }
+      ]
+    },
+    {
+      "name": "hysteresis_and_short_pause",
+      "runs": [
+        {
+          "probability": 0,
+          "frames": 20
+        },
+        {
+          "probability": 0.9,
+          "frames": 3
+        },
+        {
+          "probability": 0.4,
+          "frames": 5
+        },
+        {
+          "probability": 0.1,
+          "frames": 10
+        },
+        {
+          "probability": 0.4,
+          "frames": 2
+        },
+        {
+          "probability": 0,
+          "frames": 25
+        }
+      ],
+      "expected_clips": [
+        {
+          "start_sample": 5120,
+          "sample_count": 19456
+        }
+      ]
+    },
+    {
+      "name": "gaps_keep_source_time",
+      "runs": [
+        {
+          "probability": 0,
+          "frames": 20
+        },
+        {
+          "probability": 0.9,
+          "frames": 10
+        },
+        {
+          "probability": 0,
+          "frames": 40
+        },
+        {
+          "probability": 0.9,
+          "frames": 10
+        },
+        {
+          "probability": 0,
+          "frames": 25
+        }
+      ],
+      "expected_clips": [
+        {
+          "start_sample": 5120,
+          "sample_count": 14336
+        },
+        {
+          "start_sample": 30720,
+          "sample_count": 14336
+        }
+      ]
+    },
+    {
+      "name": "stop_active_partial",
+      "runs": [
+        {
+          "probability": 0,
+          "frames": 20
+        },
+        {
+          "probability": 0.9,
+          "frames": 4
+        }
+      ],
+      "expected_clips": [
+        {
+          "start_sample": 5120,
+          "sample_count": 7305
+        }
+      ],
+      "tail_samples": 137,
+      "tail_probability": 0.9
+    },
+    {
+      "name": "long_continuous_speech",
+      "runs": [
+        {
+          "probability": 0,
+          "frames": 20
+        },
+        {
+          "probability": 0.9,
+          "frames": 940
+        },
+        {
+          "probability": 0,
+          "frames": 25
+        }
+      ],
+      "expected_clips": [
+        {
+          "start_sample": 5120,
+          "sample_count": 480000
+        },
+        {
+          "start_sample": 485120,
+          "sample_count": 10496
+        }
+      ]
+    },
+    {
+      "name": "stop_during_candidate",
+      "runs": [
+        {
+          "probability": 0,
+          "frames": 20
+        },
+        {
+          "probability": 0.9,
+          "frames": 2
+        }
+      ],
+      "expected_clips": []
+    },
+    {
+      "name": "discard_active",
+      "runs": [
+        {
+          "probability": 0,
+          "frames": 20
+        },
+        {
+          "probability": 0.9,
+          "frames": 10
+        }
+      ],
+      "expected_clips": [],
+      "discard": true
+    },
+    {
+      "name": "speech_at_capture_start",
+      "runs": [
+        {
+          "probability": 0.9,
+          "frames": 3
+        },
+        {
+          "probability": 0,
+          "frames": 25
+        }
+      ],
+      "expected_clips": [
+        {
+          "start_sample": 0,
+          "sample_count": 5632
+        }
+      ]
+    },
+    {
+      "name": "stop_during_silence",
+      "runs": [
+        {
+          "probability": 0,
+          "frames": 20
+        },
+        {
+          "probability": 0.9,
+          "frames": 10
+        },
+        {
+          "probability": 0,
+          "frames": 4
+        }
+      ],
+      "expected_clips": [
+        {
+          "start_sample": 5120,
+          "sample_count": 12288
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Native ring runtime text without a component-web source. -->
+    <string name="ring_native_02fbf890f21c" formatted="false">"Нет пакета команды."</string>
+    <string name="ring_native_030137ffe111" formatted="false">"Укажите список параметров."</string>
+    <string name="ring_native_0302a65d8081" formatted="false">"Неизвестный тип записи кольца. Данные сохранены в очереди."</string>
+    <string name="ring_native_042e7e492425" formatted="false">"Состояние кольца содержит смешанные типы записей."</string>
+    <string name="ring_native_04303ed08f28" formatted="false">"Не удалось прочитать службы кольца."</string>
+    <string name="ring_native_06dd4cef6a85" formatted="false">"Кольцо не ответило вовремя. Следующая синхронизация продолжит чтение."</string>
+    <string name="ring_native_0788f14113b3" formatted="false">"Нет основного канала кольца."</string>
+    <string name="ring_native_07a7ba8e3669" formatted="false">"Кольцо не сообщило текущие HW/FW."</string>
+    <string name="ring_native_0804af2c69d6" formatted="false">"Нет identity журнала."</string>
+    <string name="ring_native_099c701a42fa" formatted="false">"Очередь кольца заполнена. Подключитесь к серверу."</string>
+    <string name="ring_native_09fea3435a3e" formatted="false">"Версия протокола кольца несовместима."</string>
+    <string name="ring_native_0b1f107452b4" formatted="false">"Предыдущая команда замера ещё выполняется."</string>
+    <string name="ring_native_0b33a26aa421" formatted="false">"Пакет не содержит подтверждаемые записи очереди."</string>
+    <string name="ring_native_0bbdb6fd23eb" formatted="false">"Android не принял пакет кольца."</string>
+    <string name="ring_native_0bf8c2ad5135" formatted="false">"Протокол не сообщил возможности устройства."</string>
+    <string name="ring_native_0c6b18eb5359" formatted="false">"Этот замер уже завершён или изменился."</string>
+    <string name="ring_native_0dfe4f10ada2" formatted="false">"Сервер вернул неверный ответ."</string>
+    <string name="ring_native_0ee01dbec864" formatted="false">"Неизвестная команда замера."</string>
+    <string name="ring_native_0fd89bf9ad06" formatted="false">"Физическая принадлежность намерения неизменна."</string>
+    <string name="ring_native_1081c87478b1" formatted="false">"Неизвестный или повторяющийся параметр."</string>
+    <string name="ring_native_10db9a2118c7" formatted="false">"Повреждено незавершённое намерение журнала."</string>
+    <string name="ring_native_11053cce5226" formatted="false">"Не указан идентификатор записи тренировки."</string>
+    <string name="ring_native_11c20e100064" formatted="false">"Повреждена команда журнала."</string>
+    <string name="ring_native_120544250632" formatted="false">"Кольцо вернуло запись без идентификатора."</string>
+    <string name="ring_native_13aa9168519a" formatted="false">"Архив подтверждений заполнен; сохранённые команды не удалены."</string>
+    <string name="ring_native_13df7f4c7df0" formatted="false">"Журнал команд недоступен."</string>
+    <string name="ring_native_142e5177b75e" formatted="false">"Неверное незавершённое намерение."</string>
+    <string name="ring_native_145fb0138b67" formatted="false">"Хранилище кольца недоступно. Очередь сохранена; очистка заблокирована, поскольку владельца данных нельзя подтвердить."</string>
+    <string name="ring_native_1725318870e4" formatted="false">"Некоторые данные кольца пока не получены; чтение продолжается."</string>
+    <string name="ring_native_1c8b6122b2ab" formatted="false">"Не найдена запись подтверждаемого пакета."</string>
+    <string name="ring_native_1e9f7db6f47e" formatted="false">"Версия кольца изменилась. Возможности нужно проверить заново."</string>
+    <string name="ring_native_1f6a0669c3fc" formatted="false">"Сначала сверьте неизвестное намерение физического кольца."</string>
+    <string name="ring_native_1ff657700036" formatted="false">"Нет состояния команды кольца."</string>
+    <string name="ring_native_204896f731b3" formatted="false">"Не указано время состояния кольца."</string>
+    <string name="ring_native_21b7aeee54cf" formatted="false">"Результат команды неизвестен. Она не будет повторена автоматически."</string>
+    <string name="ring_native_2362e8fe09d8" formatted="false">"Не удалось подключиться к кольцу."</string>
+    <string name="ring_native_24c6d6640f64" formatted="false">"Неизвестный тип журнала."</string>
+    <string name="ring_native_25197f44ee48">"Неожиданный ответ Bluetooth при операции %1$s (%2$s)."</string>
+    <string name="ring_native_25464c8a832e" formatted="false">"Обновите привязку кольца для продолжения импорта."</string>
+    <string name="ring_native_2823320f9c04" formatted="false">"Не удалось завершить очистку кольца. Повторите позже."</string>
+    <string name="ring_native_29d689633aca">"Кольцо отключилось (Bluetooth %1$s)."</string>
+    <string name="ring_native_2c01a5684186" formatted="false">"Откройте аккаунт кольца."</string>
+    <string name="ring_native_2c5765229e02" formatted="false">"Результат неизвестен. Команда не повторится автоматически."</string>
+    <string name="ring_native_2f2e943e6490" formatted="false">"Укажите неизвестную команду."</string>
+    <string name="ring_native_315f2837398a" formatted="false">"Войдите в аккаунт заново."</string>
+    <string name="ring_native_32c0225a3d0a" formatted="false">"Повреждён идентификатор команды."</string>
+    <string name="ring_native_32cf4dca6256" formatted="false">"Кольцо не поддерживает выбранный интервал."</string>
+    <string name="ring_native_3550486109f4" formatted="false">"Не удалось запустить протокол кольца."</string>
+    <string name="ring_native_3856fb8272d0" formatted="false">"Параметр должен быть строкой."</string>
+    <string name="ring_native_38ca8ca046c1" formatted="false">"Канал кольца не поддерживает уведомления."</string>
+    <string name="ring_native_398433d2d5ec" formatted="false">"Android не принял подписку на уведомления."</string>
+    <string name="ring_native_39ff960957dc" formatted="false">"Автономный режим этого замера не подтверждён."</string>
+    <string name="ring_native_3d665dee5e48" formatted="false">"Неверная identity журнала."</string>
+    <string name="ring_native_3f963cdfbb67" formatted="false">"Неизвестный часовой пояс профиля."</string>
+    <string name="ring_native_40ea7ee0699f" formatted="false">"Ответ не принадлежит текущей команде замера."</string>
+    <string name="ring_native_453d24790ede" formatted="false">"Журнал команд недоступен; изменения заблокированы."</string>
+    <string name="ring_native_4591b38a59dc" formatted="false">"Не удалось сохранить отключение кольца. Повторите позже."</string>
+    <string name="ring_native_4bef46587b2a" formatted="false">"Подтверждение другой команды."</string>
+    <string name="ring_native_4d08d53965e8" formatted="false">"Нет дескриптора уведомлений кольца."</string>
+    <string name="ring_native_4e0d5ad790be" formatted="false">"Нет команды журнала."</string>
+    <string name="ring_native_501dfba1a328" formatted="false">"Операция кольца уже выполняется."</string>
+    <string name="ring_native_50c5b198dec7" formatted="false">"Сервер не подтвердил пакет кольца."</string>
+    <string name="ring_native_51d0eafa8da7" formatted="false">"Неизвестное действие кольца."</string>
+    <string name="ring_native_527ed8d4926c" formatted="false">"Разрешите доступ к устройствам поблизости."</string>
+    <string name="ring_native_53bee40a8800" formatted="false">"Нужна настройка кольца."</string>
+    <string name="ring_native_550cd5762347" formatted="false">"Журнал команд недоступен; неизвестные команды не были удалены."</string>
+    <string name="ring_native_55166cb231a6" formatted="false">"Включите Bluetooth."</string>
+    <string name="ring_native_576c41093d27" formatted="false">"Нет намерения журнала."</string>
+    <string name="ring_native_57f9adbbde05" formatted="false">"Неверное событие протокола кольца."</string>
+    <string name="ring_native_58264223abc5" formatted="false">"Выберите найденное кольцо."</string>
+    <string name="ring_native_58de6c584dd5" formatted="false">"Кольцо не подтвердило результат команды."</string>
+    <string name="ring_native_58f132c4ca28" formatted="false">"Повторите поиск и выберите кольцо из списка."</string>
+    <string name="ring_native_5995f9bdd8f8" formatted="false">"Запись попала в неверную категорию пакета."</string>
+    <string name="ring_native_59f65e17d26f" formatted="false">"Войдите в аккаунт кольца."</string>
+    <string name="ring_native_5b877d83b16e" formatted="false">"Повреждена область журнала."</string>
+    <string name="ring_native_5b8b1234905a" formatted="false">"Ожидалось логическое значение настройки."</string>
+    <string name="ring_native_5f31b6205002" formatted="false">"Исходная принадлежность неизвестной команды не доказана; журнал не удалён."</string>
+    <string name="ring_native_5fc830142f5c" formatted="false">"Пороги пульса должны быть объектом."</string>
+    <string name="ring_native_6043eeac3217" formatted="false">"История отложена до завершения тренировки."</string>
+    <string name="ring_native_659bbea325e9" formatted="false">"Сервер перенаправил запрос устройства."</string>
+    <string name="ring_native_660ccdceb413" formatted="false">"Сверяемое намерение не принадлежит текущему владельцу."</string>
+    <string name="ring_native_66d4c33e41b4" formatted="false">"Идентификатор замера должен быть строкой."</string>
+    <string name="ring_native_67f56ad96ef8" formatted="false">"Неверный ответ протокола кольца."</string>
+    <string name="ring_native_6b65f6b2dab7" formatted="false">"Разрешите доступ к Bluetooth."</string>
+    <string name="ring_native_6b8d7413f8a2" formatted="false">"Поколение исходной привязки неизвестно."</string>
+    <string name="ring_native_6c6f8bbd4a76" formatted="false">"Протокол не сообщил поддерживаемые замеры."</string>
+    <string name="ring_native_6ef6087e9a3e" formatted="false">"Хранилище кольца недоступно."</string>
+    <string name="ring_native_70c0fe150ec2" formatted="false">"Не указан пакет кольца."</string>
+    <string name="ring_native_7118420b8da4" formatted="false">"Неизвестный режим жестов."</string>
+    <string name="ring_native_71905f384372" formatted="false">"Обновление identity не принимает параметры."</string>
+    <string name="ring_native_74efddb23987" formatted="false">"Замер уже завершён."</string>
+    <string name="ring_native_7538c20db484" formatted="false">"История будет прочитана после завершения тренировки."</string>
+    <string name="ring_native_79a1b05bc9a1" formatted="false">"Сохранённое намерение неизменно."</string>
+    <string name="ring_native_7a825ee12d2f" formatted="false">"Нет канала уведомлений кольца."</string>
+    <string name="ring_native_7b0923a9255a" formatted="false">"Выберите кольцо."</string>
+    <string name="ring_native_7b92f9913663" formatted="false">"Неверный будильник."</string>
+    <string name="ring_native_7c659ba80ac8" formatted="false">"Неизвестная настройка кольца."</string>
+    <string name="ring_native_7c996f4d93c2" formatted="false">"Сначала отключите прежнее кольцо."</string>
+    <string name="ring_native_7d466bcd9b9f" formatted="false">"Не удалось сохранить состояние кольца."</string>
+    <string name="ring_native_7de31f9d779e" formatted="false">"Неверное состояние аккаунта кольца."</string>
+    <string name="ring_native_83404560bb9c" formatted="false">"Обмен с кольцом отменён."</string>
+    <string name="ring_native_861cda0e1c5e" formatted="false">"Укажите идентификатор команды."</string>
+    <string name="ring_native_8a8928bfadba" formatted="false">"Переполнена очередь Bluetooth кольца."</string>
+    <string name="ring_native_8b00887dd420" formatted="false">"Поиск Bluetooth недоступен."</string>
+    <string name="ring_native_8b7f290b331f">"Ошибка протокола кольца: %1$s."</string>
+    <string name="ring_native_8bc8d3a7816b" formatted="false">"Доступ к импорту кольца отозван."</string>
+    <string name="ring_native_91df80317a2b" formatted="false">"Журнал незавершённых команд заполнен."</string>
+    <string name="ring_native_9324c80bb67d" formatted="false">"Bluetooth недоступен."</string>
+    <string name="ring_native_9454ad67d793" formatted="false">"Кольцо принадлежит другому аккаунту."</string>
+    <string name="ring_native_94653945ab40" formatted="false">"Привязка устройства больше не действует."</string>
+    <string name="ring_native_985122d7a339" formatted="false">"Укажите один параметр замера."</string>
+    <string name="ring_native_98f0aecab6a1" formatted="false">"Архив подтверждений команд недоступен."</string>
+    <string name="ring_native_991dbb5d0df3" formatted="false">"Сначала сверьте неизвестную команду этого физического кольца."</string>
+    <string name="ring_native_9a25352d8dbc" formatted="false">"Неверная проверка физического устройства."</string>
+    <string name="ring_native_9a6dc0329f6e" formatted="false">"Откройте экран кольца."</string>
+    <string name="ring_native_9a8cfc1f2a24" formatted="false">"Повреждена запись пакета кольца."</string>
+    <string name="ring_native_9dc65e602a93" formatted="false">"Кольцо не подтвердило изменение замера."</string>
+    <string name="ring_native_9fce2cdfacf0" formatted="false">"Укажите поддерживаемое расписание замеров."</string>
+    <string name="ring_native_a0fcee66e847" formatted="false">"Укажите параметры для чтения."</string>
+    <string name="ring_native_a1b170d6632b" formatted="false">"Ответ сервера слишком велик."</string>
+    <string name="ring_native_a3593b9d010e" formatted="false">"Сначала сверьте неизвестную команду кольца."</string>
+    <string name="ring_native_a3b9d8a581ff" formatted="false">"Архив и намерение расходятся."</string>
+    <string name="ring_native_a49de59e34fc" formatted="false">"Не найдена версия привязки кольца."</string>
+    <string name="ring_native_a4bdc0b45a45" formatted="false">"Войдите в аккаунт."</string>
+    <string name="ring_native_a5c548219cbc" formatted="false">"Не удалось включить уведомления кольца."</string>
+    <string name="ring_native_a66a90e49758" formatted="false">"Нативный протокол не подтвердил identity устройства."</string>
+    <string name="ring_native_a6714bc043a6">"Ошибка поиска Bluetooth (%1$s)."</string>
+    <string name="ring_native_a80c8a704eeb" formatted="false">"Неизвестный параметр замера."</string>
+    <string name="ring_native_a8bc95ba7141" formatted="false">"Формат команды для этой прошивки ещё не подтверждён на кольце."</string>
+    <string name="ring_native_a8fd52432fef" formatted="false">"Другой origin журнала."</string>
+    <string name="ring_native_a9d47aadd10b" formatted="false">"Кольцо отключено."</string>
+    <string name="ring_native_abce00ae1896" formatted="false">"Нативный протокол не подтвердил identity события."</string>
+    <string name="ring_native_afa92b30012c" formatted="false">"Нативный протокол не подтвердил текущую identity."</string>
+    <string name="ring_native_b03435b728a8" formatted="false">"Основание времени телефона недоступно."</string>
+    <string name="ring_native_b0689450a0aa" formatted="false">"Версия кольца изменилась. Прежний результат сохранён в журнале и не подтверждает текущие настройки."</string>
+    <string name="ring_native_b14cbf892a10" formatted="false">"Сначала подключите кольцо."</string>
+    <string name="ring_native_b260e0e399af" formatted="false">"Идентификатор намерения неоднозначен."</string>
+    <string name="ring_native_b305eb5c604e" formatted="false">"Хранилище кольца недоступно. Очередь сохранена; очистка заблокирована, поскольку владельца данных нельзя подтвердить."</string>
+    <string name="ring_native_b32cba6396de" formatted="false">"Автономный ночной режим температуры не подтверждён."</string>
+    <string name="ring_native_b4a808e1ff08" formatted="false">"Привязка изменилась до сохранения тренировки."</string>
+    <string name="ring_native_b75b0deb2d0a" formatted="false">"Доступ устройства отозван. Подключите его заново."</string>
+    <string name="ring_native_b8f40ff751e7" formatted="false">"Протокол кольца вернул неверный результат."</string>
+    <string name="ring_native_b996630a00cb" formatted="false">"Ошибка протокола замера."</string>
+    <string name="ring_native_b9beb7c260c9" formatted="false">"Сохранённый фрагмент или состояние устройства изменились."</string>
+    <string name="ring_native_babf11fd41f6" formatted="false">"Завершите или сверьте текущую операцию кольца."</string>
+    <string name="ring_native_bbf19be46aa4" formatted="false">"Сначала сверьте предыдущую команду устройства."</string>
+    <string name="ring_native_bde2c555b593" formatted="false">"Войдите в аккаунт подключённого кольца."</string>
+    <string name="ring_native_bf2700ca6426" formatted="false">"Укажите состояние фоновой синхронизации."</string>
+    <string name="ring_native_bf6cf3980b19" formatted="false">"Нет журнала команды устройства."</string>
+    <string name="ring_native_bfddb96f88e5" formatted="false">"Разрешите поиск устройств поблизости."</string>
+    <string name="ring_native_c038b7c033fc" formatted="false">"Кольцо не поддерживает ожидаемый способ записи."</string>
+    <string name="ring_native_c11dd6e4171e" formatted="false">"Для напоминания нужны дни и интервал 30, 60 или 90 минут."</string>
+    <string name="ring_native_c2b32b712e39" formatted="false">"Сначала сверьте неизвестную команду устройства."</string>
+    <string name="ring_native_c35e434ae2d0" formatted="false">"Не удалось выполнить обмен с кольцом. Повторите позже."</string>
+    <string name="ring_native_c445b2bcaad2" formatted="false">"Часть данных кольца пока не получена; чтение продолжается."</string>
+    <string name="ring_native_c5029992bbee" formatted="false">"Повреждён пакет кольца."</string>
+    <string name="ring_native_c739324dac45" formatted="false">"Не найдена служба истории QRing."</string>
+    <string name="ring_native_c74043c9be06" formatted="false">"Сервер не разрешил подключить устройство."</string>
+    <string name="ring_native_ca623ba5a98d">"Ошибка Bluetooth при операции %1$s (%2$s)."</string>
+    <string name="ring_native_ca6e62224efa" formatted="false">"Неверные параметры настройки кольца."</string>
+    <string name="ring_native_cb866d9c169a" formatted="false">"Очередь не подтвердила все записи тренировки."</string>
+    <string name="ring_native_ce11c075978c" formatted="false">"Один идентификатор относится к разным намерениям."</string>
+    <string name="ring_native_cfd60b833038" formatted="false">"Интервал должен быть целым числом минут."</string>
+    <string name="ring_native_d0cb8adb08c2" formatted="false">"Пакет должен содержать не более одного состояния кольца."</string>
+    <string name="ring_native_d0fc0fe09e78" formatted="false">"Укажите только текущий замер."</string>
+    <string name="ring_native_d19a5f377e56" formatted="false">"Журнал незавершённых намерений заполнен."</string>
+    <string name="ring_native_d1ae86edb467" formatted="false">"Запись кольца превышает допустимый размер пакета."</string>
+    <string name="ring_native_d1c5ff141ab7" formatted="false">"Повреждена привязка физического устройства."</string>
+    <string name="ring_native_d2ae1d6fc041" formatted="false">"Нет идентификатора команды."</string>
+    <string name="ring_native_d3cc1a6474d9" formatted="false">"Пакет не подтверждает все удаляемые записи."</string>
+    <string name="ring_native_d402d0bdba1c" formatted="false">"Исходная принадлежность намерения неизменна."</string>
+    <string name="ring_native_d4843cee1c36" formatted="false">"Подтверждение команды повреждено."</string>
+    <string name="ring_native_d4f4c2f4f3eb" formatted="false">"Неизвестная команда устройства."</string>
+    <string name="ring_native_d65ea7401831" formatted="false">"Нужны свежие HW/FW текущего соединения."</string>
+    <string name="ring_native_d96096450e42" formatted="false">"Укажите только нижний и верхний пороги."</string>
+    <string name="ring_native_dab4e6df4358" formatted="false">"Сохранённое подтверждение неизменно."</string>
+    <string name="ring_native_dcab3dd6659c" formatted="false">"Порог должен быть целым байтовым значением."</string>
+    <string name="ring_native_dd2f2afe5fa5" formatted="false">"Кольцо занято замером или неизвестной командой."</string>
+    <string name="ring_native_dd7938b1b3af" formatted="false">"Аккаунт или привязка кольца изменились."</string>
+    <string name="ring_native_e0f783748ea9" formatted="false">"Неверный интервал замера."</string>
+    <string name="ring_native_e299badd305c" formatted="false">"Нет канала истории кольца."</string>
+    <string name="ring_native_e4d0373e076e" formatted="false">"Параметр тренировки здесь не поддерживается."</string>
+    <string name="ring_native_e665cbb518c0" formatted="false">"Не сохранён адрес кольца."</string>
+    <string name="ring_native_e6ee9aef1739" formatted="false">"Неверное значение настройки кольца."</string>
+    <string name="ring_native_e7a62defea43" formatted="false">"Режим должен быть логическим значением."</string>
+    <string name="ring_native_e81866c0112e" formatted="false">"Квитанция не соответствует сохранённому пакету кольца."</string>
+    <string name="ring_native_e8ed7eb4329b" formatted="false">"Не найдена служба QRing."</string>
+    <string name="ring_native_e92971f4180f" formatted="false">"Нужны все слоты напоминаний."</string>
+    <string name="ring_native_e9d8958a385b" formatted="false">"Повторяются идентификаторы записей тренировки."</string>
+    <string name="ring_native_e9e106cce5c4" formatted="false">"Исходная привязка неизвестной команды недоступна; журнал не удалён."</string>
+    <string name="ring_native_ead26af84ce8" formatted="false">"Текущая тренировка изменилась."</string>
+    <string name="ring_native_ed3bd83b34b7" formatted="false">"Кольцо занято текущей операцией."</string>
+    <string name="ring_native_ee3ceb55c341" formatted="false">"Неизвестные параметры профиля."</string>
+    <string name="ring_native_ee57075420fd" formatted="false">"Неизвестный канал кольца."</string>
+    <string name="ring_native_ef08532b04f3" formatted="false">"Очередь кольца заполнена. Подключитесь к серверу для отправки данных."</string>
+    <string name="ring_native_ef90352a0ba9" formatted="false">"Не указан ключ пакета кольца."</string>
+    <string name="ring_native_f272377508d4" formatted="false">"Идентификатор уже завершён."</string>
+    <string name="ring_native_f33f23fdbafa">"Сервер не принял данные кольца (%1$s)."</string>
+    <string name="ring_native_f6001e31d955" formatted="false">"Повреждено состояние кольца."</string>
+    <string name="ring_native_f64210487fe5" formatted="false">"Источник текущего кольца не подтверждён."</string>
+    <string name="ring_native_f73c727b06da" formatted="false">"Неизвестная команда кольца."</string>
+    <string name="ring_native_f8a2b64606b2" formatted="false">"Сначала обновите identity; доступная команда отсутствует в журнале."</string>
+    <string name="ring_native_fa51fb68469f" formatted="false">"Неверная дата кольца."</string>
+    <string name="ring_native_fda80750756a" formatted="false">"Повреждено намерение журнала."</string>
+    <string name="ring_native_fe4065519fc0" formatted="false">"Повреждена запись журнала."</string>
+    <string name="ring_native_enrollment_required">Прежняя очередь сохранена и заблокирована. Найдите кольцо и подключите его заново: старая очередь будет закрыта без передачи данных новому аккаунту.</string>
+</resources>

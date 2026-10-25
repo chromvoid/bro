@@ -1,0 +1,208 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '@fontsource-variable/inter';
+@import 'vue-sonner/style.css';
+@import './design/shadcn-vue.css';
+@import './design/tokens.css';
+
+/* Client modules of plugins (plugins/<id>/web) are part of this bundle. */
+@source '../../plugins/*/web/**/*.{ts,vue}';
+
+@theme inline {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-heading: var(--font-sans);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-warning: var(--warning);
+  --color-warning-surface: var(--warning-surface);
+  --color-warning-fill: var(--warning-fill);
+  --color-success: var(--success);
+  --color-success-surface: var(--success-surface);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --shadow-2xs: 0 1px var(--shadow-soft-color);
+  --shadow-xs: 0 1px 2px 0 var(--shadow-soft-color);
+  --shadow-sm: 0 1px 3px 0 var(--shadow-color), 0 1px 2px -1px var(--shadow-color);
+  --shadow-md: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
+  --shadow-lg: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
+  --shadow-xl: 0 20px 25px -5px var(--shadow-color), 0 8px 10px -6px var(--shadow-color);
+  --shadow-2xl: 0 25px 50px -12px var(--shadow-strong-color);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: calc(var(--radius) - 2px);
+  --radius-xl: var(--radius);
+  --radius-2xl: calc(var(--radius) + 6px);
+}
+
+/* tw-animate-css's enter and exit without their `filter: blur(var(--tw-enter-blur, 0))` step: the app
+   never blurs in or out, so every sheet, dialog and menu animated blur(0) against none, which draws
+   nothing. Playwright's WebKit died on it: its Skia compositor reads the empty filter at the ends of
+   such an animation as a null image filter (docs/agent-workflow.md, «Веб e2e»). */
+@theme inline {
+  @keyframes enter {
+    from {
+      opacity: var(--tw-enter-opacity, 1);
+      transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0)
+        scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), var(--tw-enter-scale, 1))
+        rotate(var(--tw-enter-rotate, 0));
+    }
+  }
+  @keyframes exit {
+    to {
+      opacity: var(--tw-exit-opacity, 1);
+      transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0)
+        scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1))
+        rotate(var(--tw-exit-rotate, 0));
+    }
+  }
+}
+
+/* The only place that reads env(safe-area-inset-*): the system bars and cut-outs over the page
+   when a native shell runs it edge to edge (zero in a browser). Registered lengths, so
+   getComputedStyle reports pixels (core/safeArea.ts) and a test can override them. */
+@property --inset-top {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+@property --inset-right {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+@property --inset-bottom {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+@property --inset-left {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+/* The system text size as the iOS shell reads it from Dynamic Type (1 is the usual size). The
+   The native Android client derives its scale from these shared parameters. */
+@property --system-text-scale {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
+:root {
+  --inset-top: env(safe-area-inset-top, 0px);
+  --inset-right: env(safe-area-inset-right, 0px);
+  --inset-bottom: env(safe-area-inset-bottom, 0px);
+  --inset-left: env(safe-area-inset-left, 0px);
+  /* What the app frame keeps over the page: AppShell sets them to its sticky top region and its
+     tab bar, so focus and anchors never land under either. */
+  --app-top: var(--inset-top);
+  --app-bottom: var(--inset-bottom);
+  scroll-padding-top: calc(var(--app-top) + var(--page-sticky-top, 0px));
+  scroll-padding-bottom: var(--app-bottom);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    /* Every size is in rem, so the whole layout grows with this. It follows the system's text
+       size halfway and stops at 125% (20 px), where every screen is checked (e2e/a11y.spec.ts):
+       a larger system size never breaks the layout. 100% is the default font size. */
+    font-size: min(calc((100% * var(--system-text-scale) + 16px) / 2), 20px);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    /* At large system text sizes a long word breaks rather than widening the page. */
+    overflow-wrap: break-word;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply text-balance;
+  }
+  /* A fieldset keeps the width of its column. Browsers size it to its widest content by default
+     (min-inline-size: min-content), so one wide control, like a date-time field at large text,
+     would push the whole form past its panel. */
+  fieldset {
+    min-inline-size: 0;
+  }
+  /* One disclosure look across the app: a chevron that turns when the section opens, in place of
+     the browser's triangle (the same chevron as the app's other expanders). */
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-inline-end: 0.375em;
+    vertical-align: -0.125em;
+    background-color: currentColor;
+    mask: url('./assets/icons/chevron-down.svg') center / contain no-repeat;
+    transform: rotate(-90deg);
+    transition: transform 150ms ease;
+  }
+  details[open] > summary::before {
+    transform: none;
+  }
+}
+
+/* A modal panel turns pointer events off outside itself. A toast over it lets taps through to the
+   panel, all but the buttons of the toast in view (its undo, its close button): a whole toast
+   would block the panel's top for as long as it shows. Toasts collapsed behind it stay inert,
+   their buttons are invisible. */
+[data-sonner-toast][data-visible='true']:not([data-removed='true']):is(
+    [data-front='true'],
+    [data-expanded='true']
+  )
+  button {
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

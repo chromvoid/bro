@@ -1,0 +1,42 @@
+{
+  "contract": "assistant.configuration/v1",
+  "status": "configured",
+  "revision": 1,
+  "public": {
+    "environment": "mainnet",
+    "history_days": 30
+  },
+  "secret_state": {
+    "api_key": {
+      "present": true,
+      "hint": "…0001"
+    },
+    "api_secret": {
+      "present": true
+    }
+  },
+  "readiness": {
+    "state": "ready",
+    "capabilities": {
+      "portfolio": "ready",
+      "executions": "ready",
+      "orders": "ready",
+      "cashflow": "ready",
+      "realtime": "ready"
+    },
+    "issues": []
+  },
+  "connection_state": "active",
+  "key_info": {
+    "read_only": true,
+    "ip_bound": true,
+    "expires_at": null
+  },
+  "environments": [
+    "mainnet",
+    "testnet"
+  ],
+  "egress_ips": [
+    "203.0.113.10"
+  ]
+}

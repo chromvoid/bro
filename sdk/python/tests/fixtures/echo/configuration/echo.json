@@ -1,0 +1,5 @@
+{"contract": "assistant.configuration-schema/v1",
+ "public_schema": {"type": "object", "additionalProperties": false, "properties": {"greeting": {"type": "string", "maxLength": 40}}},
+ "secret_schema": {"type": "object", "additionalProperties": false, "required": ["token"],
+                   "properties": {"token": {"type": "string", "minLength": 8, "maxLength": 64, "writeOnly": true}}},
+ "scopes": {"read": ["echo.read"], "write": ["echo.write"]}}

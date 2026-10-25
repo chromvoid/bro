@@ -1,0 +1,38 @@
+{
+  "nutrition": {
+    "date": "2026-10-16",
+    "items": [{"id": "synthetic-meal"}],
+    "drafts": [],
+    "totals": {"energy_kcal": {"known": "1234.50", "complete": true}},
+    "goal": {"calorie_target": "2000"},
+    "remaining_kcal": "765.50",
+    "remaining_complete": true
+  },
+  "tasks": {
+    "today": "2026-10-16",
+    "timezone": "Europe/Moscow",
+    "items": [{"id": "synthetic-task", "title": "Synthetic today task", "due_on": "2026-10-15", "overdue": true}]
+  },
+  "timers": {"timers": [{"id": "synthetic-timer", "label": "Synthetic timer", "remaining_seconds": 542}]},
+  "notifications": {"notifications": [
+    {"id": "open", "title": "Synthetic important notification", "severity": "important", "state": "active", "unread": true},
+    {"id": "urgent", "title": "Synthetic urgent notification", "severity": "urgent", "state": "active", "unread": true},
+    {"id": "solved", "title": "Resolved", "severity": "urgent", "state": "resolved", "unread": true},
+    {"id": "read", "title": "Already read", "severity": "important", "state": "active", "unread": false},
+    {"id": "info", "title": "Information", "severity": "info", "state": "active", "unread": true}
+  ]},
+  "personal": {
+    "date": "2026-10-16",
+    "metrics": {
+      "weight": {"kind": "weight", "status": "available", "value": "72.45", "unit": "kg", "records": [{"start_at": "2026-10-15T22:15:00Z"}]},
+      "steps": {"kind": "steps", "status": "available", "value": "3200", "unit": "count", "target": "8000", "complete": false, "resolution": {"freshness": {"measured_at": "2026-10-16T08:00:00Z"}}}
+    }
+  },
+  "steps": {"date": "2026-10-16", "override": null},
+  "history": {"daily": [
+    {"date": "2026-10-16", "kind": "weight", "status": "available", "value": "72.45"},
+    {"date": "2026-10-13", "kind": "weight", "status": "conflict", "value": "80"},
+    {"date": "2026-09-20", "kind": "weight", "status": "available", "value": "73.30"},
+    {"date": "2026-10-10", "kind": "weight", "status": "no_data", "value": null}
+  ]}
+}

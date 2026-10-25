@@ -1,0 +1,271 @@
+{
+ "id": "executions.list",
+ "version": "1.0.0",
+ "description": "Спотовые сделки (исполнения) с ценой, объёмом и комиссией.",
+ "when_to_use": "Вопросы о конкретных сделках, объёмах и комиссиях.",
+ "when_not_to_use": "Сводный PnL по паре (position.summary).",
+ "input_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "symbol": {
+    "type": "string",
+    "pattern": "^[A-Z0-9]{2,24}$"
+   },
+   "order_id": {
+    "type": "string",
+    "pattern": "^[A-Za-z0-9-]{1,64}$"
+   },
+   "range": {
+    "oneOf": [
+     {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "period"
+      ],
+      "properties": {
+       "period": {
+        "enum": [
+         "today",
+         "24h",
+         "7d",
+         "30d",
+         "90d",
+         "this_week",
+         "this_month",
+         "this_year",
+         "1y",
+         "all"
+        ]
+       }
+      }
+     },
+     {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "from"
+      ],
+      "properties": {
+       "from": {
+        "type": "string",
+        "format": "date-time",
+        "maxLength": 40
+       },
+       "to": {
+        "type": "string",
+        "format": "date-time",
+        "maxLength": 40
+       }
+      }
+     }
+    ]
+   },
+   "limit": {
+    "type": "integer",
+    "minimum": 1,
+    "maximum": 200,
+    "default": 50
+   },
+   "cursor": {
+    "type": "string",
+    "pattern": "^[A-Za-z0-9_-]{1,200}$"
+   }
+  },
+  "required": []
+ },
+ "output_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "items": {
+    "type": "array",
+    "maxItems": 200,
+    "items": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "exec_id",
+      "order_id",
+      "symbol",
+      "base_coin",
+      "quote_coin",
+      "side",
+      "price",
+      "qty",
+      "value",
+      "fee",
+      "fee_coin",
+      "is_maker",
+      "exec_time"
+     ],
+     "properties": {
+      "exec_id": {
+       "type": "string",
+       "maxLength": 64
+      },
+      "order_id": {
+       "type": "string",
+       "maxLength": 64
+      },
+      "symbol": {
+       "type": "string",
+       "pattern": "^[A-Z0-9]{2,24}$"
+      },
+      "base_coin": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "pattern": "^[A-Z0-9]{1,20}$"
+      },
+      "quote_coin": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "pattern": "^[A-Z0-9]{1,20}$"
+      },
+      "side": {
+       "enum": [
+        "buy",
+        "sell"
+       ]
+      },
+      "price": {
+       "type": "string",
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "qty": {
+       "type": "string",
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "value": {
+       "type": "string",
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "fee": {
+       "type": "string",
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "fee_coin": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "maxLength": 20
+      },
+      "is_maker": {
+       "type": "boolean"
+      },
+      "exec_time": {
+       "type": "string",
+       "format": "date-time",
+       "maxLength": 40
+      }
+     }
+    }
+   },
+   "next_cursor": {
+    "type": [
+     "string",
+     "null"
+    ],
+    "maxLength": 200
+   },
+   "freshness": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "as_of",
+     "connection_state",
+     "stream",
+     "history_complete",
+     "coverage_from",
+     "last_reconcile_at"
+    ],
+    "properties": {
+     "as_of": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     },
+     "connection_state": {
+      "enum": [
+       "not_configured",
+       "validating",
+       "active",
+       "degraded",
+       "auth_failed",
+       "ip_blocked",
+       "key_expired",
+       "secret_unavailable",
+       "disconnected"
+      ]
+     },
+     "stream": {
+      "enum": [
+       "live",
+       "reconnecting",
+       "down"
+      ]
+     },
+     "last_reconcile_at": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     },
+     "history_complete": {
+      "type": "boolean"
+     },
+     "coverage_from": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     }
+    }
+   }
+  },
+  "required": [
+   "items",
+   "next_cursor",
+   "freshness"
+  ]
+ },
+ "effect": "read",
+ "scopes": [
+  "trading.read"
+ ],
+ "surfaces": [
+  "ui",
+  "agent"
+ ],
+ "execution": {
+  "mode": "sync",
+  "max_duration_ms": 5000
+ },
+ "errors": [
+  {
+   "code": "not_configured",
+   "meaning": "Ключ Bybit не подключён; данных нет",
+   "recovery": "none"
+  }
+ ],
+ "limits": {
+  "max_response_bytes": 262144
+ }
+}

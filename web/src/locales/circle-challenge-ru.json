@@ -1,0 +1,6 @@
+{
+  "circle": {
+    "rankingPlace": "№",
+    "toleranceValue": "±{value}%"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "silero-vad",
+  "version": "6.2.1",
+  "commit": "7e30209a3e901f9842f81b225f3e93d8199902b1",
+  "source": "https://github.com/snakers4/silero-vad/tree/7e30209a3e901f9842f81b225f3e93d8199902b1",
+  "file": "silero-v6.2.1.onnx",
+  "sha256": "1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3"
+}

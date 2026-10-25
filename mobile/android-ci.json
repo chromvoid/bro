@@ -1,0 +1,273 @@
+{
+  "module": "androidApp",
+  "application_id": "dev.assistant.shell",
+  "smoke_classes": {
+    "assistant.mobile.android.NativeSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/AuthenticationScreens.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/AccountDeletionScreen.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/SettingsScreens.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/TodayScreen.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/Speech*.kt"
+    ],
+    "assistant.mobile.android.NativeShellSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeShellSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NativeShellNavigation.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/Destinations.kt"
+    ],
+    "assistant.mobile.android.NativeAssistantChatSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeAssistantChatSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/Assistant*.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/ChatMessageTime.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NativeDictationAudioGate.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/DictationPermissionBridge.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidDictation*.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidSpeechAudioSink.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/FileAssistantHistoryCache.kt"
+    ],
+    "assistant.mobile.android.NativeTasksSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeTasksSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/Tasks*.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/TaskAssistantScreen.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/ListGrantsScreen.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeTasksFixture.kt"
+    ],
+    "assistant.mobile.android.NativeTimersSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeTimersSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/TimersScreen.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/TaskReminders.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeTimersFixture.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeTasksFixture.kt"
+    ],
+    "assistant.mobile.android.NativeNotificationsSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeNotificationsSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NotificationsScreen.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NotificationSettingsScreen.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/notify/",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeNotificationsFixture.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeTasksFixture.kt"
+    ],
+    "assistant.mobile.android.NativePersonalSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativePersonalSmokeTest.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativePersonalFixture.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/Personal*.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativePersonalHistoryFixture.kt"
+    ],
+    "assistant.mobile.android.NativeActivitySmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeActivitySmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/Activity*.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeActivityFixture.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativePersonalFixture.kt"
+    ],
+    "assistant.mobile.android.AndroidPhotoNormalizerTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/AndroidPhotoNormalizerTest.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidPhotoNormalizer.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidPhotoLibrary.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/PhotoAcquisitionSheet.kt"
+    ],
+    "assistant.mobile.android.FileExportBridgeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/FileExportBridgeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/FileExportBridge.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidFileExportStorage.kt"
+    ],
+    "assistant.mobile.android.NutritionFullSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NutritionFullSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/Food*.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeNutritionFixture.kt"
+    ],
+    "assistant.mobile.android.DevicesSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/DevicesSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/DevicesScreen.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/glasses/",
+      "mobile/androidApp/src/main/res/values/glasses_strings.xml",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeDevicesFixture.kt"
+    ],
+    "assistant.mobile.android.NativeTradingSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeTradingSmokeTest.kt",
+      "plugins/trading/mobile/",
+      "plugins/trading/package/",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeTradingFixture.kt"
+    ],
+    "assistant.mobile.android.NativeCircleSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeCircleSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/Circle*.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeCircleFixture.kt"
+    ],
+    "assistant.mobile.android.NativeCallsJniSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeCallsJniSmokeTest.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidCall*.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidWebRtcPeer.kt"
+    ],
+    "assistant.mobile.android.NativeLocationCollectorSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeLocationCollectorSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/Location*.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/location/",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/collector/"
+    ],
+    "assistant.mobile.android.NativePlacesSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativePlacesSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/PlacesScreen.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/PlaceMap.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativePlacesFixture.kt"
+    ],
+    "assistant.mobile.android.NativeOriginMoveSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeOriginMoveSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NativeOrigins.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidNativeOrigins.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidOriginMove.kt",
+      "mobile/androidPlatform/src/debug/",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidNativeServerSelectionStore.kt"
+    ],
+    "assistant.mobile.android.NativeWearablesSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeWearablesSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/whoop/",
+      "mobile/androidApp/src/main/res/values/whoop_*.xml",
+      "contracts/whoop-frames.json"
+    ],
+    "assistant.mobile.android.whoop.WhoopStoreTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/whoop/WhoopStoreTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/whoop/",
+      "mobile/androidApp/src/main/res/values/whoop_*.xml",
+      "contracts/whoop-frames.json"
+    ],
+    "assistant.mobile.android.whoop.WhoopWorkersTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/whoop/WhoopWorkersTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/whoop/",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidNativeOrigins.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidNativeServerSelectionStore.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidOriginMove.kt"
+    ],
+    "assistant.mobile.android.NativeAmbientSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeAmbientSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/ambient/",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/AmbientControls.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/RecordingsScreen.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidRecordingPlayer.kt",
+      "mobile/androidApp/src/main/res/values/ambient_*.xml",
+      "mobile/androidApp/src/main/res/values/recordings.xml",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeAmbientFixture.kt",
+      "contracts/ambient-vad*.json",
+      "shell/tools/prepare_vad.py",
+      "server/models/silero.json",
+      "server/models/SILERO-LICENSE",
+      "shell/licenses/ONNXRUNTIME*",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeCircleFixture.kt"
+    ],
+    "assistant.mobile.android.ambient.AmbientEncoderSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/ambient/AmbientEncoderSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/ambient/",
+      "contracts/ambient-vad*.json"
+    ],
+    "assistant.mobile.android.ambient.AmbientSileroVadSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/ambient/AmbientSileroVadSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/ambient/",
+      "contracts/ambient-vad*.json",
+      "shell/tools/prepare_vad.py",
+      "server/models/silero.json",
+      "server/models/SILERO-LICENSE",
+      "shell/licenses/ONNXRUNTIME*"
+    ],
+    "assistant.mobile.android.ambient.AmbientProcessRecoverySmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/ambient/AmbientProcessRecoverySmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/ambient/"
+    ],
+    "assistant.mobile.platform.ring.RingNativeSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/platform/ring/RingNativeSmokeTest.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/ring/",
+      "mobile/androidPlatform/src/main/res/values/ring*.xml",
+      "mobile/androidPlatform/src/main/res/xml/ring_gesture_accessibility.xml",
+      "shell/ring/",
+      "contracts/ring-manual-observations.json",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/platform/ring/RingHardwareAcceptanceTest.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/platform/ring/RingLegacyHeartRateAcceptanceTest.kt"
+    ],
+    "assistant.mobile.platform.ring.RingStoreTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/platform/ring/RingStoreTest.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/ring/",
+      "mobile/androidPlatform/src/main/res/values/ring*.xml",
+      "mobile/androidPlatform/src/main/res/xml/ring_gesture_accessibility.xml",
+      "shell/ring/",
+      "contracts/ring-manual-observations.json"
+    ],
+    "assistant.mobile.android.NativeBodyRendererSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeBodyRendererSmokeTest.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/BodyAtlas.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/body/",
+      "mobile/androidApp/src/main/materials/body/",
+      "mobile/androidApp/src/main/assets/body/",
+      "web/src/assets/body/",
+      "tools/assets/ROKOKO_ANIMATION_NOTICE.md",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeBodyAssetFixture.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/Personal*.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativePersonalFixture.kt",
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativePersonalHistoryFixture.kt"
+    ],
+    "assistant.mobile.android.NativeServerSwitchSmokeTest": [
+      "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeServerSwitchSmokeTest.kt",
+      "mobile/androidApp/src/debug/kotlin/assistant/mobile/android/NativeServerSwitchSmokeProbe.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NativeServerRestart.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/AuthLinkActivity.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NativeOrigins.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidNativeOrigins.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidNativeServerSelectionStore.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/AndroidOriginMove.kt",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/whoop/",
+      "mobile/androidApp/src/main/kotlin/assistant/mobile/android/ambient/",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/location/",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/collector/",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/FileAssistantHistoryCache.kt",
+      "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/ring/",
+      "mobile/androidPlatform/src/main/res/values/ring*.xml",
+      "mobile/androidPlatform/src/main/res/xml/ring_gesture_accessibility.xml",
+      "shell/ring/",
+      "contracts/ring-manual-observations.json"
+    ]
+  },
+  "minimum_tests": 54,
+  "ring": true,
+  "full_suite_paths": [
+    "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeShellTestHelpers.kt",
+    "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeLoopbackServer.kt",
+    "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeFixtureDiagnostics.kt",
+    "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeScreenCapture.kt",
+    "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/SyntheticDictationAudioSource.kt",
+    "mobile/core/",
+    "mobile/design/",
+    "mobile/plugin-api/",
+    "mobile/gradle/",
+    "mobile/gradlew",
+    "mobile/gradlew.bat",
+    "mobile/gradle.properties",
+    ":(glob)mobile/**/build.gradle*",
+    ":(glob)mobile/**/settings.gradle*",
+    ":(glob)mobile/**/*lockfile",
+    ":(glob)mobile/**/AndroidManifest.xml",
+    ":(glob)mobile/**/proguard*",
+    "plugins/*/mobile/build.gradle*",
+    "plugins/*/mobile/gradle.lockfile",
+    "mobile/release-certificate.sha256",
+    "mobile/androidApp/src/upgradeTest/",
+    "mobile/androidApp/src/main/kotlin/assistant/mobile/android/MainActivity.kt",
+    "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NativeApp.kt",
+    "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NativeRuntime.kt",
+    "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NativeScreenComponents.kt",
+    "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NativePluginsController.kt",
+    "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NativePluginScreens.kt",
+    "mobile/androidApp/src/main/kotlin/assistant/mobile/android/LegacyShellUpgrade.kt",
+    "mobile/androidApp/src/main/kotlin/assistant/mobile/android/update/",
+    "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/NativeCorePlatform.kt",
+    "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/Keystore*.kt",
+    "mobile/androidPlatform/src/main/kotlin/assistant/mobile/platform/ThemePreferences.kt",
+    "mobile/androidApp/src/main/res/xml/",
+    "mobile/androidApp/src/main/res/values*/styles.xml",
+    "mobile/androidApp/src/main/res/values/auth_runtime_strings.xml",
+    "tools/android_ci.py",
+    "mobile/android-ci.json",
+    "tools/android-upgrade/",
+    "tests/test_android_ci*.py",
+    ".forgejo/workflows/ci.yml",
+    ".forgejo/lanes.sh",
+    "mobile/androidApp/src/main/kotlin/assistant/mobile/android/NativeShellNavigation.kt",
+    "mobile/androidApp/src/main/kotlin/assistant/mobile/android/Destinations.kt"
+  ]
+}

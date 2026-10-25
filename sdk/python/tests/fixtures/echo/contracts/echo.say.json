@@ -1,0 +1,11 @@
+{
+  "id": "echo.say", "version": "1.0.0", "description": "Return the given text.",
+  "when_to_use": "The user asks to repeat text.", "when_not_to_use": "Anything else.",
+  "input_schema": {"type": "object", "additionalProperties": false, "required": ["text"],
+    "properties": {"text": {"type": "string", "minLength": 1, "maxLength": 200}, "fail": {"type": "boolean"},
+                   "sleep_ms": {"type": "integer", "minimum": 0, "maximum": 5000}}},
+  "output_schema": {"type": "object", "required": ["text"], "properties": {"text": {"type": "string"}}},
+  "effect": "read", "scopes": ["echo.read"], "surfaces": ["ui", "agent"],
+  "execution": {"mode": "sync", "max_duration_ms": 2000},
+  "errors": [{"code": "refused", "meaning": "Asked to fail", "recovery": "none"}]
+}

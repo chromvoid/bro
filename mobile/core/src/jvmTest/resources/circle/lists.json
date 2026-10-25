@@ -1,0 +1,4 @@
+{"lists":[
+  {"id":"list-shared","name":"Synthetic shared list","space_id":"44444444-4444-4444-8444-444444444444","member_access":"edit","revision":2,"effective":"manage","list_kind":"list"},
+  {"id":"list-personal","name":"Personal tasks","space_id":null,"member_access":"none","revision":1,"effective":"manage","list_kind":"list","personal_user_id":"11111111-1111-4111-8111-111111111111"}
+]}

@@ -1,0 +1,7 @@
+dist
+coverage
+playwright-report
+test-results
+package-lock.json
+src/design/shadcn-vue.css
+src/assets/body/LICENSE*.md

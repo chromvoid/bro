@@ -1,0 +1,124 @@
+{
+  "model": "device-assistant/functiongemma-270m-bf16",
+  "base_repository": "unsloth/functiongemma-270m-it",
+  "base_revision": "79eaaa84125b897f5a0ad6638362b864fec813ad",
+  "base_safetensors_sha256": "af4f8a7c4c5eb82291759fd828720c7bcfcb92a5274556d13dde3caccf5f427b",
+  "file": "functiongemma-assistant-BF16.gguf",
+  "bytes": 542847872,
+  "sha256": "bbe3edb283ef44a2365c1fa65761b46625011f919f3eeae80dcaaa79577ac623",
+  "quantization": "BF16",
+  "license": "Gemma Terms",
+  "date": "2026-09-12",
+  "training": {
+    "method": "full SFT; BF16 autocast with FP32 master parameters and AdamW; BF16 export",
+    "seed": 20260912,
+    "selected_lineage": [
+      "run-v1/epoch-2",
+      "run-v2b/epoch-1",
+      "run-v3/epoch-1"
+    ],
+    "selection": "Development regression coverage and dev validation; final holdout not used for tuning. Third round stopped after 88/88 regression and 60/60 dev.",
+    "data": {
+      "v1": {
+        "train": {
+          "count": 5080,
+          "sha256": "18984e26dce1a4f29dadfade2049b9e8049eec87d920b6f7e4b5ea9b46686fe3"
+        },
+        "dev": {
+          "count": 60,
+          "sha256": "456df88c47519c2fbf7b17b98c3f53180d8077d01de135d25efb54717140954f"
+        },
+        "holdout": {
+          "count": 96,
+          "sha256": "4fa8f2eb64f98b86f8917c6d49e305c4e656df857a974baa70160c85a1adfb92"
+        },
+        "regression": {
+          "count": 88,
+          "sha256": "d1de43433a3343258e80c4e489a972c2497529e611e2dcdc008ec60f9892378c"
+        }
+      },
+      "v2": {
+        "train": {
+          "count": 3086,
+          "sha256": "738d073db5070236f93bbd2d3c6f69279efc00865c27d0b8c8d0f4e58fb5244b"
+        },
+        "dev": {
+          "count": 60,
+          "sha256": "456df88c47519c2fbf7b17b98c3f53180d8077d01de135d25efb54717140954f"
+        },
+        "holdout": {
+          "count": 96,
+          "sha256": "4fa8f2eb64f98b86f8917c6d49e305c4e656df857a974baa70160c85a1adfb92"
+        },
+        "regression": {
+          "count": 88,
+          "sha256": "d1de43433a3343258e80c4e489a972c2497529e611e2dcdc008ec60f9892378c"
+        }
+      },
+      "v3": {
+        "train": {
+          "count": 3662,
+          "sha256": "cb62b08ad740beb49c6a413fddbabb681c86dae1cc449d948c5293b92f8a67af"
+        },
+        "dev": {
+          "count": 60,
+          "sha256": "456df88c47519c2fbf7b17b98c3f53180d8077d01de135d25efb54717140954f"
+        },
+        "holdout": {
+          "count": 96,
+          "sha256": "4fa8f2eb64f98b86f8917c6d49e305c4e656df857a974baa70160c85a1adfb92"
+        },
+        "regression": {
+          "count": 88,
+          "sha256": "d1de43433a3343258e80c4e489a972c2497529e611e2dcdc008ec60f9892378c"
+        }
+      }
+    }
+  },
+  "evaluation": {
+    "regression": {
+      "actions": {
+        "passed": 40,
+        "total": 40,
+        "median_ms": 43.6461929930374,
+        "p95_ms": 54.05256402445957
+      },
+      "intent": {
+        "passed": 48,
+        "total": 48,
+        "median_ms": 41.892235982231796,
+        "p95_ms": 51.75697698723525
+      }
+    },
+    "holdout": {
+      "actions": {
+        "passed": 41,
+        "total": 48,
+        "median_ms": 42.95324700069614,
+        "p95_ms": 50.28325202874839
+      },
+      "intent": {
+        "passed": 37,
+        "total": 48,
+        "median_ms": 42.19586099497974,
+        "p95_ms": 49.5593220111914
+      }
+    },
+    "resident_gpu_mib": 858
+  },
+  "converter": {
+    "repository": "ggml-org/llama.cpp",
+    "revision": "82d6bb284d1ff1c6ef37f29a4c3b63d1a8b11806",
+    "outtype": "bf16"
+  },
+  "runtime": "llama-server from Ollama 0.34.0, commit 0f3a71be1",
+  "deployment": "optional quota-functiongemma-tuned.service, loopback port 11442, stopped and disabled; production filter unchanged",
+  "recipe": "docs/functiongemma-finetuning.md",
+  "source_sha256": {
+    "tools/functiongemma/build_data.py": "830d237e82594118e5bfd70926e677c8f310eb223f8c323370f798ccb3252931",
+    "tools/functiongemma/evaluate.py": "aa68ef4a55f4ca28d1c46d050c3fe926a92585a045e2dc5979cbb932519ac65c",
+    "tools/functiongemma/export.py": "f44b44f81a77a69660309315a4a225518f7f5dd2c1d8624aed373fbc2aed2f9a",
+    "tools/functiongemma/protocol.py": "acbd09d4524c9529230d36575baa5f7fa4f502844e3d893d14a9ba3fdcdb7c55",
+    "tools/functiongemma/train.py": "d495eeea7e4683e9394fda8a30db68f9e2d6d3687feaf071a998ad513ae51838"
+  }
+}

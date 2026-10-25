@@ -1,0 +1,113 @@
+name: AssistantShell
+options:
+  deploymentTarget:
+    iOS: "16.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: 0.1.0
+    CURRENT_PROJECT_VERSION: 1
+    ASSISTANT_BUNDLE_ID: dev.assistant.shell
+    ASSISTANT_APP_GROUP: group.$(ASSISTANT_BUNDLE_ID)
+    ASSISTANT_KEYCHAIN_GROUP: $(AppIdentifierPrefix)$(ASSISTANT_BUNDLE_ID).shared
+    ASSISTANT_PUSH_RELAY: ""
+    ASSISTANT_PUSH_TRANSPORT: apns
+    ASSISTANT_FCM_PROJECT_ID: ""
+    ASSISTANT_FIREBASE_CONFIG_PATH: $(SRCROOT)/Firebase/GoogleService-Info.plist
+    ASSISTANT_PUBLISHER_SUPPORT_URL: ""
+    ASSISTANT_APNS_ENVIRONMENT: production
+    ASSISTANT_ATTEST_ENVIRONMENT: production
+  configs:
+    # The simulator shares the Mac's loopback, so a debug build reaches `npm run dev` directly.
+    Debug:
+      ASSISTANT_ORIGIN: http://127.0.0.1:8766
+      ASSISTANT_APNS_ENVIRONMENT: development
+      ASSISTANT_ATTEST_ENVIRONMENT: development
+    Release:
+      ASSISTANT_ORIGIN: ""
+packages:
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    exactVersion: 13.0.1
+  ONNXRuntime:
+    url: https://github.com/microsoft/onnxruntime-swift-package-manager
+    exactVersion: 1.24.2
+targets:
+  AssistantShell:
+    type: application
+    platform: iOS
+    sources: [AssistantShell, Shared]
+    dependencies:
+      - target: AssistantNotificationService
+        embed: true
+      - package: ONNXRuntime
+        product: onnxruntime
+      - package: Firebase
+        product: FirebaseCore
+      - package: Firebase
+        product: FirebaseMessaging
+    postBuildScripts:
+      - name: Validate and bundle publisher Firebase configuration
+        basedOnDependencyAnalysis: false
+        script: |
+          env -u SDKROOT swift "$SRCROOT/tools/validate-firebase-config.swift"
+      - name: Bundle verified offline voice detector
+        script: |
+          python3 "$SRCROOT/../tools/prepare_vad.py" --output-dir "$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"
+        inputFiles:
+          - $(SRCROOT)/../tools/prepare_vad.py
+          - $(SRCROOT)/../../server/models/silero.json
+          - $(SRCROOT)/../../server/models/SILERO-LICENSE
+          - $(SRCROOT)/../licenses/ONNXRUNTIME-LICENSE.txt
+          - $(SRCROOT)/../licenses/ONNXRUNTIME-ThirdPartyNotices.txt
+        outputFiles:
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/silero-v6.2.1.onnx
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/SILERO-LICENSE
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/ONNXRUNTIME-LICENSE.txt
+          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/ONNXRUNTIME-ThirdPartyNotices.txt
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(ASSISTANT_BUNDLE_ID)
+        CODE_SIGN_ENTITLEMENTS: AssistantShell/AssistantShell.entitlements
+        OTHER_LDFLAGS: ["$(inherited)", "-ObjC"]
+        GENERATE_INFOPLIST_FILE: NO
+        # A static, preprocessed plist: the loopback exception exists only in debug builds.
+        INFOPLIST_FILE: AssistantShell/Info.plist
+        INFOPLIST_PREPROCESS: YES
+      configs:
+        Debug:
+          INFOPLIST_PREPROCESSOR_DEFINITIONS: ASSISTANT_DEBUG=1
+  AssistantNotificationService:
+    type: app-extension
+    platform: iOS
+    sources: [AssistantNotificationService, Shared]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(ASSISTANT_BUNDLE_ID).notifications
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: AssistantNotificationService/Info.plist
+        CODE_SIGN_ENTITLEMENTS: AssistantNotificationService/AssistantNotificationService.entitlements
+        APPLICATION_EXTENSION_API_ONLY: YES
+        SKIP_INSTALL: YES
+  AssistantShellTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - AssistantShellTests
+      - path: ../../contracts/ambient-vad.json
+        buildPhase: resources
+      - path: ../../contracts/ambient-vad-audio.json
+        buildPhase: resources
+    dependencies:
+      - target: AssistantShell
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.assistant.shell.tests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  AssistantShell:
+    build:
+      targets:
+        AssistantShell: all
+    test:
+      targets: [AssistantShellTests]

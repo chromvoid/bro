@@ -1,0 +1,12 @@
+{
+  "model": "LiquidAI/LFM2.5-2.6B-GGUF",
+  "file": "LFM2.5-2.6B-Q4_K_M.gguf",
+  "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B-GGUF",
+  "quantization": "Q4_K_M",
+  "bytes": 1674455040,
+  "sha256": "02a8b7e17487d326e46d68ce0ba24211e1b80a14c4cd0597fa73c1cd697f52ed",
+  "license": "LFM1.0",
+  "runtime": "llama-server bundled with Ollama 0.34.0, commit 0f3a71be1",
+  "deployment": "optional demo; not the production intent filter",
+  "reasoning_budget_tokens_default": 128
+}

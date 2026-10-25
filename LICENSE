@@ -1,0 +1,9 @@
+Bro uses the same mixed-license model as ChromVoid.
+
+Client applications and product-specific UI are licensed under AGPL-3.0-only.
+Standalone SDKs and shared contracts are licensed under MIT.
+Backend services, deployment infrastructure and internal materials remain
+commercial / proprietary and are excluded from the public release mirror.
+
+See LICENSING.md for the path-level matrix and LICENSES/ for the license texts.
+Third-party materials retain their own licenses and notices.

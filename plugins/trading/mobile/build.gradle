@@ -1,0 +1,46 @@
+plugins {
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
+}
+def jvmOnly = providers.gradleProperty('mobileJvmOnly').map { it.toBoolean() }.getOrElse(false)
+if (!jvmOnly) {
+    apply plugin: 'com.android.kotlin.multiplatform.library'
+    apply plugin: 'org.jetbrains.kotlin.plugin.compose'
+    composeCompiler {
+        targetKotlinPlatforms.set([org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm])
+    }
+}
+kotlin {
+    jvmToolchain(21)
+    jvm()
+    if (!jvmOnly) {
+        android {
+            namespace = 'assistant.mobile.trading'
+            compileSdk = 37
+            minSdk = 26
+            androidResources { enable = true }
+        }
+    }
+    sourceSets {
+        commonMain.dependencies {
+            api project(':plugin-api')
+            implementation libs.serialization
+            api libs.coroutines
+        }
+        commonTest.dependencies { implementation libs.kotlin.test }
+        jvmTest.dependencies {
+            implementation libs.kotlin.test.junit
+            implementation libs.coroutines.test
+        }
+        jvmTest.resources.srcDir(rootProject.file('../plugins/trading/package'))
+        if (!jvmOnly) {
+            androidMain.dependencies {
+                implementation project(':design')
+                implementation libs.compose.ui
+                implementation libs.compose.foundation
+                implementation libs.compose.material3
+                implementation libs.lifecycle.runtime.compose
+            }
+        }
+    }
+}

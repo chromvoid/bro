@@ -1,0 +1,198 @@
+{
+ "contract": "assistant.plugin/v1",
+ "id": "trading",
+ "version": "1.0.0",
+ "title": "Торговля",
+ "description": "Мониторинг спотовой торговли на Bybit только для чтения: портфель, ордера, сделки, все движения средств и PnL.",
+ "contexts": [
+  "personal"
+ ],
+ "capabilities": [
+  {
+   "id": "portfolio",
+   "description": "Показывает портфель Bybit пользователя по единому счёту, Funding и Earn: балансы, историю стоимости, открытые и прошлые ордера, сделки, все движения средств (вводы и выводы, P2P, переводы между счетами, Earn), позиции по монетам: средняя цена входа, безубыток, реализованный и нереализованный результат.",
+   "boundaries": [
+    "Только чтение: не размещает, не изменяет и не отменяет ордера",
+    "Не даёт инвестиционных советов",
+    "Спот Bybit: единый торговый счёт, Funding и Earn",
+    "Данные доступны после подключения read-only ключа"
+   ],
+   "examples": [
+    "Сколько сейчас стоит мой портфель на Bybit?",
+    "Сколько я заработал на LTC за месяц?",
+    "Есть ли открытые ордера?",
+    "Сколько я вывел с биржи в этом году?",
+    "Сколько USDT я продал через P2P?",
+    "Сколько BTC принесла торговля LTC?"
+   ],
+   "tools": [
+    "portfolio.get",
+    "portfolio.history",
+    "position.summary",
+    "position.chart",
+    "positions.list",
+    "positions.strategy",
+    "positions.method",
+    "positions.core",
+    "orders.open",
+    "orders.history",
+    "executions.list",
+    "cashflow.list",
+    "flows.list",
+    "flows.mark",
+    "symbols.list",
+    "sync.status",
+    "sync.refill"
+   ],
+   "skills": [
+    "trading-portfolio"
+   ],
+   "ui": [
+    "trading.home"
+   ]
+  }
+ ],
+ "bindings": [
+  {
+   "id": "service",
+   "profile": "assistant.http-json/v1"
+  }
+ ],
+ "tools": [
+  {
+   "id": "portfolio.get",
+   "descriptor": "contracts/portfolio.get.json",
+   "binding": "service"
+  },
+  {
+   "id": "portfolio.history",
+   "descriptor": "contracts/portfolio.history.json",
+   "binding": "service"
+  },
+  {
+   "id": "position.summary",
+   "descriptor": "contracts/position.summary.json",
+   "binding": "service"
+  },
+  {
+   "id": "position.chart",
+   "descriptor": "contracts/position.chart.json",
+   "binding": "service"
+  },
+  {
+   "id": "positions.list",
+   "descriptor": "contracts/positions.list.json",
+   "binding": "service"
+  },
+  {
+   "id": "positions.strategy",
+   "descriptor": "contracts/positions.strategy.json",
+   "binding": "service"
+  },
+  {
+   "id": "positions.method",
+   "descriptor": "contracts/positions.method.json",
+   "binding": "service"
+  },
+  {
+   "id": "positions.core",
+   "descriptor": "contracts/positions.core.json",
+   "binding": "service"
+  },
+  {
+   "id": "orders.open",
+   "descriptor": "contracts/orders.open.json",
+   "binding": "service"
+  },
+  {
+   "id": "orders.history",
+   "descriptor": "contracts/orders.history.json",
+   "binding": "service"
+  },
+  {
+   "id": "executions.list",
+   "descriptor": "contracts/executions.list.json",
+   "binding": "service"
+  },
+  {
+   "id": "cashflow.list",
+   "descriptor": "contracts/cashflow.list.json",
+   "binding": "service"
+  },
+  {
+   "id": "flows.list",
+   "descriptor": "contracts/flows.list.json",
+   "binding": "service"
+  },
+  {
+   "id": "flows.mark",
+   "descriptor": "contracts/flows.mark.json",
+   "binding": "service"
+  },
+  {
+   "id": "symbols.list",
+   "descriptor": "contracts/symbols.list.json",
+   "binding": "service"
+  },
+  {
+   "id": "sync.status",
+   "descriptor": "contracts/sync.status.json",
+   "binding": "service"
+  },
+  {
+   "id": "sync.refill",
+   "descriptor": "contracts/sync.refill.json",
+   "binding": "service"
+  }
+ ],
+ "skills": [
+  {
+   "id": "trading-portfolio",
+   "path": "skills/trading-portfolio/SKILL.md"
+  }
+ ],
+ "events": [
+  {
+   "type": "trading.data.changed",
+   "descriptor": "events/trading.data.changed.json"
+  },
+  {
+   "type": "trading.sync.progress",
+   "descriptor": "events/trading.sync.progress.json"
+  },
+  {
+   "type": "trading.connection.changed",
+   "descriptor": "events/trading.connection.changed.json"
+  }
+ ],
+ "configuration": {
+  "schema": "configuration/bybit-connection.json",
+  "binding": "service"
+ },
+ "ui": [
+  {
+   "id": "trading.home",
+   "kind": "native",
+   "title": "Торговля",
+   "capability": "portfolio",
+   "entry": "trading.home",
+   "client_api": 1,
+   "scopes": [
+    "trading.read"
+   ],
+   "fallback": "headless",
+   "requires_tools": {
+    "portfolio.get": 1,
+    "portfolio.history": 1,
+    "position.summary": 5,
+    "orders.open": 1,
+    "orders.history": 1,
+    "executions.list": 1,
+    "flows.list": 1,
+    "sync.status": 1,
+    "positions.list": 4,
+    "position.chart": 1
+   }
+  }
+ ]
+}

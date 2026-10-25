@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated from @lucide/vue 1.48.0, goal, by node web/tooling/generate_android_icons.mjs; do not edit.
+     Lucide ISC and Feather MIT notices: androidApp/src/main/assets/licenses/Lucide-LICENSE.txt -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:strokeColor="@color/foreground"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M12 13V2l8 4-8 4" />
+    <path
+        android:strokeColor="@color/foreground"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M20.561 10.222a9 9 0 1 1-12.55-5.29" />
+    <path
+        android:strokeColor="@color/foreground"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M8.002 9.997a5 5 0 1 0 8.9 2.02" />
+</vector>

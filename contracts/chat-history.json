@@ -1,0 +1,11 @@
+{
+  "messages": [
+    {"created_at":"2026-09-23T12:05:00+00:00","id":"photo","text":"","state":"completed","error":null,"images":[{"id":"7d3f8a52-0c1e-5b6a-9f42-3e8d1c0b5a71","width":1600,"height":1200,"url":"/v1/conversation/images/7d3f8a52-0c1e-5b6a-9f42-3e8d1c0b5a71","preview_url":"/v1/conversation/images/7d3f8a52-0c1e-5b6a-9f42-3e8d1c0b5a71/preview?v=1"}],"turns":[{"id":"photo-reply","state":"completed","result":{"reply":"На фото тестовое блюдо.","question":null,"receipts":[]}}]},
+    {"created_at":"2026-09-23T12:04:00+00:00","id":"clarify","text":"А это?","state":"clarification","error":"choose_topic","turns":[]},
+    {"created_at":"2026-09-23T12:03:00+00:00","id":"routing","text":"Объясни радугу","state":"routing","error":null,"turns":[]},
+    {"created_at":"2026-09-23T12:02:00+00:00","id":"failed","text":"Тестовый вопрос","state":"failed","error":"split_unavailable","turns":[]},
+    {"created_at":"2026-09-23T12:01:00+00:00","id":"interrupted","text":"Тестовый запрос","state":"failed","error":"interrupted","turns":[]},
+    {"created_at":"2026-09-23T12:00:00+00:00","id":"answered","text":"Здравствуйте","state":"completed","error":null,"turns":[{"id":"reply","state":"completed","result":{"reply":"Здравствуйте! Чем помочь?","question":null,"receipts":[]}}]}
+  ],
+  "before":null
+}

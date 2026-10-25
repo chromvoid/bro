@@ -1,0 +1,45 @@
+{
+ "type": "trading.connection.changed",
+ "version": "1.0.0",
+ "description": "Изменилось состояние подключения к Bybit.",
+ "payload_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "state": {
+    "enum": [
+     "not_configured",
+     "validating",
+     "active",
+     "degraded",
+     "auth_failed",
+     "ip_blocked",
+     "key_expired",
+     "secret_unavailable",
+     "disconnected"
+    ]
+   },
+   "reason_code": {
+    "type": [
+     "string",
+     "null"
+    ],
+    "maxLength": 64
+   },
+   "revision": {
+    "type": "integer",
+    "minimum": 0
+   }
+  },
+  "required": [
+   "state",
+   "reason_code",
+   "revision"
+  ]
+ },
+ "scopes": [
+  "trading.read"
+ ],
+ "ordering": "actor",
+ "cursor_retention_days": 7
+}

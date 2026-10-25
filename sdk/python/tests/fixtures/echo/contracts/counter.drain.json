@@ -1,0 +1,9 @@
+{
+  "id": "counter.drain", "version": "1.0.0", "description": "Reset the counter in the background.",
+  "when_to_use": "The user asks to reset.", "when_not_to_use": "Anything else.",
+  "input_schema": {"type": "object", "additionalProperties": false, "properties": {"steps": {"type": "integer", "minimum": 1, "maximum": 5}}},
+  "output_schema": {"type": "object", "required": ["value"], "properties": {"value": {"type": "string"}}},
+  "effect": "write", "scopes": ["echo.write"], "surfaces": ["ui"],
+  "execution": {"mode": "async", "max_duration_ms": 10000, "admission_timeout_ms": 2000, "atomicity": "best_effort"},
+  "errors": []
+}

@@ -1,0 +1,73 @@
+{
+ "arguments": {},
+ "data": {
+  "total_usd": "2520.5",
+  "change": {
+   "day": {
+    "usd_delta": "1020.5",
+    "pct": "68.03333333",
+    "net_flow_usd": "1000",
+    "market_usd": "20.5",
+    "market_pct": "1.36666667"
+   },
+   "week": null,
+   "month": null
+  },
+  "by_account": {
+   "unified": "1520.5",
+   "funding": "1000"
+  },
+  "btc_usdt_price": "63000",
+  "balances": [
+   {
+    "coin": "BTC",
+    "quantity": "0.02",
+    "usd_value": "1260",
+    "accounts": {
+     "unified": "0.02",
+     "funding": null,
+     "earn": null
+    },
+    "price_usd": "63000",
+    "share_pct": "49.99",
+    "day": {
+     "quantity_delta": "0",
+     "usd_delta": "20",
+     "pct": "1.61290323"
+    },
+    "week_pct": null,
+    "month_pct": null,
+    "market_day_change_pct": "1.52"
+   },
+   {
+    "coin": "USDT",
+    "quantity": "1260.5",
+    "usd_value": "1260.5",
+    "accounts": {
+     "unified": "260.5",
+     "funding": "1000",
+     "earn": null
+    },
+    "price_usd": "1",
+    "share_pct": "50.01",
+    "day": {
+     "quantity_delta": null,
+     "usd_delta": null,
+     "pct": null
+    },
+    "week_pct": null,
+    "month_pct": null,
+    "market_day_change_pct": "0"
+   }
+  ],
+  "earn": [],
+  "freshness": {
+   "as_of": "2026-09-25T10:00:00Z",
+   "connection_state": "active",
+   "stream": "live",
+   "last_reconcile_at": "2026-09-25T09:58:00Z",
+   "history_complete": true,
+   "coverage_from": "2024-09-26T00:00:00Z"
+  }
+ }
+}

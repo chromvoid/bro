@@ -1,0 +1,70 @@
+{
+  "version": "inbody-rokoko-lookaround-v1",
+  "clip": "rokoko_lookaround",
+  "source": {
+    "author": "Sam Lazarus / Rokoko",
+    "package": "10 free everyday idle animations",
+    "url": "https://www.rokoko.com/resources/rokoko-mocap-10-free-everyday-idle-animations",
+    "file": "Idle_LookingAround_MIXAMO_769.fbx",
+    "sha256": "0c967adac22b5b2337c26ea36272b6ef089f4ea2be22e873caceeab496ead595",
+    "archive": {
+      "url": "https://media.rokoko.com/EVERYDAY-IDLES-MOCAP.zip",
+      "file": "EVERYDAY-IDLES-MOCAP.zip",
+      "sha256": "ce239abe239a264cc6567be14a53a973fa719a759095eece0cddb7cc3f16fa37"
+    },
+    "license": "Rokoko publisher permission; not CC0",
+    "notice": "tools/assets/ROKOKO_ANIMATION_NOTICE.md"
+  },
+  "retarget": {
+    "source_frame_range": [150, 960],
+    "omitted_calibration_frames": [1, 2],
+    "source_timing_preserved": true,
+    "source_is_loop": false,
+    "mesh_unchanged": true
+  },
+  "compiler": {
+    "path": "tools/assets/import_inbody_rokoko_idle.py",
+    "sha256": "e5b6e043dd1fa6383f3ab3bb73b982d0c327627ecb35e3b3722d82063f20f48b"
+  },
+  "assets": {
+    "male": {
+      "model": "male.glb",
+      "animation": "male-lookaround.glb",
+      "sha256": "14eca528376e63541841e98c61f2ac2cb705a9f2d155b2bb536fe237bbded4f0",
+      "bytes": 3555200,
+      "base_sha256": "0dd4074fec7a91eb1cb881c8baec14b1378af13e85d3554e9710c073aee35b9f",
+      "bones": 105,
+      "channels": 315,
+      "duration": 27.0,
+      "frames": 811,
+      "fps": 30,
+      "source_frame_range": [150, 960]
+    },
+    "female": {
+      "model": "female.glb",
+      "animation": "female-lookaround.glb",
+      "sha256": "ce12e1a086c2b9002c6b343944af9a55ecbb5466236028acd8e07d4b34e15f90",
+      "bytes": 3555612,
+      "base_sha256": "c24e1dce63ee90a3d410eafd92ec8d3f20ce274fdb3a9923a9d4508482b70856",
+      "bones": 105,
+      "channels": 315,
+      "duration": 27.0,
+      "frames": 811,
+      "fps": 30,
+      "source_frame_range": [150, 960]
+    },
+    "male_spartan": {
+      "model": "male_spartan.glb",
+      "animation": "male_spartan-lookaround.glb",
+      "sha256": "3c5f8a8cc19c522d579fd39e98f82882f9bf97a9513ab91fd761bee79354b3ff",
+      "bytes": 3555308,
+      "base_sha256": "2e9732071dd826843c247a9276af479e52eb1f4fec8f141b74e049814e70be05",
+      "bones": 105,
+      "channels": 315,
+      "duration": 27.0,
+      "frames": 811,
+      "fps": 30,
+      "source_frame_range": [150, 960]
+    }
+  }
+}

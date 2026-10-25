@@ -1,0 +1,19 @@
+// Authored non-skin surfaces preserve the GLB material factors independently of body relief.
+material {
+    name : "BodyAtlas authored surface",
+    shadingModel : lit,
+    doubleSided : true,
+    parameters : [
+        { type : float3, name : baseColor },
+        { type : float, name : roughness },
+        { type : float, name : metallic }
+    ]
+}
+fragment {
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        material.baseColor = float4(materialParams.baseColor, 1.0);
+        material.roughness = materialParams.roughness;
+        material.metallic = materialParams.metallic;
+    }
+}

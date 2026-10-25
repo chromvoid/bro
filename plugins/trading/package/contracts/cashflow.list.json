@@ -1,0 +1,365 @@
+{
+ "id": "cashflow.list",
+ "version": "1.0.0",
+ "description": "Депозиты, внутренние зачисления и выводы с оценкой в USD на момент операции и сейчас.",
+ "when_to_use": "Вопросы о пополнениях, выводах и чистом вводе средств.",
+ "when_not_to_use": "Сделки (executions.list).",
+ "input_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "range": {
+    "oneOf": [
+     {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "period"
+      ],
+      "properties": {
+       "period": {
+        "enum": [
+         "today",
+         "24h",
+         "7d",
+         "30d",
+         "90d",
+         "this_week",
+         "this_month",
+         "this_year",
+         "1y",
+         "all"
+        ]
+       }
+      }
+     },
+     {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "from"
+      ],
+      "properties": {
+       "from": {
+        "type": "string",
+        "format": "date-time",
+        "maxLength": 40
+       },
+       "to": {
+        "type": "string",
+        "format": "date-time",
+        "maxLength": 40
+       }
+      }
+     }
+    ]
+   },
+   "kinds": {
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+     "enum": [
+      "deposit",
+      "internal_deposit",
+      "withdrawal"
+     ]
+    }
+   },
+   "statuses": {
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+     "enum": [
+      "pending",
+      "completed",
+      "failed",
+      "cancelled",
+      "unknown"
+     ]
+    }
+   },
+   "coin": {
+    "type": "string",
+    "pattern": "^[A-Z0-9]{1,20}$"
+   },
+   "limit": {
+    "type": "integer",
+    "minimum": 1,
+    "maximum": 200,
+    "default": 50
+   },
+   "cursor": {
+    "type": "string",
+    "pattern": "^[A-Za-z0-9_-]{1,200}$"
+   }
+  },
+  "required": []
+ },
+ "output_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "items": {
+    "type": "array",
+    "maxItems": 200,
+    "items": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "id": {
+       "type": "string",
+       "maxLength": 200
+      },
+      "kind": {
+       "enum": [
+        "deposit",
+        "internal_deposit",
+        "withdrawal"
+       ]
+      },
+      "coin": {
+       "type": "string",
+       "pattern": "^[A-Z0-9]{1,20}$"
+      },
+      "amount": {
+       "type": "string",
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "fee": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "status": {
+       "enum": [
+        "pending",
+        "completed",
+        "failed",
+        "cancelled",
+        "unknown"
+       ]
+      },
+      "occurred_at": {
+       "type": "string",
+       "format": "date-time",
+       "maxLength": 40
+      },
+      "tx_id": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "maxLength": 200
+      },
+      "chain": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "maxLength": 40
+      },
+      "usd_value_at_event": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "usd_value_current": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "decimal",
+       "maxLength": 64
+      }
+     },
+     "required": [
+      "id",
+      "kind",
+      "coin",
+      "amount",
+      "fee",
+      "status",
+      "occurred_at",
+      "tx_id",
+      "chain",
+      "usd_value_at_event",
+      "usd_value_current"
+     ]
+    }
+   },
+   "totals": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "by_coin": {
+      "type": "array",
+      "maxItems": 500,
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "coin": {
+         "type": "string",
+         "pattern": "^[A-Z0-9]{1,20}$"
+        },
+        "deposited": {
+         "type": "string",
+         "format": "decimal",
+         "maxLength": 64
+        },
+        "withdrawn": {
+         "type": "string",
+         "format": "decimal",
+         "maxLength": 64
+        },
+        "net": {
+         "type": "string",
+         "format": "decimal",
+         "maxLength": 64
+        }
+       },
+       "required": [
+        "coin",
+        "deposited",
+        "withdrawn",
+        "net"
+       ]
+      }
+     },
+     "usd": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "deposited": {
+        "type": "string",
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "withdrawn": {
+        "type": "string",
+        "format": "decimal",
+        "maxLength": 64
+       },
+       "unpriced_count": {
+        "type": "integer",
+        "minimum": 0
+       }
+      },
+      "required": [
+       "deposited",
+       "withdrawn",
+       "unpriced_count"
+      ]
+     }
+    },
+    "required": [
+     "by_coin",
+     "usd"
+    ]
+   },
+   "next_cursor": {
+    "type": [
+     "string",
+     "null"
+    ],
+    "maxLength": 200
+   },
+   "freshness": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "as_of",
+     "connection_state",
+     "stream",
+     "history_complete",
+     "coverage_from",
+     "last_reconcile_at"
+    ],
+    "properties": {
+     "as_of": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     },
+     "connection_state": {
+      "enum": [
+       "not_configured",
+       "validating",
+       "active",
+       "degraded",
+       "auth_failed",
+       "ip_blocked",
+       "key_expired",
+       "secret_unavailable",
+       "disconnected"
+      ]
+     },
+     "stream": {
+      "enum": [
+       "live",
+       "reconnecting",
+       "down"
+      ]
+     },
+     "last_reconcile_at": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     },
+     "history_complete": {
+      "type": "boolean"
+     },
+     "coverage_from": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     }
+    }
+   }
+  },
+  "required": [
+   "items",
+   "totals",
+   "next_cursor",
+   "freshness"
+  ]
+ },
+ "effect": "read",
+ "scopes": [
+  "trading.read"
+ ],
+ "surfaces": [
+  "ui",
+  "agent"
+ ],
+ "execution": {
+  "mode": "sync",
+  "max_duration_ms": 5000
+ },
+ "errors": [
+  {
+   "code": "not_configured",
+   "meaning": "Ключ Bybit не подключён; данных нет",
+   "recovery": "none"
+  }
+ ],
+ "limits": {
+  "max_response_bytes": 262144
+ }
+}

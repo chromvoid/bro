@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:usesCleartextTraffic="true">
+        <service
+            android:name=".NativeServerSwitchSmokeProbe"
+            android:exported="false"
+            android:process=":serverSwitchSmoke" />
+        <activity
+            android:name=".NativeServerSwitchSmokeActivity"
+            android:exported="false"
+            android:process=":serverSwitchSmoke"
+            android:taskAffinity="${applicationId}.serverSwitchSmoke" />
+        <service
+            android:name=".ambient.AmbientProcessRecoveryProbe"
+            android:exported="false"
+            android:process=":ambientRecoverySmoke" />
+    </application>
+</manifest>

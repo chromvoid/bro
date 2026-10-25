@@ -1,0 +1,104 @@
+{
+ "id": "sync.refill",
+ "version": "1.0.0",
+ "description": "Перезагрузить историю выбранных разделов с Bybit (фоновая операция).",
+ "when_to_use": "Пользователь явно нажал «Догрузить историю» в интерфейсе.",
+ "when_not_to_use": "Никогда по инициативе модели.",
+ "input_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "domains": {
+    "type": "array",
+    "minItems": 1,
+    "uniqueItems": true,
+    "items": {
+     "enum": [
+      "executions",
+      "orders",
+      "deposits",
+      "internal_deposits",
+      "withdrawals",
+      "unified_ledger",
+      "funding_ledger"
+     ]
+    }
+   },
+   "history_days": {
+    "type": "integer",
+    "minimum": 1,
+    "maximum": 730
+   }
+  },
+  "required": []
+ },
+ "output_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "domains": {
+    "type": "array",
+    "items": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "domain": {
+       "enum": [
+        "executions",
+        "orders",
+        "deposits",
+        "internal_deposits",
+        "withdrawals",
+        "unified_ledger",
+        "funding_ledger"
+       ]
+      },
+      "watermark_at": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "date-time",
+       "maxLength": 40
+      }
+     },
+     "required": [
+      "domain",
+      "watermark_at"
+     ]
+    }
+   }
+  },
+  "required": [
+   "domains"
+  ]
+ },
+ "effect": "write",
+ "scopes": [
+  "trading.write"
+ ],
+ "surfaces": [
+  "ui"
+ ],
+ "execution": {
+  "mode": "async",
+  "max_duration_ms": 21600000,
+  "admission_timeout_ms": 5000,
+  "atomicity": "best_effort"
+ },
+ "errors": [
+  {
+   "code": "not_configured",
+   "meaning": "Ключ Bybit не подключён; данных нет",
+   "recovery": "none"
+  },
+  {
+   "code": "refill_in_progress",
+   "meaning": "Перезагрузка уже идёт",
+   "recovery": "lookup"
+  }
+ ],
+ "limits": {
+  "max_response_bytes": 16384
+ }
+}

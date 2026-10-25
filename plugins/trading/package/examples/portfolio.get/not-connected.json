@@ -1,0 +1,8 @@
+{
+ "arguments": {},
+ "error": {
+  "code": "not_configured",
+  "message": "Ключ Bybit не подключён",
+  "recovery": "none"
+ }
+}

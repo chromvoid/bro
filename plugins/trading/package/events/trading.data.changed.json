@@ -1,0 +1,37 @@
+{
+ "type": "trading.data.changed",
+ "version": "1.0.0",
+ "description": "Данные изменились; перечитайте затронутые разделы.",
+ "payload_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "domains": {
+    "type": "array",
+    "items": {
+     "enum": [
+      "wallet",
+      "executions",
+      "orders",
+      "open_orders",
+      "deposits",
+      "internal_deposits",
+      "withdrawals",
+      "unified_ledger",
+      "funding_ledger",
+      "funding_wallet",
+      "earn"
+     ]
+    }
+   }
+  },
+  "required": [
+   "domains"
+  ]
+ },
+ "scopes": [
+  "trading.read"
+ ],
+ "ordering": "actor",
+ "cursor_retention_days": 7
+}

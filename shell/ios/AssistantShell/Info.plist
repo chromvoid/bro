@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AssistantOrigin</key>
+	<string>$(ASSISTANT_ORIGIN)</string>
+	<key>AssistantPushRelay</key>
+	<string>$(ASSISTANT_PUSH_RELAY)</string>
+	<key>AssistantPushTransport</key>
+	<string>$(ASSISTANT_PUSH_TRANSPORT)</string>
+	<key>AssistantFirebaseProjectID</key>
+	<string>$(ASSISTANT_FCM_PROJECT_ID)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>FirebaseMessagingAutoInitEnabled</key>
+	<false/>
+	<key>FirebaseMessagingInstallationIdEnabled</key>
+	<false/>
+	<key>AssistantPublisherSupport</key>
+	<string>$(ASSISTANT_PUBLISHER_SUPPORT_URL)</string>
+	<key>AssistantAPNsEnvironment</key>
+	<string>$(ASSISTANT_APNS_ENVIRONMENT)</string>
+	<key>AssistantAppGroup</key>
+	<string>$(ASSISTANT_APP_GROUP)</string>
+	<key>AssistantKeychainGroup</key>
+	<string>$(ASSISTANT_KEYCHAIN_GROUP)</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Bro</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Подключение к выбранному вами серверу ассистента в домашней или частной сети.</string>
+#ifdef ASSISTANT_DEBUG
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+#endif
+	<key>NSCameraUsageDescription</key>
+	<string>Фото для чата, задач или дневника питания по вашему запросу.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Чтобы вести историю ваших перемещений на вашем сервере, когда приложение закрыто. Запись включается вами в настройках и выключается там же.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Чтобы ассистент отвечал про погоду и места рядом там, где вы, и вёл историю перемещений на вашем сервере.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Диктовка, звонки и фоновая запись окружающих разговоров с отправкой на ваш сервер. Запись включается вами и доступна кнопка остановки.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Выбор фото для чата, задач или дневника питания.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+	</dict>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>KaiSplashBackground</string>
+		<key>UIImageName</key>
+		<string>SplashMark</string>
+	</dict>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+</dict>
+</plist>

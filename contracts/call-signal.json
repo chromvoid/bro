@@ -1,0 +1,37 @@
+{
+  "client": [
+    {
+      "type": "offer",
+      "sdp": "v=0\r\no=- 4611731400430051336 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=msid-semantic: WMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111\r\nc=IN IP4 0.0.0.0\r\na=candidate:1 1 udp 2122260223 192.0.2.10 50000 typ host generation 0\r\na=candidate:2 1 udp 1686052607 192.0.2.20 50001 typ prflx raddr 192.0.2.10 rport 50000 generation 0\r\na=ice-ufrag:abcd\r\na=ice-pwd:synthetic-password-0000000000\r\na=fingerprint:sha-256 00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF\r\na=setup:actpass\r\na=mid:0\r\na=sendrecv\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\n"
+    },
+    {
+      "type": "answer",
+      "sdp": "v=0\r\no=- 5722842511541162447 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=msid-semantic: WMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111\r\nc=IN IP4 0.0.0.0\r\na=candidate:1 1 udp 2122260223 192.0.2.10 50000 typ host generation 0\r\na=candidate:2 1 udp 1686052607 192.0.2.20 50001 typ prflx raddr 192.0.2.10 rport 50000 generation 0\r\na=ice-ufrag:abcd\r\na=ice-pwd:synthetic-password-0000000000\r\na=fingerprint:sha-256 00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF\r\na=setup:active\r\na=mid:0\r\na=sendrecv\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\n"
+    },
+    {
+      "type": "ping"
+    }
+  ],
+  "server": [
+    {
+      "type": "state",
+      "state": "active",
+      "outcome": null
+    },
+    {
+      "type": "peer",
+      "present": true
+    },
+    {
+      "type": "offer",
+      "sdp": "v=0\r\no=- 4611731400430051336 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=msid-semantic: WMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111\r\nc=IN IP4 0.0.0.0\r\na=candidate:1 1 udp 2122260223 192.0.2.10 50000 typ host generation 0\r\na=candidate:2 1 udp 1686052607 192.0.2.20 50001 typ prflx raddr 192.0.2.10 rport 50000 generation 0\r\na=ice-ufrag:abcd\r\na=ice-pwd:synthetic-password-0000000000\r\na=fingerprint:sha-256 00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF\r\na=setup:actpass\r\na=mid:0\r\na=sendrecv\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\n"
+    },
+    {
+      "type": "pong"
+    },
+    {
+      "type": "error",
+      "code": "invalid_frame"
+    }
+  ]
+}

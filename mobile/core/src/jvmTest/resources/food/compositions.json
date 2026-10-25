@@ -1,0 +1,3 @@
+{ "compositions": [{ "id": "breakfast", "name": "Завтрак", "components": [
+  { "label": "Творог", "quantity": "150", "unit": "g" }
+] }] }

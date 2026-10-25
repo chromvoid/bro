@@ -1,0 +1,8 @@
+Bro Commercial / Proprietary Notice
+
+The files and directories identified as commercial or proprietary in
+`LICENSING.md` are not licensed under AGPL, MIT, ISC, or any other open-source
+license by default.
+
+All rights in those components are reserved by their copyright holder unless a
+separate written commercial agreement grants additional rights.

@@ -1,0 +1,13 @@
+{
+  "contract": "assistant.result/v1",
+  "operation_key": "ui:5a1f3c9e-8b2d-4c6a-9e07-1d4b7f2a6c33",
+  "state": "accepted",
+  "receipts": [],
+  "effects": [],
+  "progress": {
+    "domains": [
+      "executions"
+    ],
+    "connection_id": "3f6c2a1e-9b8d-4e7f-a0c1-5d2e4b6a8c90"
+  }
+}

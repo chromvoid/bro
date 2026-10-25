@@ -1,0 +1,8 @@
+{
+  "current": {
+    "place": "Москва, район Хамовники", "country": "RU", "latitude": 55.73812, "longitude": 37.58004,
+    "accuracy_m": 800, "age_minutes": 4, "device": "Телефон", "captured_at": "2026-10-09T18:05:10Z"
+  },
+  "history": {"points": 14, "since": "2026-10-09T06:00:00Z"},
+  "background": {"enabled": false}
+}

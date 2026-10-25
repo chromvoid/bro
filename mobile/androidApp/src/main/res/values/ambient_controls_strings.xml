@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Native controls carried from the shell; web-owned text comes from GeneratedStrings. -->
+<resources>
+    <string name="ambient_controls_title">Фоновая запись речи</string>
+    <string name="ambient_controls_idle_title">Запись выключена</string>
+    <string name="ambient_controls_idle_explanation">Микрофон не слушает. Отметьте согласие и нажмите «Начать запись».</string>
+    <string name="ambient_controls_recording_title">Идёт запись</string>
+    <string name="ambient_controls_recording_explanation">Микрофон слушает и сохраняет фрагменты речи, даже когда приложение свёрнуто.</string>
+    <string name="ambient_controls_checking_title">Проверяем доступ</string>
+    <string name="ambient_controls_checking_explanation">Проверяем сервер и определение речи на устройстве…</string>
+    <string name="ambient_controls_sign_in_title">Нужно войти в Bro</string>
+    <string name="ambient_controls_permission_title">Нет доступа к микрофону</string>
+    <string name="ambient_controls_permission_explanation">Разрешите микрофон в настройках приложения, затем вернитесь и нажмите «Начать запись».</string>
+    <string name="ambient_controls_stopped_title">Запись остановлена</string>
+    <string name="ambient_controls_start">Начать запись</string>
+    <string name="ambient_controls_stop">Остановить запись</string>
+    <string name="ambient_controls_sign_in">Войти в Bro</string>
+    <string name="ambient_controls_open_settings">Открыть настройки</string>
+    <string name="ambient_controls_clear">Удалить неотправленное аудио</string>
+    <string name="ambient_controls_consent">Я понимаю, что голоса людей рядом записываются, отправляются и распознаются на сервере</string>
+    <string name="ambient_controls_how">Как это работает</string>
+    <string name="ambient_controls_how_capture">После нажатия «Начать запись» микрофон постоянно слушает. Приложение определяет речь на устройстве и сохраняет речевые фрагменты с коротким запасом по краям, включая голоса людей рядом. Убедитесь, что собеседники знают о записи и согласны.</string>
+    <string name="ambient_controls_how_background">Запись продолжится при свёрнутом приложении и выключенном экране. После перезапуска приложения или телефона начните запись снова. Отправленные фрагменты распознаются на сервере через выбранное вами подключение для голоса. Аудио и текст доступны в разделе «Записи».</string>
+    <string name="ambient_controls_how_queue">Паузы без речи не сохраняются и не отправляются. Без связи аудио временно остаётся на устройстве; предел очереди — 512 МБ, при заполнении запись остановится. Выход удаляет очередь текущей сессии. При смене входа прежняя очередь сохраняется и требует явного закрытия. Срок хранения на сервере задаётся его настройками.</string>
+    <string name="ambient_controls_clear_title">Удалить неотправленное аудио?</string>
+    <string name="ambient_controls_clear_text">Все фрагменты, которые ещё не дошли до сервера, будут удалены с устройства.</string>
+    <string name="ambient_controls_queue">В очереди %1$s, %2$s</string>
+    <string-array name="ambient_controls_fragment_forms">
+        <item>%d фрагмент</item><item>%d фрагмента</item><item>%d фрагментов</item>
+    </string-array>
+    <string-array name="ambient_controls_byte_units">
+        <item>Б</item><item>КБ</item><item>МБ</item><item>ГБ</item>
+    </string-array>
+</resources>

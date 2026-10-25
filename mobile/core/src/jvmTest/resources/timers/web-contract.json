@@ -1,0 +1,8 @@
+{
+  "sources": ["web/src/sections/tasks/api.ts", "web/src/sections/tasks/reminders.test.ts"],
+  "running": {"timers": [{"id":"timer-tea","label":"Чай","duration_seconds":600,"due_at":"2026-10-03T08:10:00Z","revision":2,"remaining_seconds":59.5}]},
+  "reminders": {"reminders": [{"id":"reminder-task","text":"Купить молоко","due_at":"2026-10-03T09:00:00Z","revision":4,"task_id":"task-milk"}]},
+  "presets": {"now":"2026-10-03T08:00:00Z","timezone":"Europe/Belgrade","keys":["hour","evening","morning"],"at":["2026-10-03T09:00:00Z","2026-10-03T19:00:00+02:00","2026-10-04T09:00:00+02:00"]},
+  "late_presets": {"now":"2026-10-03T16:45:00Z","timezone":"Europe/Belgrade","keys":["hour","morning"]},
+  "preset_minutes": [1,5,10,15,30]
+}

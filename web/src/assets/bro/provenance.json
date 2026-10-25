@@ -1,0 +1,56 @@
+{
+  "name": "Bro",
+  "selected_on": "2026-10-07",
+  "selected_concept": "A — Скобка-улыбка, B)",
+  "supersedes": "A — Свой (2026-10-06), docs/design/brand/bro/README.md",
+  "source": {
+    "construction": "Original outlined B, r, o and a tapered ')' built from lines and circular arcs; no external font or traced logo",
+    "concept": "docs/design/brand/bro/second-opinion/concepts/a-symbol.svg",
+    "kit": "docs/design/brand/bro/second-opinion/kit/",
+    "generator": "docs/design/brand/bro/second-opinion/build_kit.py",
+    "command": "python3 docs/design/brand/bro/second-opinion/build_kit.py --app web/src/assets/bro --display server/display/fonts",
+    "skill": "https://github.com/kaankiziltug/logo-design-skill/blob/main/skills/logo-design/SKILL.md",
+    "skill_revision": "0ecf52e9a4b3ac92b714f7cc6e3148ab8c774134"
+  },
+  "palette": {
+    "source": "web/src/design/tokens.css",
+    "snapshot": "web/src/design/palette.generated.json",
+    "background_role": "icon-background",
+    "foreground_role": "icon-foreground"
+  },
+  "templates": {
+    "symbol.png": {
+      "geometry": "symbol-reversed.svg",
+      "canvas": [1024, 1024],
+      "paint": "neutral black with transparent negative space; colorized from alpha by the exporter"
+    },
+    "symbol-small.png": {
+      "geometry": "symbol-small.svg",
+      "canvas": [1024, 1024],
+      "paint": "neutral black with transparent negative space; colorized from alpha by the exporter"
+    }
+  },
+  "vector_refinements": {
+    "symbol.svg": "Approved B) outline; shifted 7.5 units right and 2 up for optical centring (the B carries the mass)",
+    "symbol-reversed.svg": "About 2 units thinner strokes and mouth for light-on-dark optics",
+    "symbol-small.svg": "16-31 px cut: heavier mouth, 30-unit gap instead of 21, wider counters; scaled 0.92",
+    "wordmark.svg": "Bro) — the primary horizontal logo",
+    "wordmark-reversed.svg": "Bro) about 2 units thinner for light-on-dark use",
+    "moods.json": "Small-cut B and the four mouths (B) B⋮ BD B() in one frame for the live BrandMark, plus 40-point outline pairs that morph each thinking dot into a third of ')'; the desk screen's server/display/fonts/bro18.bdf is rasterized from the same frame"
+  },
+  "exports": {
+    "generator": "shell/ios/tools/generate-icon.swift",
+    "command": "cd shell/ios && swift tools/generate-icon.swift",
+    "neutral_template_renderer": "headless Chrome via the logo-design skill's scripts/render_png.py, 1024px, from the paired SVG"
+  },
+  "sha256": {
+    "moods.json": "018d02bd1dd132d62abe2e6df9931013d5b3e947312174ada10348995381677d",
+    "symbol-reversed.svg": "3b6eb771d4e8cef7ffc3e20bdd2c68b38dc264da63b725c7a84c4d15444eed1c",
+    "symbol-small.png": "9f43dcc6b3b6f0d3a33cf114d06270da52517bc6f66cf62bec2ea38cc3ba612c",
+    "symbol-small.svg": "fe987d66e32358ea8c1219635060d5970c04ff45839b5b1da4c87625a96aa996",
+    "symbol.png": "01d3022b78bb65b71ce2449f4d969299c2a4c76ec4d0c3eafc37aa41e2702a33",
+    "symbol.svg": "702db95abe21c80c81b58d28d280fe57d735f6340a466c7e8c08c45ef8cbe00d",
+    "wordmark-reversed.svg": "9ce43c36d66c907fac176753afdd225f8f4bbba7793faff41dbea0536a4a9411",
+    "wordmark.svg": "cf3f5476f1eee9136b8552faa7d8c0d439c8372b04a51940aa30ef660551a717"
+  }
+}

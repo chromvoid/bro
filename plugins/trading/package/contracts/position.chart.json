@@ -1,0 +1,356 @@
+{
+ "id": "position.chart",
+ "version": "1.1.0",
+ "description": "График позиции по монете: цена в выбранной единице внутри периода (около 160 точек), покупки и продажи в тех же границах (по одной на сторону и отрезок графика: количество и средняя цена в единице). Последняя точка и линии входа, безубытка, основы и mark относятся к концу периода; для прошлого конца используется историческая цена. При равных границах возвращается одна точка, если её цена известна. issues описывает известные ограничения расчёта; неизвестные цены не заменяются нулём.",
+ "when_to_use": "Экран монеты показывает цену с отметками сделок.",
+ "when_not_to_use": "Цифры позиции (position.summary).",
+ "input_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "coin": {
+    "type": "string",
+    "pattern": "^[A-Z0-9]{1,20}$"
+   },
+   "range": {
+    "oneOf": [
+     {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "period"
+      ],
+      "properties": {
+       "period": {
+        "enum": [
+         "today",
+         "24h",
+         "7d",
+         "30d",
+         "90d",
+         "this_week",
+         "this_month",
+         "this_year",
+         "1y",
+         "all"
+        ]
+       }
+      }
+     },
+     {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "from"
+      ],
+      "properties": {
+       "from": {
+        "type": "string",
+        "format": "date-time",
+        "maxLength": 40
+       },
+       "to": {
+        "type": "string",
+        "format": "date-time",
+        "maxLength": 40
+       }
+      }
+     }
+    ],
+    "description": "Границы графика включены: from ≤ время точки или сделки ≤ min(to, сейчас). Без range используется 1y; без to конец — сейчас. from позже конца — invalid_arguments; равные границы допустимы. Календарные периоды считаются в часовом поясе пользователя. Конец раньше доступной истории — history_unavailable."
+   },
+   "unit": {
+    "type": "string",
+    "pattern": "^(USD|[A-Z0-9]{1,20})$"
+   },
+   "method": {
+    "enum": [
+     "lifo",
+     "fifo"
+    ]
+   }
+  },
+  "required": [
+   "coin"
+  ]
+ },
+ "output_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "coin": {
+    "type": "string",
+    "pattern": "^[A-Z0-9]{1,20}$"
+   },
+   "unit": {
+    "type": "string",
+    "pattern": "^(USD|[A-Z0-9]{1,20})$"
+   },
+   "lot_method": {
+    "enum": [
+     "lifo",
+     "fifo"
+    ]
+   },
+   "from": {
+    "type": "string",
+    "format": "date-time",
+    "maxLength": 40
+   },
+   "points": {
+    "type": "array",
+    "maxItems": 400,
+    "items": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "time": {
+       "type": "string",
+       "format": "date-time",
+       "maxLength": 40
+      },
+      "price": {
+       "type": "string",
+       "format": "decimal",
+       "maxLength": 64
+      }
+     },
+     "required": [
+      "time",
+      "price"
+     ]
+    }
+   },
+   "trades": {
+    "type": "array",
+    "maxItems": 400,
+    "items": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "time": {
+       "type": "string",
+       "format": "date-time",
+       "maxLength": 40
+      },
+      "side": {
+       "enum": [
+        "buy",
+        "sell"
+       ]
+      },
+      "qty": {
+       "type": "string",
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "fills": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "price": {
+       "type": "string",
+       "format": "decimal",
+       "maxLength": 64
+      }
+     },
+     "required": [
+      "time",
+      "side",
+      "qty",
+      "fills",
+      "price"
+     ]
+    }
+   },
+   "lines": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "avg_entry": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "decimal",
+      "maxLength": 64
+     },
+     "break_even": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "decimal",
+      "maxLength": 64
+     },
+     "core_entry": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "decimal",
+      "maxLength": 64
+     },
+     "mark": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "decimal",
+      "maxLength": 64
+     }
+    },
+    "required": [
+     "avg_entry",
+     "break_even",
+     "core_entry",
+     "mark"
+    ]
+   },
+   "freshness": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "as_of",
+     "connection_state",
+     "stream",
+     "history_complete",
+     "coverage_from",
+     "last_reconcile_at"
+    ],
+    "properties": {
+     "as_of": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     },
+     "connection_state": {
+      "enum": [
+       "not_configured",
+       "validating",
+       "active",
+       "degraded",
+       "auth_failed",
+       "ip_blocked",
+       "key_expired",
+       "secret_unavailable",
+       "disconnected"
+      ]
+     },
+     "stream": {
+      "enum": [
+       "live",
+       "reconnecting",
+       "down"
+      ]
+     },
+     "last_reconcile_at": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     },
+     "history_complete": {
+      "type": "boolean"
+     },
+     "coverage_from": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     }
+    }
+   },
+   "issues": {
+    "type": "array",
+    "description": "Известные ограничения расчёта. Непривязанная отмена P2P не связывается с произвольной покупкой или продажей; затронутые денежные результаты могут быть null.",
+    "items": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "code": {
+       "enum": [
+        "p2p_cancellation_unlinked"
+       ]
+      },
+      "coin": {
+       "type": "string",
+       "pattern": "^[A-Z0-9]{1,20}$"
+      },
+      "occurred_at": {
+       "type": "string",
+       "format": "date-time",
+       "maxLength": 40
+      },
+      "entry_id": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "description": "Идентификатор движения account:entry_id, если он известен."
+      }
+     },
+     "required": [
+      "code",
+      "coin",
+      "occurred_at",
+      "entry_id"
+     ]
+    }
+   }
+  },
+  "required": [
+   "coin",
+   "unit",
+   "lot_method",
+   "from",
+   "points",
+   "trades",
+   "lines",
+   "freshness"
+  ]
+ },
+ "effect": "read",
+ "scopes": [
+  "trading.read"
+ ],
+ "surfaces": [
+  "ui"
+ ],
+ "execution": {
+  "mode": "sync",
+  "max_duration_ms": 10000
+ },
+ "errors": [
+  {
+   "code": "not_configured",
+   "meaning": "Ключ Bybit не подключён; данных нет",
+   "recovery": "none"
+  },
+  {
+   "code": "coin_unknown",
+   "meaning": "По монете нет ни сделок, ни движений, ни баланса",
+   "recovery": "fix_arguments"
+  },
+  {
+   "code": "unit_unknown",
+   "meaning": "Для этой монеты нет цен",
+   "recovery": "fix_arguments"
+  },
+  {
+   "code": "history_unavailable",
+   "meaning": "Конец запрошенного периода раньше начала доступной истории позиции; выберите более поздний конец",
+   "recovery": "fix_arguments"
+  }
+ ],
+ "limits": {
+  "max_response_bytes": 262144
+ }
+}

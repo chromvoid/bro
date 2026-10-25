@@ -1,0 +1,72 @@
+# Runtime state and secrets
+.env
+.env.*
+!.env.example
+private/
+secrets/
+recordings/
+!web/src/sections/recordings/
+!web/src/sections/recordings/**
+!mobile/core/src/commonMain/kotlin/assistant/mobile/core/recordings/
+!mobile/core/src/commonMain/kotlin/assistant/mobile/core/recordings/**
+!mobile/core/src/jvmTest/kotlin/assistant/mobile/core/recordings/
+!mobile/core/src/jvmTest/kotlin/assistant/mobile/core/recordings/**
+data/
+runtime/
+*.private.json
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.pem
+!docs/google-play/encryption_public_key.pem
+*.key
+*.p12
+*.pfx
+*.log
+
+# Model weights and large external datasets
+*.onnx
+*.gguf
+*.safetensors
+*.pt
+*.pth
+*.wav
+*.mp3
+*.pcm
+
+# Generated dependencies, build outputs, local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+build/
+builds/
+target/
+managed_components/
+firmware/sdkconfig
+firmware/sdkconfig.old
+*.elf
+*.bin
+*.o
+*.a
+.DS_Store
+
+# Local agent launch configuration
+/.claude/launch.json
+
+# Native shells: local state
+shell/android/.gradle/
+shell/android/.kotlin/
+shell/android/local.properties
+shell/ios/**/DerivedData/
+shell/ios/**/xcuserdata/
+shell/ios/**/*.xcuserstate
+
+# Native mobile root: private SDK configuration and generated Gradle state
+mobile/.gradle/
+mobile/.kotlin/
+mobile/local.properties

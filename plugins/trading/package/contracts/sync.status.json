@@ -1,0 +1,233 @@
+{
+ "id": "sync.status",
+ "version": "1.0.0",
+ "description": "Состояние подключения к Bybit и синхронизации: realtime-поток, покрытие истории, ошибки.",
+ "when_to_use": "Вопросы о свежести и полноте данных, проблемах с ключом.",
+ "when_not_to_use": "Сами данные портфеля.",
+ "input_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {},
+  "required": []
+ },
+ "output_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "connection": {
+    "type": [
+     "object",
+     "null"
+    ],
+    "additionalProperties": false,
+    "required": [
+     "state",
+     "environment",
+     "api_key_hint",
+     "key_expires_at",
+     "readiness"
+    ],
+    "properties": {
+     "state": {
+      "enum": [
+       "not_configured",
+       "validating",
+       "active",
+       "degraded",
+       "auth_failed",
+       "ip_blocked",
+       "key_expired",
+       "secret_unavailable",
+       "disconnected"
+      ]
+     },
+     "environment": {
+      "type": "string",
+      "maxLength": 32
+     },
+     "api_key_hint": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "maxLength": 16
+     },
+     "key_expires_at": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     },
+     "readiness": {
+      "type": "object",
+      "additionalProperties": {
+       "enum": [
+        "ready",
+        "degraded",
+        "unavailable"
+       ]
+      }
+     }
+    }
+   },
+   "stream": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "state": {
+      "enum": [
+       "live",
+       "reconnecting",
+       "down"
+      ]
+     },
+     "connected_since": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     },
+     "last_message_at": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date-time",
+      "maxLength": 40
+     }
+    },
+    "required": [
+     "state",
+     "connected_since",
+     "last_message_at"
+    ]
+   },
+   "domains": {
+    "type": "array",
+    "maxItems": 16,
+    "items": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "domain": {
+       "enum": [
+        "wallet",
+        "executions",
+        "orders",
+        "open_orders",
+        "deposits",
+        "internal_deposits",
+        "withdrawals",
+        "unified_ledger",
+        "funding_ledger",
+        "funding_wallet",
+        "earn"
+       ]
+      },
+      "phase": {
+       "enum": [
+        "idle",
+        "backfill",
+        "incremental",
+        "refill",
+        "error"
+       ]
+      },
+      "coverage_from": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "date-time",
+       "maxLength": 40
+      },
+      "watermark_at": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "date-time",
+       "maxLength": 40
+      },
+      "progress_pct": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "decimal",
+       "maxLength": 64
+      },
+      "last_success_at": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "date-time",
+       "maxLength": 40
+      },
+      "last_error_code": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "maxLength": 64
+      },
+      "coverage_gap_before": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "format": "date-time",
+       "maxLength": 40
+      },
+      "rejected_rows": {
+       "type": "integer",
+       "minimum": 0
+      }
+     },
+     "required": [
+      "domain",
+      "phase",
+      "coverage_from",
+      "watermark_at",
+      "progress_pct",
+      "last_success_at",
+      "last_error_code",
+      "coverage_gap_before"
+     ]
+    }
+   }
+  },
+  "required": [
+   "connection",
+   "stream",
+   "domains"
+  ]
+ },
+ "effect": "read",
+ "scopes": [
+  "trading.read"
+ ],
+ "surfaces": [
+  "ui",
+  "agent"
+ ],
+ "execution": {
+  "mode": "sync",
+  "max_duration_ms": 5000
+ },
+ "errors": [
+  {
+   "code": "not_configured",
+   "meaning": "Ключ Bybit не подключён; данных нет",
+   "recovery": "none"
+  }
+ ],
+ "limits": {
+  "max_response_bytes": 262144
+ }
+}

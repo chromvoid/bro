@@ -1,0 +1,11 @@
+{
+  "id": "counter.add", "version": "1.0.0", "description": "Add to the actor's counter.",
+  "when_to_use": "The user asks to add.", "when_not_to_use": "Reading the counter.",
+  "input_schema": {"type": "object", "additionalProperties": false, "required": ["amount", "revision"],
+    "properties": {"amount": {"type": "string", "format": "decimal"}, "revision": {"type": "integer", "minimum": 0}}},
+  "output_schema": {"type": "object", "required": ["value", "revision"],
+    "properties": {"value": {"type": "string"}, "revision": {"type": "integer"}}},
+  "effect": "write", "scopes": ["echo.write"], "surfaces": ["ui"],
+  "execution": {"mode": "sync", "max_duration_ms": 2000, "atomicity": "transactional"},
+  "errors": [{"code": "revision_conflict", "meaning": "Counter changed", "recovery": "refresh_state"}]
+}

@@ -1,0 +1,8 @@
+{
+  "from":"2026-10-01","to":"2026-10-06","timezone":"Europe/Moscow","computed_at":"2026-10-06T12:00:00Z","fingerprint":"synthetic-running-page","next_cursor":null,
+  "daily":[
+    {"date":"2026-10-06","kind":"running_steps","status":"available","value":420,"unit":"steps","complete":false,"resolution":{"status":"partial","fingerprint":"synthetic-running-inputs","resolver_version":"resolution-running-v1","selected":[{"id":"snapshot","revision":1,"source_id":"ring","source_name":"Synthetic ring","contribution":420}],"alternatives":[],"protocol":{"verified":false,"flags":["protocol_unverified"]},"data":{"shape":"day_counter_snapshot","observed_at":"2026-10-06T08:00:00Z","value":420,"local_date":"2026-10-06"},"coverage":{"basis":"daily_counter_snapshot","complete":false}}},
+    {"date":"2026-10-06","kind":"running_workouts","status":"available","value":1,"unit":"workouts","resolution":{"status":"available","fingerprint":"synthetic-running-inputs","resolver_version":"resolution-running-v1","selected":[{"id":"workout","revision":1,"source_id":"ring","source_name":"Synthetic ring"}],"alternatives":[],"protocol":{"verified":false,"flags":["protocol_unverified"]},"summary":{"count":1,"known_duration_seconds":1800,"unknown_duration_count":0}}}
+  ],
+  "series":[{"id":"workout","revision":1,"source_id":"ring","source_name":"Synthetic ring","shape":"workout_report","kind":"running_workouts","local_date":"2026-10-06","timezone":"Europe/Moscow","start_at":"2026-10-06T07:00:00Z","end_at":"2026-10-06T07:30:00Z","data":{"sport_type":"running","duration_seconds":1800,"steps":3000,"distance_meters":5000}}]
+}

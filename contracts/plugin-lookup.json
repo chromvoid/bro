@@ -1,0 +1,40 @@
+{
+  "contract": "assistant.lookup/v1",
+  "operation_key": "ui:5a1f3c9e-8b2d-4c6a-9e07-1d4b7f2a6c33",
+  "status": "found",
+  "result": {
+    "contract": "assistant.result/v1",
+    "operation_key": "ui:5a1f3c9e-8b2d-4c6a-9e07-1d4b7f2a6c33",
+    "state": "completed",
+    "receipts": [
+      {
+        "receipt_id": "7d9e3b1a-4c2f-4e8d-9b6a-0f1e2d3c4b5a",
+        "operation_key": "ui:5a1f3c9e-8b2d-4c6a-9e07-1d4b7f2a6c33",
+        "committed_at": "2026-09-25T10:05:00Z",
+        "service_version": "1.0.0",
+        "effects": [
+          {
+            "resource_type": "trading.sync_state",
+            "resource_id": "3f6c2a1e-9b8d-4e7f-a0c1-5d2e4b6a8c90:executions",
+            "change": "external"
+          }
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "resource_type": "trading.sync_state",
+        "resource_id": "3f6c2a1e-9b8d-4e7f-a0c1-5d2e4b6a8c90:executions",
+        "change": "external"
+      }
+    ],
+    "data": {
+      "domains": [
+        {
+          "domain": "executions",
+          "watermark_at": "2026-09-25T10:05:00Z"
+        }
+      ]
+    }
+  }
+}

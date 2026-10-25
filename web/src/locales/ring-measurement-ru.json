@@ -1,0 +1,18 @@
+{
+  "ring": {
+    "measurement": {
+      "enabled": "Включено",
+      "disabled": "Выключено",
+      "interval": "{minutes} мин",
+      "read": "Прочитать настройку",
+      "heartRateFiveMinutes": "Пульс каждые 5 минут",
+      "autonomousTemperature": "Автономная ночная температура",
+      "spo2Enable": "Ночной SpO₂: включить",
+      "spo2Disable": "Ночной SpO₂: выключить",
+      "hrvEnable": "HRV: включить",
+      "hrvDisable": "HRV: выключить",
+      "valueMissing": "Значение не передано",
+      "receivedByPhone": "Получено телефоном:"
+    }
+  }
+}

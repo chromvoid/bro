@@ -1,0 +1,11 @@
+{
+  "lists": [
+    {"id": "personal", "name": "Личные дела", "revision": 2, "effective": "manage", "member_access": "edit",
+      "space_id": null, "personal_user_id": "owner", "counts": {"todo": 2, "in_progress": 1, "waiting": 0, "done": 1}},
+    {"id": "shared", "name": "Семья", "revision": 3, "effective": "edit", "member_access": "edit",
+      "space_id": "family", "personal_user_id": null, "list_kind": "list"},
+    {"id": "project", "name": "Комната", "revision": 4, "effective": "read", "member_access": "read",
+      "space_id": "family", "list_kind": "project", "outcome": "Подготовить комнату", "project_state": "active",
+      "counts": {"todo": 3, "in_progress": 2, "waiting": 1, "done": 4}}
+  ]
+}

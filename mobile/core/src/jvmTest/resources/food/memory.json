@@ -1,0 +1,11 @@
+{
+  "foods": [
+    { "food_id": "curd", "name": "Творог", "favorite": false, "preference_revision": 0,
+      "last_eaten": "2026-10-02", "last_quantity": "150.25", "last_unit": "g",
+      "snapshot_id": "curd-source", "basis_quantity": "100", "basis_unit": "g", "energy_kcal": "121" },
+    { "food_id": "tea", "name": "Чай", "favorite": true, "preference_revision": 3,
+      "last_eaten": "2026-10-03", "last_quantity": "200", "last_unit": "ml",
+      "snapshot_id": "tea-source", "basis_quantity": "100", "basis_unit": "ml", "energy_kcal": null },
+    { "food_id": "favorite-only", "name": "Избранное", "favorite": true, "preference_revision": 1 }
+  ]
+}

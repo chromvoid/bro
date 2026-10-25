@@ -1,0 +1,26 @@
+{
+  "sources": [
+    {"id":"inbody","name":"DDX InBody","kinds":["weight","body_fat_percent","skeletal_muscle_mass"],"status":"connected","revision":2,"metric_keys":["weight","body_fat_percent","skeletal_muscle_mass"],"created_at":"2026-10-01T10:00:00Z","last_measured_at":"2026-10-13T10:00:00Z","device":{"kind":"ddx"},"connection":{"provider":"ddx","generation":1,"revision":3,"auth_state":"active","automatic":true,"phone_masked":"+7••••••0001","credential_ref":"synthetic-private-secret","phone":"+79000000001","tokens":{"access_token":"synthetic-secret"}}},
+    {"id":"manual","name":"Synthetic manual","kinds":["weight"],"status":"connected","revision":1,"metric_keys":["weight"],"device":{"kind":"custom"}},
+    {"id":"sensor-a","name":"Synthetic sensor A","kinds":[],"status":"connected","revision":1,"metric_keys":["heart_rate","steps"],"device":{"kind":"custom"}},
+    {"id":"sensor-b","name":"Synthetic sensor B","kinds":[],"status":"connected","revision":1,"metric_keys":["heart_rate","steps"],"device":{"kind":"custom"}}
+  ],
+  "day": {
+    "from":"2026-10-13","to":"2026-10-13","timezone":"Europe/Moscow","computed_at":"2026-10-13T20:00:00Z","fingerprint":"source-day-v6","next_cursor":null,
+    "daily":[{"date":"2026-10-13","kind":"weight","status":"available","value":"75","unit":"kg","resolution":{"status":"available","fingerprint":"weight-v6","resolver_version":"v6","selected":[{"id":"record-1","source_id":"inbody","source_name":"DDX InBody","revision":2}],"contributions":[{"source_id":"inbody","count":1,"value":"75"}]}}],
+    "series":[{"id":"sample-1","metric":"heart_rate","source_id":"inbody","start_at":"2026-10-13T10:00:00Z","end_at":"2026-10-13T10:00:00Z","value":"64","unit":"bpm","revision":1,"measurement_kind":"point","sensor_location":"finger","report_id":"raw-1"}],
+    "policies":[{"id":"policy-1","metric":"weight","source_ids":["manual"],"effective_from":"2026-10-13","revision":3}],
+    "source_identities":{"inbody":{"physical_id":"physical-1","confirmed":true,"revision":2}},
+    "catalog":[{"key":"weight","unit":"kg","shape":"point"},{"key":"heart_rate","unit":"bpm","shape":"point"}]
+  },
+  "week": {
+    "from":"2026-10-11","to":"2026-10-17","timezone":"Europe/Moscow","computed_at":"2026-10-17T12:00:00Z","fingerprint":"comparison-week-v6","next_cursor":null,"series":[],"policies":[],
+    "daily":[
+      {"date":"2026-10-12","kind":"heart_rate","status":"available","value":"70","unit":"bpm","resolution":{"status":"available","fingerprint":"comparison-day-1","resolver_version":"v6","comparisons":[{"source_ids":["sensor-a","sensor-b"],"count":10,"totals":[700,680],"mean_difference":2,"mean_absolute_difference":2,"outside_reference":0}]}},
+      {"date":"2026-10-13","kind":"heart_rate","status":"available","value":"70","unit":"bpm","resolution":{"status":"available","fingerprint":"comparison-day-2","resolver_version":"v6","contributions":[{"source_id":"sensor-a","count":200,"spans":[{"start_at":"2026-10-13T10:00:00Z","end_at":"2026-10-13T11:00:00Z"}]}],"comparisons":[{"source_ids":["sensor-a","sensor-b"],"count":30,"totals":[2100,1920],"mean_difference":6,"mean_absolute_difference":6,"outside_reference":3}]}}
+    ],
+    "catalog":[{"key":"heart_rate","unit":"bpm","shape":"point"}]
+  },
+  "login":{"id":"synthetic-login","state":"waiting_code","request_key":"synthetic-request","phone_masked":"+7••••••0001","can_resend":true,"expires_at":"2026-10-17T13:00:00Z","resend_at":"2026-10-17T11:59:00Z","code":"123456","password":"synthetic-password","access_token":"synthetic-secret"},
+  "run":{"id":"sync-1","source_id":"inbody","state":"partial","attempts":1,"outcome":{"new_analyses":2,"updated_analyses":1,"observations_changed":3,"batches_committed":1,"partial":true,"warning":"projection_incomplete","projection_incomplete":true}}
+}

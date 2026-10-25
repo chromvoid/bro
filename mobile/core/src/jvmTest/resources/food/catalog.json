@@ -1,0 +1,9 @@
+{
+  "foods": [{
+    "food_id": "curd", "snapshot_id": "curd-source", "name": "Cottage cheese", "name_ru": "Творог",
+    "brand": null, "personal": true, "basis_quantity": "100", "basis_unit": "g",
+    "energy_kcal": "121", "protein_g": "18", "fat_g": "0", "carbohydrate_g": null,
+    "portions": [{ "id": "reference-spoon", "name": "Ложка", "quantity": "30", "unit": "g" }],
+    "saved_portions": [{ "id": "my-bowl", "name": "Моя миска", "quantity": "150.25", "unit": "g", "revision": 2 }]
+  }]
+}

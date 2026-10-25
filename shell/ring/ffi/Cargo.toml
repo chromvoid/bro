@@ -1,0 +1,15 @@
+[package]
+name = "herzring-ffi"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[lib]
+name = "herzring"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+qring-r20 = { path = "../core" }
+serde_json.workspace = true
+jni = "0.21.1"

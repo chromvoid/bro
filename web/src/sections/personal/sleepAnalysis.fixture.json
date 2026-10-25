@@ -1,0 +1,138 @@
+{
+  "computed_at": "2026-10-10T00:00:00+00:00",
+  "episodes": [
+    {
+      "asleep_minutes": 240.0,
+      "awake_minutes": 0.0,
+      "bounds": { "max_minutes": 480.0, "min_minutes": 240.0 },
+      "classification_coverage": 0.5,
+      "complete_asleep_minutes": null,
+      "conflict_minutes": 0.0,
+      "end_at": "2026-10-07T08:00:00+00:00",
+      "flags": [],
+      "forecast": {
+        "algorithm_version": "sleep-analogs-v1",
+        "basis": "current_snapshot_reconstruction",
+        "estimated_asleep_minutes": 450.0,
+        "estimated_missing_minutes": 210.0,
+        "reason": null,
+        "status": "available",
+        "training_from": "2026-09-07T00:00:00+00:00",
+        "training_nights": 30,
+        "training_to": "2026-10-06T08:00:00+00:00",
+        "validation": {
+          "baseline_mae_minutes": 30.0,
+          "mae_minutes": 0.0,
+          "nights": 10,
+          "p90_error_minutes": 0.0,
+          "reference": "complete_device_reports"
+        }
+      },
+      "reports": [
+        {
+          "end_at": "2026-10-07T08:00:00+00:00",
+          "id": "ring-2026-10-07-39",
+          "reported_asleep_minutes": null,
+          "revision": 1,
+          "source_id": "ring",
+          "source_name": "ring",
+          "start_at": "2026-10-07T00:00:00+00:00",
+          "type": "record"
+        }
+      ],
+      "segments": [
+        {
+          "end_at": "2026-10-07T02:00:00+00:00",
+          "evidence": [
+            {
+              "id": "ring-2026-10-07-39",
+              "revision": 1,
+              "source_id": "ring",
+              "source_name": "ring",
+              "type": "record"
+            }
+          ],
+          "reason": "reported",
+          "selected_refs": [
+            {
+              "id": "ring-2026-10-07-39",
+              "revision": 1,
+              "source_id": "ring",
+              "source_name": "ring",
+              "type": "record"
+            }
+          ],
+          "stage": "light",
+          "start_at": "2026-10-07T00:00:00+00:00",
+          "state": "sleep",
+          "unknown_codes": []
+        },
+        {
+          "end_at": "2026-10-07T06:00:00+00:00",
+          "evidence": [
+            {
+              "id": "ring-2026-10-07-39",
+              "revision": 1,
+              "source_id": "ring",
+              "source_name": "ring",
+              "type": "record"
+            }
+          ],
+          "reason": "unclassified",
+          "selected_refs": [],
+          "stage": null,
+          "start_at": "2026-10-07T02:00:00+00:00",
+          "state": "unknown",
+          "unknown_codes": ["unknown:0"]
+        },
+        {
+          "end_at": "2026-10-07T08:00:00+00:00",
+          "evidence": [
+            {
+              "id": "ring-2026-10-07-39",
+              "revision": 1,
+              "source_id": "ring",
+              "source_name": "ring",
+              "type": "record"
+            }
+          ],
+          "reason": "reported",
+          "selected_refs": [
+            {
+              "id": "ring-2026-10-07-39",
+              "revision": 1,
+              "source_id": "ring",
+              "source_name": "ring",
+              "type": "record"
+            }
+          ],
+          "stage": "deep",
+          "start_at": "2026-10-07T06:00:00+00:00",
+          "state": "sleep",
+          "unknown_codes": []
+        }
+      ],
+      "stage_minutes": { "deep": 120.0, "light": 120.0 },
+      "start_at": "2026-10-07T00:00:00+00:00",
+      "status": "partial",
+      "unknown_minutes": 240.0,
+      "window_minutes": 480.0
+    }
+  ],
+  "fingerprint": "5be35466c93b95997e8acd1eddfb306ef69a36ea9ce413d779b1a2ac905a198a",
+  "input_count": 31,
+  "input_refs": [],
+  "rejected_reports": [],
+  "status": "partial",
+  "summary": {
+    "asleep_minutes": 240.0,
+    "awake_minutes": 0.0,
+    "classification_coverage": 0.5,
+    "complete_asleep_minutes": null,
+    "conflict_minutes": 0.0,
+    "forecast_asleep_minutes": 450.0,
+    "unknown_minutes": 240.0,
+    "window_minutes": 480.0
+  },
+  "version": "sleep-analysis-v1"
+}

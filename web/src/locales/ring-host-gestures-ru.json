@@ -1,0 +1,49 @@
+{
+  "ring": {
+    "hostGestures": {
+      "title": "Управление телефоном жестами кольца",
+      "accessGranted": "Доступ Android разрешён",
+      "accessDenied": "Доступ Android не разрешён",
+      "hint": "Соответствия сохраняются на телефоне. Включение доступно после подтверждения физических жестов для этой модели и прошивки и разрешения Android.",
+      "access": "Открыть специальные возможности Android",
+      "save": "Сохранить соответствия без включения",
+      "enable": "Включить жесты",
+      "disable": "Выключить",
+      "inputs": {
+        "tap": "Касание",
+        "doubleTap": "Двойное касание",
+        "swipeLeft": "Влево",
+        "swipeRight": "Вправо",
+        "swipeUp": "Вверх",
+        "swipeDown": "Вниз"
+      },
+      "actions": {
+        "none": "Без действия",
+        "back": "Назад",
+        "home": "Домой",
+        "recents": "Недавние приложения",
+        "notifications": "Панель уведомлений",
+        "volumeUp": "Громче",
+        "volumeDown": "Тише",
+        "playPause": "Воспроизведение / пауза",
+        "next": "Следующий трек",
+        "previous": "Предыдущий трек",
+        "tapCenter": "Коснуться центра",
+        "doubleTapCenter": "Дважды коснуться центра",
+        "tapLeft": "Коснуться слева",
+        "tapRight": "Коснуться справа",
+        "swipeUp": "Прокрутить вверх",
+        "swipeDown": "Прокрутить вниз",
+        "swipeLeft": "Прокрутить влево",
+        "swipeRight": "Прокрутить вправо"
+      },
+      "results": {
+        "dispatching": "Передаётся Android",
+        "androidAccepted": "Android принял запрос",
+        "androidCompleted": "Android подтвердил выполнение",
+        "androidCancelled": "Android отменил действие",
+        "androidRejected": "Android отклонил действие"
+      }
+    }
+  }
+}

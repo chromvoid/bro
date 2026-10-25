@@ -1,0 +1,32 @@
+{
+  "actions": [
+    "access.share",
+    "access.update",
+    "agent.connect",
+    "chat.settings",
+    "community.report.resolve",
+    "device.pair",
+    "device.revoke",
+    "identity.access.update",
+    "identity.bootstrap",
+    "identity.invite",
+    "identity.invite.redeem",
+    "identity.reset.issue",
+    "identity.reset.redeem",
+    "location.collector.disable",
+    "location.collector.enroll",
+    "nutrition.catalog.activate",
+    "nutrition.catalog.cancel",
+    "nutrition.catalog.refresh",
+    "personal.ring.enroll",
+    "resource.grant",
+    "resource.members",
+    "space.archive",
+    "space.membership",
+    "speech.connection.delete",
+    "speech.connection.save",
+    "speech.preferences.save",
+    "usage.limits.update"
+  ],
+  "retired": ["identity.token.issue", "plugin.settings", "pool.update", "speech.legacy.grant"]
+}

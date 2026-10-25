@@ -1,0 +1,10 @@
+{
+  "channel": {"id": "task-channel", "kind": "task", "name": "Обсуждение задачи"},
+  "messages": [
+    {"id": "message-human", "actor_user_id": "owner", "author": "user", "name": "Анна",
+      "created_at": "2026-10-08T11:30:00Z", "text": "Материалы привезут утром"},
+    {"id": "message-agent", "actor_user_id": null, "author": "assistant", "name": null,
+      "created_at": "2026-10-08T11:31:00Z", "text": "Результат прикреплён к задаче"}
+  ],
+  "next_cursor": "synthetic-messages-next"
+}

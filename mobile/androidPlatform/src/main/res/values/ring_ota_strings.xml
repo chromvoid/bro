@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ring_ota_0cf717b8e0f3">Неверный ответ OTA-протокола.</string>
+    <string name="ring_ota_0d4a8e251045">Ответ загрузчика потерян; запись не будет повторена.</string>
+    <string name="ring_ota_0eedcd938919">Официальный файл прошивки недоступен.</string>
+    <string name="ring_ota_182565b3d9dd">Подтверждение обновления истекло. Подготовьте прошивку заново.</string>
+    <string name="ring_ota_19a9abab6e03">Android не запустил службу обновления.</string>
+    <string name="ring_ota_221eee2ffc5d">Держите кольцо рядом с телефоном</string>
+    <string name="ring_ota_2c01a5684186">Откройте аккаунт кольца.</string>
+    <string name="ring_ota_3f533cece48e">Размер прошивки изменился.</string>
+    <string name="ring_ota_4226fc9b1f41">Подтверждение версии прошивки неполное.</string>
+    <string name="ring_ota_58ab02a76f43">Нет исходного OTA intent.</string>
+    <string name="ring_ota_59f65e17d26f">Войдите в аккаунт кольца.</string>
+    <string name="ring_ota_603d93fbe623">Хеш официального файла прошивки не совпал.</string>
+    <string name="ring_ota_60afbda560d6">Устройство или прошивка изменились.</string>
+    <string name="ring_ota_611cdfc26526">Сохранённые неизвестные OTA не удалены; журнал заполнен.</string>
+    <string name="ring_ota_6bc0e7d5251f">Журнал обновления недоступен. Автоматическое продолжение заблокировано.</string>
+    <string name="ring_ota_6c7f822607db">Нативное чтение версии недоступно.</string>
+    <string name="ring_ota_6caee0434c37">Неизвестная операция обновления текущего владельца.</string>
+    <string name="ring_ota_6cdc8c963eaa">Нужна свежая целевая прошивка на том же кольце и HW/model.</string>
+    <string name="ring_ota_6f974f9d6c33">Неверный размер OTA-кадра.</string>
+    <string name="ring_ota_7385528f6701">Повреждён ответ загрузчика кольца.</string>
+    <string name="ring_ota_76983c9f621f">Загрузчик не подтвердил блок прошивки.</string>
+    <string name="ring_ota_90f09ae01147">Журнал OTA заполнен; прежние намерения не удалены.</string>
+    <string name="ring_ota_9dc2006fcbf7">Другой origin OTA.</string>
+    <string name="ring_ota_b6e7b4d1177a">Свежий заряд или состояние зарядки не соответствует подтверждённым условиям этой прошивки.</string>
+    <string name="ring_ota_b72cc7c217d7">Журнал обновления недоступен.</string>
+    <string name="ring_ota_c2c7c4b5ba73">Официальный образ и путь загрузчика ещё не подтверждены.</string>
+    <string name="ring_ota_c3a00f2b2f21">OTA-протокол отклонил кадр.</string>
+    <string name="ring_ota_c701ffdd3968">Неизвестная OTA этого физического кольца не удалена.</string>
+    <string name="ring_ota_c8012d05270c">Исходное намерение OTA и подтверждённый результат неизменны.</string>
+    <string name="ring_ota_cc2a4ef83cba">Обновляется прошивка кольца</string>
+    <string name="ring_ota_d67586d382c3">Обновление кольца</string>
+    <string name="ring_ota_e62128aab3cd">Завершите текущую операцию кольца.</string>
+    <string name="ring_ota_fc4b902ac0b9">В старом журнале недостаточно исходных полей для сверки версии.</string>
+    <string name="ring_ota_ff83d8cf755d">Android не разрешил начать обновление в фоне. Откройте приложение и подготовьте прошивку заново.</string>
+</resources>

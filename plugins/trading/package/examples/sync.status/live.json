@@ -1,0 +1,35 @@
+{
+ "arguments": {},
+ "data": {
+  "connection": {
+   "state": "active",
+   "environment": "mainnet",
+   "api_key_hint": "…AB12",
+   "key_expires_at": null,
+   "readiness": {
+    "portfolio": "ready",
+    "orders": "ready",
+    "executions": "ready",
+    "cashflow": "ready",
+    "realtime": "ready"
+   }
+  },
+  "stream": {
+   "state": "live",
+   "connected_since": "2026-09-25T08:00:00Z",
+   "last_message_at": "2026-09-25T09:59:59Z"
+  },
+  "domains": [
+   {
+    "domain": "executions",
+    "phase": "idle",
+    "coverage_from": "2024-09-26T00:00:00Z",
+    "watermark_at": "2026-09-25T09:58:00Z",
+    "progress_pct": "100",
+    "last_success_at": "2026-09-25T09:58:00Z",
+    "last_error_code": null,
+    "coverage_gap_before": null
+   }
+  ]
+ }
+}

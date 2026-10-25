@@ -1,0 +1,9 @@
+firmware/components/u8g2/** linguist-vendored
+firmware/components/u8g2_st7305/** linguist-vendored
+firmware/components/libfvad/** linguist-vendored
+server/asr-client/vendor/** linguist-vendored
+# Preserve upstream license notices verbatim, including their original whitespace.
+shell/ring/licenses/combine-4.6.8/LICENSE -whitespace
+shell/ring/licenses/jni-sys-0.3.1/LICENSE-APACHE -whitespace
+shell/ring/licenses/jni-sys-0.4.1/LICENSE-APACHE -whitespace
+shell/ring/licenses/rust-standard-library-1.97.1/COPYRIGHT-library.html -whitespace

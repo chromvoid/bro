@@ -1,0 +1,11 @@
+<resources>
+    <string name="whoop_runtime_store_unavailable">Хранилище браслета недоступно. Очередь сохранена; очистка заблокирована, поскольку владельца данных нельзя подтвердить.</string>
+    <string name="whoop_runtime_not_bound">Сначала подключите браслет.</string>
+    <string name="whoop_runtime_invalid_binding">Привязка устройства больше не действует.</string>
+    <string name="whoop_runtime_enrollment_failed">Сервер не разрешил подключить устройство.</string>
+    <string name="whoop_runtime_invalid_receipt">Сервер не подтвердил пакет браслета.</string>
+    <string name="whoop_runtime_redirect_rejected">Сервер перенаправил запрос устройства.</string>
+    <string name="whoop_runtime_response_too_large">Ответ сервера слишком велик.</string>
+    <string name="whoop_runtime_invalid_response">Сервер вернул неверный ответ.</string>
+    <string name="whoop_runtime_native_enrollment_required">Прежняя очередь сохранена и заблокирована. Найдите браслет и подключите его заново: старая очередь будет закрыта без передачи данных новому аккаунту.</string>
+</resources>

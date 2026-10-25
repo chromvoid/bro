@@ -1,0 +1,151 @@
+{
+ "arguments": {
+  "range": {
+   "period": "this_year"
+  }
+ },
+ "data": {
+  "items": [
+   {
+    "id": "funding:NjA0ODI4MjcxOA==",
+    "account": "funding",
+    "kind": "p2p",
+    "operation": "p2p_sale",
+    "direction": "out",
+    "coin": "USDT",
+    "amount": "500",
+    "counterparty": "p2p",
+    "external": true,
+    "balance_after": "1000",
+    "note": "P2P Sale",
+    "occurred_at": "2026-09-20T12:00:00Z",
+    "usd_value_at_event": "500",
+    "markable": false,
+    "treatment": "auto",
+    "unit_cost_usd": null
+   },
+   {
+    "id": "funding:NjA0ODI4MjcwNA==",
+    "account": "funding",
+    "kind": "transfer",
+    "operation": "transfer",
+    "direction": "in",
+    "coin": "USDT",
+    "amount": "1500",
+    "counterparty": "unified",
+    "external": false,
+    "balance_after": "1500",
+    "note": "Transfer from Unified Trading Account",
+    "occurred_at": "2026-09-19T08:00:00Z",
+    "usd_value_at_event": "1500",
+    "markable": false,
+    "treatment": "auto",
+    "unit_cost_usd": null
+   },
+   {
+    "id": "funding:NjA0ODI4MjY5MA==",
+    "account": "funding",
+    "kind": "earn",
+    "operation": "earn_reward",
+    "direction": "in",
+    "coin": "LTC",
+    "amount": "0.0005",
+    "counterparty": "bybit",
+    "external": true,
+    "balance_after": "0.0005",
+    "note": "Easy Earn | Flexible Interest Distribution",
+    "occurred_at": "2026-08-25T00:30:00Z",
+    "usd_value_at_event": "0.06",
+    "markable": false,
+    "treatment": "auto",
+    "unit_cost_usd": null
+   },
+   {
+    "id": "funding:NjA0ODI4MjY4MA==",
+    "account": "funding",
+    "kind": "deposit",
+    "operation": "deposit",
+    "direction": "in",
+    "coin": "USDT",
+    "amount": "1500",
+    "counterparty": "chain",
+    "external": true,
+    "balance_after": "1500",
+    "note": "Deposit",
+    "occurred_at": "2026-02-01T08:00:00Z",
+    "usd_value_at_event": "1500",
+    "markable": true,
+    "treatment": "external",
+    "unit_cost_usd": "1"
+   }
+  ],
+  "totals": {
+   "by_coin": [
+    {
+     "coin": "LTC",
+     "in": "0.0005",
+     "out": "0",
+     "net": "0.0005"
+    },
+    {
+     "coin": "USDT",
+     "in": "1500",
+     "out": "500",
+     "net": "1000"
+    }
+   ],
+   "by_kind": [
+    {
+     "kind": "deposit",
+     "count": 1,
+     "usd_in": "1500",
+     "usd_out": "0"
+    },
+    {
+     "kind": "earn",
+     "count": 1,
+     "usd_in": "0.06",
+     "usd_out": "0"
+    },
+    {
+     "kind": "p2p",
+     "count": 1,
+     "usd_in": "0",
+     "usd_out": "500"
+    }
+   ],
+   "usd": {
+    "in": "1500.06",
+    "out": "500",
+    "net": "1000.06",
+    "unpriced_count": 0
+   },
+   "by_month": [
+    {
+     "month": "2026-07",
+     "usd_in": "0",
+     "usd_out": "0"
+    },
+    {
+     "month": "2026-08",
+     "usd_in": "1500.06",
+     "usd_out": "0"
+    },
+    {
+     "month": "2026-09",
+     "usd_in": "0",
+     "usd_out": "500"
+    }
+   ]
+  },
+  "next_cursor": null,
+  "freshness": {
+   "as_of": "2026-09-25T10:00:00Z",
+   "connection_state": "active",
+   "stream": "live",
+   "last_reconcile_at": "2026-09-25T09:58:00Z",
+   "history_complete": true,
+   "coverage_from": "2024-09-26T00:00:00Z"
+  }
+ }
+}

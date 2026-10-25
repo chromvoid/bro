@@ -1,0 +1,74 @@
+{
+ "arguments": {
+  "coin": "LTC",
+  "range": {
+   "period": "30d"
+  }
+ },
+ "data": {
+  "unit": "USD",
+  "lot_method": "lifo",
+  "coin": "LTC",
+  "open_qty": "2",
+  "value": "200",
+  "held_qty": "2",
+  "unexplained_qty": "0",
+  "traded_against": "BTC",
+  "closed": false,
+  "result": null,
+  "core": {
+   "qty": null,
+   "asked": "1",
+   "since": "2026-09-01T00:00:00Z",
+   "entry": null,
+   "unrealized": null,
+   "sold_qty": null,
+   "sold_price": null,
+   "sold_unrealized": null
+  },
+  "avg_entry": null,
+  "break_even": null,
+  "cycle_started_at": null,
+  "realized_in_cycle": null,
+  "mark": "100",
+  "unrealized": null,
+  "unrealized_pct": null,
+  "realized": null,
+  "realized_in_range": null,
+  "income": "0",
+  "income_in_range": "0",
+  "fees": null,
+  "avg_buy": null,
+  "as_of": null,
+  "open_cost": null,
+  "opening": null,
+  "away_qty": "0",
+  "short_qty": "0",
+  "unpriced_events": 1,
+  "events": 3,
+  "lots": [],
+  "lots_total": 0,
+  "realized_by_month": [
+   {
+    "month": "2026-09",
+    "realized": null
+   }
+  ],
+  "freshness": {
+   "as_of": "2026-09-25T10:00:00Z",
+   "connection_state": "active",
+   "stream": "live",
+   "last_reconcile_at": "2026-09-25T09:58:00Z",
+   "history_complete": true,
+   "coverage_from": "2024-09-26T00:00:00Z"
+  },
+  "issues": [
+   {
+    "code": "p2p_cancellation_unlinked",
+    "coin": "LTC",
+    "occurred_at": "2026-09-25T09:00:00Z",
+    "entry_id": "funding:synthetic-p2p-cancel"
+   }
+  ]
+ }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="ambient_error_not_connected">Адрес сервера не настроен.</string>
+  <string name="ambient_error_not_authenticated">Запись остановлена: закончилась сессия или сменился аккаунт. Войдите в Bro и нажмите «Начать запись» снова.</string>
+  <string name="ambient_error_permission_denied">Разрешите доступ к микрофону и нажмите «Начать запись».</string>
+  <string name="ambient_error_codec_unavailable">Устройство не поддерживает доступный серверу формат сжатия речи. Запись остановлена.</string>
+  <string name="ambient_error_vad_unavailable">Не удалось запустить определение речи на устройстве. Запись остановлена.</string>
+  <string name="ambient_error_microphone_busy">Микрофон занят звонком или другим приложением. Запись остановлена.</string>
+  <string name="ambient_error_interrupted">Запись прервана. Вернитесь на этот экран и нажмите «Начать запись» снова.</string>
+  <string name="ambient_error_queue_full">Очередь достигла предела 512 МБ. Запись остановлена; аудио сохранено.</string>
+  <string name="ambient_error_queue_corrupt">Не удалось прочитать очередь. Запись остановлена; удалите очередь, чтобы продолжить.</string>
+  <string name="ambient_error_network_unavailable">Нет связи с сервером. Неотправленное аудио остаётся на устройстве.</string>
+  <string name="ambient_error_invalid_receipt">Сервер не подтвердил сохранение. Фрагмент оставлен на устройстве.</string>
+  <string name="ambient_error_server_rejected">Сервер отклонил загрузку. Запись остановлена; очередь сохранена.</string>
+  <string name="ambient_error_batch_expired">Фрагмент истёк или удалён на сервере. Очередь сохранена.</string>
+  <string name="ambient_error_capture_failed">Не удалось записать звук. Запись остановлена; сохранённые фрагменты остаются в очереди.</string>
+  <string name="ambient_notification_channel">Фоновая запись речи</string>
+  <string name="ambient_notification_description">Микрофон включён; здесь можно остановить запись.</string>
+  <string name="ambient_notification_title">Микрофон слушает речь</string>
+  <string name="ambient_notification_text">Речевые фрагменты отправляются на ваш сервер. Нажмите, чтобы управлять записью.</string>
+  <string name="ambient_notification_stop">Остановить</string>
+  <string name="ambient_error_previous_queue">Осталась очередь прежнего входа. Она сохранена и не отправляется с новой сессией. Закройте её явно кнопкой «Очистить очередь» после проверки записей; затем начните новую запись.</string>
+</resources>

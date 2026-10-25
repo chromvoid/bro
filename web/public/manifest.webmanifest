@@ -1,0 +1,16 @@
+{
+  "_generated_palette": "Generated from web/src/design/tokens.css by python3 web/tooling/generate_palette.py; do not edit palette values.",
+  "name": "Bro",
+  "short_name": "Bro",
+  "lang": "ru",
+  "start_url": "/assistant",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#5863a5",
+  "theme_color": "#f7f8fa",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

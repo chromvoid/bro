@@ -1,0 +1,60 @@
+{
+ "type": "trading.sync.progress",
+ "version": "1.0.0",
+ "description": "Прогресс загрузки истории.",
+ "payload_schema": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+   "domain": {
+    "enum": [
+     "wallet",
+     "executions",
+     "orders",
+     "open_orders",
+     "deposits",
+     "internal_deposits",
+     "withdrawals",
+     "unified_ledger",
+     "funding_ledger"
+    ]
+   },
+   "phase": {
+    "enum": [
+     "idle",
+     "backfill",
+     "incremental",
+     "refill",
+     "error"
+    ]
+   },
+   "progress_pct": {
+    "type": [
+     "string",
+     "null"
+    ],
+    "format": "decimal",
+    "maxLength": 64
+   },
+   "watermark_at": {
+    "type": [
+     "string",
+     "null"
+    ],
+    "format": "date-time",
+    "maxLength": 40
+   }
+  },
+  "required": [
+   "domain",
+   "phase",
+   "progress_pct",
+   "watermark_at"
+  ]
+ },
+ "scopes": [
+  "trading.read"
+ ],
+ "ordering": "actor",
+ "cursor_retention_days": 7
+}

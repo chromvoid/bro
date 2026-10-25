@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="whoop_platform_bluetooth_overflow">Переполнена очередь Bluetooth браслета.</string>
+    <string name="whoop_platform_gatt_event_mismatch">Неожиданный ответ Bluetooth при операции %1$s (%2$s).</string>
+    <string name="whoop_platform_gatt_error">Ошибка Bluetooth при операции %1$s (%2$s).</string>
+    <string name="whoop_platform_connect_failed">Не удалось подключиться к браслету.</string>
+    <string name="whoop_platform_services_failed">Не удалось прочитать службы браслета.</string>
+    <string name="whoop_platform_notify_failed">Не удалось включить уведомления браслета.</string>
+    <string name="whoop_platform_notify_failed_2">Android не принял подписку на уведомления браслета.</string>
+    <string name="whoop_platform_write_failed">Android не принял команду браслета.</string>
+    <string name="whoop_platform_invalid_batch">Не указан ключ пакета браслета.</string>
+</resources>

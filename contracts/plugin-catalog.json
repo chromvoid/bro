@@ -1,0 +1,299 @@
+{
+  "contract": "assistant.catalog/v1",
+  "installations": [
+    {
+      "installation_id": "trading-main",
+      "package": {
+        "id": "trading",
+        "version": "1.0.0",
+        "digest": "sha256:c95505c0597f64110c8a1b01dcdb6ab4ecb1f9345704222bfe2dc1ec26972b26"
+      },
+      "title": "Торговля",
+      "description": "Мониторинг спотовой торговли на Bybit только для чтения: портфель, ордера, сделки, все движения средств и PnL.",
+      "status": "ready",
+      "note": null,
+      "checked_at": "2026-09-25T10:00:00+00:00",
+      "granted_scopes": [
+        "trading.read",
+        "trading.write"
+      ],
+      "capabilities": [
+        {
+          "id": "portfolio",
+          "description": "Показывает портфель Bybit пользователя по единому счёту, Funding и Earn: балансы, историю стоимости, открытые и прошлые ордера, сделки, все движения средств (вводы и выводы, P2P, переводы между счетами, Earn), позиции по монетам: средняя цена входа, безубыток, реализованный и нереализованный результат.",
+          "boundaries": [
+            "Только чтение: не размещает, не изменяет и не отменяет ордера",
+            "Не даёт инвестиционных советов",
+            "Спот Bybit: единый торговый счёт, Funding и Earn",
+            "Данные доступны после подключения read-only ключа"
+          ],
+          "tools": [
+            "portfolio.get",
+            "portfolio.history",
+            "position.summary",
+            "position.chart",
+            "positions.list",
+            "positions.strategy",
+            "positions.method",
+            "positions.core",
+            "orders.open",
+            "orders.history",
+            "executions.list",
+            "cashflow.list",
+            "flows.list",
+            "flows.mark",
+            "symbols.list",
+            "sync.status",
+            "sync.refill"
+          ],
+          "ui": [
+            "trading.home"
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "id": "cashflow.list",
+          "version": "1.0.0",
+          "effect": "read",
+          "scopes": [
+            "trading.read"
+          ],
+          "surfaces": [
+            "ui",
+            "agent"
+          ]
+        },
+        {
+          "id": "executions.list",
+          "version": "1.0.0",
+          "effect": "read",
+          "scopes": [
+            "trading.read"
+          ],
+          "surfaces": [
+            "ui",
+            "agent"
+          ]
+        },
+        {
+          "id": "flows.list",
+          "version": "1.1.0",
+          "effect": "read",
+          "scopes": [
+            "trading.read"
+          ],
+          "surfaces": [
+            "ui",
+            "agent"
+          ]
+        },
+        {
+          "id": "flows.mark",
+          "version": "1.0.0",
+          "effect": "write",
+          "scopes": [
+            "trading.write"
+          ],
+          "surfaces": [
+            "ui"
+          ]
+        },
+        {
+          "id": "orders.history",
+          "version": "1.0.0",
+          "effect": "read",
+          "scopes": [
+            "trading.read"
+          ],
+          "surfaces": [
+            "ui",
+            "agent"
+          ]
+        },
+        {
+          "id": "orders.open",
+          "version": "1.0.0",
+          "effect": "read",
+          "scopes": [
+            "trading.read"
+          ],
+          "surfaces": [
+            "ui",
+            "agent"
+          ]
+        },
+        {
+          "id": "portfolio.get",
+          "version": "1.0.0",
+          "effect": "read",
+          "scopes": [
+            "trading.read"
+          ],
+          "surfaces": [
+            "ui",
+            "agent"
+          ]
+        },
+        {
+          "id": "portfolio.history",
+          "version": "1.2.0",
+          "effect": "read",
+          "scopes": [
+            "trading.read"
+          ],
+          "surfaces": [
+            "ui",
+            "agent"
+          ]
+        },
+        {
+          "id": "position.chart",
+          "version": "1.1.0",
+          "effect": "read",
+          "scopes": [
+            "trading.read"
+          ],
+          "surfaces": [
+            "ui"
+          ]
+        },
+        {
+          "id": "position.summary",
+          "version": "5.0.0",
+          "effect": "read",
+          "scopes": [
+            "trading.read"
+          ],
+          "surfaces": [
+            "ui",
+            "agent"
+          ]
+        },
+        {
+          "id": "positions.core",
+          "version": "1.0.0",
+          "effect": "write",
+          "scopes": [
+            "trading.write"
+          ],
+          "surfaces": [
+            "ui"
+          ]
+        },
+        {
+          "id": "positions.list",
+          "version": "4.0.0",
+          "effect": "read",
+          "scopes": [
+            "trading.read"
+          ],
+          "surfaces": [
+            "ui",
+            "agent"
+          ]
+        },
+        {
+          "id": "positions.method",
+          "version": "1.0.0",
+          "effect": "write",
+          "scopes": [
+            "trading.write"
+          ],
+          "surfaces": [
+            "ui"
+          ]
+        },
+        {
+          "id": "positions.strategy",
+          "version": "1.1.0",
+          "effect": "write",
+          "scopes": [
+            "trading.write"
+          ],
+          "surfaces": [
+            "ui"
+          ]
+        },
+        {
+          "id": "symbols.list",
+          "version": "1.0.0",
+          "effect": "read",
+          "scopes": [
+            "trading.read"
+          ],
+          "surfaces": [
+            "ui",
+            "agent"
+          ]
+        },
+        {
+          "id": "sync.refill",
+          "version": "1.0.0",
+          "effect": "write",
+          "scopes": [
+            "trading.write"
+          ],
+          "surfaces": [
+            "ui"
+          ]
+        },
+        {
+          "id": "sync.status",
+          "version": "1.0.0",
+          "effect": "read",
+          "scopes": [
+            "trading.read"
+          ],
+          "surfaces": [
+            "ui",
+            "agent"
+          ]
+        }
+      ],
+      "ui": [
+        {
+          "id": "trading.home",
+          "kind": "native",
+          "title": "Торговля",
+          "capability": "portfolio",
+          "entry": "trading.home",
+          "client_api": 1,
+          "scopes": [
+            "trading.read"
+          ],
+          "fallback": "headless",
+          "requires_tools": {
+            "portfolio.get": 1,
+            "portfolio.history": 1,
+            "position.summary": 5,
+            "orders.open": 1,
+            "orders.history": 1,
+            "executions.list": 1,
+            "flows.list": 1,
+            "sync.status": 1,
+            "positions.list": 4,
+            "position.chart": 1
+          }
+        }
+      ],
+      "configuration": {
+        "writable": true
+      },
+      "events": [
+        {
+          "type": "trading.connection.changed",
+          "version": "1.0.0"
+        },
+        {
+          "type": "trading.data.changed",
+          "version": "1.0.0"
+        },
+        {
+          "type": "trading.sync.progress",
+          "version": "1.0.0"
+        }
+      ]
+    }
+  ]
+}

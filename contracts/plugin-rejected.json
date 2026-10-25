@@ -1,0 +1,16 @@
+{
+  "error": "invalid_arguments",
+  "detail": {
+    "code": "invalid_arguments",
+    "message": "Аргументы не соответствуют схеме",
+    "recovery": "fix_arguments",
+    "field_errors": [
+      {
+        "path": "/symbol",
+        "code": "type"
+      }
+    ]
+  },
+  "request_id": null,
+  "contract": "assistant.rejected/v1"
+}
