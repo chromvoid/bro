@@ -81,7 +81,9 @@ test('dictation starts from a populated field and preserves it when voice needs 
     Object.defineProperty(MediaDevices.prototype, 'getUserMedia', {
       configurable: true,
       value: async () => {
-        throw new Error('A microphone must not open before voice setup')
+        // Capture starts alongside readiness; keep it synthetic while setup is unavailable.
+        const context = new AudioContext()
+        return context.createMediaStreamDestination().stream
       },
     })
   })
@@ -90,6 +92,9 @@ test('dictation starts from a populated field and preserves it when voice needs 
     route.fulfill({
       json: { asr: { state: 'unavailable', code: 'not_configured', action: 'settings' } },
     }),
+  )
+  await page.routeWebSocket(/\/v1\/live$/, (socket) =>
+    socket.send(JSON.stringify({ type: 'hello' })),
   )
   await page.goto(`${APP}assistant`)
   const field = page.getByLabel('Сообщение ассистенту')
@@ -126,12 +131,22 @@ for (const textSize of ['100%', '200%']) {
         },
       })
     })
-    await page.routeWebSocket(/\/v1\/conversation\/transcriptions\/stream$/, (socket) => {
-      socket.send(JSON.stringify({ type: 'ready', sample_rate: 16000, max_seconds: 120 }))
+    await page.routeWebSocket(/\/v1\/live$/, (socket) => {
+      let id: string | null = null
+      socket.send(JSON.stringify({ type: 'hello' }))
       let frames = 0
       socket.onMessage((message) => {
-        if (typeof message !== 'string' && ++frames === 3)
-          socket.send(JSON.stringify({ type: 'partial', text: 'Продолжение' }))
+        if (typeof message !== 'string') {
+          if (++frames === 9)
+            socket.send(JSON.stringify({ type: 'dictation.partial', id, text: 'Продолжение' }))
+          return
+        }
+        const frame = JSON.parse(message)
+        if (frame.type === 'dictation.start') {
+          id = frame.id
+          frames = 0
+          socket.send(JSON.stringify({ type: 'dictation.ready', id, sample_rate: 16000 }))
+        }
         // Hold the final transcript so the longer processing status can be measured too.
       })
     })

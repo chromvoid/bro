@@ -19,7 +19,13 @@ test.describe('on the disposable backend', () => {
     await expect(page.getByRole('checkbox', { name: 'Разговор с ассистентом' })).toBeChecked()
     await page.getByRole('button', { name: 'Создать ссылку на 7 дней' }).click()
     const link = page.getByTestId('invite-link').getByRole('textbox', { name: 'Ссылка' })
-    await expect(link).toHaveValue(/:\d+\/login#kind=invite&token=/)
+    await expect(link).toHaveValue(/^https:\/\/bro\.chromvoid\.com\/join#/)
+    const invitation = new URL(await link.inputValue())
+    const parameters = new URLSearchParams(invitation.hash.slice(1))
+    expect(invitation.search).toBe('')
+    expect(parameters.get('server')).toBe(new URL(baseURL!).origin)
+    expect(parameters.get('kind')).toBe('invite')
+    expect(parameters.get('token')).toBeTruthy()
     await expect(page.getByTestId('invite-link')).toContainText(
       'Передайте её выбранному человеку лично',
     )
@@ -27,7 +33,13 @@ test.describe('on the disposable backend', () => {
     const visitor = await browser.newContext({ baseURL })
     try {
       const signUp = await visitor.newPage()
-      await signUp.goto(await link.inputValue())
+      // Exercise the browser hand-off on the disposable HTTP stand, without visiting production.
+      const login = new URL(`${APP}login`, baseURL)
+      login.hash = new URLSearchParams({
+        kind: 'invite',
+        token: parameters.get('token')!,
+      }).toString()
+      await signUp.goto(login.href)
       await expect(signUp.getByRole('heading', { name: 'Добро пожаловать' })).toBeVisible()
     } finally {
       await visitor.close()
@@ -54,9 +66,14 @@ test.describe('on the disposable backend', () => {
     await expect(page.getByText('Лимиты сохранены')).toBeVisible()
     await page.getByRole('button', { name: 'Выдать ссылку сброса пароля' }).click()
     await expect(page.getByTestId('reset-link')).toContainText('Ольга Пример')
-    await expect(page.getByTestId('reset-link').getByRole('textbox')).toHaveValue(
-      /#kind=reset&token=/,
-    )
+    const reset = page.getByTestId('reset-link').getByRole('textbox')
+    await expect(reset).toHaveValue(/^https:\/\/bro\.chromvoid\.com\/join#/)
+    const resetLink = new URL(await reset.inputValue())
+    const parameters = new URLSearchParams(resetLink.hash.slice(1))
+    expect(resetLink.search).toBe('')
+    expect(parameters.get('server')).toBe(new URL(baseURL!).origin)
+    expect(parameters.get('kind')).toBe('reset')
+    expect(parameters.get('token')).toBeTruthy()
 
     await page.getByRole('button', { name: 'Отключить доступ' }).click()
     await expect(page.getByRole('dialog', { name: /Отключить/ })).toContainText('Данные сохранятся')

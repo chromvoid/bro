@@ -1,4 +1,4 @@
-import homeReadinessArchive from './derivedScores.home-readiness.fixture.json'
+import homeReadinessArchive from './derivedScores.home-readiness.fixture.json' with { type: 'json' }
 
 /** Synthetic values, actual producer shapes from soul_scores_read.py/_refs and soul_result_store.py. */
 export const measurementReference = (
@@ -528,6 +528,7 @@ export function producerHomeArchiveItem() {
       query('home_steps_day_db'),
       query('home_steps_anchor'),
     ],
+    input_windows: [],
     baseline: { as_of: asOf, source_id: 'ring-a', components: baselines },
   }
   return {
