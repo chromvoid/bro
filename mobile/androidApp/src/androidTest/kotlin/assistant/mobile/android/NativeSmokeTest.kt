@@ -307,7 +307,7 @@ class NativeSmokeTest {
         server.activityEnabled = true
         server.placesEnabled = true
         login()
-        assertEquals("dev.assistant.shell", activity.packageName)
+        assertEquals("com.chromvoid.bro", activity.packageName)
         assertEquals("нет", activity.localizedString(GeneratedStrings.Personal.SleepNight.awakeningCount(0.0, "0", "5 мин")))
         assertEquals("21 раз · 5 мин", activity.localizedString(GeneratedStrings.Personal.SleepNight.awakeningCount(21.0, "21", "5 мин")))
         assertEquals("Маша (@masha) увидит Питание:", activity.localizedString(GeneratedStrings.Access.willSee("Маша", "masha", "Питание")))

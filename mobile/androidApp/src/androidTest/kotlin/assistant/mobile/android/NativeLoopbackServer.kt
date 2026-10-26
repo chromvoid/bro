@@ -341,7 +341,7 @@ internal class NativeLoopbackServer : Closeable {
                     }
                     request.method == "GET" && request.path == "/v1/shell/android" -> {
                         val release = JSONObject()
-                            .put("package", "dev.assistant.shell").put("version_code", 2)
+                            .put("package", "com.chromvoid.bro").put("version_code", 2)
                             .put("version_name", "synthetic-next")
                             .put("size", updateBytes.size)
                             .put("sha256", MessageDigest.getInstance("SHA-256").digest(updateBytes)

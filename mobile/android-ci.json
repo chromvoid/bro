@@ -1,6 +1,6 @@
 {
   "module": "androidApp",
-  "application_id": "dev.assistant.shell",
+  "application_id": "com.chromvoid.bro",
   "smoke_classes": {
     "assistant.mobile.android.NativeSmokeTest": [
       "mobile/androidApp/src/androidTest/kotlin/assistant/mobile/android/NativeSmokeTest.kt",

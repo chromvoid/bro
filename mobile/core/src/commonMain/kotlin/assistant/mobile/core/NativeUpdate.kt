@@ -24,7 +24,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.longOrNull
 
-const val NATIVE_UPDATE_PACKAGE = "dev.assistant.shell"
+const val NATIVE_UPDATE_PACKAGE = "com.chromvoid.bro"
 const val MAX_UPDATE_BYTES = 512L shl 20
 
 /** The manifest supplies no download authority: the path is constructed from the pinned channel. */

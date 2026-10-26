@@ -15,8 +15,11 @@ identifies the source revision. Internal development history is not mirrored.
 
 Requires Android 8.0 or later and an ARM64 device. Download the APK and follow the
 Android installation prompt. Releases include a SHA-256 checksum and public build
-metadata. Updates use the same signing certificate, so existing Bro installations
-can be updated without uninstalling.
+metadata. The Android application ID is `com.chromvoid.bro`. Updates with this ID
+use the same signing certificate and install over earlier versions of this package.
+The former `dev.assistant.shell` package is a separate installation: sign in again
+to the same server account to access your server data. Android does not transfer
+local data between different application IDs.
 
 ## Source code
 

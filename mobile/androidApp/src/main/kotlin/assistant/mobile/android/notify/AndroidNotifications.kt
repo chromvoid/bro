@@ -200,9 +200,9 @@ class AndroidNotifications private constructor(private val context: Context) : N
     private fun openUri(token: String): Uri = Uri.Builder().scheme("assistant-native-notify").authority("open").appendPath(token).build()
 
     companion object {
-        const val ACTION_FIRE = "dev.assistant.shell.notify.FIRE"
-        const val ACTION_OPEN = "dev.assistant.shell.notify.OPEN"
-        const val ACTION_EXPIRE = "dev.assistant.shell.notify.EXPIRE"
+        const val ACTION_FIRE = "com.chromvoid.bro.notify.FIRE"
+        const val ACTION_OPEN = "com.chromvoid.bro.notify.OPEN"
+        const val ACTION_EXPIRE = "com.chromvoid.bro.notify.EXPIRE"
         const val EXTRA_TOKEN = "native_notification_token"
         const val CHANNEL = "native-reminders"
         private const val SNAPSHOT = "snapshot"

@@ -107,7 +107,7 @@ android {
         sourceSets.getByName("androidTest").kotlin.srcDir("src/upgradeTest/kotlin")
     }
     defaultConfig {
-        applicationId = "dev.assistant.shell"
+        applicationId = "com.chromvoid.bro"
         minSdk = 26
         targetSdk = 36
         // Family phones and the Mac mini's 16 KiB emulator are both arm64.

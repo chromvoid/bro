@@ -155,5 +155,5 @@ private const val APK_PATH = "/v1/shell/android/200.apk"
 private val APK_BYTES = "synthetic APK bytes".toByteArray(Charsets.UTF_8)
 private fun updateDigest(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").digest(bytes)
     .joinToString("") { "%02x".format(it.toInt() and 255) }
-private val MANIFEST_BYTES = """{"release":{"package":"dev.assistant.shell","version_code":200,"version_name":"2026.10.22","sha256":"${updateDigest(APK_BYTES)}","size":${APK_BYTES.size}}}"""
+private val MANIFEST_BYTES = """{"release":{"package":"com.chromvoid.bro","version_code":200,"version_name":"2026.10.22","sha256":"${updateDigest(APK_BYTES)}","size":${APK_BYTES.size}}}"""
     .toByteArray(Charsets.UTF_8)

@@ -9,10 +9,11 @@ notifications, парсеры пяти метрик и синхронная ма
 Android выполняет GATT, хранение, проверку IANA timezone, планирование и доставку.
 
 `mobile/androidPlatform` использует этот каталог через `build-android.sh` для основного
-приложения `dev.assistant.shell`. Cargo source/lock и CI-кэш общие; исходники протокола
+приложения `com.chromvoid.bro` (application ID с 26 октября 2026). Переход с
+`dev.assistant.shell` создаёт отдельную установку без автоматического переноса локальных данных. Cargo source/lock и CI-кэш общие; исходники протокола
 не копируются. JNI экспортирует только `assistant.mobile.platform.ring.NativeRing`
 и `NativeRingOta` поверх ABI 1. GATT/SQLite/Keystore/collector и сессия принадлежат
-нативному Android-приложению. Обновление прежней установки сохраняет UID и совместимые
+нативному Android-приложению. Обновление внутри `com.chromvoid.bro` сохраняет UID и совместимые
 схемы/aliases; привязка источника проверяется перед возобновлением очереди.
 Rust-тесты, JNI smoke, 16 KiB ELF и zipalign выполняются на CI. Тренировки/HR/GPS/FGS,
 ActivityRecognition, NotificationListener, Accessibility-жесты и OTA используют

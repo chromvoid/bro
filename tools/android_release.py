@@ -37,7 +37,7 @@ CheckError, ROOT = ci.CheckError, ci.ROOT
 
 SIGNING = ('ANDROID_SIGNING_KEYSTORE', 'ANDROID_SIGNING_STORE_PASSWORD', 'ANDROID_SIGNING_KEY_ALIAS',
            'ANDROID_SIGNING_KEY_PASSWORD')
-PACKAGE = 'dev.assistant.shell'
+PACKAGE = 'com.chromvoid.bro'
 PIN = ROOT / 'mobile/release-certificate.sha256'
 EPOCH = 1767225600  # 2026-01-01T00:00:00Z: version codes count minutes from here
 
@@ -47,7 +47,9 @@ def production_release(environ):
 
     The CI repository token reads release metadata only. No family session or production SSH is
     needed. Historical artifacts may contain multiple APKs; only the primary manifest is read.
-    Missing/expired artifacts fail closed instead of treating an unknown production code as zero.
+    The final dev.assistant.shell artifact also anchors the first com.chromvoid.bro release;
+    this is a version baseline, not a cross-package Android upgrade. Missing/expired artifacts
+    fail closed instead of treating an unknown production code as zero.
     """
     api = environ.get('GITHUB_API_URL', '').rstrip('/')
     repository, token = environ.get('GITHUB_REPOSITORY'), environ.get('GITHUB_TOKEN')
@@ -84,7 +86,7 @@ def production_release(environ):
                     if Path(name).name != 'release.json':
                         continue
                     report = json.loads(archive.read(name))
-                    if report.get('package') != PACKAGE:
+                    if report.get('package') not in (PACKAGE, 'dev.assistant.shell'):
                         continue
                     code = report.get('version_code')
                     if (not isinstance(code, int) or isinstance(code, bool) or not 1 < code <= 2_100_000_000

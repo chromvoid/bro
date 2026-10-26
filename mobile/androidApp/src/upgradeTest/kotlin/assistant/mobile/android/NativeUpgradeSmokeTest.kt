@@ -39,7 +39,7 @@ class NativeUpgradeSmokeTest {
         if (BuildConfig.DEBUG) org.junit.Assume.assumeTrue("Upgrade fixture is installed by CI only", fixture.contains("uid"))
         val origin = requireNotNull(fixture.getString("origin", null))
         assertEquals(BuildConfig.ASSISTANT_ORIGIN, origin)
-        assertEquals("dev.assistant.shell", context.packageName)
+        assertEquals("com.chromvoid.bro", context.packageName)
         assertEquals(fixture.getInt("uid", -1), android.os.Process.myUid())
         val owner = RingWorkoutBinding(origin, USER, "synthetic-ring", "synthetic-collector", ADDRESS, 7, "Europe/Moscow")
         val keys = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }

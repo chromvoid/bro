@@ -1,6 +1,6 @@
 # Мобильные клиенты и выпуск
 
-Основной Android — `dev.assistant.shell` из `mobile/`: KMP `core`/`plugin-api`,
+Основной Android — `com.chromvoid.bro` из `mobile/`: KMP `core`/`plugin-api`,
 `design`/`androidPlatform` и Jetpack Compose `androidApp`. Все семейные разделы нативные;
 Android WebView-оболочка и её JavaScript-мост удалены из собираемого APK этапом 26.
 Браузерный клиент `web/` сохраняется; iOS остаётся Swift/WKWebView в `shell/ios`.
@@ -48,8 +48,9 @@ versionCode — минуты с 2026-01-01 по времени коммита; r
 Ограниченный deployment account получает только `github-release.json`, без APK. Publisher
 проверяет версию, пакет, сертификат, фиксированный GitHub URL и успешную выкладку коммита
 или его потомка (ancestry и `deploy.json`, под `deploy.lock`). В
-`$ASSISTANT_DATA/state/shell/android/dev.assistant.shell` сохраняются manifest и три последних
-JSON описания. Новые APK на сервер не записываются; прежние файлы сохранены для старых скачиваний.
+`$ASSISTANT_DATA/state/shell/android/com.chromvoid.bro` сохраняются manifest и три последних
+JSON описания. Новые APK на сервер не записываются. Прежние файлы остаются под старым ID
+и новым каналом не раздаются; прежние GitHub Releases доступны по историческим ссылкам.
 Каталог временного кандидата остаётся нечитаемым хвостом: API и publisher его не выбирают,
 production-данные при подготовке PR не удаляются.
 
@@ -63,16 +64,22 @@ production-данные при подготовке PR не удаляются.
 выбранного сервера, self-hosted и переезда сессии. Новая сборка с другим `assistant.origin`
 меняет источник обновлений. Отдельный HTTP-клиент не передаёт Bearer, `X-Expected-User` или
 другие credentials, не использует cookies, redirects и retry; redirect и сетевой сбой дают ошибку.
-Updater проверяет размер, SHA-256, `dev.assistant.shell`, строго больший versionCode и
+Updater проверяет размер, SHA-256, `com.chromvoid.bro`, строго больший versionCode и
 сертификат, закреплённый в `BuildConfig.RELEASE_CERTIFICATE_SHA256`, повторно проверяет APK
 перед PackageInstaller. Отказ установки и ошибка показаны в настройках; повтор требует кнопки.
 `/.well-known/assetlinks.json` связывает
 `/login` с основным пакетом и тем же сертификатом. Android может не подтвердить ссылку
 на закрытом Tailscale-origin; владелец включает открытие ссылок в настройках приложения.
 
-### Обновление поверх прежней оболочки
+### Обновление Android
 
-Новый APK устанавливается поверх основного Bro с тем же сертификатом, сохраняя UID/Keystore.
+Текущий application ID — `com.chromvoid.bro`. APK с этим ID и прежним release-сертификатом
+обновляет только ту же установку. Переход с `dev.assistant.shell` требует отдельной
+установки и повторного входа; Android не переносит UID, Keystore или локальные базы между ID.
+CI проверяет сохранение данных на синтетическом предшественнике с тем же новым ID.
+
+Исторический переход с оболочки на нативный UI в пакете `dev.assistant.shell`
+сохранял UID/Keystore и работал следующим образом.
 Cookies WebView не импортируются: после обновления нужен нативный вход. Совместимые базы,
 очереди, журналы и ключи сохраняются по прежним путям/aliases; недоказанная привязка не
 даёт разрешения отправлять их новому аккаунту. Перед возобновлением проверяются установка,

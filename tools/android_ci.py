@@ -958,7 +958,7 @@ def smoke(env, reports, *, timeout=300, project=MOBILE, exercise=None, classes=N
 
 
 def legacy_shell_tree(destination, *, env):
-    """Recover the immutable old app only on CI; never retain WebView in the new tree."""
+    """Recover the archived implementation as a same-package synthetic predecessor on CI."""
     if env.get('CI', '').lower() != 'true':
         raise CheckError('Synthetic legacy shell preparation is CI-only')
     try:
@@ -980,6 +980,14 @@ def legacy_shell_tree(destination, *, env):
         unpack(archive, destination)
     finally:
         archive.unlink(missing_ok=True)
+    # Android cannot upgrade across application IDs. Rebuild this archived implementation
+    # under today's ID to exercise same-ID data/Keystore retention, never a real old install.
+    gradle = destination / 'shell/android/app/build.gradle.kts'
+    original = gradle.read_text()
+    assignment = 'applicationId = "dev.assistant.shell"'
+    if original.count(assignment) != 1:
+        raise CheckError('Archived upgrade fixture has an unexpected application ID')
+    gradle.write_text(original.replace(assignment, f'applicationId = "{MOBILE.application_id}"'))
     tests = destination / 'shell/android/app/src/androidTest'
     shutil.rmtree(tests)
     seed = tests / 'kotlin/assistant/shell'
@@ -1001,7 +1009,7 @@ def installed_uid(selected, *, env):
 
 
 def exercise_upgrade(adb, server, serial, env, reports, *, legacy_apk, legacy_test, apk, test_apk, origin):
-    """Install over the real old package without uninstall/clear or credential copying."""
+    """Upgrade a same-package synthetic predecessor without clearing data or copying credentials."""
     if server == 5037 or not serial.startswith('127.0.0.1:'):
         raise CheckError('Upgrade acceptance requires the private CI emulator')
     selected = [adb, '-P', server, '-s', serial]
