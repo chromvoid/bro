@@ -1,33 +1,34 @@
 # Bro
 
-Bro — личный ассистент: чат, задачи и напоминания, дневник питания, личные показатели
-и подключение совместимых устройств. Сайт: https://bro.chromvoid.com.
+Bro is a personal assistant with chat, tasks and reminders, a nutrition diary,
+personal metrics, and support for compatible devices. Visit [bro.chromvoid.com](https://bro.chromvoid.com).
 
-Это публичное зеркало исходников выпущенных клиентов Bro. Разработка и CI идут
-в Forgejo; после успешного выпуска в GitHub появляется отдельный коммит и тег
-`release-<source-sha>`. Поле `Source-Commit` в сообщении коммита указывает исходную
-ревизию. История внутренней разработки в зеркало не переносится.
+This repository is a public source mirror of released Bro clients. Development
+and CI run in Forgejo. Each successful release publishes a snapshot commit and a
+`release-<source-sha>` tag to GitHub. The `Source-Commit` field in the commit message
+identifies the source revision. Internal development history is not mirrored.
 
-## Исходники
+## Source code
 
-- `mobile/` — Kotlin Multiplatform core и нативный Android-клиент Jetpack Compose.
-- `web/` — веб-клиент Vue/TypeScript; `plugins/*/web` — его подключения.
-- `shell/ios/` — клиент iOS; `shell/ring/` — Rust-ядро кольца.
-- `firmware/` — клиент настольного экрана ESP-IDF.
-- `sdk/`, `contracts/`, `plugins/*/package/` — SDK и контракты подключений.
-- `tools/android_ci.py`, `tools/android_release.py` — инструменты сборки Android.
+- `mobile/` — Kotlin Multiplatform core and native Android client built with Jetpack Compose.
+- `web/` — Vue/TypeScript web client; `plugins/*/web` — client integrations.
+- `shell/ios/` — iOS client; `shell/ring/` — Rust ring core.
+- `firmware/` — ESP-IDF desktop display client.
+- `sdk/`, `contracts/`, `plugins/*/package/` — SDKs and integration contracts.
+- `tools/android_ci.py`, `tools/android_release.py` — Android build tools.
 
-Для работы клиента нужен аккаунт на совместимом сервере Bro. Backend, серверные
-плагины и инфраструктура остаются коммерческими и в это зеркало не входят.
-Android собирается из Gradle-root `mobile/`; версии инструментов и зависимостей
-закреплены в проекте. Для iOS предоставьте собственный
-`shell/ios/Firebase/GoogleService-Info.plist`. Ключи подписи и учётные данные не
-входят в исходники; используйте собственные настройки установки.
+The clients require an account on a compatible Bro server. The backend,
+server-side plugins, and infrastructure remain commercial/proprietary and are not
+included in this mirror. Build Android from the Gradle root in `mobile/`; tool and
+dependency versions are pinned in the project. For iOS, provide your own
+`shell/ios/Firebase/GoogleService-Info.plist`. Signing keys and credentials are not
+included in the source; use your own installation settings.
 
-## Лицензии
+## Licensing
 
-Клиенты и продуктовый интерфейс: **AGPL-3.0-only**. Самостоятельные SDK и контракты:
-**MIT**. Подробная матрица — [LICENSING.md](LICENSING.md), тексты — [LICENSES/](LICENSES/).
-Сторонние компоненты сохраняют свои условия: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Clients and product UI: **AGPL-3.0-only**. Standalone SDKs and contracts: **MIT**.
+See [LICENSING.md](LICENSING.md) for the full license matrix and [LICENSES/](LICENSES/)
+for the license texts. Third-party components retain their own terms; see
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-Поддержка: support@chromvoid.com.
+Support: [support@chromvoid.com](mailto:support@chromvoid.com).
