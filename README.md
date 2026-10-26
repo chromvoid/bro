@@ -8,6 +8,16 @@ and CI run in Forgejo. Each successful release publishes a snapshot commit and a
 `release-<source-sha>` tag to GitHub. The `Source-Commit` field in the commit message
 identifies the source revision. Internal development history is not mirrored.
 
+## Download
+
+[Latest Android release](https://github.com/chromvoid/bro/releases/latest) ·
+[Download APK](https://github.com/chromvoid/bro/releases/latest/download/Bro-Android.apk)
+
+Requires Android 8.0 or later and an ARM64 device. Download the APK and follow the
+Android installation prompt. Releases include a SHA-256 checksum and public build
+metadata. Updates use the same signing certificate, so existing Bro installations
+can be updated without uninstalling.
+
 ## Source code
 
 - `mobile/` — Kotlin Multiplatform core and native Android client built with Jetpack Compose.

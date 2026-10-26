@@ -18,7 +18,7 @@ Release разрешает HTTPS, debug — также loopback. Вход, invit
 
 `.forgejo/workflows/android-release.yml` на Mac mini собирает единственный основной пакет
 из `mobile/`. На PR он сохраняет подписанный артефакт без публикации. После слияния владельцем
-push в `main` публикует APK через обычный ограниченный deployment account; ручной запуск
+push в `main` публикует APK в [GitHub Releases](https://github.com/chromvoid/bro/releases); ручной запуск
 публикует только из `main` и только при явном `publish=true`.
 
 Подпись прежняя: repo secrets `ANDROID_SIGNING_KEYSTORE`, `ANDROID_SIGNING_STORE_PASSWORD`,
@@ -37,14 +37,27 @@ versionCode — минуты с 2026-01-01 по времени коммита; r
 После `NativeUpgradeSmokeTest` на том же подписанном R8-release APK выполняются четыре
 теста `NativeReleaseJniSmokeTest`: Filament/gltfio, WebRTC, ONNX и Ring; отчёты — `upgrade/reports/release-jni`.
 
-Publisher принимает только новый основной пакет после успешной выкладки коммита или его
-потомка (проверяет ancestry и `deploy.json`, удерживает `deploy.lock`). Manifest и три последних
-APK лежат в `$ASSISTANT_DATA/state/shell/android/dev.assistant.shell`.
+После успешного server deploy и публикации публичного source tag `release-<source-sha>`
+`tools/android_github.py` создаёт черновик GitHub Release, загружает `Bro-Android.apk`,
+`Bro-Android.apk.sha256` и публичный `release.json`, сверяет размер и digest каждого файла
+с локальным артефактом и публикует готовый выпуск. Повтор не заменяет опубликованные файлы.
+Описание содержит версию, установку, SHA-256 и ссылки на исходники и изменения.
+Отдельный repo secret `PUBLIC_RELEASE_TOKEN` имеет только `Contents:write` для `chromvoid/bro`;
+он доступен только publish-job из main. Android signing key остаётся в Forgejo CI.
+
+Ограниченный deployment account получает только `github-release.json`, без APK. Publisher
+проверяет версию, пакет, сертификат, фиксированный GitHub URL и успешную выкладку коммита
+или его потомка (ancestry и `deploy.json`, под `deploy.lock`). В
+`$ASSISTANT_DATA/state/shell/android/dev.assistant.shell` сохраняются manifest и три последних
+JSON описания. Новые APK на сервер не записываются; прежние файлы сохранены для старых скачиваний.
 Каталог временного кандидата остаётся нечитаемым хвостом: API и publisher его не выбирают,
 production-данные при подготовке PR не удаляются.
 
 Единственные маршруты — `GET /v1/shell/android` и `GET /v1/shell/android/<code>.apk`.
-Оба доступны без входа и проверки transport; параметра выбора package нет.
+Оба доступны без входа и проверки transport; параметра выбора package нет. APK-маршрут
+передаёт поток из GitHub без дискового кеша. Он не перенаправляет уже установленные клиенты,
+которые запрещают redirects; запрос в GitHub не содержит credentials, cookies или заголовки аккаунта.
+Разрешены только HTTPS-хосты GitHub/CDN, поддержан Range, переходы ограничены.
 Нативный updater доступен всем, кто видит настройки, без сессии и `session.control`.
 Проверка и скачивание всегда идут на `assistant.origin` из meta-data сборки, независимо от
 выбранного сервера, self-hosted и переезда сессии. Новая сборка с другим `assistant.origin`
