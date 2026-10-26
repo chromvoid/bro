@@ -6,19 +6,15 @@ import android.graphics.BitmapFactory
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -81,7 +77,6 @@ import kotlinx.coroutines.launch
 private data class BodyFigureStatus(
     val loading: Boolean = true,
     val poster: Boolean = false,
-    val reducedMotion: Boolean = false,
     val assetsError: Boolean = false,
 )
 
@@ -125,7 +120,6 @@ internal fun PersonalOverviewBodyAtlas(
 }
 
 /** Both entry points use the same common scan mapping, comparison and animation state. */
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun BodyAtlas(
     analysis: BodyAnalysis,
@@ -188,16 +182,17 @@ internal fun BodyAtlas(
                 }
             }
             Text(stringResource(DesignR.string.personal_atlas_character_title), style = MaterialTheme.typography.labelLarge)
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                BodyCharacter.entries.forEach { choice ->
-                    AtlasChoice(character == choice, canWrite && preference?.writable == true &&
-                        !(choice == BodyCharacter.Spartan && visual.template == BodyTemplate.Female),
-                        "atlas_character_${choice.wire}", stringResource(if (choice == BodyCharacter.Sculpture)
-                            DesignR.string.personal_atlas_character_sculpture else DesignR.string.personal_atlas_character_spartan)) {
-                        scope.launch { presentation.select(choice) }
-                    }
-                }
-            }
+            val characterLabels = BodyCharacter.entries.associateWith { stringResource(if (it == BodyCharacter.Sculpture)
+                DesignR.string.personal_atlas_character_sculpture else DesignR.string.personal_atlas_character_spartan) }
+            SegmentedChoice(
+                options = BodyCharacter.entries,
+                selected = character,
+                onSelect = { choice -> scope.launch { presentation.select(choice) } },
+                label = { characterLabels.getValue(it) },
+                enabled = canWrite && preference?.writable == true,
+                optionEnabled = { !(it == BodyCharacter.Spartan && visual.template == BodyTemplate.Female) },
+                optionTestTag = { "atlas_character_${it.wire}" },
+            )
             if (visual.template == BodyTemplate.Female) Text(stringResource(if (character == BodyCharacter.Spartan)
                 DesignR.string.personal_atlas_character_saved_incompatible else DesignR.string.personal_atlas_character_male_only),
                 style = MaterialTheme.typography.bodySmall, modifier = Modifier.testTag("atlas_character_unavailable"))
@@ -209,11 +204,14 @@ internal fun BodyAtlas(
             }
             if (preference?.busy == true) Text(stringResource(DesignR.string.personal_atlas_character_saving),
                 style = MaterialTheme.typography.bodySmall, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                BodyLayer.entries.forEach { layer -> AtlasChoice(state.layer == layer, true, "atlas_layer_${layer.wire}", atlasLayerName(layer)) {
-                    state = state.copy(layer = layer)
-                } }
-            }
+            val layerLabels = BodyLayer.entries.associateWith { atlasLayerName(it) }
+            SegmentedChoice(
+                options = BodyLayer.entries,
+                selected = state.layer,
+                onSelect = { state = state.copy(layer = it) },
+                label = { layerLabels.getValue(it) },
+                optionTestTag = { "atlas_layer_${it.wire}" },
+            )
             NativeBodyFigure(visual, character, state, comparing, assets, onYaw = { state = state.rotate(it) },
                 onStatus = { figure = it }, modifier = Modifier.fillMaxWidth().height(380.dp))
             state.layer.kinds.chunked(2).forEach { row ->
@@ -255,8 +253,6 @@ internal fun BodyAtlas(
                 enabled = !figure.loading && !figure.poster && !figure.assetsError,
                 optionTestTag = { "atlas_view_${it.wire}" },
             )
-            Text(atlasMotionHint(figure, comparing), style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.testTag("atlas_motion_status").semantics { liveRegion = LiveRegionMode.Polite })
             HorizontalDivider()
             OutlinedButton(onClick = { state = state.compare(!comparing) }, enabled = candidates.isNotEmpty(),
                 modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).testTag("atlas_compare").semantics { selected = comparing }) {
@@ -316,16 +312,6 @@ private fun AtlasCalibrationHint(mapping: BodyVisual, previous: BodyVisual?) {
         style = MaterialTheme.typography.bodySmall, modifier = Modifier.testTag("atlas_calibration_hint").semantics { liveRegion = LiveRegionMode.Polite })
 }
 
-@Composable
-private fun AtlasChoice(selected: Boolean, enabled: Boolean, tag: String, label: String, onClick: () -> Unit) {
-    OutlinedButton(onClick = onClick, enabled = enabled,
-        border = BorderStroke(1.dp, if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline),
-        colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = if (selected) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surface,
-            contentColor = if (selected) MaterialTheme.colorScheme.onSecondaryContainer else MaterialTheme.colorScheme.onSurfaceVariant,
-        ), modifier = Modifier.heightIn(min = 48.dp).testTag(tag).semantics { this.selected = selected }) { Text(label) }
-}
-
 @Composable private fun atlasLayerName(layer: BodyLayer): String = stringResource(when (layer) {
     BodyLayer.Composition -> DesignR.string.personal_atlas_layer_composition
     BodyLayer.Muscle -> DesignR.string.personal_atlas_layer_muscle
@@ -338,15 +324,6 @@ private fun AtlasChoice(selected: Boolean, enabled: Boolean, tag: String, label:
     BodyView.Back -> DesignR.string.personal_atlas_view_back
     BodyView.ThreeQuarter -> DesignR.string.personal_atlas_view_three_quarter
 })
-@Composable private fun atlasMotionHint(figure: BodyFigureStatus, comparing: Boolean): String = when {
-    figure.assetsError -> stringResource(DesignR.string.personal_atlas_motion_unavailable)
-    figure.loading -> stringResource(DesignR.string.personal_atlas_motion_loading)
-    comparing -> stringResource(DesignR.string.personal_atlas_motion_comparing)
-    figure.reducedMotion -> stringResource(DesignR.string.personal_atlas_motion_reduced)
-    figure.poster -> stringResource(DesignR.string.personal_atlas_motion_unavailable)
-    else -> stringResource(DesignR.string.personal_atlas_motion_idle)
-}
-
 @Composable
 private fun BodyPresentationActivation(controller: BodyPresentationController, lease: SessionLease) {
     val owner = LocalLifecycleOwner.current
@@ -394,7 +371,7 @@ private fun NativeBodyFigure(
     val currentFrame by rememberUpdatedState(frame)
     val currentYaw by rememberUpdatedState(onYaw)
     val status = BodyFigureStatus(error == null && (files == null || (!figureReady && !rendererFailed)),
-        rendererFailed, reduced, assetsError = error != null)
+        rendererFailed, assetsError = error != null)
     LaunchedEffect(status) { onStatus(status) }
     LaunchedEffect(assets, retry) {
         error = null

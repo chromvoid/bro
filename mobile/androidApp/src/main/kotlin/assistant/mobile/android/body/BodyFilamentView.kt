@@ -2,13 +2,12 @@ package assistant.mobile.android.body
 
 import android.content.Context
 import android.graphics.BitmapFactory
-import android.graphics.PixelFormat
 import android.os.Handler
 import android.os.Looper
 import android.view.Choreographer
 import android.view.MotionEvent
 import android.view.Surface
-import android.view.SurfaceView
+import android.view.TextureView
 import android.view.ViewConfiguration
 import android.widget.FrameLayout
 import assistant.mobile.core.body.BODY_CORRECTION_NAMES
@@ -66,10 +65,9 @@ class BodyFilamentView(context: Context) : FrameLayout(context), AutoCloseable {
     var onReady: (() -> Unit)? = null
     var onYaw: ((Double) -> Unit)? = null
     val diagnostics = BodyRendererDiagnostics()
-    private val surface = SurfaceView(context).apply {
-        holder.setFormat(PixelFormat.TRANSLUCENT)
-        setZOrderOnTop(false)
-    }
+    // A SurfaceView composites outside the view tree and ignores Compose clipping: on a scrolling
+    // screen it drew over the top bar and the status bar. A TextureView is clipped like any view.
+    private val surface = TextureView(context).apply { isOpaque = false }
     private var backend: BodyFilamentBackend? = null
     private var frame = BodyRendererFrame()
     private var active = false
@@ -262,7 +260,7 @@ class BodyRendererDiagnostics {
 
 private class BodyFilamentBackend(
     private val context: Context,
-    private val surface: SurfaceView,
+    private val surface: TextureView,
     private val diagnostics: BodyRendererDiagnostics,
     private val invalidate: () -> Unit,
 ) : AutoCloseable {
@@ -571,6 +569,7 @@ private class BodyFilamentBackend(
             lightEntities += entity
             LightManager.Builder(LightManager.Type.DIRECTIONAL).color(color[0], color[1], color[2])
                 .intensity(intensities[index]).direction(0f, -1f, -1f).castShadows(index == 0)
+                .apply { if (index == 0) shadowOptions(keyShadowOptions()) }
                 .build(engine, entity)
             scene.addEntity(entity)
         }
@@ -614,6 +613,21 @@ private class BodyFilamentBackend(
         BodyFilamentView.liveRenderers.decrementAndGet()
     }
 }
+
+/**
+ * The 16-bit shadow map warped by LiSPSM left self-shadow acne as dark specks on the chest and
+ * shoulders. One body needs no perspective warp: an unwarped map fitted to the orbit, with the
+ * normal offset doubled, keeps contact shadows without acne. The Java bindings carry no
+ * defaults, so every other field repeats Filament 1.78's native default.
+ */
+private fun keyShadowOptions() = LightManager.ShadowOptions(
+    1024, 1, 0.125f, 0.25f, 0.5f,
+    0.001f, 2.0f, 12f, 1f, 100f,
+    false, false, 0.5f, 3.0f,
+    false, 8, 0.3f, false, 0f, -1f,
+    0f, 0f, 0f, 1f,
+    1f, 1f, 0f, 0f,
+)
 
 private fun checkMainThread() = check(Looper.myLooper() == Looper.getMainLooper()) { "Filament is confined to the Android main thread" }
 private fun directBuffer(bytes: ByteArray): ByteBuffer = ByteBuffer.allocateDirect(bytes.size).order(ByteOrder.nativeOrder()).apply { put(bytes); flip() }

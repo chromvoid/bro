@@ -56,6 +56,7 @@ fun <T> SegmentedChoice(
     optionTestTag: ((T) -> String?)? = null,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    optionEnabled: (T) -> Boolean = { true },
 ) {
     require(options.size in 2..4)
     require(selected == null || selected in options)
@@ -66,7 +67,7 @@ fun <T> SegmentedChoice(
             SegmentedButton(
                 selected = option == selected,
                 onClick = { onSelect(option) },
-                enabled = enabled,
+                enabled = enabled && optionEnabled(option),
                 shape = SegmentedButtonDefaults.itemShape(index, options.size),
                 modifier = Modifier.then(
                     optionTestTag?.invoke(option)?.let { Modifier.testTag(it) } ?: Modifier,

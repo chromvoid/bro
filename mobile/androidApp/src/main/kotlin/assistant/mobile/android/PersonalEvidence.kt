@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,7 +27,7 @@ import assistant.mobile.design.R as DesignR
 @Composable
 internal fun PersonalResolutionEvidence(resolution: PersonalResolution, state: PersonalState) {
     var open by remember(resolution.fingerprint) { mutableStateOf(false) }
-    OutlinedButton(onClick = { open = !open }, modifier = Modifier.heightIn(min = 48.dp)
+    TextButton(onClick = { open = !open }, modifier = Modifier.heightIn(min = 48.dp)
         .testTag("personal_resolution_toggle")) { Text(stringResource(DesignR.string.resolution_why)) }
     if (open) Column(verticalArrangement = Arrangement.spacedBy(Spacing.xs), modifier = Modifier.testTag("personal_resolution_evidence")) {
         val conflict = personalSleepConflict(resolution)
