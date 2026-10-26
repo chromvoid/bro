@@ -7,6 +7,7 @@ import assistant.mobile.core.SessionManager
 import io.ktor.utils.io.readAvailable
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 enum class BodyAssetPhase { Checking, Downloading, Verifying, Ready }
@@ -21,10 +22,14 @@ data class BodyAssetProgress(
 }
 
 interface BodyAssetSink {
+    val bytes: Long
     suspend fun write(bytes: ByteArray, count: Int)
+    suspend fun reset()
     suspend fun finish(): BodyAssetVerification
     /** Exposes an atomic file only after the caller has checked its digest. */
     suspend fun commit()
+    /** Closes the writer while preserving the partial file for another attempt. */
+    suspend fun close()
     suspend fun discard()
 }
 
@@ -44,6 +49,7 @@ class BodyAssetLoader(
     private val store: BodyAssetStore,
 ) {
     suspend fun load(
+        names: Set<String>,
         revalidateManifest: Boolean = true,
         onProgress: (BodyAssetProgress) -> Unit = {},
     ): BodyAssetManifest {
@@ -57,38 +63,44 @@ class BodyAssetLoader(
                 requireCurrent(lease)
                 when {
                     reply is HttpOutcome.Success && reply.status == 200 -> {
-                        decodeBodyAssetManifest(reply.body).also { fresh ->
+                        decodeBodyAssetManifest(reply.body).also {
                             store.writeManifest(reply.body)
-                            store.retain(fresh.hashes)
                         }
                     }
                     // An already verified complete set remains usable when the device is offline.
-                    reply == HttpOutcome.NetworkFailure && cachedManifest != null && complete(cachedManifest) -> cachedManifest
+                    reply == HttpOutcome.NetworkFailure && cachedManifest != null && complete(cachedManifest, names) -> cachedManifest
                     else -> throw BodyAssetFailure(outcomeError(reply))
                 }
             } else cachedManifest
+            val required = requiredAssets(manifest, names)
+            val total = required.sumOf { it.bytes }
             store.retain(manifest.hashes)
             var completed = 0L
             var allCached = true
-            for (asset in manifest.files.values) {
+            for (asset in required) {
                 requireCurrent(lease)
                 if (!store.contains(asset)) {
                     allCached = false
-                    download(asset, lease, completed, manifest.totalBytes, onProgress)
+                    download(asset, lease, completed, total, onProgress)
                 }
                 completed += asset.bytes
-                onProgress(BodyAssetProgress(BodyAssetPhase.Verifying, asset.name, completed, manifest.totalBytes, allCached))
+                onProgress(BodyAssetProgress(BodyAssetPhase.Verifying, asset.name, completed, total, allCached))
             }
             requireCurrent(lease)
-            onProgress(BodyAssetProgress(BodyAssetPhase.Ready, completedBytes = completed, totalBytes = manifest.totalBytes, cached = allCached))
+            onProgress(BodyAssetProgress(BodyAssetPhase.Ready, completedBytes = completed, totalBytes = total, cached = allCached))
             return manifest
         } catch (cancelled: CancellationException) { throw cancelled }
         catch (error: BodyAssetFailure) { throw error }
         catch (_: Exception) { throw BodyAssetFailure(BodyAssetError.Storage) }
     }
 
-    private suspend fun complete(manifest: BodyAssetManifest): Boolean {
-        for (asset in manifest.files.values) if (!store.contains(asset)) return false
+    private fun requiredAssets(manifest: BodyAssetManifest, names: Set<String>): List<BodyAsset> {
+        if (names.isEmpty()) throw BodyAssetFailure(BodyAssetError.InvalidManifest)
+        return names.map { manifest.files[it] ?: throw BodyAssetFailure(BodyAssetError.InvalidManifest) }
+    }
+
+    private suspend fun complete(manifest: BodyAssetManifest, names: Set<String>): Boolean {
+        for (asset in requiredAssets(manifest, names)) if (!store.contains(asset)) return false
         return true
     }
 
@@ -101,33 +113,77 @@ class BodyAssetLoader(
     ) {
         val target = store.begin(asset)
         try {
-            var downloaded = 0L
-            onProgress(BodyAssetProgress(BodyAssetPhase.Downloading, asset.name, completed, total))
-            val reply = http.stream(asset.path, lease, headers = mapOf("Accept-Encoding" to "identity")) { status, headers, channel ->
-                if (status != 200) throw BodyAssetFailure(BodyAssetError.Network)
-                headers["content-length"]?.let {
-                    if (it.toLongOrNull() != asset.bytes) throw BodyAssetFailure(BodyAssetError.Integrity)
-                }
-                val buffer = ByteArray(64 * 1024)
-                while (true) {
-                    val count = channel.readAvailable(buffer, 0, buffer.size)
-                    if (count < 0) break
-                    if (count == 0) continue
+            if (target.bytes > asset.bytes) target.reset()
+            var reported = target.bytes
+            var retries = 0
+            onProgress(BodyAssetProgress(BodyAssetPhase.Downloading, asset.name, completed + target.bytes, total))
+            while (target.bytes < asset.bytes) {
+                requireCurrent(lease)
+                val offset = target.bytes
+                var restart = false
+                try {
+                    val requestHeaders = buildMap {
+                        put("Accept-Encoding", "identity")
+                        if (offset > 0) put("Range", "bytes=$offset-")
+                    }
+                    val reply = http.stream(asset.path, lease, headers = requestHeaders) { status, headers, channel ->
+                        when (status) {
+                            200 -> if (offset > 0) { target.reset(); reported = 0 }
+                            206 -> if (headers["content-range"] != "bytes $offset-${asset.bytes - 1}/${asset.bytes}") {
+                                restart = true
+                                return@stream
+                            }
+                            else -> throw BodyAssetFailure(BodyAssetError.Network)
+                        }
+                        headers["content-length"]?.let {
+                            if (it.toLongOrNull() != asset.bytes - target.bytes) throw BodyAssetFailure(BodyAssetError.Integrity)
+                        }
+                        val buffer = ByteArray(64 * 1024)
+                        while (true) {
+                            // A channel failure is a network error; disk failures must not be retried.
+                            val count = try { channel.readAvailable(buffer, 0, buffer.size) }
+                            catch (cancelled: CancellationException) { throw cancelled }
+                            catch (_: Exception) { throw BodyAssetFailure(BodyAssetError.Network) }
+                            if (count < 0) {
+                                // Ktor can report EOF for a channel closed with an error.
+                                if (channel.closedCause != null) throw BodyAssetFailure(BodyAssetError.Network)
+                                break
+                            }
+                            if (count == 0) continue
+                            requireCurrent(lease)
+                            if (target.bytes + count > asset.bytes) throw BodyAssetFailure(BodyAssetError.Integrity)
+                            target.write(buffer, count)
+                            if (target.bytes - reported >= 256 * 1024) {
+                                reported = target.bytes
+                                onProgress(BodyAssetProgress(BodyAssetPhase.Downloading, asset.name, completed + reported, total))
+                            }
+                        }
+                    }
                     requireCurrent(lease)
-                    downloaded += count
-                    if (downloaded > asset.bytes) throw BodyAssetFailure(BodyAssetError.Integrity)
-                    target.write(buffer, count)
-                    onProgress(BodyAssetProgress(BodyAssetPhase.Downloading, asset.name, completed + downloaded, total))
+                    if (restart || reply is HttpOutcome.Failure && reply.status == 416) {
+                        target.reset()
+                        reported = 0
+                        if (offset == 0L) throw BodyAssetFailure(BodyAssetError.Integrity)
+                        continue
+                    }
+                    if (reply !is HttpOutcome.Success) throw BodyAssetFailure(outcomeError(reply))
+                    if (target.bytes != asset.bytes) throw BodyAssetFailure(BodyAssetError.Integrity)
+                } catch (error: BodyAssetFailure) {
+                    if (error.error != BodyAssetError.Network || retries == 3) throw error
+                    requireCurrent(lease)
+                    delay(1000L shl retries)
+                    retries++
                 }
             }
-            if (reply !is HttpOutcome.Success) throw BodyAssetFailure(outcomeError(reply))
-            if (downloaded != asset.bytes) throw BodyAssetFailure(BodyAssetError.Integrity)
-            onProgress(BodyAssetProgress(BodyAssetPhase.Verifying, asset.name, completed + downloaded, total))
+            onProgress(BodyAssetProgress(BodyAssetPhase.Verifying, asset.name, completed + target.bytes, total))
             verifyBodyAssetHash(asset, target.finish())
             requireCurrent(lease)
             target.commit()
+        } catch (error: BodyAssetFailure) {
+            if (error.error == BodyAssetError.Integrity) withContext(NonCancellable) { target.discard() }
+            throw error
         } finally {
-            withContext(NonCancellable) { target.discard() }
+            withContext(NonCancellable) { target.close() }
         }
     }
 
@@ -137,6 +193,11 @@ class BodyAssetLoader(
     private fun outcomeError(reply: HttpOutcome): BodyAssetError = when (reply) {
         HttpOutcome.Unauthorized, HttpOutcome.StaleSession -> BodyAssetError.Unauthorized
         HttpOutcome.Forbidden -> BodyAssetError.Forbidden
+        is HttpOutcome.Failure -> when (reply.status) {
+            401 -> BodyAssetError.Unauthorized
+            403 -> BodyAssetError.Forbidden
+            else -> BodyAssetError.Network
+        }
         is HttpOutcome.Success, HttpOutcome.InvalidResponse, HttpOutcome.RejectedOrigin, HttpOutcome.RejectedRequest -> BodyAssetError.InvalidManifest
         else -> BodyAssetError.Network
     }

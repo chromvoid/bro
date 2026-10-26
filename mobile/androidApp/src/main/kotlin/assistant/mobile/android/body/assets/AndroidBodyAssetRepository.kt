@@ -17,7 +17,6 @@ import java.io.File
 import java.io.FileOutputStream
 import java.security.MessageDigest
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
@@ -40,32 +39,36 @@ class AndroidBodyAssetRepository(
     private var checkedManifest = false
 
     /** Check the current web build once; a complete verified cache remains usable offline. */
-    suspend fun load(onProgress: (BodyAssetProgress) -> Unit = {}): BodyAssetFiles = lock.withLock {
-        files(loader.load(revalidateManifest = !checkedManifest, onProgress = onProgress)).also { checkedManifest = true }
+    suspend fun load(names: Set<String>, onProgress: (BodyAssetProgress) -> Unit = {}): BodyAssetFiles = withContext(Dispatchers.IO) {
+        lock.withLock {
+            files(loader.load(names, revalidateManifest = !checkedManifest, onProgress = onProgress), names).also { checkedManifest = true }
+        }
     }
 
-    suspend fun refresh(onProgress: (BodyAssetProgress) -> Unit = {}): BodyAssetFiles = lock.withLock {
-        files(loader.load(revalidateManifest = true, onProgress = onProgress)).also { checkedManifest = true }
+    suspend fun refresh(names: Set<String>, onProgress: (BodyAssetProgress) -> Unit = {}): BodyAssetFiles = withContext(Dispatchers.IO) {
+        lock.withLock {
+            files(loader.load(names, revalidateManifest = true, onProgress = onProgress), names).also { checkedManifest = true }
+        }
     }
 
-    private fun files(manifest: BodyAssetManifest): BodyAssetFiles =
-        BodyAssetFiles(manifest, manifest.files.mapValues { (_, asset) -> store.file(asset.sha256) })
+    private fun files(manifest: BodyAssetManifest, names: Set<String>): BodyAssetFiles =
+        BodyAssetFiles(manifest, names.associateWith { store.file(manifest.files.getValue(it).sha256) })
 }
 
-/** Content hashes, not users or server-provided filenames, are the private cache's keys. */
+/** Called on the repository's IO dispatcher; content hashes are the private cache's keys. */
 private class AndroidBodyAssetStore(private val directory: File) : BodyAssetStore {
     private val manifestFile get() = AtomicFile(File(directory, "manifest.json"))
 
-    override suspend fun readManifest(): ByteArray? = withContext(Dispatchers.IO) {
+    override suspend fun readManifest(): ByteArray? {
         ensureDirectory()
         val atomic = manifestFile
-        if (!atomic.baseFile.isFile && !File(directory, "manifest.json.bak").isFile) null else atomic.openRead().use { stream ->
+        return if (!atomic.baseFile.isFile && !File(directory, "manifest.json.bak").isFile) null else atomic.openRead().use { stream ->
             // Keep a corrupt disk manifest from making an unbounded allocation before parsing.
             if (manifestFile.baseFile.length() > 262_144) null else stream.readBytes()
         }
     }
 
-    override suspend fun writeManifest(bytes: ByteArray): Unit = withContext(Dispatchers.IO) {
+    override suspend fun writeManifest(bytes: ByteArray) {
         ensureDirectory()
         val atomic = manifestFile
         val stream = atomic.startWrite()
@@ -78,9 +81,9 @@ private class AndroidBodyAssetStore(private val directory: File) : BodyAssetStor
         }
     }
 
-    override suspend fun contains(asset: BodyAsset): Boolean = withContext(Dispatchers.IO) {
+    override suspend fun contains(asset: BodyAsset): Boolean {
         val cached = file(asset.sha256)
-        if (!cached.isFile) return@withContext false
+        if (!cached.isFile) return false
         val valid = cached.length() == asset.bytes && cached.inputStream().use { stream ->
             val digest = MessageDigest.getInstance("SHA-256")
             val buffer = ByteArray(64 * 1024)
@@ -92,17 +95,20 @@ private class AndroidBodyAssetStore(private val directory: File) : BodyAssetStor
             digest.digest().hex() == asset.sha256
         }
         if (!valid && !cached.delete()) throw BodyAssetFailure(BodyAssetError.Storage)
-        valid
+        return valid
     }
 
-    override suspend fun begin(asset: BodyAsset): BodyAssetSink = withContext(Dispatchers.IO) {
+    override suspend fun begin(asset: BodyAsset): BodyAssetSink {
         ensureDirectory()
-        AndroidBodyAssetSink(File.createTempFile("download-", ".part", directory), file(asset.sha256))
+        val target = file(asset.sha256)
+        val partial = File(directory, "${asset.sha256}.part")
+        if (partial.length() > asset.bytes && !partial.delete()) throw BodyAssetFailure(BodyAssetError.Storage)
+        return AndroidBodyAssetSink(partial, target)
     }
 
-    override suspend fun retain(hashes: Set<String>): Unit = withContext(Dispatchers.IO) {
+    override suspend fun retain(hashes: Set<String>) {
         ensureDirectory()
-        val keep = hashes + setOf("manifest.json", "manifest.json.bak", "manifest.json.new")
+        val keep = hashes + hashes.map { "$it.part" } + setOf("manifest.json", "manifest.json.bak", "manifest.json.new")
         for (candidate in directory.listFiles().orEmpty()) {
             if (candidate.name !in keep && !candidate.delete()) throw BodyAssetFailure(BodyAssetError.Storage)
         }
@@ -119,39 +125,62 @@ private class AndroidBodyAssetStore(private val directory: File) : BodyAssetStor
 }
 
 private class AndroidBodyAssetSink(private val temporary: File, private val target: File) : BodyAssetSink {
-    private var output: FileOutputStream? = FileOutputStream(temporary)
     private val digest = MessageDigest.getInstance("SHA-256")
-    private var byteCount = 0L
+    override var bytes = temporary.length()
+        private set
     private var verification: BodyAssetVerification? = null
+    private var output: FileOutputStream? = null
 
-    override suspend fun write(bytes: ByteArray, count: Int): Unit = withContext(Dispatchers.IO) {
+    init {
+        if (temporary.isFile) temporary.inputStream().use { stream ->
+            val buffer = ByteArray(64 * 1024)
+            while (true) {
+                val count = stream.read(buffer)
+                if (count < 0) break
+                digest.update(buffer, 0, count)
+            }
+        }
+        output = FileOutputStream(temporary, true)
+    }
+
+    override suspend fun write(bytes: ByteArray, count: Int) {
         val stream = output ?: throw BodyAssetFailure(BodyAssetError.Storage)
         stream.write(bytes, 0, count)
         digest.update(bytes, 0, count)
-        byteCount += count
+        this.bytes += count
     }
 
-    override suspend fun finish(): BodyAssetVerification = withContext(Dispatchers.IO) {
-        verification ?: run {
+    override suspend fun reset() {
+        discard()
+        digest.reset()
+        bytes = 0
+        verification = null
+        output = FileOutputStream(temporary)
+    }
+
+    override suspend fun finish(): BodyAssetVerification {
+        return verification ?: run {
             val stream = output ?: throw BodyAssetFailure(BodyAssetError.Storage)
             stream.fd.sync()
             stream.close()
             output = null
-            BodyAssetVerification(byteCount, digest.digest().hex()).also { verification = it }
+            BodyAssetVerification(bytes, digest.digest().hex()).also { verification = it }
         }
     }
 
-    override suspend fun commit(): Unit = withContext(Dispatchers.IO) {
+    override suspend fun commit() {
         if (verification == null) throw BodyAssetFailure(BodyAssetError.Integrity)
         if (target.exists() && !target.delete()) throw BodyAssetFailure(BodyAssetError.Storage)
         if (!temporary.renameTo(target)) throw BodyAssetFailure(BodyAssetError.Storage)
     }
 
-    override suspend fun discard(): Unit = withContext(NonCancellable + Dispatchers.IO) {
-        runCatching { output?.close() }
-        output = null
-        if (temporary.exists()) temporary.delete()
-        Unit
+    override suspend fun close() {
+        try { output?.close() } finally { output = null }
+    }
+
+    override suspend fun discard() {
+        close()
+        if (temporary.exists() && !temporary.delete()) throw BodyAssetFailure(BodyAssetError.Storage)
     }
 }
 

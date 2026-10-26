@@ -1,6 +1,7 @@
 package assistant.mobile.android
 
 import android.os.Bundle
+import android.os.Looper
 import android.system.Os
 import android.system.OsConstants
 import android.os.SystemClock
@@ -83,7 +84,8 @@ class NativeBodyRendererSmokeTest {
         ZipFile(context.applicationInfo.sourceDir).use { apk ->
             assertFalse(apk.entries().asSequence().any { it.name.endsWith("/libfilament-utils-jni.so") })
         }
-        val files = runBlocking { repository().load() }
+        val repo = repository()
+        val files = runBlocking { repo.load(assetNames(BodyVariant.Male)) }
         val mounted = mutableStateOf(true)
         var base = BodyRendererFrame(visual = BodyVisualState(fat = 0.4, muscle = 0.5),
             yaw = 1.1, pitch = 1.2, distance = 5.4)
@@ -114,11 +116,12 @@ class NativeBodyRendererSmokeTest {
             }
         }
         for (variant in BodyVariant.entries) {
+            val variantFiles = runBlocking { repo.load(assetNames(variant)) }
             val loadedAtFrame = rendererFrames()
             if (variant != BodyVariant.Male) compose.runOnIdle {
                 clock.reset()
                 base = base.copy(visual = base.visual.copy(template = if (variant == BodyVariant.Female) BodyTemplate.Female else BodyTemplate.Male))
-                renderer!!.loadFiles(files.require("${variant.wire}.glb"), files.require("${variant.wire}-lookaround.glb"))
+                renderer!!.loadFiles(variantFiles.require("${variant.wire}.glb"), variantFiles.require("${variant.wire}-lookaround.glb"))
             }
             awaitRenderer { it.loadedMorphTargetCount == 34 && it.renderedFrames >= loadedAtFrame + 8 }
             compose.runOnIdle {
@@ -227,25 +230,38 @@ class NativeBodyRendererSmokeTest {
     @Test fun authenticatedDownloadsVerifyHashesExposeProgressAndReopenWithoutNetwork() {
         val progress = mutableListOf<BodyAssetProgress>()
         val repo = repository()
-        val files = runBlocking { repo.load(progress::add) }
+        val names = assetNames(BodyVariant.Male)
+        val files = runBlocking { repo.load(names) {
+            assertNotEquals("The entire loader must run off the main thread", Looper.getMainLooper(), Looper.myLooper())
+            progress.add(it)
+        } }
         assertTrue(progress.any { it.phase == BodyAssetPhase.Downloading && it.completedBytes > 0 })
         assertEquals(BodyAssetPhase.Ready, progress.last().phase)
         assertEquals(1f, progress.last().fraction, 0f)
-        for (variant in BodyVariant.entries) {
-            assertTrue(files.require("${variant.wire}.glb").length() > 1_000_000)
-            assertTrue(files.require("${variant.wire}-lookaround.glb").length() > 1_000)
-        }
+        assertEquals(names, files.files.keys)
+        assertTrue(files.require("male.glb").length() > 1_000_000)
+        assertTrue(files.require("male-lookaround.glb").length() > 1_000)
+        assertTrue(files.require("male.webp").length() > 0)
+        assertEquals(names.sumOf { files.manifest.files.getValue(it).bytes }, progress.last().totalBytes)
         val requests = server.body.assetRequests.get()
-        assertEquals("One authenticated manifest and one request per asset", files.manifest.files.size + 1, requests)
+        assertEquals("One authenticated manifest and only the selected figure's three files", 4, requests)
         server.body.online = false
-        runBlocking { repo.load() }
+        runBlocking { repo.load(names) }
         assertEquals("Repeat screen entry must make no HTTP request", requests, server.body.assetRequests.get())
         server.body.online = true
+        for (variant in BodyVariant.entries.filter { it != BodyVariant.Male }) {
+            val selected = runBlocking { repo.load(assetNames(variant)) }
+            assertEquals(assetNames(variant), selected.files.keys)
+            assertTrue(selected.require("${variant.wire}.glb").length() > 1_000_000)
+            assertTrue(selected.require("${variant.wire}-lookaround.glb").length() > 1_000)
+        }
+        assertEquals("Switching figures keeps earlier manifest hashes cached", requests + 6, server.body.assetRequests.get())
+        assertTrue(files.files.values.all { it.isFile })
         server.body.corruptFile = "male.glb"
         val corruptedDirectory = File(directory, "corrupt")
         val corrupted = repository(corruptedDirectory)
         try {
-            runBlocking { corrupted.load() }
+            runBlocking { corrupted.load(names) }
             fail("The altered bytes must not enter the content-addressed cache")
         } catch (error: BodyAssetFailure) {
             assertEquals(BodyAssetError.Integrity, error.error)
@@ -256,7 +272,7 @@ class NativeBodyRendererSmokeTest {
         server.body.corruptFile = null
         server.body.online = false
         try {
-            runBlocking { repository(File(directory, "offline")).load() }
+            runBlocking { repository(File(directory, "offline")).load(names) }
             fail("A missing cache must expose the network error")
         } catch (error: BodyAssetFailure) {
             assertEquals(BodyAssetError.Network, error.error)
@@ -264,6 +280,7 @@ class NativeBodyRendererSmokeTest {
         assertTrue(server.failures.toString(), server.failures.isEmpty())
     }
 
+    private fun assetNames(variant: BodyVariant) = setOf("${variant.wire}.glb", "${variant.wire}-lookaround.glb", "${variant.wire}.webp")
     private fun repository(cache: File = directory) = AndroidBodyAssetRepository(context, http, sessions, cache)
     private fun awaitRenderer(predicate: (BodyRendererDiagnostics) -> Boolean) = compose.waitUntil(30_000) {
         failure.get()?.let { throw AssertionError("Filament renderer failed on CI EGL/GPU: ${it.message}", it) }

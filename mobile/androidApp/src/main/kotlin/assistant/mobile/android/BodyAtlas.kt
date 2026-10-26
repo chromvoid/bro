@@ -354,14 +354,14 @@ private fun NativeBodyFigure(
 ) {
     val context = LocalContext.current
     val lifecycle = LocalLifecycleOwner.current
-    var files by remember(assets) { mutableStateOf<BodyAssetFiles?>(null) }
-    var progress by remember(assets) { mutableStateOf<BodyAssetProgress?>(null) }
-    var error by remember(assets) { mutableStateOf<BodyAssetError?>(null) }
-    var retry by remember(assets) { mutableStateOf(0) }
+    val variant = if (visual.template == BodyTemplate.Female) "female" else if (character == BodyCharacter.Spartan) "male_spartan" else "male"
+    var files by remember(assets, variant) { mutableStateOf<BodyAssetFiles?>(null) }
+    var progress by remember(assets, variant) { mutableStateOf<BodyAssetProgress?>(null) }
+    var error by remember(assets, variant) { mutableStateOf<BodyAssetError?>(null) }
+    var retry by remember(assets, variant) { mutableStateOf(0) }
     var reduced by remember { mutableStateOf(!ValueAnimator.areAnimatorsEnabled()) }
     var started by remember(lifecycle) { mutableStateOf(lifecycle.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) }
     var visible by remember { mutableStateOf(true) }
-    val variant = if (visual.template == BodyTemplate.Female) "female" else if (character == BodyCharacter.Spartan) "male_spartan" else "male"
     var rendererFailed by remember(variant, files) { mutableStateOf(false) }
     var figureReady by remember(variant, files) { mutableStateOf(false) }
     val clock = remember(variant, files) { BodyAnimationClock() }
@@ -373,9 +373,10 @@ private fun NativeBodyFigure(
     val status = BodyFigureStatus(error == null && (files == null || (!figureReady && !rendererFailed)),
         rendererFailed, assetsError = error != null)
     LaunchedEffect(status) { onStatus(status) }
-    LaunchedEffect(assets, retry) {
+    LaunchedEffect(assets, variant, retry) {
         error = null
-        try { files = if (retry == 0) assets.load { progress = it } else assets.refresh { progress = it } }
+        val names = setOf("$variant.glb", "$variant-lookaround.glb", "$variant.webp")
+        try { files = if (retry == 0) assets.load(names) { progress = it } else assets.refresh(names) { progress = it } }
         catch (cancelled: CancellationException) { throw cancelled }
         catch (failed: BodyAssetFailure) { error = failed.error }
         catch (_: Exception) { error = BodyAssetError.Storage }
