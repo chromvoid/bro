@@ -6854,6 +6854,9 @@ object GeneratedStrings {
             val `agent_connect`: LocalizedString get() = LocalizedString(
                 key = StringKey("admin.audit.agent_connect", "admin_audit_agent_connect", emptyList(), 1),
             )
+            val `agent_db_query`: LocalizedString get() = LocalizedString(
+                key = StringKey("admin.audit.agent_db_query", "admin_audit_agent_db_query", emptyList(), 1),
+            )
             val `community_report_resolve`: LocalizedString get() = LocalizedString(
                 key = StringKey("admin.audit.community_report_resolve", "admin_audit_community_report_resolve", emptyList(), 1),
             )

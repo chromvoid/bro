@@ -3,6 +3,7 @@
     "access.share",
     "access.update",
     "agent.connect",
+    "agent.db_query",
     "chat.settings",
     "community.report.resolve",
     "device.pair",

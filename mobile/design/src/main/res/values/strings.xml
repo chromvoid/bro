@@ -2255,6 +2255,7 @@
     <string name="admin_audit_access_share" formatted="false">"Подписка выдана людям"</string>
     <string name="admin_audit_access_update" formatted="false">"Изменены подписки пользователя"</string>
     <string name="admin_audit_agent_connect" formatted="false">"Подключён агент"</string>
+    <string name="admin_audit_agent_db_query" formatted="false">"Агент выполнил запрос к базе данных"</string>
     <string name="admin_audit_community_report_resolve" formatted="false">"Рассмотрена жалоба"</string>
     <string name="admin_audit_device_pair" formatted="false">"Подключено устройство"</string>
     <string name="admin_audit_device_revoke" formatted="false">"Устройство отключено"</string>
