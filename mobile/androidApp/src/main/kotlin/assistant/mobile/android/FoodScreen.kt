@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -268,37 +269,41 @@ private fun FoodWeekStrip(day: String, today: String, days: List<FoodWeekDay>, o
     val start = foodWeekStart(day)
     val largest = days.maxOfOrNull { it.energyKcal.toDoubleOrNull() ?: 0.0 } ?: 0.0
     val weekLabel = stringResource(DesignR.string.food_week)
-    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).testTag("food_week")
-        .semantics { contentDescription = weekLabel }, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-        repeat(7) { index ->
-            val date = shiftFoodDay(start, index)
-            val data = days.find { it.date == date }
-            val energy = data?.energyKcal?.toDoubleOrNull()
-            val target = data?.target?.toDoubleOrNull()?.takeIf { it > 0 }
-            val over = energy != null && target != null && energy > target
-            val share = if (energy == null || energy <= 0 || (target ?: largest) <= 0) 0f
-                else ((energy / (target ?: largest)) * if (target == null) 1.0 else .8).coerceIn(.06, 1.0).toFloat()
-            val label = when {
-                energy == null || energy == 0.0 -> stringResource(DesignR.string.food_week_empty, fullFoodDayLabel(date))
-                data?.target != null -> stringResource(if (over) DesignR.string.food_week_over else DesignR.string.food_week_of,
-                    fullFoodDayLabel(date), formatFoodAmount(data.energyKcal, 0), formatFoodAmount(data.target, 0))
-                else -> stringResource(DesignR.string.food_week_kcal, fullFoodDayLabel(date), formatFoodAmount(data?.energyKcal, 0))
-            } + if (data?.completed == true) ", " + stringResource(DesignR.string.food_completed) else ""
-            Surface(shape = RoundedCornerShape(12.dp), color = if (date == day) MaterialTheme.colorScheme.secondaryContainer
-                else MaterialTheme.colorScheme.surface, modifier = Modifier.width(48.dp).heightIn(min = 120.dp)
-                    .clickable(enabled = date <= today) { onSelect(date) }.testTag("food_day_$date")
-                    .semantics { contentDescription = label; selected = date == day }) {
-                Column(Modifier.padding(vertical = 8.dp), horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text(foodWeekdayLabel(date), style = MaterialTheme.typography.labelSmall)
-                    Box(Modifier.width(12.dp).height(40.dp).background(MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(6.dp))) {
-                        Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(40.dp * share)
-                            .background(if (over) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary, RoundedCornerShape(6.dp)))
-                        if (target != null) Box(Modifier.align(Alignment.BottomCenter).padding(bottom = 31.dp).fillMaxWidth()
-                            .height(2.dp).background(MaterialTheme.colorScheme.surface))
+    // Seven days share the width; at 48 dp they no longer fit and the row scrolls instead.
+    BoxWithConstraints(Modifier.fillMaxWidth()) {
+        val cell = maxOf(48.dp, (maxWidth - 4.dp * 6) / 7)
+        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).testTag("food_week")
+            .semantics { contentDescription = weekLabel }, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            repeat(7) { index ->
+                val date = shiftFoodDay(start, index)
+                val data = days.find { it.date == date }
+                val energy = data?.energyKcal?.toDoubleOrNull()
+                val target = data?.target?.toDoubleOrNull()?.takeIf { it > 0 }
+                val over = energy != null && target != null && energy > target
+                val share = if (energy == null || energy <= 0 || (target ?: largest) <= 0) 0f
+                    else ((energy / (target ?: largest)) * if (target == null) 1.0 else .8).coerceIn(.06, 1.0).toFloat()
+                val label = when {
+                    energy == null || energy == 0.0 -> stringResource(DesignR.string.food_week_empty, fullFoodDayLabel(date))
+                    data?.target != null -> stringResource(if (over) DesignR.string.food_week_over else DesignR.string.food_week_of,
+                        fullFoodDayLabel(date), formatFoodAmount(data.energyKcal, 0), formatFoodAmount(data.target, 0))
+                    else -> stringResource(DesignR.string.food_week_kcal, fullFoodDayLabel(date), formatFoodAmount(data?.energyKcal, 0))
+                } + if (data?.completed == true) ", " + stringResource(DesignR.string.food_completed) else ""
+                Surface(shape = RoundedCornerShape(12.dp), color = if (date == day) MaterialTheme.colorScheme.secondaryContainer
+                    else MaterialTheme.colorScheme.surface, modifier = Modifier.width(cell).heightIn(min = 120.dp)
+                        .clickable(enabled = date <= today) { onSelect(date) }.testTag("food_day_$date")
+                        .semantics { contentDescription = label; selected = date == day }) {
+                    Column(Modifier.padding(vertical = 8.dp), horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Text(foodWeekdayLabel(date), style = MaterialTheme.typography.labelSmall)
+                        Box(Modifier.width(12.dp).height(40.dp).background(MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(6.dp))) {
+                            Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(40.dp * share)
+                                .background(if (over) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary, RoundedCornerShape(6.dp)))
+                            if (target != null) Box(Modifier.align(Alignment.BottomCenter).padding(bottom = 31.dp).fillMaxWidth()
+                                .height(2.dp).background(MaterialTheme.colorScheme.surface))
+                        }
+                        Text(date.takeLast(2).toInt().toString(), style = MaterialTheme.typography.labelLarge)
+                        Text(if (data?.completed == true) "✓" else "", style = MaterialTheme.typography.labelSmall)
                     }
-                    Text(date.takeLast(2).toInt().toString(), style = MaterialTheme.typography.labelLarge)
-                    Text(if (data?.completed == true) "✓" else "", style = MaterialTheme.typography.labelSmall)
                 }
             }
         }

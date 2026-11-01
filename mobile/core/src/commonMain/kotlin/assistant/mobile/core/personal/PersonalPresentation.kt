@@ -1,5 +1,6 @@
 package assistant.mobile.core.personal
 
+import assistant.mobile.core.RussianPlural
 import assistant.mobile.core.food.plainFoodDecimal
 import assistant.mobile.core.today.formatTodayAmount
 import kotlinx.datetime.LocalDate
@@ -40,7 +41,10 @@ fun personalAmountText(kind: String, value: String?, units: PersonalDisplayUnits
     if (kind == "distance") return personalDistanceText(value, units, locale)
     if (kind in personalMassKinds) return personalMassText(value, units, locale)
     val fraction = if (kind in PERSONAL_BODY_KINDS && kind != "basal_metabolic_rate") 2 else 0
-    return "${amount(requireNotNull(value), fraction, locale)} ${personalUnitOf(kind)}".trimEnd()
+    // A count of steps agrees with its number: 1 шаг, 4 734 шага, 1 724 шагов.
+    val unit = if (kind in setOf("steps", "running_steps") && locale.startsWith("ru"))
+        listOf("шаг", "шага", "шагов")[RussianPlural.index(number, 3)] else personalUnitOf(kind)
+    return "${amount(requireNotNull(value), fraction, locale)} $unit".trimEnd()
 }
 
 fun personalMassText(kilograms: String?, units: PersonalDisplayUnits, locale: String = "ru"): String? {

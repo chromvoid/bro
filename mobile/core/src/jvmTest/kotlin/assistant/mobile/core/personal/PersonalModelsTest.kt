@@ -25,6 +25,15 @@ class PersonalModelsTest {
     }
 
     @Test
+    fun stepCountsAgreeWithTheirNumber() {
+        assertEquals(listOf("1 шаг", "3 шага", "11 шагов", "21 шаг", "734 шага", "0 шагов"),
+            listOf("1", "3", "11", "21", "734", "0").map { personalAmountText("steps", it) })
+        assertEquals(true, personalAmountText("steps", "4734")?.endsWith(" шага"))
+        assertEquals("5 шагов", personalAmountText("running_steps", "5"))
+        assertEquals("шагов", personalUnitOf("steps"))
+    }
+
+    @Test
     fun sensorFormattingRetainsUnitsAndRejectsNonFiniteAmounts() {
         assertEquals("65,25 уд/мин", personalSensorAmount("65.25", "bpm"))
         assertEquals("28 мс", personalSensorAmount("28", "ms"))

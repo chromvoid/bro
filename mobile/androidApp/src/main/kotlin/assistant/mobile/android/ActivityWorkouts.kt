@@ -54,7 +54,7 @@ internal fun ActivityDeviceWorkout(report: DeviceWorkout, state: ActivityState, 
     }
     Text((report.durationSeconds?.let { personalDuration(it / 60, state.locale) }
         ?: stringResource(DesignR.string.activity_running_unknown_duration)) +
-        (report.steps?.let { " · " + it.toLong() + " " + stringResource(DesignR.string.activity_running_step_unit) } ?: "") +
+        (report.steps?.let { " · " + personalAmountText("steps", it.toLong().toString(), locale = state.locale) } ?: "") +
         (report.distanceMeters?.let { " · " + personalAmountText("distance", it.toString(), units, state.locale) } ?: ""),
         modifier = Modifier.testTag("activity_workout_values"))
     report.heartRate?.let { ActivityWorkoutEffort(it, report.zoneSeconds, report.trimp, report.effort, state.locale) }
@@ -110,7 +110,7 @@ internal fun ActivityRunningData(state: ActivityState, controller: ActivityContr
         val context = state.runningSteps.data?.contexts?.firstOrNull { it.date == state.selectedDay && it.kind == "running_steps" }
         val value = activityMetricValue(row?.metric)?.toDoubleOrNull()?.takeIf { it >= 0 && it % 1 == 0.0 }
         if (value != null) {
-            Text(value.toLong().toString() + " " + stringResource(DesignR.string.activity_running_step_unit),
+            Text(requireNotNull(personalAmountText("running_steps", value.toLong().toString())),
                 style = MaterialTheme.typography.headlineSmall, modifier = Modifier.testTag("activity_running_steps_value"))
             if (row?.metric?.complete == false || row?.metric?.resolution?.status == "partial" || context?.snapshot == true) Text(stringResource(DesignR.string.activity_running_snapshot),
                 modifier = Modifier.testTag("activity_running_steps_snapshot"))

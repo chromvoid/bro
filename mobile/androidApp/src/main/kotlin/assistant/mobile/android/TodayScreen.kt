@@ -36,6 +36,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import assistant.mobile.core.GeneratedStrings
 import assistant.mobile.core.SessionLease
+import assistant.mobile.core.personal.personalAmountText
 import assistant.mobile.core.today.TodayAttentionState
 import assistant.mobile.core.today.TodayCard
 import assistant.mobile.core.today.TodayController
@@ -266,7 +267,7 @@ private fun TodayAttention(state: TodayAttentionState, onRecover: (String) -> Un
     AppCardSurface(modifier = Modifier.fillMaxWidth().testTag("today_card_attention")) {
         Column(Modifier.padding(Spacing.l), verticalArrangement = Arrangement.spacedBy(Spacing.m)) {
             CardTitle(stringResource(DesignR.string.today_attention))
-            if (state.loading) Text(stringResource(DesignR.string.state_loading), Modifier.testTag("today_loading_attention"),
+            if (state.loading && !state.stale) Text(stringResource(DesignR.string.state_loading), Modifier.testTag("today_loading_attention"),
                 style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
             state.error?.let {
                 ErrorMessage(it, "today_error_attention")
@@ -309,7 +310,8 @@ private fun TodayCard(title: Int, tag: String, onOpen: () -> Unit, content: @Com
 private fun <T> TodayQueryStatus(query: TodayQuery<T>, tag: String, retry: () -> Unit) {
     if (query.loading) {
         ProgressBar(modifier = Modifier.fillMaxWidth())
-        Text(stringResource(DesignR.string.state_loading), modifier = Modifier.testTag("today_loading_$tag"),
+        // While data already on screen refreshes, the stale line below says so; «Загрузка…» would repeat it.
+        if (!query.stale) Text(stringResource(DesignR.string.state_loading), modifier = Modifier.testTag("today_loading_$tag"),
             style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
     query.error?.let { error ->
@@ -385,15 +387,14 @@ private fun TodayStepsSummary(personal: TodayPersonal, state: TodayState) {
     val steps = personal.steps.takeIf { personal.date == state.day }
     Column(verticalArrangement = Arrangement.spacedBy(Spacing.xs)) {
         if (steps?.status == "available" && steps.value != null) {
-            Text(formatTodayAmount(steps.value, 0) + " " + stringResource(DesignR.string.sources_unit_steps),
+            Text(requireNotNull(personalAmountText("steps", steps.value)),
                 style = MaterialTheme.typography.headlineSmall, modifier = Modifier.testTag("today_steps_value"))
         } else {
             Text(stringResource(metricStatus(steps)), modifier = Modifier.testTag("today_steps_status"),
                 style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         steps?.target?.takeIf { it.toDoubleOrNull()?.let { target -> target > 0 } == true }?.let { target ->
-            Text(stringResource(DesignR.string.personal_target,
-                formatTodayAmount(target, 0) + " " + stringResource(DesignR.string.sources_unit_steps)),
+            Text(stringResource(DesignR.string.personal_target, requireNotNull(personalAmountText("steps", target))),
                 style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.testTag("today_steps_goal"))
         }
