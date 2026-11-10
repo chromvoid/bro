@@ -8,6 +8,7 @@
 #   shell/ios/ci.sh setup     idempotently enable the app/extension publisher capabilities through Apple
 #   shell/ios/ci.sh archive   a signed archive with verified profiles, without uploading it
 #   shell/ios/ci.sh release   a signed archive of a new build, uploaded to App Store Connect (TestFlight)
+#   shell/ios/ci.sh listing plan|apply <build>   reconcile the repository's App Store listing
 # A release needs, in the environment: ASC_KEY_ID, ASC_ISSUER_ID and ASC_KEY_P8 (an App Store Connect API key and
 # the text of its .p8 file), IOS_TEAM_ID, IOS_APP_ID_PREFIX, IOS_BUNDLE_ID, ASSISTANT_PUSH_RELAY (https://…),
 # ASSISTANT_PUBLISHER_SUPPORT_URL (public https:// contact) and BUILD_NUMBER. No installation
@@ -76,6 +77,19 @@ preflight() {
 setup() {
   settings
   python3 publisher_preflight.py configure --key-file "$key"
+}
+
+listing() {
+  listing_mode=${1:-}
+  listing_build=${2:-}
+  case "$listing_mode" in
+    plan|apply) ;;
+    *) echo "listing mode must be plan or apply" >&2; exit 2 ;;
+  esac
+  [ -n "$listing_build" ] || { echo "listing build number is required" >&2; exit 2; }
+  settings
+  python3 -B store_listing.py "$listing_mode" --key-file "$key" --build "$listing_build" \
+    ../../docs/app-store/listing.json
 }
 
 verify() {
@@ -154,5 +168,6 @@ case "${1:-}" in
   setup) setup ;;
   archive) archive; echo "iOS shell: signed archive verified; nothing uploaded" ;;
   release) release ;;
-  *) echo "usage: $0 config|test|preflight|setup|archive|release" >&2; exit 2 ;;
+  listing) shift; listing "$@" ;;
+  *) echo "usage: $0 config|test|preflight|setup|archive|release|listing plan|apply <build>" >&2; exit 2 ;;
 esac
