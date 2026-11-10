@@ -9,6 +9,7 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import MagicMock, Mock, patch
+from urllib.error import HTTPError
 from urllib.parse import parse_qs, urlsplit
 
 
@@ -31,6 +32,7 @@ class FakeApi:
         self.reads = []
         self.uploads = []
         self.next_id = 0
+        self.mirror_locales = False
         self.expected_files = {f["path"].name: f["content"] for group in files.values() for f in group}
         self.add("apps", "app", {"bundleId": BUNDLE, "primaryLocale": "en-US"})
         self.add("appInfos", "info", {"state": "PREPARE_FOR_SUBMISSION"})
@@ -93,6 +95,20 @@ class FakeApi:
             else:
                 self.links[key] = copy.deepcopy(data)
             return {}
+        if method == "POST" and kind == "appStoreVersionLocalizations":
+            parent = data["relationships"]["appStoreVersion"]["data"]["id"]
+            existing = self.resolve(self.links.get(("appStoreVersions", parent, kind), []))
+            if any(item["attributes"]["locale"] == data["attributes"]["locale"] for item in existing):
+                raise store.ListingError("HTTP 409 POST appStoreVersionLocalizations: DUPLICATE")
+        if method == "POST" and kind == "appInfoLocalizations" and self.mirror_locales:
+            # Apple adds the version localization of a new app info locale by itself.
+            for (item_kind, version), _ in list(self.items.items()):
+                if item_kind == "appStoreVersions":
+                    self.next_id += 1
+                    mirrored = self.add("appStoreVersionLocalizations", f"new-{self.next_id}",
+                                        {"locale": data["attributes"]["locale"]})
+                    self.links.setdefault(("appStoreVersions", version, "appStoreVersionLocalizations"), []).append(
+                        store.reference("appStoreVersionLocalizations", mirrored["id"]))
         if method == "POST":
             self.next_id += 1
             item = self.add(kind, f"new-{self.next_id}", copy.deepcopy(data.get("attributes", {})))
@@ -217,6 +233,34 @@ class StoreListingTests(unittest.TestCase):
         self.assertEqual(self.reconcile(apply=True), [])
         self.assertEqual(self.api.writes, [])
         self.assertEqual(self.api.uploads, [])
+
+    def test_version_localization_apple_adds_with_app_info_one_is_updated_not_created_again(self):
+        self.api.mirror_locales = True
+        self.api.add("appStoreVersions", "version", {"versionString": "1.0", "appVersionState": "PREPARE_FOR_SUBMISSION"})
+        self.api.links["apps", "app", "appStoreVersions"] = [store.reference("appStoreVersions", "version")]
+        self.api.links["appStoreVersions", "version", "build"] = None
+        self.assertEqual(self.reconcile(apply=True), [])
+        locales = [item["attributes"]["locale"] for (kind, _), item in self.api.items.items()
+                   if kind == "appStoreVersionLocalizations"]
+        self.assertEqual(sorted(locales), ["en-US", "ru"])
+
+    def test_reads_are_repeated_after_a_transient_failure_and_writes_are_not(self):
+        api = store.Api(Path("unused.p8"), {"ASC_KEY_ID": "SYNTHETIC", "ASC_ISSUER_ID": "synthetic"})
+        def failure():
+            return HTTPError("https://api.appstoreconnect.apple.com/v1/apps", 500, "error", {},
+                             io.BytesIO(b'{"errors": [{"code": "UNEXPECTED_ERROR"}]}'))
+        response = MagicMock()
+        response.__enter__.return_value = response
+        response.read.return_value = b'{"data": []}'
+        opener = Mock()
+        opener.open.side_effect = [failure(), OSError("reset"), response]
+        with patch.object(store, "build_opener", return_value=opener), \
+                patch.object(store, "token", return_value="synthetic-token"), patch.object(store.time, "sleep"):
+            self.assertEqual(api.request("GET", "/v1/apps"), {"data": []})
+            opener.open.side_effect = [failure()]
+            with self.assertRaisesRegex(store.ListingError, "HTTP 500 PATCH apps"):
+                api.request("PATCH", "/v1/apps/app", {"data": {}})
+        self.assertEqual(opener.open.call_count, 4)
 
     def test_unknown_age_key_and_nonvalid_build_fail_before_any_write(self):
         self.listing["ageRatingDeclaration"]["unknownAppleField"] = False

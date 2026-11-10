@@ -33,6 +33,10 @@ class ListingError(ValueError):
     pass
 
 
+class Transient(ListingError):
+    """A failure Apple's API often gives for a moment: transport, 429 or 5xx."""
+
+
 def public_detail(value):
     """Even an upload error must not expose a signed URL's query string."""
     return re.sub(r'https?://[^\s"<>]+', lambda m: m[0].split("?", 1)[0], str(value)).replace("\n", " ").replace("\r", " ")
@@ -70,7 +74,18 @@ class Api:
             return payload
         return self.send(request, kind, json_response=True, missing_ok=missing_ok)
 
-    def send(self, request, kind, *, json_response=False, missing_ok=False, discard_response=False):
+    def send(self, request, kind, **options):
+        # Only reads are repeated: a write that failed in transport may still have happened.
+        attempts = 5 if request.get_method() == "GET" else 1
+        for attempt in range(attempts):
+            try:
+                return self.send_once(request, kind, **options)
+            except Transient:
+                if attempt + 1 == attempts:
+                    raise
+                time.sleep(5 * 2 ** attempt)
+
+    def send_once(self, request, kind, *, json_response=False, missing_ok=False, discard_response=False):
         try:
             with build_opener(NoRedirects()).open(request, timeout=45) as response:
                 body = b"" if discard_response else response.read()
@@ -88,9 +103,10 @@ class Api:
                 return None
             # Do not expose credentials even if Apple echoes them in a diagnostic.
             details = public_detail(details).replace(self.bearer, "[redacted]") if self.bearer else public_detail(details)
-            raise ListingError(f"HTTP {status} {request.method} {kind}: {details}") from None
+            failure = Transient if status == 429 or status >= 500 else ListingError
+            raise failure(f"HTTP {status} {request.method} {kind}: {details}") from None
         except (URLError, OSError, HTTPException):
-            raise ListingError(f"HTTP unavailable {request.method} {kind}: transport failed") from None
+            raise Transient(f"HTTP unavailable {request.method} {kind}: transport failed") from None
         if json_response and body:
             return json.loads(body)
         return {}
@@ -337,11 +353,17 @@ class Reconciler:
             attributes["platform"] = "IOS"
         version = self.upsert("appStoreVersions", state["version"], attributes,
                              relationships={"app": relationship("apps", app["id"])})
+        version_locales = state["version_locales"]
+        if self.apply:
+            # Apple adds a version localization by itself when an app info localization of the
+            # same locale is created above, so the snapshot taken before the writes may lack it.
+            version_locales = {item["attributes"]["locale"]: item for item in collection(
+                self.api, f"/v1/appStoreVersions/{version['id']}/appStoreVersionLocalizations")}
         for locale, texts in listing["localizations"].items():
             attributes = {key: texts[key] for key in ("description", "keywords", "promotionalText")}
             attributes.update({key: listing[key] for key in ("supportUrl", "marketingUrl")})
             attributes["locale"] = locale
-            localization = self.upsert("appStoreVersionLocalizations", state["version_locales"].get(locale),
+            localization = self.upsert("appStoreVersionLocalizations", version_locales.get(locale),
                 attributes, label=f"appStoreVersionLocalizations.{locale}",
                 relationships={"appStoreVersion": relationship("appStoreVersions", version["id"])})
             if locale == listing["primaryLocale"]:
