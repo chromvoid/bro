@@ -1,5 +1,14 @@
 <script setup lang="ts">
-import { Copy, Ellipsis, Info, Library, MessageSquareReply, Volume2, Square } from '@lucide/vue'
+import {
+  CircleAlert,
+  Copy,
+  Ellipsis,
+  Info,
+  Library,
+  MessageSquareReply,
+  Volume2,
+  Square,
+} from '@lucide/vue'
 import { computed, inject, ref, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue-sonner'
@@ -15,6 +24,7 @@ import MarkdownText from '@/components/MarkdownText'
 import { useDeveloperMode } from '@/core/developer'
 import { safeWebLink } from '@/core/links'
 import { cn } from '@/lib/utils'
+import ReportPanel from '@/sections/circle/ReportPanel.vue'
 import { conversationBusy, revealedReply } from './busy'
 import type { Reply } from './model'
 import SourcesSheet from './SourcesSheet.vue'
@@ -67,6 +77,14 @@ function openSources() {
 }
 function openDetails() {
   detailsUsed.value = detailsOpen.value = true
+}
+// A finished answer can be reported like a Circle message: the report carries its message id and
+// the reason, nothing else of the conversation.
+const reportable = computed(() => props.reply.completed && !!props.reply.messageId)
+const reportOpen = ref(false)
+const reportUsed = ref(false)
+function openReport() {
+  reportUsed.value = reportOpen.value = true
 }
 const copying = ref(false)
 async function copyAnswer() {
@@ -364,6 +382,14 @@ function menuClosed(event: Event) {
             <Library />{{ t('assistant.sources') }} · {{ sources.length }}
           </DropdownMenuItem>
           <DropdownMenuItem
+            v-if="reportable"
+            class="min-h-11"
+            data-testid="answer-report"
+            @select="openReport"
+          >
+            <CircleAlert />{{ t('moderation.report') }}
+          </DropdownMenuItem>
+          <DropdownMenuItem
             v-if="developer"
             class="min-h-11"
             data-testid="answer-details"
@@ -399,6 +425,12 @@ function menuClosed(event: Event) {
       v-model:open="sourcesOpen"
       :sources="sources"
       :limitations="reply.limitations"
+    />
+    <ReportPanel
+      v-if="reportable && reportUsed"
+      v-model:open="reportOpen"
+      target-type="message"
+      :target-id="reply.messageId!"
     />
     <TurnDetails
       v-if="developer && detailsUsed"

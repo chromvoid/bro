@@ -10,6 +10,7 @@ import UnknownOutcome from '@/components/state/UnknownOutcome.vue'
 import { Button } from '@/components/ui/button'
 import LinkedText from '@/components/LinkedText'
 import { Textarea } from '@/components/ui/textarea'
+import { aiConsent } from '@/core/aiConsent'
 import { api } from '@/core/client'
 import { errorText } from '@/core/errors'
 import { ApiError } from '@/core/http'
@@ -112,6 +113,9 @@ async function send(assistant: boolean) {
   const text = rawText.trim()
   const active = journal.value
   if (!text || !active || !props.channelId || sending.value || !props.canWrite) return
+  // A message for the assistant goes to the model: only with the person's permission.
+  if (assistant && !(await aiConsent.request())) return
+  if (sending.value) return
   const target = endpoint.value
   const draftKey = `channel:${props.channelId}`
   const current = currentScope()

@@ -63,7 +63,7 @@ function render() {
   context.session = reactive({ me: { id: 'first' }, state: 'ready', load: context.load })
   context.native.opened = ref(null)
   context.router.resolve.mockReturnValue({ name: 'timers' })
-  return mount(App, { global: { stubs: { Toaster: true } } })
+  return mount(App, { global: { stubs: { Toaster: true, AiConsentDialog: true } } })
 }
 
 function shellEvent(event: ShellEvent) {

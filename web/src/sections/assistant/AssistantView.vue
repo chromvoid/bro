@@ -167,6 +167,7 @@ const {
   repliesById,
   run,
   send,
+  resend,
   answer,
   confirm,
   movable,
@@ -354,7 +355,7 @@ function retryDraftStorage() {
                   :zone="zone"
                   :busy="busy"
                   @check="run(() => conversation.check(entry.key))"
-                  @resend="run(() => conversation.resend(entry.key))"
+                  @resend="resend(entry.key)"
                   @abandon="run(async () => conversation.abandon(entry.key))"
                   @restore="run(() => restorePending(entry))"
                   @dismiss="run(() => dismissPending(entry.key))"
@@ -428,7 +429,7 @@ function retryDraftStorage() {
                 :zone="zone"
                 :busy="busy"
                 @check="run(() => conversation.check(row.pending.key))"
-                @resend="run(() => conversation.resend(row.pending.key))"
+                @resend="resend(row.pending.key)"
                 @abandon="run(async () => conversation.abandon(row.pending.key))"
                 @restore="run(() => restorePending(row.pending))"
                 @dismiss="run(() => dismissPending(row.pending.key))"

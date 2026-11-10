@@ -10,6 +10,10 @@ const clients = vi.hoisted(() => ({
   unauthorized: vi.fn(),
   release: vi.fn(),
 }))
+// Permission for AI processing is given; core/aiConsent.test.ts covers asking for it.
+vi.mock('@/core/aiConsent', () => ({
+  aiConsent: { ask: (action: () => unknown) => action(), request: async () => true },
+}))
 vi.mock('@/core/client', () => ({
   api: { get: clients.get, hooks: { unauthorized: clients.unauthorized } },
   updates: { hold: () => clients.release },

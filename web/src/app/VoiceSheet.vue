@@ -8,6 +8,7 @@ import Panel from '@/components/Panel.vue'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { aiConsent } from '@/core/aiConsent'
 import { useDictation } from '@/dictation/useDictation'
 import { handOff } from '@/sections/assistant/useComposerDraft'
 import { useSession } from '@/stores/session'
@@ -39,8 +40,10 @@ const status = computed(() => {
 
 /** Opens the sheet and asks for the microphone at once: it must run inside the tap. */
 function dictate() {
-  open.value = true
-  dictation.start()
+  aiConsent.ask(() => {
+    open.value = true
+    dictation.start()
+  })
 }
 
 /** Puts the text into the assistant's saved draft; false when it could not be kept. */

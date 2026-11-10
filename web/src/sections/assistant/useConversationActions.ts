@@ -7,6 +7,7 @@
 import { computed, onBeforeUnmount, ref, watch, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue-sonner'
+import { aiConsent } from '@/core/aiConsent'
 import { api } from '@/core/client'
 import { errorText } from '@/core/errors'
 import { ApiError } from '@/core/http'
@@ -127,8 +128,16 @@ export function useConversationActions({
     return map
   })
 
-  /** Written while a request runs, a message waits in the queue (sendNow moves it into the run). */
-  async function send({ transcriptionId }: Composed) {
+  /**
+   * Written while a request runs, a message waits in the queue (sendNow moves it into the run).
+   * The message goes to the model only with the person's permission; without it the draft stays.
+   */
+  async function send(composed: Composed) {
+    if (sendBlocked.value || busy.value || conversation.sending.value) return
+    if (await aiConsent.request()) await deliver(composed)
+  }
+
+  async function deliver({ transcriptionId }: Composed) {
     if (sendBlocked.value || busy.value || conversation.sending.value) return
     busy.value = true
     let snapshot: DraftSubmission | null = null
@@ -237,6 +246,8 @@ export function useConversationActions({
 
   async function confirm(reply: Reply, accept: boolean) {
     if (sendBlocked.value || !reply.messageId || busy.value || conversation.sending.value) return
+    if (!(await aiConsent.request())) return
+    if (sendBlocked.value || busy.value || conversation.sending.value) return
     const account = session.account
     // The consent is bound to this proposal by answering its reply.
     busy.value = true
@@ -267,6 +278,11 @@ export function useConversationActions({
     } finally {
       busy.value = false
     }
+  }
+
+  /** Sending a message again hands it to the model again: only with the person's permission. */
+  async function resend(key: string) {
+    if (await aiConsent.request()) await run(() => conversation.resend(key))
   }
 
   async function restorePending(entry: PendingSend) {
@@ -344,6 +360,7 @@ export function useConversationActions({
     repliesById,
     run,
     send,
+    resend,
     answer,
     confirm,
     movable,

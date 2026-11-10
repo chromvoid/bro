@@ -291,6 +291,9 @@ function go(next: string) {
     class="mx-auto min-w-0 max-w-6xl space-y-4 px-4 pb-8 md:px-8"
     data-testid="personal-dashboard"
   >
+    <p class="text-muted-foreground text-xs" data-testid="health-disclaimer">
+      {{ t('personal.healthDisclaimer') }}
+    </p>
     <div
       ref="dateElement"
       class="bg-background sticky top-(--app-top) z-10 -mx-4 px-4 sm:mx-auto sm:max-w-sm sm:px-0 md:static"

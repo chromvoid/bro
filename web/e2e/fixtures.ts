@@ -26,6 +26,14 @@ export const test = base.extend<{
     async ({ page, baseURL, signedOut, asMember, developer }, use, testInfo) => {
       if (developer)
         await page.addInitScript(() => localStorage.setItem('assistant.web.developer', '1'))
+      // Every account has allowed AI processing on this device (src/core/aiConsent.ts), whatever
+      // its id: specs mock `/v1/me` with ids of their own. The question itself has unit tests.
+      await page.addInitScript(() => {
+        const getItem = Storage.prototype.getItem
+        Storage.prototype.getItem = function (this: Storage, key: string) {
+          return key.startsWith('assistant.web.ai-consent:') ? 'granted' : getItem.call(this, key)
+        }
+      })
       if (ISOLATED && !signedOut && asMember) {
         await page.context().addCookies(memberFor(testInfo.project.name).cookies)
       } else if (ISOLATED && !signedOut) {

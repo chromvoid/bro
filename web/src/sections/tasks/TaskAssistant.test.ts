@@ -14,6 +14,10 @@ const mocks = vi.hoisted(() => ({
   refreshFailed: false,
   refetch: vi.fn(),
 }))
+// Permission for AI processing is given; core/aiConsent.test.ts covers asking for it.
+vi.mock('@/core/aiConsent', () => ({
+  aiConsent: { ask: (action: () => unknown) => action(), request: async () => true },
+}))
 vi.mock('vue-i18n', () => ({ useI18n: () => ({ t: (key: string) => key, te: () => true }) }))
 vi.mock('@/stores/session', () => ({ useSession: () => ({ me: { id: 'user', timezone: 'UTC' } }) }))
 vi.mock('@/core/operations', () => ({ useLedger: () => ({ operate: mocks.operate }) }))

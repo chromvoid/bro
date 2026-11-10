@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { NativeSelect } from '@/components/ui/native-select'
 import { Textarea } from '@/components/ui/textarea'
+import { aiConsent } from '@/core/aiConsent'
 import { api } from '@/core/client'
 import { errorText } from '@/core/errors'
 import { useLedger, type Operation } from '@/core/operations'
@@ -156,7 +157,18 @@ function selectGrant(
         form.value[permission] = [...new Set([...form.value[permission], 'workers.run'])]
   }
 }
+// What sets the assistant working on the task hands the task to the model; stopping it, revoking it
+// or accepting its result does not.
+const runsModel = new Set([
+  'delegation.create',
+  'delegation.update',
+  'delegation.resume',
+  'question.answer',
+  'result.revise',
+])
 async function operate(operation: Operation) {
+  if (busy.value) return false
+  if (runsModel.has(operation.kind) && !(await aiConsent.request())) return false
   if (busy.value) return false
   busy.value = true
   try {

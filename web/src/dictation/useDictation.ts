@@ -1,6 +1,7 @@
 /** Dictation into a draft: recognized text fills the field, the user reviews and sends. */
 import { useEventListener } from '@vueuse/core'
 import { computed, onBeforeUnmount, ref, watch, type Ref } from 'vue'
+import { aiConsent } from '@/core/aiConsent'
 import { api, updates } from '@/core/client'
 import { useSession } from '@/stores/session'
 import { BrowserMicrophone, type AudioSource } from './audio'
@@ -54,7 +55,13 @@ export function useDictation(
 
   const active = computed(() => ['permission', 'recording', 'finalizing'].includes(state.value))
 
+  /** The recording goes to the speech service: it starts once the person allowed that. */
   function start() {
+    if (active.value) return
+    aiConsent.ask(record)
+  }
+
+  function record() {
     if (active.value) return
     session?.cancel()
     canRetry.value = false

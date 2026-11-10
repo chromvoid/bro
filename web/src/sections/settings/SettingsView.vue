@@ -31,6 +31,7 @@ import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Switch } from '@/components/ui/switch'
+import { aiConsent } from '@/core/aiConsent'
 import { api } from '@/core/client'
 import { developerPreference, setDeveloperMode, useDeveloperMode } from '@/core/developer'
 import { useLogout } from '@/app/useLogout'
@@ -264,6 +265,24 @@ const { askLogout } = useLogout()
       </div>
     </section>
 
+    <div
+      class="bg-card flex items-center gap-4 rounded-3xl border p-5"
+      data-testid="ai-consent-setting"
+    >
+      <div class="min-w-0 flex-1">
+        <p id="ai-consent-label" class="font-medium">{{ t('aiConsent.title') }}</p>
+        <p class="text-muted-foreground text-sm">
+          {{ t(aiConsent.granted.value ? 'aiConsent.granted' : 'aiConsent.notGranted') }}
+        </p>
+      </div>
+      <Switch
+        :model-value="aiConsent.granted.value"
+        aria-labelledby="ai-consent-label"
+        @update:model-value="
+          (value) => (value ? aiConsent.ask(() => undefined) : aiConsent.revoke())
+        "
+      />
+    </div>
     <InstallationInfo />
     <div class="space-y-2">
       <Button variant="outline" class="text-destructive w-full" @click="askLogout">

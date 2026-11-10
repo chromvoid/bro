@@ -11,6 +11,10 @@ const mocks = vi.hoisted(() => ({
   toast: Object.assign(vi.fn(), { error: vi.fn() }),
   order: [] as string[],
 }))
+// Permission for AI processing is given; core/aiConsent.test.ts covers asking for it.
+vi.mock('@/core/aiConsent', () => ({
+  aiConsent: { ask: (action: () => unknown) => action(), request: async () => true },
+}))
 vi.mock('@/core/client', () => ({
   api: { get: mocks.get, hooks: {} },
   updates: { hold: () => () => undefined },

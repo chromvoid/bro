@@ -3,6 +3,7 @@ import { Mic } from '@lucide/vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Button } from '@/components/ui/button'
+import { aiConsent } from '@/core/aiConsent'
 import { useSession } from '@/stores/session'
 import { ambientErrorKey, nativeAmbientAudio, visibleAmbientFailure } from './native'
 
@@ -19,8 +20,9 @@ const uploaded = computed(() => {
     new Date(value),
   )
 })
+// The recorder uploads what it hears for recognition by the speech service.
 function open() {
-  void native.open().catch(() => undefined)
+  aiConsent.ask(() => void native.open().catch(() => undefined))
 }
 </script>
 

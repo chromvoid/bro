@@ -1235,6 +1235,7 @@
     <string name="tasks_discussion_badge_messages">"Обсуждение. Сообщений: %1$s"</string>
     <string name="tasks_discussion_badge_unread">"Обсуждение. Сообщений: %1$s, непрочитанных: %2$s"</string>
     <string name="tasks_earlier_messages" formatted="false">"Более ранние сообщения"</string>
+    <string name="personal_health_disclaimer" formatted="false">"Bro не является медицинским изделием и не предназначен для диагностики, лечения или предотвращения заболеваний. Показатели и оценки могут быть неточными. По вопросам здоровья обращайтесь к медицинскому специалисту."</string>
     <string name="personal_caliper_title" formatted="false">"Кожные складки · калипер"</string>
     <string name="personal_caliper_intro" formatted="false">"Исходные замеры и отдельная оценка процента жира рядом с InBody."</string>
     <string name="personal_caliper_add" formatted="false">"Добавить замер"</string>
@@ -3021,6 +3022,13 @@
     <string name="installation_providers">"Провайдеры этой установки: %1$s"</string>
     <string name="installation_privacy" formatted="false">"Конфиденциальность"</string>
     <string name="installation_support" formatted="false">"Связаться с поддержкой"</string>
+    <string name="ai_consent_title" formatted="false">"Обработка внешними сервисами ИИ"</string>
+    <string name="ai_consent_text" formatted="false">"Чтобы отвечать, распознавать речь и фото, Bro передаёт ваши сообщения, записи голоса и фотографии сервисам ИИ, подключённым на вашем сервере Bro. Они обрабатывают данные по своим правилам. Без разрешения эти функции не работают, остальное приложение доступно."</string>
+    <string name="ai_consent_privacy" formatted="false">"Политика конфиденциальности"</string>
+    <string name="ai_consent_allow" formatted="false">"Разрешить"</string>
+    <string name="ai_consent_later" formatted="false">"Не сейчас"</string>
+    <string name="ai_consent_granted" formatted="false">"Разрешено"</string>
+    <string name="ai_consent_not_granted" formatted="false">"Не разрешено"</string>
     <string name="activity_title" formatted="false">"Активность"</string>
     <string name="activity_description" formatted="false">"Занятия, движение и силовой журнал"</string>
     <string name="activity_sections" formatted="false">"Разделы активности"</string>

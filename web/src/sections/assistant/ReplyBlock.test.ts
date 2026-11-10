@@ -41,7 +41,7 @@ function screen(answer: Reply = reply, extra: { latest?: boolean } = {}) {
     props: { reply: answer, ...extra },
     global: {
       plugins: [i18n],
-      stubs: { SourcesSheet: true, TurnDetails: true, RouterLink: true },
+      stubs: { SourcesSheet: true, TurnDetails: true, RouterLink: true, ReportPanel: true },
     },
   })
   screens.push(wrapper)
@@ -129,6 +129,22 @@ describe('answer menu', () => {
   it('does not offer sources when every address is invalid', async () => {
     const actions = await menu(screen({ ...reply, sources: [{ url: 'data:text/html,test' }] }))
     expect(actions.find('[data-testid="answer-sources"]').exists()).toBe(false)
+  })
+
+  it('reports a finished answer through the Circle report of its message', async () => {
+    const wrapper = screen({ ...reply, messageId: 'specific-reply' })
+    const actions = await menu(wrapper)
+    expect(actions.get('[data-testid="answer-report"]').text()).toBe('Пожаловаться')
+    await actions.get('[data-testid="answer-report"]').trigger('click')
+    await flushPromises()
+    expect(wrapper.getComponent({ name: 'ReportPanel' }).props()).toEqual({
+      open: true,
+      targetType: 'message',
+      targetId: 'specific-reply',
+    })
+    // Without a message id, or before it is finished, an answer has nothing to report.
+    const unsaved = await menu(screen())
+    expect(unsaved.find('[data-testid="answer-report"]').exists()).toBe(false)
   })
 
   it('keeps replying bound to the answer and diagnostics available only in developer mode', async () => {

@@ -9,6 +9,7 @@ import { i18n } from '@/i18n'
 import { useShell } from '@/core/shell'
 import { nativeNotifications } from '@/sections/notifications/native'
 import { nativeAmbientAudio } from '@/ambient/native'
+import AiConsentDialog from '@/app/AiConsentDialog.vue'
 // The toast close button is read aloud: «Закрыть», not the library's English default.
 const toastOptions = {
   classes: { toast: 'rounded-2xl' },
@@ -83,5 +84,6 @@ onBeforeUnmount(() => {
 
 <template>
   <RouterView />
+  <AiConsentDialog />
   <Toaster position="top-center" rich-colors close-button :toast-options="toastOptions" />
 </template>

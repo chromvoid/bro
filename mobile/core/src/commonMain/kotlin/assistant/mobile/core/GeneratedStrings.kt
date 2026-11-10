@@ -3750,6 +3750,9 @@ object GeneratedStrings {
         )
     }
     object `Personal` {
+        val `healthDisclaimer`: LocalizedString get() = LocalizedString(
+            key = StringKey("personal.healthDisclaimer", "personal_health_disclaimer", emptyList(), 1),
+        )
         object `Caliper` {
             val `title`: LocalizedString get() = LocalizedString(
                 key = StringKey("personal.caliper.title", "personal_caliper_title", emptyList(), 1),
@@ -9271,6 +9274,29 @@ object GeneratedStrings {
         )
         val `support`: LocalizedString get() = LocalizedString(
             key = StringKey("installation.support", "installation_support", emptyList(), 1),
+        )
+    }
+    object `AiConsent` {
+        val `title`: LocalizedString get() = LocalizedString(
+            key = StringKey("aiConsent.title", "ai_consent_title", emptyList(), 1),
+        )
+        val `text`: LocalizedString get() = LocalizedString(
+            key = StringKey("aiConsent.text", "ai_consent_text", emptyList(), 1),
+        )
+        val `privacy`: LocalizedString get() = LocalizedString(
+            key = StringKey("aiConsent.privacy", "ai_consent_privacy", emptyList(), 1),
+        )
+        val `allow`: LocalizedString get() = LocalizedString(
+            key = StringKey("aiConsent.allow", "ai_consent_allow", emptyList(), 1),
+        )
+        val `later`: LocalizedString get() = LocalizedString(
+            key = StringKey("aiConsent.later", "ai_consent_later", emptyList(), 1),
+        )
+        val `granted`: LocalizedString get() = LocalizedString(
+            key = StringKey("aiConsent.granted", "ai_consent_granted", emptyList(), 1),
+        )
+        val `notGranted`: LocalizedString get() = LocalizedString(
+            key = StringKey("aiConsent.notGranted", "ai_consent_not_granted", emptyList(), 1),
         )
     }
     object `Activity` {

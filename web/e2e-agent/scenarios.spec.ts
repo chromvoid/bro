@@ -101,6 +101,13 @@ for (const scenario of plan.cases) {
       ])
       // Freeze business date while keeping timers and assertion deadlines running.
       await page.clock.setFixedTime(new Date(actor.reference_time))
+      // The scenario's person has allowed AI processing on this device (src/core/aiConsent.ts).
+      await page.addInitScript(() => {
+        const getItem = Storage.prototype.getItem
+        Storage.prototype.getItem = function (this: Storage, key: string) {
+          return key.startsWith('assistant.web.ai-consent:') ? 'granted' : getItem.call(this, key)
+        }
+      })
       await page.goto('/assistant')
       await expectClientStarted(page, browserProblems)
       for (const step of scenario.steps) {

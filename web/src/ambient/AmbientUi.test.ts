@@ -15,6 +15,10 @@ const context = vi.hoisted(() => ({
     stop: () => Promise<void>
   },
 }))
+// Permission for AI processing is given; core/aiConsent.test.ts covers asking for it.
+vi.mock('@/core/aiConsent', () => ({
+  aiConsent: { ask: (action: () => unknown) => action(), request: async () => true },
+}))
 vi.mock('@/stores/session', () => ({ useSession: () => ({ state: 'ready' }) }))
 vi.mock('./native', async (original) => ({
   ...(await original<typeof import('./native')>()),

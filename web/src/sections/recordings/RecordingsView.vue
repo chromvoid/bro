@@ -10,6 +10,7 @@ import LoadingState from '@/components/state/LoadingState.vue'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import DateField from '@/components/DateField.vue'
+import { aiConsent } from '@/core/aiConsent'
 import { api } from '@/core/client'
 import { dayIn, fullDayLabel, zoneNote } from '@/core/dates'
 import { useDeveloperMode } from '@/core/developer'
@@ -119,6 +120,9 @@ function refresh() {
   void archive.refresh()
 }
 async function confirm() {
+  if (!selected.value || !confirmation.value) return
+  // Recognizing the recording again sends it to the speech service.
+  if (confirmation.value === 'retry' && !(await aiConsent.request())) return
   if (!selected.value || !confirmation.value) return
   if (await archive.mutate(confirmation.value, selected.value.id)) confirmation.value = null
 }
