@@ -153,8 +153,6 @@ private struct WebView: UIViewRepresentable {
             web.callAsyncJavaScript("window.__assistantShellEvent?.(eventJSON)",
                                     arguments: ["eventJSON": json], in: nil, in: .page, completionHandler: { _ in })
         }
-        AmbientAudio.shared.eventSink = NativeNotifications.shared.eventSink
-        context.coordinator.observeMicrophone(web)
         context.coordinator.observeTextSize()
         web.load(URLRequest(url: origin.url.appendingPathComponent("assistant")))
         context.coordinator.attempt = attempt
@@ -176,12 +174,7 @@ private struct WebView: UIViewRepresentable {
             NativeNotifications.shared.eventSink = nil
             NativeNotifications.shared.openConnection = nil
         }
-        coordinator.microphoneObservation = nil
         if let observer = coordinator.textSizeObserver { NotificationCenter.default.removeObserver(observer) }
-        if AmbientAudio.shared.accepts(connectionID: coordinator.connection.id) {
-            AmbientAudio.shared.eventSink = nil
-            AmbientAudio.shared.setWebMicrophoneInUse(false)
-        }
         UIApplication.shared.isIdleTimerDisabled = false
         web.configuration.userContentController.removeScriptMessageHandler(forName: BridgeProtocol.name, contentWorld: .page)
     }
@@ -200,7 +193,6 @@ private struct WebView: UIViewRepresentable {
         weak var web: WKWebView?
         let openConnection: () -> Void
         private var downloads: [ObjectIdentifier: URL] = [:]
-        var microphoneObservation: NSKeyValueObservation?
         var textSizeObserver: NSObjectProtocol?
 
         /// A new Dynamic Type size reaches the open page and every page loaded after it.
@@ -215,16 +207,6 @@ private struct WebView: UIViewRepresentable {
                     web.configuration.userContentController.removeAllUserScripts()
                     web.configuration.userContentController.addUserScript(PageText.script(scale))
                     web.evaluateJavaScript(PageText.source(scale), completionHandler: nil)
-                }
-            }
-        }
-
-        func observeMicrophone(_ web: WKWebView) {
-            microphoneObservation = web.observe(\.microphoneCaptureState, options: [.initial, .new]) { [weak self] web, _ in
-                let busy = web.microphoneCaptureState != .none
-                Task { @MainActor [weak self] in
-                    guard let self, alive, AmbientAudio.shared.accepts(connectionID: connection.id) else { return }
-                    AmbientAudio.shared.setWebMicrophoneInUse(busy)
                 }
             }
         }
@@ -258,21 +240,6 @@ private struct WebView: UIViewRepresentable {
                 replyHandler(BridgeProtocol.reply(request.id, result: BridgeProtocol.capabilities(
                     glasses: false, pushAvailable: NativeNotifications.shared.pushAvailable)), nil)
                 NativeNotifications.shared.ready()
-                return
-            }
-            if request.type.hasPrefix("ambient.") {
-                Task { @MainActor [weak self] in
-                    guard let self, alive, AmbientAudio.shared.accepts(connectionID: connection.id) else { return replyHandler(nil, "denied") }
-                    do {
-                        let result = try await AmbientAudio.shared.handle(request, connectionID: connection.id)
-                        guard alive, AmbientAudio.shared.accepts(connectionID: connection.id),
-                              origin.ownsPage(web?.url) else { return replyHandler(nil, "denied") }
-                        replyHandler(BridgeProtocol.reply(request.id, result: result), nil)
-                    } catch {
-                        guard alive, AmbientAudio.shared.accepts(connectionID: connection.id) else { return replyHandler(nil, "denied") }
-                        replyHandler(BridgeProtocol.failure(request.id, (error as? NativeError)?.code ?? "unavailable"), nil)
-                    }
-                }
                 return
             }
             if request.type.hasPrefix("location.") {
@@ -407,9 +374,6 @@ private struct WebView: UIViewRepresentable {
             let allowed = alive && NativeNotifications.shared.accepts(connectionID: connection.id)
                             && own && ownFrame && frame.isMainFrame && self.origin.ownsPage(frame.request.url)
                             && type == .microphone
-            // Release native audio before WebKit starts a call or dictation. Merely observing
-            // the active capture afterwards would deactivate a session WebKit already owns.
-            if allowed { AmbientAudio.shared.stop(reason: "microphone_busy") }
             decisionHandler(allowed ? .grant : .deny)
         }
 

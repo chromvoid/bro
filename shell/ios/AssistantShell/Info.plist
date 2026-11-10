@@ -60,11 +60,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Чтобы ассистент отвечал про погоду и места рядом там, где вы, и вёл историю перемещений на вашем сервере.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Диктовка, звонки и фоновая запись окружающих разговоров с отправкой на ваш сервер. Запись включается вами и доступна кнопка остановки.</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
-	</array>
+	<string>Диктовка сообщений и звонки близким, пока приложение открыто.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Выбор фото для чата, задач или дневника питания.</string>
 	<key>UIApplicationSceneManifest</key>

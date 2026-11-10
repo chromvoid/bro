@@ -87,15 +87,16 @@ Server Rust client vendors the library from [Wangnov/codex-asr](https://github.c
 Model and inference interface: https://github.com/snakers4/silero-vad,
 commit 7e30209a3e901f9842f81b225f3e93d8199902b1, MIT.
 The model weights are excluded from Git. The complete upstream license and hash manifest are in server/models/.
-The iOS shell and `mobile/` Android client follow the upstream 16-kHz ONNX state/context contract and apply
+The `mobile/` Android client follows the upstream 16-kHz ONNX state/context contract and applies
 project-owned speech segmentation before encoding. The build helper verifies the
 pinned model SHA-256 and bundles its original bytes and SILERO-LICENSE; weights
 remain outside Git. ONNX Runtime 1.24.2 (Microsoft, MIT) is consumed through the
-official Android AAR and official Swift Package Manager distribution, whose
-checksums and versions are pinned in `shell/ios/` and `mobile/gradle/`.
+official Android AAR, whose checksums and versions are pinned in `mobile/gradle/`.
 The mobile host tests use the matching official JVM distribution. No inference runs on the server.
 Original ONNX Runtime 1.24.2 LICENSE and ThirdPartyNotices are retained in
-`shell/licenses/` and included in the iOS and native Android app bundles by the same build helper.
+`shell/licenses/` and included in the native Android app bundle by the same build helper.
+The iOS shell bundled Silero and ONNX Runtime (Swift Package Manager) until its ambient recording
+was removed for the App Store 1.0 release on 2026-11-10 (commit `ad1f83fde`).
 The retired NumPy/server VAD adapter is documented under docs/history/.
 
 ## FunctionGemma and Ollama

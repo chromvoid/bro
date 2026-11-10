@@ -105,9 +105,7 @@ archive() {
     ASSISTANT_ORIGIN="" ASSISTANT_PUSH_RELAY="$ASSISTANT_PUSH_RELAY" \
     ASSISTANT_PUBLISHER_SUPPORT_URL="$ASSISTANT_PUBLISHER_SUPPORT_URL" CURRENT_PROJECT_VERSION="$build" \
     ASSISTANT_PUSH_TRANSPORT="${ASSISTANT_PUSH_TRANSPORT:-apns}" ASSISTANT_FCM_PROJECT_ID="${ASSISTANT_FCM_PROJECT_ID:-}"
-  # Xcode links ORT's static SPM artifact into a dynamic wrapper for iOS 16,
-  # but copies its upstream iOS 15.1 plist. Correct the wrapper before export.
-  verify "$OUT/AssistantShell.xcarchive" --prepare-frameworks
+  verify "$OUT/AssistantShell.xcarchive"
 }
 
 release() {

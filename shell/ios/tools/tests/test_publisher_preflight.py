@@ -467,8 +467,6 @@ if name == "xcrun":
         checked_ipa = rows[-2][2]
         self.assertEqual(rows[-1][rows[-1].index("--upload-package") + 1], checked_ipa)
         self.assertIn("--distribution", rows[-2])
-        self.assertIn("--prepare-frameworks", rows[3])
-        self.assertNotIn("--prepare-frameworks", rows[-2])
         self.assertEqual(rows[-2][rows[-2].index("--prefix") + 1], "PREFIX1234")
         for row in (rows[2], rows[4]):
             self.assertIn("-allowProvisioningUpdates", row)

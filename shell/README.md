@@ -4,7 +4,8 @@
 `design`/`androidPlatform` и Jetpack Compose `androidApp`. Все семейные разделы нативные;
 Android WebView-оболочка и её JavaScript-мост удалены из собираемого APK этапом 26.
 Браузерный клиент `web/` сохраняется; iOS остаётся Swift/WKWebView в `shell/ios`.
-Общие `shell/ring`, `shell/tools` и `shell/licenses` сохраняют Rust-ядро, упаковку VAD и лицензии.
+Общие `shell/ring`, `shell/tools` и `shell/licenses` сохраняют Rust-ядро, упаковку VAD и лицензии;
+VAD и лицензии ONNX нужны только Android: iOS 1.0 их не собирает.
 
 ## Android
 
@@ -130,11 +131,14 @@ iOS — универсальная Swift/WKWebView-оболочка. Польз�
 главный фрейм своего origin через `WKScriptMessageHandlerWithReply`; проверяются frameInfo,
 размер и тип. Чужие ссылки открывает `SFSafariViewController`.
 
-Сохраняются `shell.capabilities`, `screen.wake/release`, `theme.set`, `ambient.*`,
+Сохраняются `shell.capabilities`, `screen.wake/release`, `theme.set`,
 `location.*`, `notifications.*`, `connection.open`; Android-only команды удалены из веба,
 кроме описанного выше временного пути обновления установленной старой оболочки.
-Вход остаётся cookie WKWebsiteDataStore. Ambient стартует только по явному действию;
-сервер/пользователь/устройство перепроверяются нативно. Фоновая location queue —
+Фоновой записи окружающей речи в iOS 1.0 нет: 10 ноября 2026, перед подачей в App Store,
+она удалена вместе с `UIBackgroundModes: audio`, ONNX Runtime и Silero (коммит `ad1f83fde`,
+точка возврата — его родитель). `ambient.*` получают `unknown_type`, capability `ambient_audio`
+не объявляется; микрофон служит диктовке и звонкам при открытом приложении.
+Вход остаётся cookie WKWebsiteDataStore. Фоновая location queue —
 `Application Support/location/queue.json`, credential — Keychain AfterFirstUnlockThisDeviceOnly.
 Notification receiver key/auth secret — shared Keychain, метаданные — App Group;
 extension проверяет binding, пользователя и expiry перед расшифровкой.

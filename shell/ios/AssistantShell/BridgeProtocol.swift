@@ -54,7 +54,7 @@ enum BridgeProtocol {
 
     static func capabilities(glasses: Bool, pushAvailable: Bool = false) -> [String: Any] {
         ["shell_api": version, "platform": "ios", "glasses": glasses, "screen_wake": true, "system_bars": true,
-         "ambient_audio": true, "location": ["background": true],
+         "location": ["background": true],
          "connection": true, "notifications": ["push": pushAvailable ? "apns" as Any : NSNull(), "local": true]]
     }
 

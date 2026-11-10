@@ -5,7 +5,7 @@ options:
 settings:
   base:
     SWIFT_VERSION: "5.0"
-    MARKETING_VERSION: 0.1.0
+    MARKETING_VERSION: 1.0.0
     CURRENT_PROJECT_VERSION: 1
     ASSISTANT_BUNDLE_ID: dev.assistant.shell
     ASSISTANT_APP_GROUP: group.$(ASSISTANT_BUNDLE_ID)
@@ -29,9 +29,6 @@ packages:
   Firebase:
     url: https://github.com/firebase/firebase-ios-sdk
     exactVersion: 13.0.1
-  ONNXRuntime:
-    url: https://github.com/microsoft/onnxruntime-swift-package-manager
-    exactVersion: 1.24.2
 targets:
   AssistantShell:
     type: application
@@ -40,8 +37,6 @@ targets:
     dependencies:
       - target: AssistantNotificationService
         embed: true
-      - package: ONNXRuntime
-        product: onnxruntime
       - package: Firebase
         product: FirebaseCore
       - package: Firebase
@@ -51,20 +46,6 @@ targets:
         basedOnDependencyAnalysis: false
         script: |
           env -u SDKROOT swift "$SRCROOT/tools/validate-firebase-config.swift"
-      - name: Bundle verified offline voice detector
-        script: |
-          python3 "$SRCROOT/../tools/prepare_vad.py" --output-dir "$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"
-        inputFiles:
-          - $(SRCROOT)/../tools/prepare_vad.py
-          - $(SRCROOT)/../../server/models/silero.json
-          - $(SRCROOT)/../../server/models/SILERO-LICENSE
-          - $(SRCROOT)/../licenses/ONNXRUNTIME-LICENSE.txt
-          - $(SRCROOT)/../licenses/ONNXRUNTIME-ThirdPartyNotices.txt
-        outputFiles:
-          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/silero-v6.2.1.onnx
-          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/SILERO-LICENSE
-          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/ONNXRUNTIME-LICENSE.txt
-          - $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/ONNXRUNTIME-ThirdPartyNotices.txt
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(ASSISTANT_BUNDLE_ID)
@@ -92,12 +73,7 @@ targets:
   AssistantShellTests:
     type: bundle.unit-test
     platform: iOS
-    sources:
-      - AssistantShellTests
-      - path: ../../contracts/ambient-vad.json
-        buildPhase: resources
-      - path: ../../contracts/ambient-vad-audio.json
-        buildPhase: resources
+    sources: [AssistantShellTests]
     dependencies:
       - target: AssistantShell
     settings:

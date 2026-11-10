@@ -203,7 +203,6 @@ final class ConfigurationLoader: NSObject, URLSessionTaskDelegate {
             }
             if restoring == nil {
                 active = nil // Dismantle the old bridge before erasing its cookies or keys.
-                AmbientAudio.shared.detach()
                 await NativeNotifications.shared.detach()
                 await Self.clearWebsiteData()
             }
@@ -212,7 +211,6 @@ final class ConfigurationLoader: NSObject, URLSessionTaskDelegate {
                                                  address: origin.canonical, configuration: configuration)
             defaults.set(try JSONEncoder().encode(connection), forKey: Self.savedKey)
             NativeNotifications.shared.attach(connection)
-            AmbientAudio.shared.attach(connection)
             active = connection
             candidate = nil
             showSettings = false
@@ -236,7 +234,6 @@ final class ConfigurationLoader: NSObject, URLSessionTaskDelegate {
         active = nil
         candidate = nil
         defaults.removeObject(forKey: Self.savedKey)
-        AmbientAudio.shared.detach()
         await NativeNotifications.shared.detach()
         await Self.clearWebsiteData()
         UIApplication.shared.isIdleTimerDisabled = false

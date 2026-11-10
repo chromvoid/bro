@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare an archive's framework metadata, then check it and its IPA.
+"""Check an iOS archive, then its exported IPA, without signing or uploading.
 
 An automatic archive may be development-signed. Only --distribution checks the
 exported artifact's production APNs entitlement and App Store provisioning.
@@ -12,13 +12,11 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass
 from datetime import datetime, timezone
-import hashlib
 from pathlib import Path, PurePosixPath
 import plistlib
 import re
 import shutil
 import stat
-import struct
 import subprocess
 import sys
 import tempfile
@@ -245,163 +243,8 @@ def signed_metadata(bundle: Path, publisher: Publisher) -> tuple[dict, dict, dic
     return (plist(claims.stdout, "signed entitlements"), plist(decoded.stdout, "provisioning profile"), signature, certificate)
 
 
-def binary_slices(path: Path) -> list[tuple[int, int]]:
-    """Read the universal binary container, including fat static archives."""
-    size = path.stat().st_size
-    with path.open("rb") as source:
-        header = source.read(8)
-        formats = {b"\xca\xfe\xba\xbe": (">", "IIIII"), b"\xbe\xba\xfe\xca": ("<", "IIIII"),
-                   b"\xca\xfe\xba\xbf": (">", "IIQQII"), b"\xbf\xba\xfe\xca": ("<", "IIQQII")}
-        if header[:4] not in formats:
-            return [(0, size)]
-        require(len(header) == 8, "truncated universal binary header")
-        order, entry = formats[header[:4]]
-        count = struct.unpack(order + "I", header[4:])[0]
-        require(1 <= count <= 32, "invalid universal binary slice count")
-        length = struct.calcsize(order + entry)
-        table_end = 8 + count * length
-        slices = []
-        for _ in range(count):
-            raw = source.read(length)
-            require(len(raw) == length, "truncated universal binary table")
-            fields = struct.unpack(order + entry, raw)
-            offset, span = fields[2:4]
-            require(offset >= table_end and span >= 8 and offset + span <= size,
-                    "invalid universal binary slice bounds")
-            require(all(offset + span <= start or offset >= start + extent for start, extent in slices),
-                    "overlapping universal binary slices")
-            slices.append((offset, span))
-        return slices
-
-
-def is_static_library(path: Path) -> bool:
-    slices = binary_slices(path)
-    with path.open("rb") as source:
-        for offset, _ in slices:
-            source.seek(offset)
-            if source.read(8) != b"!<arch>\n":
-                return False
-    return True
-
-
-def macho_minimum(path: Path) -> tuple[int, int, int]:
-    versions = []
-    magic = {b"\xcf\xfa\xed\xfe": ("<", 32), b"\xfe\xed\xfa\xcf": (">", 32),
-             b"\xce\xfa\xed\xfe": ("<", 28), b"\xfe\xed\xfa\xce": (">", 28)}
-    with path.open("rb") as source:
-        for offset, span in binary_slices(path):
-            source.seek(offset)
-            header = source.read(32)
-            require(header[:4] in magic, f"{path.name}: unsupported Mach-O header {header[:8].hex()}")
-            order, header_size = magic[header[:4]]
-            require(len(header) >= header_size, "truncated Mach-O header")
-            require(struct.unpack_from(order + "I", header, 12)[0] == 6,
-                    "embedded framework executable is not a dynamic library")
-            count, length = struct.unpack_from(order + "II", header, 16)
-            require(count <= 65536 and length <= span - header_size, "invalid Mach-O load commands")
-            source.seek(offset + header_size)
-            commands = source.read(length)
-            at = 0
-            found = False
-            for _ in range(count):
-                require(at + 8 <= len(commands), "truncated Mach-O load command")
-                command, size = struct.unpack_from(order + "II", commands, at)
-                require(size >= 8 and at + size <= len(commands), "invalid Mach-O load command bounds")
-                if command == 0x32:
-                    require(size >= 24, "truncated Mach-O build version")
-                    platform, minimum = struct.unpack_from(order + "II", commands, at + 8)
-                    require(platform == 2, "framework has a non-iOS platform")
-                    versions.append((minimum >> 16, (minimum >> 8) & 255, minimum & 255))
-                    found = True
-                elif command == 0x25:
-                    require(size >= 16, "truncated Mach-O iOS minimum")
-                    minimum = struct.unpack_from(order + "I", commands, at + 8)[0]
-                    versions.append((minimum >> 16, (minimum >> 8) & 255, minimum & 255))
-                    found = True
-                at += size
-            require(found and at == length, "missing or invalid Mach-O iOS minimum")
-    return max(versions)
-
-
-def os_version(value: object) -> tuple[int, int, int]:
-    require(isinstance(value, str) and bool(re.fullmatch(r"[0-9]+(?:\.[0-9]+){0,2}", value)),
-            "missing or invalid MinimumOSVersion")
-    parts = tuple(int(p) for p in value.split("."))
-    return parts + (0,) * (3 - len(parts))
-
-
-def validate_framework_minimum(info: dict, minimum: tuple[int, int, int], app_minimum: tuple[int, int, int]) -> None:
-    declared = os_version(info.get("MinimumOSVersion"))
-    require(minimum <= declared, f"framework plist minimum {declared} is below Mach-O minimum {minimum}")
-    require(declared <= app_minimum, f"framework minimum {declared} exceeds app minimum {app_minimum}")
-
-
-def embedded_static_frameworks(app: Path) -> list[Path]:
-    result = []
-    frameworks = sorted(app.rglob("*.framework"))
-    print(f"Embedded framework inventory: {[p.name for p in frameworks]}")
-    for framework in frameworks:
-        require(not framework.is_symlink(), "framework bundle must not be a symlink")
-        metadata = framework / "Info.plist"
-        require(metadata.is_file() and not metadata.is_symlink(), f"{framework.name}: unsafe Info.plist")
-        info = plist(metadata.read_bytes(), f"{framework.name}: Info.plist")
-        name = info.get("CFBundleExecutable")
-        require(isinstance(name, str) and bool(name) and Path(name).name == name and name not in (".", ".."),
-                f"{framework.name}: invalid executable name")
-        executable = framework / name
-        require(executable.is_file() and not executable.is_symlink(), f"{framework.name}: missing framework executable")
-        if is_static_library(executable):
-            result.append(framework)
-    return result
-
-
-def prepare_frameworks(app: Path, publisher: Publisher) -> None:
-    """Correct Xcode's ORT wrapper metadata before export; preserve its linked code."""
-    require(not embedded_static_frameworks(app), "static library embedded as a runtime framework")
-    app_info = plist((app / "Info.plist").read_bytes(), "app Info.plist")
-    app_minimum = os_version(app_info.get("MinimumOSVersion"))
-    updates = []
-    for framework in sorted(app.rglob("*.framework")):
-        metadata = framework / "Info.plist"
-        raw = metadata.read_bytes()
-        info = plist(raw, f"{framework.name}: Info.plist")
-        minimum = macho_minimum(framework / info["CFBundleExecutable"])
-        declared = os_version(info.get("MinimumOSVersion"))
-        if declared < minimum:
-            require(framework == app / "Frameworks" / "onnxruntime.framework",
-                    "unexpected framework minimum mismatch; preparation stopped")
-            require(minimum <= app_minimum, "ONNX Runtime requires a newer iOS than the app")
-            info["MinimumOSVersion"] = ".".join(str(p) for p in minimum)
-            updates.append((framework, metadata, raw, info))
-        else:
-            validate_framework_minimum(info, minimum, app_minimum)
-    if not updates:
-        return
-    # Authenticate the original sealed bundle before changing any file. Reuse its
-    # authorized archive identity; export will apply the distribution identity.
-    entitlements, profile, signature, certificate = signed_metadata(app, publisher)
-    validate_bundle(app_info, entitlements, profile, signature, certificate, publisher,
-                    extension=False, distribution=False)
-    identity = hashlib.sha1(certificate).hexdigest().upper()
-    for framework, metadata, raw, info in updates:
-        plist_format = plistlib.FMT_BINARY if raw.startswith(b"bplist00") else plistlib.FMT_XML
-        metadata.write_bytes(plistlib.dumps(info, fmt=plist_format))
-        run(["codesign", "--force", "--sign", identity, "--preserve-metadata=identifier,entitlements,flags",
-             "--generate-entitlement-der", str(framework)], "framework: signing prepared metadata")
-        print(f"Prepared {framework.name} MinimumOSVersion={info['MinimumOSVersion']}; linked code retained")
-    run(["codesign", "--force", "--sign", identity, "--preserve-metadata=identifier,entitlements,flags",
-         "--generate-entitlement-der", str(app)], "app: signing prepared archive")
-
-
 def verify_app(app: Path, publisher: Publisher, *, distribution: bool) -> None:
     require(app.is_dir(), "missing app bundle")
-    require(not embedded_static_frameworks(app), "static library embedded as a runtime framework")
-    app_info = plist((app / "Info.plist").read_bytes(), "app Info.plist")
-    for framework in sorted(app.rglob("*.framework")):
-        info = plist((framework / "Info.plist").read_bytes(), f"{framework.name}: Info.plist")
-        minimum = macho_minimum(framework / info["CFBundleExecutable"])
-        print(f"Framework metadata: {framework.name}, plist minimum={info.get('MinimumOSVersion')}, Mach-O minimum={minimum}")
-        validate_framework_minimum(info, minimum, os_version(app_info.get("MinimumOSVersion")))
     extensions = list((app / "PlugIns").glob("*.appex"))
     require(len(extensions) == 1, "exactly one notification service extension is required")
     infos = []
@@ -468,17 +311,10 @@ def main() -> int:
     parser.add_argument("--transport", choices=("apns", "fcm"), default="apns")
     parser.add_argument("--fcm-project", default="")
     parser.add_argument("--distribution", action="store_true", help="require App Store signatures/profiles and production APNs on the exact exported IPA")
-    parser.add_argument("--prepare-frameworks", action="store_true", help="prepare a generated archive before verification; never modify an exported IPA")
     args = parser.parse_args()
     try:
-        publisher = Publisher(args.team, args.bundle, args.prefix, args.relay, args.support, args.transport, args.fcm_project)
-        publisher.validate()
-        if args.prepare_frameworks:
-            require(args.artifact.suffix == ".xcarchive" and not args.distribution, "preparation requires a generated archive")
-            apps = list((args.artifact / "Products" / "Applications").glob("*.app"))
-            require(len(apps) == 1, "archive must contain exactly one app")
-            prepare_frameworks(apps[0], publisher)
-        verify_artifact(args.artifact, publisher, distribution=args.distribution)
+        verify_artifact(args.artifact, Publisher(args.team, args.bundle, args.prefix, args.relay, args.support,
+                                                args.transport, args.fcm_project), distribution=args.distribution)
     except (VerificationError, OSError, zipfile.BadZipFile) as error:
         print(f"iOS artifact verification failed: {error}", file=sys.stderr)
         return 1

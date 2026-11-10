@@ -79,8 +79,13 @@ final class BridgeProtocolTests: XCTestCase {
         XCTAssertEqual(result["screen_wake"] as? Bool, true)
         XCTAssertEqual(result["system_bars"] as? Bool, true)
         XCTAssertEqual(result["location"] as? [String: Bool], ["background": true])
+        // iOS 1.0 records no ambient audio: the page sees no capability, and its requests are unknown.
+        XCTAssertEqual(Set(result.keys), ["shell_api", "platform", "glasses", "screen_wake", "system_bars",
+                                          "location", "connection", "notifications"])
         XCTAssertEqual(BridgeProtocol.handle(.init(id: "8", type: "glasses.open")),
                        #"{"error":"unknown_type","id":"8","ok":false}"#)
+        XCTAssertEqual(BridgeProtocol.handle(.init(id: "9", type: "ambient.start")),
+                       #"{"error":"unknown_type","id":"9","ok":false}"#)
     }
 
     func testAPositionIsAnsweredInWholeMetresAndAnISOMoment() {
