@@ -307,29 +307,39 @@ class Reconciler:
                 relationships={"appStoreVersionLocalization": relationship("appStoreVersionLocalizations", locale["id"])})
         for screenshot in existing:
             self.api.request("DELETE", f"/v1/appScreenshots/{screenshot['id']}")
-        uploaded = []
+        uploaded = {}
         for file in files:
             screenshot = self.upsert("appScreenshots", None,
                 {"fileName": file["path"].name, "fileSize": len(file["content"])},
                 relationships={"appScreenshotSet": relationship("appScreenshotSets", screenshot_set["id"])})
             for operation in screenshot["attributes"]["uploadOperations"]:
                 self.api.upload(operation, file["content"])
-            path = f"/v1/appScreenshots/{screenshot['id']}"
-            self.api.request("PATCH", path, {"data": {**reference("appScreenshots", screenshot["id"]),
+            self.api.request("PATCH", f"/v1/appScreenshots/{screenshot['id']}", {"data": {
+                **reference("appScreenshots", screenshot["id"]),
                 "attributes": {"uploaded": True, "sourceFileChecksum": file["checksum"]}}})
-            deadline = time.monotonic() + 300
-            while True:
-                state = self.api.request("GET", path)["data"]["attributes"]["assetDeliveryState"]
-                if state["state"] == "COMPLETE":
-                    break
-                if state["state"] == "FAILED":
-                    raise ListingError("appScreenshots FAILED: " + public_detail(json.dumps(state.get("errors", []))))
-                if time.monotonic() >= deadline:
-                    raise ListingError(f"appScreenshots {file['path'].name}: delivery timed out after 300 seconds")
-                time.sleep(2)
-            uploaded.append(reference("appScreenshots", screenshot["id"]))
+            uploaded[screenshot["id"]] = file["path"].name
         self.api.request("PATCH", f"/v1/appScreenshotSets/{screenshot_set['id']}/relationships/appScreenshots",
-                         {"data": uploaded})
+                         {"data": [reference("appScreenshots", identifier) for identifier in uploaded]})
+        # Apple processes the whole set at its own pace, minutes on a slow day. A file still in
+        # UPLOAD_COMPLETE at the deadline is received and keeps processing; only FAILED, or a file
+        # Apple never saw committed, is an error.
+        deadline = time.monotonic() + 1200
+        pending = dict(uploaded)
+        while pending:
+            for identifier, name in list(pending.items()):
+                state = self.api.request("GET", f"/v1/appScreenshots/{identifier}")["data"]["attributes"]["assetDeliveryState"]
+                if state["state"] == "COMPLETE":
+                    del pending[identifier]
+                elif state["state"] == "FAILED":
+                    raise ListingError(f"appScreenshots {name} FAILED: "
+                                       + public_detail(json.dumps(state.get("errors", []))))
+                elif time.monotonic() >= deadline:
+                    if state["state"] != "UPLOAD_COMPLETE":
+                        raise ListingError(f"appScreenshots {name}: still {state['state']} after 1200 seconds")
+                    print(f"appScreenshots {name}: uploaded, Apple is still processing it", file=sys.stderr)
+                    del pending[identifier]
+            if pending:
+                time.sleep(10)
 
     def run(self, state, listing, files):
         app, info, build = state["app"], state["info"], state["build"]
